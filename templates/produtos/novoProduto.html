@@ -1,0 +1,276 @@
+
+<!doctype html>
+<html class="no-js" lang="pt-br">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Novo Contato</title>
+	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
+	<script src="templates/lib/js/vendor/modernizr.js"></script>
+
+	<style type="text/css">
+		.separator{
+			margin-top: 0; 
+			margin-bottom: 0; 
+		}
+
+	</style>
+
+</head>
+<body>
+	<!--top bar bagin -->  
+	<!-- $Include templates/lib/html/header.html --> 
+	<!--top bar end--> 
+
+	<!-- body section-->
+
+	<!-- title -->
+	<div class="row">
+		<div class="medium-12 columns ">
+			<h3>CADASTRO DE NOVOS PRODUTOS</h3>
+		</div>	
+	</div>
+
+	<!-- botões --> 
+	<div class="row">
+		<div class="medium-12 columns">
+			<button class="button success small" data-reveal-id="novo_produto"> <i class="fa fa-plus fa-lg"></i> Novo Produto</button>
+			<button class="button alert small" id="teste"><i class="fa fa-times fa-lg"></i> Remover Produto</button>
+			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
+		</div>
+	</div>
+
+	<!-- container main --> 
+	<div class="row">
+		<div class="medium-12 columns">
+
+			<!-- tabela --> 
+			<table >
+				<thead>
+					<tr>
+						<th width="30;"></th>
+						<th width="30">COD</th>
+						<th width="30">PRODUTO</th>
+						<th width="30">CATEGORIA</th>
+						<th width="70">PREÇO VENDA</th>
+						<th width="30">ESTOQUE</th>
+						<th width="30">RESERVA</th>
+						<th width="30">OC</th>
+						<th width="30">OP</th>
+						<th width="30">SALDO</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<!-- $BeginBlock row --> 
+					<tr>
+						<td><input type="checkbox" name="none" value="${produto.id}"></td>
+						<td style="font-size: 12px;">${produto.id}</td>
+						<td style="font-size: 12px;">${produto.nome}</td>
+						<td style="font-size: 12px;">${produto.categoria}</td>
+						<td style="font-size: 12px;">${produto.preco_venda}</td>
+						<td style="font-size: 12px;">${produto.estoque}</td>
+						<td style="font-size: 12px;">${produto.reserva}</td>
+						<td style="font-size: 12px;">${produto.oc}</td>
+						<td style="font-size: 12px;">${produto.op}</td>
+						<td style="font-size: 12px;">${produto.saldo}</td>
+					</tr>
+					<!-- $EndBlock row --> 
+
+				</tbody>
+			</table>
+			<!-- fim tabela --> 
+		</div>	
+	</div>	
+	<!-- end body section--> 
+
+
+	<!-- modal sections --> 
+
+	<!-- nova categoria --> 
+	<div id="novo_produto" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog"> 
+		<h2 id="modalTitle">Novo Produto</h2>
+		<p class="lead">Insira os dados abaixo</p>
+		<!-- formulário --> 
+		<form id="form_produtos" data-abide="ajax" >
+
+			<hr class="separator" /> 
+
+			<div class="row">
+				<div class="medium-4 columns">
+					<input id="checkbox1"  value="true"  type="checkbox" name="nao_controlar_estoque"><label for="checkbox1">Não controlar estoque</label>
+				</div>
+
+				<div class="medium-4 columns ">
+					<input id="checkbox1"  value="true" type="checkbox" name="arquivar"><label for="checkbox1">Arquivar (esconder)</label>
+				</div>		
+			</div>
+
+			<hr class="separator" />
+
+			<div class="row">
+
+				<div class="medium-12 columns">
+					<!-- primeira seção --> 
+					<div class="row">
+						<div class="medium-4 columns">
+							<label>Nome <small style="color:red">Obrigatório</small>
+								<input name="nome" type="text" />
+							</label>
+						</div>
+
+						<div class="medium-4 columns">
+							<label>Categoria  
+								<select id="categoria" name="categoria_id">
+									<option value="">- Selecione -</option>
+									<!-- $BeginBlock categoria--> 
+									<option value="${categoria.id}">${categoria.nome_categoria}</option>
+									<!-- $EndBlock  categoria -->
+								</select>
+							</label>
+						</div>
+
+						<div class="medium-4 columns">
+							<label>Código personalizado <input name="codigo_personalizado" type="text" /> </label>
+						</div>
+					</div>
+
+					<!-- segundo seção --> 
+					<div class="row">
+						<div class="medium-4 columns">
+							<label>Unidade tributada 
+								<select name="unidade_tributaria">
+									<option value="">- Selecine -</option>
+								</select>
+							</label>
+						</div>
+
+						<div class="medium-4 columns">
+							<label>Margem de lucro (%)<input type="number" name="margem_lucro" id="margem_lucro" /> </label>
+						</div>
+
+						<div class="medium-4 columns">
+							<label> Preço de custo<input type="number" id="preco_custo" name="preco_custo" /> </label>
+						</div>
+					</div>
+
+					<!-- terceiro seção --> 
+					<div class="row">
+						<div class="medium-4 columns">
+							<label>Preço de venda <input type="number" id="preco_venda" name="preco_venda"/> </label>
+						</div>
+
+						<div class="medium-4 columns">
+							<label>inform. adicionais para o NFe <input type="text" name="infor_nfe" /> </label>
+						</div>
+
+						<div class="medium-4 columns">
+							<label>Referência EAN/GTIN <input type="text" name="ean_gtin" /> </label>
+						</div>
+					</div>
+
+					<!-- quarta seção --> 
+					<div class="row">
+						<div class="medium-4 columns">
+							<label>Exceção tabela IPI <input type="text" name="excecao_ipi" /> </label>
+						</div>
+
+						<div class="medium-4 columns">
+							<label>Estoque mínimo<input type="text" name="estoque_minimo" /> </label>
+						</div>
+
+						<div class="medium-4 columns">
+							<label>Palavras-chave <input type="text" name="palavra_chave" /> </label>
+						</div>
+					</div>
+
+					<!-- quinta seção --> 
+					<div class="row">
+						<div class="medium-4 columns">
+							<label>NCM <a target="_blank" href="http://www4.receita.fazenda.gov.br/simulador/PesquisarNCM.jsp">(Encontre aqui)</a> <input type="text" name="ncm" /> </label>
+						</div>
+					</div>
+
+					<!-- sexta seção -->
+					<div class="row">
+						<div class="medium-12 columns">
+							<label>Anotações internas<textarea name="anotacoes_internas"></textarea></label>
+						</div>		
+					</div>	
+
+					<!-- botões -->
+					<div class="row">
+						<div class="medium-12 columns">		
+							<div class="panel clearfix">
+								<button type="submit" class="button small secondary right">Salvar</button>	
+							</div>										
+						</div>
+					</div>	
+
+				</div>
+			</div>
+
+		</form>
+		<!-- fim formulário --> 
+		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	</div>
+
+
+	<!-- end modal sections --> 
+
+	<script src="templates/lib/js/vendor/jquery.js"></script>
+	<script src="templates/lib/notify/lib/alertify.min.js"></script>
+	<script src="templates/lib/js/foundation.min.js"></script>
+
+	<script src="templates/lib/js/ajax.js"type="text/javascript"></script>
+	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.default.css" />
+	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.core.css" />
+	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+
+	<script>
+		$(document).foundation();
+
+		$(document).ready(function(){
+			$('#form_produtos').on('valid.fndtn.abide', function() {
+				var data = $('#form_produtos').serializeArray(); 
+
+				sendAjax('index.php?uc=produtos&a=cadastro','POST',data,function(data){
+					data = JSON.parse(data); 
+
+					if(data['status'])
+						window.location.reload();
+				}); 
+			}); 
+
+			$('#categoria').change(function(){
+				var idCategoria = $('#categoria option:selected').attr('value'); 
+
+				if( idCategoria == '' )
+					$('#margem_lucro').val(''); 
+
+				var data = {'id' : idCategoria}; 
+				sendAjax('index.php?uc=ajaxServices&a=getCategoryProfit','POST',data,function( data){
+					data = JSON.parse(data); 
+
+					if( data['profit'] == null) return; 
+
+					$('#margem_lucro').val(data['profit']); 
+
+				}); 
+
+				$('input').focusout(function(){
+					var margem = parseFloat($('#margem_lucro').val()); 
+					var preco  = parseFloat($('#preco_custo').val()); 
+
+					$('#preco_venda').val( preco + ( (preco / 100) * margem) );
+
+				}); 
+
+			}); 
+
+		}); 
+
+	</script>
+</body>
+</html>

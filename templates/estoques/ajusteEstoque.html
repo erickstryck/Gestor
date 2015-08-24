@@ -1,0 +1,368 @@
+	  <!doctype html>
+	  <html class="no-js" lang="pt-br">
+	  <head>
+	  	<meta charset="utf-8" />
+	  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	  	<title>Novo Contato</title>
+	  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+	  	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
+	  	<script src="templates/lib/js/vendor/modernizr.js"></script>
+
+	  	<style type="text/css">
+	  		.separator{
+	  			margin-top: 0; 
+	  			margin-bottom: 0; 
+	  		}
+
+	  	</style>
+
+	  </head>
+	  <body>
+	  	<!--top bar bagin -->  
+	  	<!-- $Include templates/lib/html/header.html --> 
+	  	<!--top bar end--> 
+
+	  	<!-- body section-->
+
+	  	<!-- title -->
+	  	<div class="row">
+	  		<div class="medium-12 columns ">
+	  			<h3>AJUSTES DE ESTOQUE</h3>
+	  		</div>	
+	  	</div>
+
+	  	<!-- botões --> 
+	  	<div class="row">
+	  		<div class="medium-12 columns">
+	  			<button class="button success small" data-reveal-id="novo_ajuste"> <i class="fa fa-plus fa-lg"></i> Novo Ajuste</button>
+	  			<button class="button alert small" id="teste"><i class="fa fa-times fa-lg"></i> Remover Ajuste</button>
+
+	  		</div>
+	  	</div>
+
+	  	<!-- container main --> 
+	  	<div class="row">
+	  		<div class="medium-12 columns">
+
+	  			<!-- tabela --> 
+	  			<table >
+	  				<thead>
+	  					<tr>
+	  						<th width="30;"></th>
+	  						<th width="30">COD</th>
+	  						<th width="600">TIPO</th>
+	  						<th width="600">CONTATO</th>
+	  						<th width="600">OBS</th>
+	  						<th width="600">DATA</th>
+	  					</tr>
+	  				</thead>
+	  				<tbody>
+
+	  					<!-- $BeginBlock row --> 
+	  					<tr>
+	  						<td><input type="checkbox" name="none" value="${mudanca.id}"></td>
+	  						<td style="font-size: 12px;">${mudanca.id}</td>
+	  						<td style="font-size: 12px;">${mudanca.tipo}</td>
+	  						<td style="font-size: 12px;">${mudanca.contato}</td>
+	  						<td style="font-size: 12px;">${mudanca.obs}</td>
+	  						<td style="font-size: 12px;">${mudanca.data}</td>
+	  					</tr>
+	  					<!-- $EndBlock row --> 
+
+	  				</tbody>
+	  			</table>
+	  			<!-- fim tabela --> 
+	  		</div>	
+	  	</div>	
+	  	<!-- end body section--> 
+
+
+	  	<!-- modal sections --> 
+
+	  	<!-- nova ajuste --> 
+	  	<div id="novo_ajuste" class="reveal-modal xlarge" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+
+	  		<h2 id="modalTitle">Ajuste de Estoque</h2>
+	  		<p class="lead">Primeira etapa: selecione um produto</p>
+	  		<!-- formulário --> 
+	  		<form id="form_passo1" data-abide="ajax" >
+	  			<hr class="separator" /> 
+	  			<!-- Formulário para o filtro --> 
+	  			<div class="row">	
+	  				<div class="medium-4 columns">
+	  					<label>Nome, código ou referência
+	  						<input type="text" id="ncr" />
+	  					</label> 
+	  				</div>
+
+	  				<div class="medium-3 columns">
+	  					<label>Palavra-chave
+	  						<input type="text" id="palavra_chave"  />
+	  					</label> 
+	  				</div>
+
+	  				<div class="medium-3 columns">
+	  					<label>Categoria
+	  						<select id="categoria">
+	  							<option value="">- Selecione -</option>
+	  							<!-- $BeginBlock categoria--> 
+	  							<option value="${categoria.id}">${categoria.nome_categoria}</option>
+	  							<!-- $EndBlock  categoria -->
+	  						</select>
+	  					</label> 
+	  				</div>
+
+	  				<div class="medium-1 columns end">
+	  					<button  class="button tiny secondary" id="buscar" style="margin-top:22px;">Buscar</button>	
+	  				</div>
+	  			</div>
+
+	  			<div class="row">
+	  				<div class="medium-1 columns">
+	  					<span class="label">Resultado da busca</span>
+	  				</div>
+	  			</div>
+	  			<hr class="separator" /> 
+
+	  			<div class="row">
+	  				<div class="medium-12 columns">
+	  					<!-- tabela --> 
+	  					<table >
+	  						<thead>
+	  							<tr>
+	  								<th width="30">COD</th>
+	  								<th width="150">COD PERS.</th>
+	  								<th width="600">PRODUTO</th>
+	  								<th width="600">CATEGORIA</th>
+	  								<th width="150">ESTOQUE ATUAL</th>
+	  								<th width="600">NOVO ESTOQUE</th>
+	  								<th width="600">AÇÃO</th>
+	  							</tr>
+	  						</thead>
+	  						<tbody id="body_table">
+	  						</tbody>
+	  					</table>
+	  					<!-- fim tabela --> 
+	  				</div>		
+	  			</div>	
+
+	  		</form>
+	  		<!-- fim formulário --> 
+	  		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	  	</div>
+
+
+	  	<!-- nova  --> 
+	  	<div id="novo_ajuste_passo2" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	  		<h2 id="modalTitle">Ajuste de Estoque</h2>
+	  		<p class="lead">Segunda etapa: informações sobre o ajuste</p>
+	  		<hr class="separator" /> 
+	  		<!-- formulário --> 
+	  		<form id="form_passo2" data-abide="ajax" >
+
+	  			<!-- Formulário para o filtro --> 
+	  			<input id="produto_id" type="hidden" name="produto_id" />
+	  			<input id="val_alteracao" type="hidden" name="val_alteracao" />
+
+
+	  			<div class="row">
+	  				<div class="medium-6 columns">
+	  					<div class="medium-12 columns">
+	  						<label>Tipo ajuste <small style="color:red">Obrigatório</small>
+	  							<select name="tipo_ajuste_id" id="tipo_ajuste_id" required>
+	  								<option value="">- Selecione -</option>
+	  								<!-- $BeginBlock tipo_ajuste--> 
+	  								<option value="${tipo_ajuste.id}">${tipo_ajuste.des}</option>
+	  								<!-- $EndBlock  tipo_ajuste -->
+	  							</select> <small class="error">Selecione um item</small>
+	  						</label> 
+	  					</div>
+
+	  					<div class="medium-12 columns">
+	  						<label>Contato
+	  							<select name="contato_id" id="contato_id">
+	  								<option value="">- Selecione -</option>
+	  								<!-- $BeginBlock contato--> 
+	  								<option value="${contato.id}">${contato.nome_fantasia}</option>
+	  								<!-- $EndBlock  contato -->
+	  							</select>
+	  						</label>
+
+	  					</div>
+	  				</div>
+
+	  				<div class="medium-6 columns">
+	  					<label>Observações gerais
+	  						<textarea name="obs_gerais"></textarea>
+	  					</label> 
+	  				</div>
+
+	  			</div>
+
+	  			<div class="row">
+
+	  				<div class="medium-12 columns">	
+	  					<div data-alert class="alert-box success radius" id="msg" >
+	  						
+	  						<a href="#" class="close">&times;</a>
+	  					</div>
+	  				</div>
+
+	  			</div>
+
+	  			<!-- botões -->
+	  			<div class="row">
+	  				<div class="medium-12 columns">		
+	  					<div class="panel clearfix">
+	  						<button type="submit" class="button small secondary right">Salvar</button>	
+	  					</div>										
+	  				</div>
+	  			</div>	
+
+	  		</form>
+	  		<!-- fim formulário --> 
+	  		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	  	</div>
+
+	  	<!-- end modal sections --> 
+
+	  	<script src="templates/lib/js/vendor/jquery.js"></script>
+	  	<script src="templates/lib/notify/lib/alertify.min.js"></script>
+	  	<script src="templates/lib/js/foundation.min.js"></script>
+
+	  	<script src="templates/lib/js/ajax.js"type="text/javascript"></script>
+	  	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.default.css" />
+	  	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.core.css" />
+	  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+
+	  	<script>
+	  		$(document).foundation();
+
+	  		$(document).ready(function(){
+
+	  			$(document).on('close.fndtn.reveal', '[data-reveal]', function () {
+	  				if($(this).attr('id') == 'novo_ajuste')
+	  					window.location.reload();  
+	  			});
+
+	  				//Seção para tratamento dos eventos dos formulários
+	  				$('#form_passo2').on('valid.fndtn.abide', function(){
+	  					var data = $('#form_passo2').serializeArray(); 
+
+	  					sendAjax('index.php?uc=estoques&a=cadastro','POST',data,function(data){ 
+	  						data = JSON.parse(data); 
+	  						
+	  						if(data['status']){
+	  							$('#novo_ajuste_passo2').foundation('reveal', 'close');
+	  							$('#novo_ajuste').foundation('reveal', 'open');
+	  							alertify.success("Mudança no estoque feita com sucesso"); 
+	  							buscarClick();
+	  							clearFields(); 
+	  						}	
+	  					}); 
+	  				}); 
+
+	  				$("#buscar").click(function(){
+	  					removeAllRow(); 
+	  					var categoria = $("#categoria").val(); 
+	  					var palavra   = $("#palavra_chave").val(); 
+	  					var ncr       = $("#ncr").val(); 
+
+	  					var data = { 'categoria' : categoria , 'ncr' : ncr , 'palavra_chave' : palavra }; 
+
+	  					sendAjax('index.php?uc=ajaxServices&a=getProducts','POST',data, function(data){
+	  						data = JSON.parse(data);
+
+	  						if( data.length <= 0 ) {
+	  							errorLog();
+	  							return; 
+	  						}
+
+
+	  						for( var a = 0 ; a < data.length ; a++)
+	  							addRow(data[a]); 
+
+	  						//Essa linha é necessária para adicionar os manipuladores de eventos mediante
+	  						//novas inserções no DOM. 
+	  						//
+	  						//Adendo: conforme as conhecidas leis que regem o universo e a vida, e consequentemente a 
+	  						//gambiarra, eis que as linhas logo abaixo as contemplam eu sua plenitude.
+	  						$('button.event').click(function(){
+	  							var tr = $(this).parent().parent();
+	  							var valorAlteracao, produto, estoque, id; 
+
+					 			//pegando valor da mudança do estoque; 
+					 			$(tr).find('input').each(function(){
+					 				valorAlteracao = parseInt($(this).val()); 
+					 			}); 
+
+	  							//pegando o nome do produto 
+	  							$(tr).find('td.produto').each(function(){
+	  								produto = $(this).text(); 
+	  							});
+
+	  							//pegando o estoque atual 
+	  							$(tr).find('td.estoque').each(function(){
+	  								estoque = parseInt($(this).text()); 
+	  							});
+
+	  							//pegando o estoque atual 
+	  							$(tr).find('td.id').each(function(){
+	  								id = parseInt($(this).text()); 
+	  							});
+
+	  							if(valorAlteracao < 0 || ( valorAlteracao == estoque )){
+	  								alertify.error("O novo valor para o estoque do produto "+produto+" é inválido."); 
+	  								alertify.log("Tente inserir valores diferentes do estoque atual ou maiores que 0"); 
+	  								return; 
+	  							}
+
+	  							prepareSecondModal(valorAlteracao, produto, estoque, id); 
+	  						}); 
+
+	}); 
+
+	  function addRow(data){
+	  	var row = '<tr> <td class="id" style="font-size: 12px;">'+data['id']+'</td><td style="font-size: 12px;">'+data['codigo_personalizado']+'</td><td class="produto" style="font-size: 12px;">'+data['produto']+'</td><td style="font-size: 12px;">'+data['categoria']+'</td><td class="estoque" style="font-size: 12px;">'+data['estoque_atual'] +'</td><td style="font-size: 12px;"> <input type="number" value="'+data['estoque_atual']+'"style="margin:0; width:100px;"/></td><td style="font-size: 12px;"> <button class="button tiny alert event" id="'+data['id']+'" style="margin:0;" > Ajustar</button> </td></tr>'; 
+
+	  	$("#body_table").append(row); 
+	  }
+
+
+	}); 
+
+	}); 
+
+
+	  function removeAllRow(){
+	  	$('#body_table > tr').each(function(){ this.remove(); }); 
+	  }
+
+	  function errorLog(){
+	  	alertify.error('Nenhum registro relacionado com os dados que foram enviados.');
+	  }
+
+	  function prepareSecondModal(valorAlteracao, produto, estoque,id){
+	  	$("#msg").text('O seu estoque do produto '+produto+' será alterado de '+estoque+' unidade(s) para '+valorAlteracao+' unidade(s)'); 
+	  	$("#produto_id").val(id); 
+	  	$("#val_alteracao").val(valorAlteracao); 
+	  	$('#novo_ajuste_passo2').foundation('reveal', 'open');
+	  }
+
+
+	  function buscarClick(){
+	  	var evente = setInterval(function (){
+	  		$('#buscar').trigger('click'); 
+	  		clearInterval(evente); 
+	  	},1000); 
+	  }  
+
+	  function clearFields(){
+	  	$('obs_gerais').val(' '); 
+	  	$("#contato_id option[value='']").attr('selected', true);
+	  	$("#tipo_ajuste_id option[value='']").attr('selected', true);
+	  }
+
+	</script>
+</body>
+</html>

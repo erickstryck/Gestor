@@ -1,0 +1,154 @@
+	  <!doctype html>
+	  <html class="no-js" lang="pt-br">
+	  <head>
+	  	<meta charset="utf-8" />
+	  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	  	<title>Novo Contato</title>
+	  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+	  	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
+	  	<script src="templates/lib/js/vendor/modernizr.js"></script>
+
+	  	<style type="text/css">
+	  		.separator{
+	  			margin-top: 0; 
+	  			margin-bottom: 0; 
+	  		}
+
+	  	</style>
+
+	  </head>
+	  <body>
+	  	<!--top bar bagin -->  
+	  	<!-- $Include templates/lib/html/header.html --> 
+	  	<!--top bar end--> 
+
+	  	<!-- body section-->
+
+	  	<!-- title -->
+	  	<div class="row">
+	  		<div class="medium-12 columns ">
+	  			<h3>CADASTRO DE SERVIÇOS</h3>
+	  		</div>	
+	  	</div>
+
+	  	<!-- botões --> 
+	  	<div class="row">
+	  		<div class="medium-12 columns">
+	  			<button class="button success small" data-reveal-id="novo_servico"> <i class="fa fa-plus fa-lg"></i> Novo Serviço</button>
+	  			<button class="button alert small" id="teste"><i class="fa fa-times fa-lg"></i> Remover Serviço</button>
+	  			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
+	  		</div>
+	  	</div>
+
+	  	<!-- container main --> 
+	  	<div class="row">
+	  		<div class="medium-12 columns">
+
+	  			<!-- tabela --> 
+	  			<table >
+	  				<thead>
+	  					<tr>
+	  						<th width="30;"></th>
+	  						<th width="30">COD</th>
+	  						<th width="150">NOME</th>
+	  						<th width="600">PALAVRA-CHAVE</th>
+	  						<th width="600">PREÇO</th>
+	  					</tr>
+	  				</thead>
+	  				<tbody>
+
+	  					<!-- $BeginBlock row --> 
+	  					<tr>
+	  						<td><input type="checkbox" name="none" value="${servico.id}"></td>
+	  						<td style="font-size: 12px;">${servico.id}</td>
+	  						<td style="font-size: 12px;">${servico.nome_servico}</td>
+	  						<td style="font-size: 12px;">${servico.palavra_chave}</td>
+	  						<td style="font-size: 12px;">${servico.preco}</td>
+	  					</tr>
+	  					<!-- $EndBlock row --> 
+
+	  				</tbody>
+	  			</table>
+	  			<!-- fim tabela --> 
+	  		</div>	
+	  	</div>	
+	  	<!-- end body section--> 
+
+
+	  	<!-- modal sections --> 
+
+	  	<!-- nova categoria --> 
+	  	<div id="novo_servico" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	  		<h2 id="modalTitle">Novo Serviço</h2>
+	  		<p class="lead">Insira os dados abaixo</p>
+	  		<!-- formulário --> 
+	  		<form id="form_servico" data-abide="ajax" >
+
+	  			<div class="row">
+	  				<div class="medium-6 columns">
+	  					<label>Nome do serviço <small style="color:red">Obrigatório:</small>
+	  						<input type="text" name="nome_servico" required />
+	  					</label> <small class="error" >Preencha este campo</small>
+	  				</div>
+
+	  				<div class="medium-6 columns">
+	  					<label>Preço
+	  						<input type="number" name="preco" />
+	  					</label> 
+	  				</div>
+	  			</div>
+
+	  			<div class="row">
+	  				<div class="medium-6 columns">
+	  					<label>Palavra-Chave 
+	  						<input type="text"  name="palavra_chave" />
+	  					</label> 
+	  				</div>
+	  			</div>
+
+	  			<!-- botões -->
+	  			<div class="row">
+	  				<div class="medium-12 columns">		
+	  					<div class="panel clearfix">
+	  						<button type="submit" class="button small secondary right">Salvar</button>	
+	  					</div>										
+	  				</div>
+	  			</div>	
+
+	  		</form>
+	  		<!-- fim formulário --> 
+	  		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	  	</div>
+
+
+	  	<!-- end modal sections --> 
+
+	  	<script src="templates/lib/js/vendor/jquery.js"></script>
+	  	<script src="templates/lib/notify/lib/alertify.min.js"></script>
+	  	<script src="templates/lib/js/foundation.min.js"></script>
+
+	  	<script src="templates/lib/js/ajax.js"type="text/javascript"></script>
+	  	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.default.css" />
+	  	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.core.css" />
+	  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+
+	  	<script>
+	  		$(document).foundation();
+
+	  		$(document).ready(function(){
+	  			$('#form_servico').on('valid.fndtn.abide', function() {
+	  				var data = $('#form_servico').serializeArray(); 
+
+	  				sendAjax('index.php?uc=servicos&a=cadastro','POST',data,function(data){
+	  					data = JSON.parse(data); 
+	  					
+	  					if(data['status'])
+	  						window.location.reload(); 
+	  				}); 
+	  			}); 
+	  			
+	  		})
+
+	  	</script>
+	  </body>
+	  </html>

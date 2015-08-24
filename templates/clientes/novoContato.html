@@ -1,0 +1,501 @@
+  <!doctype html>
+  <html class="no-js" lang="pt-br">
+  <head>
+  	<meta charset="utf-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  	<title>Novo Contato</title>
+  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+  	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
+  	<script src="templates/lib/js/vendor/modernizr.js"></script>
+
+  	<style type="text/css">
+  		.separator{
+  			margin-top: 0; 
+  			margin-bottom: 0; 
+  		}
+
+  	</style>
+
+  </head>
+  <body>
+  	<!--top bar bagin -->  
+  	<!-- $Include templates/lib/html/header.html --> 
+  	<!--top bar end--> 
+
+  	<!-- body section-->
+
+  	<!-- title -->
+  	<div class="row">
+  		<div class="medium-12 columns ">
+  			<h3>CADASTRO DE CONTATO</h3>
+  		</div>	
+  	</div>
+
+  	<!-- botões --> 
+  	<div class="row">
+  		<div class="medium-12 columns">
+  			<button class="button success small" data-reveal-id="novo_contato"> <i class="fa fa-plus fa-lg"></i> Novo Contato</button>
+  			<button class="button alert small" id="teste"><i class="fa fa-times fa-lg"></i> Remover Contato</button>
+  			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
+  		</div>
+  	</div>
+
+  	<!-- container main --> 
+  	<div class="row">
+  		<div class="medium-12 columns">
+
+  			<!-- tabela --> 
+  			<table >
+  				<thead>
+  					<tr>
+  						<th width="30"></th>
+  						<th width="30">COD</th>
+  						<th width="150">NOME</th>
+  						<th width="150">CPF/CNPJ</th>
+  						<th width="160">ENDEREÇO</th>
+  						<th width="130">TELEFONE</th>
+  						<th width="190">EMAIL</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+
+  					<!-- $BeginBlock row --> 
+  					<tr>
+  						<td><input type="checkbox" name="none" value="${contato.id}"></td>
+  						<td style="font-size: 12px;">${contato.id}</td>
+  						<td style="font-size: 12px;">${contato.nome}</td>
+  						<td style="font-size: 12px;">${contato.cpf_cnpj}</td>
+  						<td style="font-size: 12px;"><span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="${contato.endereco.tooltip} ">${contato.endereco} </span></td>
+  						<td style="font-size: 12px;">${contato.telefone}</td>
+  						<td style="font-size: 12px;">${contato.email}</td>
+  					</tr>
+  					<!-- $EndBlock row --> 
+  					
+  				</tbody>
+  			</table>
+  			<!-- fim tabela --> 
+  		</div>	
+  	</div>	
+  	<!-- end body section--> 
+
+
+  	<!-- modal sections --> 
+
+  	<!-- novo contato --> 
+  	<div id="novo_contato" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  		<h2 id="modalTitle">Cadastro de novo contato</h2>
+  		<p class="lead">Insira os dados abaixo</p>
+  		<!-- formulário --> 
+  		<div class="row">
+
+  			<!-- Label informativo--> 
+  			<div class="row">
+  				<div class="medium-2 columns">
+  					<span class="warning label">Selecione pelo menos uma categoria para o contato</span>
+  				</div>			
+  			</div>	
+
+  			<div class="medium-12 columns">
+  				<!-- formulário --> 
+  				<form data-abide="ajax" id="form_contato" >
+  					<hr class="separator"/>
+  					<!-- primeira etapa --> 
+  					<div class="row checkbox-group" data-abide-validator-min="1">
+  						<div class="medium-2 columns">
+  							<input id="checkbox1" name="is_cliente" value="1" data-abide-validator="checkbox_limit" type="checkbox"><label for="checkbox1">Cliente</label>
+  						</div>
+
+  						<div class="medium-2 columns">
+  							<input id="checkbox1" name="is_fornecedor" value="2" data-abide-validator="checkbox_limit"type="checkbox"><label for="checkbox1">Fornecedor</label>
+  						</div>
+
+  						<div class="medium-3 columns">
+  							<input id="checkbox1" name="is_transportador" value="3" data-abide-validator="checkbox_limit" type="checkbox"><label for="checkbox1">Transportador</label>
+  						</div>
+
+  						<div class="medium-3 columns">
+  							<input id="checkbox1" name="is_cosumidor_final" data-abide-validator="checkbox_limit" value="4" type="checkbox"><label for="checkbox1">Consumidor final</label>
+  						</div>
+  					</div>
+
+  					<hr class="separator"/>
+
+  					<!-- segunda etapa -->
+  					<div class="row">
+  						<div class="medium-3 columns">
+  							<label>Nome ou Razão social <small style="color:red">Obrigatório</small>
+  								<input name="nome_razao_social" type="text" required />
+  							</label><small class="error" >É obrigatório preencher este campo.</small>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Nome Fantasia
+  								<input name="nome_fantasia" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>CPF ou CNPJ
+  								<input name="cpf_cnpj"type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>inscr Est Subst Trib
+  								<input name="inscr_est_subst_trip" type="text"  />
+  							</label>
+  						</div>
+  					</div>
+
+  					<!-- terceira etapa -->
+  					<div class="row">
+  						<div class="medium-3 columns">
+  							<label>Indicador de IE <small style="color:red">Obrigatório</small>
+  								<select name="indicador_de_ie" required>
+  									<option value=""> - Selecione - </option>
+  									<!-- $BeginBlock contato.indicadorIE --> 
+  									<option value="${contato.indicadorIE.id}">${contato.indicadorIE.des}</option>
+  									<!-- $EndBlock  contato.indicadorIE -->
+  								</select>
+  							</label> <small class="error">Selecione um indicador</small>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Inscrição Estatual
+  								<input name="inscr_estatual" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Inscrição Municipal
+  								<input name="inscr_municipal" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Inscrição Suframa
+  								<input name="inscr_sumafra" type="text"  />
+  							</label>
+  						</div>
+  					</div>
+
+  					<!-- quarta etapa -->
+  					<div class="row">
+  						<div class="medium-3 columns">
+  							<label>CEP
+  								<input name="cep" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Endereço
+  								<input name="endereco" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Número
+  								<input name="numero" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Complemento
+  								<input name="complemento" type="text"  />
+  							</label>
+  						</div>
+  					</div>
+
+  					<!-- quinta etapa -->
+  					<div class="row">
+  						<div class="medium-3 columns">
+  							<label>Bairro
+  								<input name="bairro" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Estado <small style="color:red">Obrigatório</small>
+  								<select id="estado" name="estado" required>
+  									<option value="" > - Selecione - </option>
+  									<!-- $BeginBlock contato.estado -->
+  									<option value="${contato.estado.id}">${contato.estado.des}</option>
+  									<!-- $EndBlock contato.estado -->
+  								</select>
+  							</label> <small class="error">Selecione um estado</small>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Cidade <small style="color:red">Obrigatório</small>
+  								<select id="cidade" name="cidade" required>
+  									<option value="" > - Selecione - </option>
+  									
+  								</select> 
+  							</label><small class="error">Selectione uma cidade</small>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>País <small style="color:red">Obrigatório</small>
+  								<select name="pais" required>
+  									<option value=""> - Selecione - </option>
+  									<!-- $BeginBlock contato.pais --> 
+  									<option value="${contato.pais.id}">${contato.pais.des}</option>
+  									<!-- $EndBlock  contato.pais -->
+  								</select> 
+  							</label><small class="error">Selecione um pais</small>
+  						</div>
+  					</div>
+
+  					<!-- sexta etapa -->
+  					<div class="row">
+  						<div class="medium-3 columns">
+  							<label>Nome do responsável
+  								<input name="nome_responsavel" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Telefone
+  								<input name="telefone" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Fone 2 (fax)
+  								<input name="telefone1" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Fone 3 (celular)
+  								<input name="telefone2" type="text"  />
+  							</label>
+  						</div>
+  					</div>
+
+  					<!-- sétima etapa -->
+  					<div class="row">
+  						<div class="medium-3 columns">
+  							<label>E-mail
+  								<input name="email" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Outro E-mail
+  								<input name="email1" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Palavra-chave
+  								<input name="palavra_chave" type="text"  />
+  							</label>
+  						</div>
+  						<div class="medium-3 columns">
+  							<label>Data nascimento
+  								<input name="data_nasc" type="date"  />
+  							</label>
+  						</div>
+  					</div>
+
+  					<!-- oitava etapa --> 
+  					<div class="row">
+  						<div class="medium-12 columns">
+  							<label>Anotações gerais
+  								<textarea name="anotacoes_gerais" ></textarea>
+  							</label>
+  						</div>
+  					</div>
+  					
+  					<!-- Endereço diferente -->
+  					<hr class="separator"/>
+  					<div class="row">
+  						<div class="medium-4 columns">
+  							<input id="EndDif" name="is_endereco_diferente" type="checkbox"><label for="checkbox1">Endereço de entrega diferente</label>
+  						</div>
+  					</div>
+  					<hr class="separator"/>
+  					<!-- Endereço diferente -->
+
+  					<!-- Endereço de entraga -->
+  					<fieldset id="campo_endereco" class='hide'>
+  						<legend>Endereço de entraga diferente</legend>
+  						<!-- primeira etapa --> 
+  						<div class="row">
+  							<div class="medium-3 columns end">
+  								<label>CNPJ ou CPF
+  									<input name="entrega_cpf_cnpj" type="text"  />
+  								</label>
+  							</div>
+  						</div>
+
+  						<!-- segunda etapa -->
+  						<div class="row">
+  							<div class="medium-3 columns">
+  								<label>CEP
+  									<input name="entrega_cep" type="text" />
+  								</label>
+  							</div>
+  							<div class="medium-3 columns">
+  								<label>Endereço
+  									<input name="entrega_endereco" type="text"  />
+  								</label>
+  							</div>
+  							<div class="medium-3 columns">
+  								<label>Número
+  									<input name="entrega_numero" type="number"  />
+  								</label>
+  							</div>
+  							<div class="medium-3 columns">
+  								<label>Complemento
+  									<input name="entrega_complemento" type="text"  />
+  								</label>
+  							</div>
+  						</div>
+
+  						<!-- terceira etapa -->
+  						<div class="row">
+  							<div class="medium-3 columns">
+  								<label>Bairro
+  									<input name="entrega_barrio" type="text"  />
+  								</label>
+  							</div>
+  							<div class="medium-3 columns">
+  								<label>Estado <small style="color:red">Obrigatório</small>
+  									<select id="entrega_estado" name="entrega_estado" required>
+  										<option value="" > - Selecione - </option>
+  										<!-- $BeginBlock difEnd.estado --> 
+  										<option value="${difEnd.estado.id}">${difEnd.estado.des}</option>
+  										<!-- $EndBlock  difEnd.estado -->
+  									</select>
+  								</label> <small class="error">Selecione um estado</small>
+  							</div>
+  							<div class="medium-3 columns">
+  								<label>Cidade <small style="color:red">Obrigatório</small>
+  									<select id="entrega_cidade" name="entrega_cidade" required>
+  										<option value="" > - Selecione - </option>
+  										
+  									</select>
+  								</label> <small class="error">Selecione uma cidade</small>
+  							</div>
+  							<div class="medium-3 columns">
+  								<label>Ponto de Referência
+  									<input name="entrega_ponto_referencia" type="text"  />
+  								</label>
+  							</div>
+  						</div>
+
+  						
+  					</fieldset>
+
+  					
+  					<!-- botões -->
+  					<div class="row">
+  						<div class="medium-12 columns">		
+  							<div class="panel clearfix">
+  								<button class="button success radius right" type="submit" >Salvar Contato</button>	
+  							</div>	
+  						</div>
+  					</div>	
+  				</form>
+  				<!-- fim formulário --> 
+  			</div>
+  		</div>	
+  		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  	</div>
+
+
+  	<!-- end modal sections --> 
+
+  	<script src="templates/lib/js/vendor/jquery.js"></script>
+  	<script src="templates/lib/notify/lib/alertify.min.js"></script>
+  	<script src="templates/lib/js/foundation.min.js"></script>
+
+  	<script src="templates/lib/js/ajax.js"type="text/javascript"></script>
+  	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.default.css" />
+  	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.core.css" />
+  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+
+  	<script>
+  		$(document).foundation();
+
+  		$(document).foundation({
+  			abide: {
+  				validators: {
+  					checkbox_limit: function(el, required, parent) {
+  						var group = parent.closest('.checkbox-group');
+  						var min = group.attr('data-abide-validator-min');
+  						var checked = group.find(':checked').length;
+  						if (checked >= min) {
+  							group.find('small.error').hide();
+  							return true;
+  						} else {
+  							group.find('small.error').css({
+  								display: 'block'
+  							});
+  							return false;
+  						}
+  					}
+  				}
+  			}
+  		});
+
+  		$(document).ready(function(){
+
+  			$('#EndDif').change(function(){
+  				if(this.checked)
+  					$('#campo_endereco').removeClass('hide'); 
+  				else
+  					$('#campo_endereco').addClass('hide'); 
+
+  			}); 
+
+	        	//Mainpulando a ação do formulário do novo contato; 
+	        	$('#form_contato').on('valid.fndtn.abide', function() {
+	        		var data = $('#form_contato').serializeArray(); 
+
+	        		sendAjax('index.php?uc=clientes&a=cadastro','POST',data,function(data){ 
+	        			data = JSON.parse(data); 
+	        			if(data['status'])
+	        				window.location.reload(); 
+	        			
+	        		}); 
+	        	}); 
+
+	        	$('select').change(function(){
+	        		
+	        		var value = $('#'+this.id+' option:selected').attr('value');
+	        		var label = $('#'+this.id+' option:selected').text();
+	        		if( this.id == '' ) return; 
+
+	        		if( this.id == 'estado'){
+	        			sendAjax('index.php?uc=ajaxServices&a=getCities','POST',{'id': value },function(data){
+	        				data = JSON.parse(data); 
+
+	        				$('#cidade > option').each(function(){ this.remove(); }); 
+	        				
+
+	        				$('#cidade > option').each(function(){ this.remove(); }); 
+	        				$.each(data, function (i, item) { 
+	        					$('#cidade').append($('<option>', { 
+	        						value: item['id'],
+	        						text : item['des'] 
+	        					}));
+	        				});
+
+	        				alertify.success("Cidades para o estado do(e) <b>"+ label +"</b> foram carregadas"); 
+	        				//
+	        			}); 
+	        		} 
+
+	        		if( this.id == 'entrega_estado'){
+	        			sendAjax('index.php?uc=ajaxServices&a=getCities','POST',{'id': value },function(data){
+	        				data = JSON.parse(data); 
+
+	        				$('#entrega_cidade > option').each(function(){ this.remove(); }); 
+	        				
+
+	        				$.each(data, function (i, item) { 
+	        					$('#entrega_cidade').append($('<option>', { 
+	        						value: item['id'],
+	        						text : item['des'] 
+	        					}));
+	        				});
+
+	        				alertify.success("Cidades para o estado do(e) <b>"+ label +"</b> foram carregadas"); 
+	        				//
+	        			}); 
+	        		}
+
+	        	}); 
+  
+	        //fim do ready; 
+	    }); 
+
+</script>
+</body>
+</html>
