@@ -10,7 +10,6 @@ require_once(PATH.'Controller'.DS.'UseCase'.DS.'Estoques.php');
 require_once(PATH.'Controller'.DS.'UseCase'.DS.'Vendas.php');
 require_once(PATH.'Controller'.DS.'UseCase'.DS.'OrdemServico.php');
 
-
 class MainController {
 	private $controllersArray;
 	public function __construct() {

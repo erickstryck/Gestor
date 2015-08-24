@@ -32,6 +32,8 @@ class Vendas extends GenericController {
 			$p  = json_decode($pedido);   
 			$produto = new Produto(); 
 			$produto->get( (int) $p->id );
+
+			$total = $protudo->get('nome', 'Arroz'); 
 			
 			//Verificando se a quantidade subtraída do estoque ainda é maior que 0. 
 			if( 0 > ($produto->estoqueAtual - (int) $p->quantidade ) )
