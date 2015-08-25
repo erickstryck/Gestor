@@ -9,12 +9,14 @@ require_once(PATH.'Controller'.DS.'UseCase'.DS.'Usuarios.php');
 require_once(PATH.'Controller'.DS.'UseCase'.DS.'Estoques.php');
 require_once(PATH.'Controller'.DS.'UseCase'.DS.'Vendas.php');
 require_once(PATH.'Controller'.DS.'UseCase'.DS.'OrdemServico.php');
+require_once(PATH.'Controller'.DS.'UseCase'.DS.'Contas.php');
 
 class MainController {
 	private $controllersArray;
 	public function __construct() {
 		// incluir todos os controllers específicos aqui;       
 		$this->controllersArray = array (
+				'contas'       => new Contas(), 
 				'clientes'     => new Clientes(), 
 				'ajaxServices' => new AjaxServices(),
 				'categorias'   => new Categorias(), 
