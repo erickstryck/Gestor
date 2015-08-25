@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "endereco_entrega_diferente"
- * in 2015-08-19
+ * in 2015-08-25
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -45,7 +45,7 @@ class EnderecoEntregaDiferente extends Lumine_Base {
         $this->metadata()->addField('complemento', 'complemento', 'varchar', 500, array());
         $this->metadata()->addField('bairro', 'bairro', 'varchar', 150, array());
         $this->metadata()->addField('pontoReferencia', 'ponto_referencia', 'varchar', 500, array());
-        $this->metadata()->addField('cidadeId', 'cidade_id', 'int', 11, array('primary' => true, 'notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Cidade'));
+        $this->metadata()->addField('cidadeId', 'cidade_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Cidade'));
 
         
         $this->metadata()->addRelation('contatohasenderecoentregadiferentes', Lumine_Metadata::ONE_TO_MANY, 'ContatoHasEnderecoEntregaDiferente', 'enderecoEntregaDiferenteId', null, null, null);

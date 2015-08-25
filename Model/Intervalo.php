@@ -1,7 +1,7 @@
 <?php
 #### START AUTOCODE
 /**
- * Classe generada para a tabela "tipo_pagamento"
+ * Classe generada para a tabela "intervalo"
  * in 2015-08-25
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
@@ -9,12 +9,12 @@
  *
  */
 
-class TipoPagamento extends Lumine_Base {
+class Intervalo extends Lumine_Base {
 
     
-    public $id;
+    public $idintervalo;
     public $des;
-    public $formapagamentos = array();
+    public $contas = array();
     
     
     
@@ -25,16 +25,16 @@ class TipoPagamento extends Lumine_Base {
      */
     protected function _initialize()
     {
-        $this->metadata()->setTablename('tipo_pagamento');
+        $this->metadata()->setTablename('intervalo');
         $this->metadata()->setPackage('Model');
         
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
         
-        $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
+        $this->metadata()->addField('idintervalo', 'idintervalo', 'int', 11, array('primary' => true, 'notnull' => true));
         $this->metadata()->addField('des', 'des', 'varchar', 45, array());
 
         
-        $this->metadata()->addRelation('formapagamentos', Lumine_Metadata::ONE_TO_MANY, 'FormaPagamento', 'tipoPagamentoId', null, null, null);
+        $this->metadata()->addRelation('contas', Lumine_Metadata::ONE_TO_MANY, 'Conta', 'intervaloId', null, null, null);
     }
 
     #### END AUTOCODE

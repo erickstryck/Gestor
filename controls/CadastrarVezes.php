@@ -23,10 +23,10 @@ require_once 'C:/wamp/www/Gestor/lumine-conf.php';
 Lumine::load('Form_White');
 
 $cfg = new Lumine_Configuration( $lumineConfig );
-$cfg->import('MudancaEstoqueHasContato');
+$cfg->import('CadastrarVezes');
 register_shutdown_function(array($cfg->getConnection(), 'close'));
 
-$obj = new MudancaEstoqueHasContato;
+$obj = new CadastrarVezes;
 
 $form = new Lumine_Form_White( $obj );
 

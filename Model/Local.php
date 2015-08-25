@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "local"
- * in 2015-08-19
+ * in 2015-08-25
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -18,8 +18,8 @@ class Local extends Lumine_Base {
     public $numero;
     public $complemento;
     public $bairro;
-    public $paisId;
     public $cidadeId;
+    public $paisId;
     public $contatos = array();
     
     
@@ -42,8 +42,8 @@ class Local extends Lumine_Base {
         $this->metadata()->addField('numero', 'numero', 'int', 11, array());
         $this->metadata()->addField('complemento', 'complemento', 'varchar', 500, array());
         $this->metadata()->addField('bairro', 'bairro', 'varchar', 150, array());
-        $this->metadata()->addField('paisId', 'pais_id', 'int', 11, array('primary' => true, 'notnull' => true, 'default' => '0', 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Pais'));
-        $this->metadata()->addField('cidadeId', 'cidade_id', 'int', 11, array('primary' => true, 'notnull' => true, 'default' => '0', 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Cidade'));
+        $this->metadata()->addField('cidadeId', 'cidade_id', 'int', 11, array('foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Cidade'));
+        $this->metadata()->addField('paisId', 'pais_id', 'int', 11, array('foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Pais'));
 
         
         $this->metadata()->addRelation('contatos', Lumine_Metadata::ONE_TO_MANY, 'Contato', 'localId', null, null, null);

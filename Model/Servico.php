@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "servico"
- * in 2015-08-19
+ * in 2015-08-25
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -36,7 +36,7 @@ class Servico extends Lumine_Base {
         $this->metadata()->addField('nomeServico', 'nome_servico', 'varchar', 200, array());
         $this->metadata()->addField('preco', 'preco', 'double', null, array());
         $this->metadata()->addField('palavraChave', 'palavra_chave', 'varchar', 60, array());
-        $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('primary' => true, 'notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
+        $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
 
         
     }
