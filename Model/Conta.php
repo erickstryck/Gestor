@@ -17,7 +17,7 @@ class Conta extends Lumine_Base {
     public $descricao;
     public $dataLancamento;
     public $dataVencimento;
-    public $valorCobrado;
+    public $valor;
     public $isCaixaInterno;
     public $numeroDocumento;
     public $apenasPrevisao;
@@ -51,7 +51,7 @@ class Conta extends Lumine_Base {
         $this->metadata()->addField('descricao', 'descricao', 'varchar', 45, array());
         $this->metadata()->addField('dataLancamento', 'data_lancamento', 'datetime', null, array());
         $this->metadata()->addField('dataVencimento', 'data_vencimento', 'datetime', null, array());
-        $this->metadata()->addField('valorCobrado', 'valor_cobrado', 'double', null, array());
+        $this->metadata()->addField('valor', 'valor', 'double', null, array());
         $this->metadata()->addField('isCaixaInterno', 'is_caixa_interno', 'int', 11, array());
         $this->metadata()->addField('numeroDocumento', 'numero_documento', 'varchar', 45, array());
         $this->metadata()->addField('apenasPrevisao', 'apenas_previsao', 'boolean', 1, array());
