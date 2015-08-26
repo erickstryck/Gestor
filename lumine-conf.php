@@ -19,7 +19,7 @@
 ################################################################################
 /**
  * Created by Lumine_Reverse
- * in 2015-08-25
+ * in 2015-08-26
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  *
