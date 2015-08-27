@@ -15,8 +15,6 @@ class Contas extends GenericController {
 	}
 
 	public function cadastroPagamento($arg){
-		var_dump($arg);
-		die; 
 	 	//Depois tratar a entrada de dados aqui.
 	 	Lumine::import("Conta"); 
 	 	$conta = new Conta(); 
@@ -47,8 +45,8 @@ class Contas extends GenericController {
 		$conta->intervaloId  		= $arg['intervalo_id']; 
 		$conta->contatoId  			= $arg['contato_id']; 
 
-		$conta->valorPagamento  	= $arg['valor_pagamento']; 
-		$conta->dataPagamento 		= $arg['data_pagamento']; 
+		$conta->valorPagamento  	=  (empty($arg['valor_pagamento']))? null  : $arg['valor_pagamento']; 
+		$conta->dataPagamento 		=  (empty($arg['data_pagamento'])) ? null : $arg['data_pagamento']; 
 
 		$conta->tipoDocumentoId  	= $arg['tipo_documento_id'];
 

@@ -120,7 +120,7 @@
 	  					<!-- segunda linha -->
 	  					<div class="row">
 	  						<div class="medium-4 columns">
-	  							<label>Valor cobrado<input type="number" name="valor_cobrado" /> </label>
+	  							<label>Valor cobrado<input  type="number" name="valor_cobrado" /> </label>
 	  						</div>
 
 	  						<div class="medium-4 columns">
@@ -207,11 +207,11 @@
 	  					</div>
 
 	  					<div class="medium-4 columns">
-	  						<label>Valor Pagamento<input type="number" name="valor_pagamento" /> </label>
+	  						<label>Valor Pagamento<input type="number" name="valor_pagamento" id="valor_pagamento" /> </label>
 	  					</div>
 
 	  					<div class="medium-4 columns">
-	  						<label>Data pagamento <input type="date"  name="data_pagamento" /> </label>
+	  						<label>Data pagamento <input type="date"  name="data_pagamento" id="data_pagamento"/> </label>
 	  					</div>
 	  				</div>
 	  			</div>
@@ -251,26 +251,36 @@
 	  <!--footer bagin -->  
 	  <!-- $Include templates/lib/html/footer.html --> 
 	  <!--footer end--> 
-	
+
 
 	  <script>
 	  	$(document).foundation();
 
 	  	$(document).ready(function(){
+	  		//Trancando os campos para não edição: 
+	  		$("#data_pagamento").attr("disabled", true); 
+	  		$("#valor_pagamento").attr("disabled", true); 
+
 	  		//Manipulador para o formulário
 	  		$('#form_conta').on('valid.fndtn.abide', function() {
 	  			var data = $(this).serializeArray(); 
 
 	  			sendAjax('index.php?uc=contas&a=cadastroPagamento','POST',data,function(data){
-	  				alertify.log(data); 
+	  				if(data['status']){
+	  					alertify.success("Cadastro feito com sucesso"); 
+	  				}else{
+	  					alertify.error("Error ao cadastrar"); 
+	  				}
 	  			}); 
 	  		}); 
-
+	  		//Informando se a conta é para ser paga agora.
 	  		$('#pagar_agora').change(function(){
 	  			if($(this).is(':checked')){
-
+	  				$("#data_pagamento").attr("disabled", false);  
+	  				$("#valor_pagamento").attr("disabled", false); 
 	  			}else{
-
+	  				$("#data_pagamento").attr("disabled", true); 
+	  				$("#valor_pagamento").attr("disabled", true); 
 	  			}
 	  		}); 
 	  	}); 
