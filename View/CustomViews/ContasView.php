@@ -42,7 +42,7 @@ class ContasView extends GenericView{
 		$intervalo->find(); 
 
 		while($intervalo->fetch()){
-			parent::$templator->setVariable('intervalo.id',$intervalo->id); 
+			parent::$templator->setVariable('intervalo.id',(int) $intervalo->id); 
 			parent::$templator->setVariable('intervalo.des',Convert::toUTF_8($intervalo->des));
 
 			parent::$templator->addBlock('intervalo'); 
@@ -65,6 +65,9 @@ class ContasView extends GenericView{
 			parent::$templator->addBlock('contato'); 
 		}
 
+
+		//Adicionando data atual para o lançamento: 
+	 	parent::$templator->setVariable('date_now', date('Y-m-d')); 
 
 		parent::show(); 
 	}

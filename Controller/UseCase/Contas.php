@@ -14,7 +14,7 @@ class Contas extends GenericController {
 		$this->contasView->novoPagamentoView(); 
 	}
 
-	public function cadastro($arg){
+	public function cadastroPagamento($arg){
 		echo("Eu entrei na função de cadastro do pagamento"); 
 	}
 

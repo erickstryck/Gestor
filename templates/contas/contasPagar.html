@@ -110,7 +110,7 @@
 	  						</div>
 
 	  						<div class="medium-4 columns">
-	  							<label>Data do lançamento<input type="date" name="data_lancamento" /> </label>
+	  							<label>Data do lançamento<input value="${date_now}" type="date" name="data_lancamento" /> </label>
 	  						</div>
 
 	  						<div class="medium-4 columns">
@@ -120,7 +120,7 @@
 	  					<!-- segunda linha -->
 	  					<div class="row">
 	  						<div class="medium-4 columns">
-	  							<label>Valor cobrado<input type="text" name="valor_cobrado" /> </label>
+	  							<label>Valor cobrado<input type="number" name="valor_cobrado" /> </label>
 	  						</div>
 
 	  						<div class="medium-4 columns">
@@ -135,7 +135,7 @@
 	  						</div>
 
 	  						<div class="medium-4 columns">
-	  							<label>Nru. documento <input type="text" name="numero_documento" /> </label>
+	  							<label>Nru. documento <input type="number" name="numero_documento" /> </label>
 	  						</div>
 	  					</div>
 	  					<!-- terceira linha -->
@@ -203,15 +203,15 @@
 	  				<!-- quinta linha -->
 	  				<div class="row">
 	  					<div class="medium-4 columns">
-	  						<input id="checkbox2" type="checkbox"><label for="checkbox2">Pagar agora</label>
+	  						<input id="checkbox2" type="checkbox" name="pagar_agora"><label for="checkbox2">Pagar agora</label>
 	  					</div>
 
 	  					<div class="medium-4 columns">
-	  						<label>Valor Pagamento<input type="text" /> </label>
+	  						<label>Valor Pagamento<input type="number" name="valor_pagamento" /> </label>
 	  					</div>
 
 	  					<div class="medium-4 columns">
-	  						<label>Data pagamento <input type="date" /> </label>
+	  						<label>Data pagamento <input type="date"  name="data_pagamento" /> </label>
 	  					</div>
 	  				</div>
 	  			</div>
@@ -221,20 +221,28 @@
 	  				<!-- primeira linha -->
 	  				<div class="row">
 	  					<div class="medium-12">
-	  						<label>Observações<textarea style="height:260px;"></textarea></label>
+	  						<label>Observações<textarea style="height:260px;" name="observacoes"></textarea></label>
 	  					</div>		
 	  				</div>
 
 	  				<!-- segunda linha -->
 	  				<div class="row">
 	  					<div class="medium-12">
-	  						<label>Palavra-chave <input type="text" /></label>
+	  						<label>Palavra-chave <input type="text"  name="palavra_chave"/></label>
 	  					</div>		
 	  				</div>		
 	  			</div>
 
 	  		</div>
-	  		<button type="submit">Salvar</button>
+	  		<!-- botões -->
+	  		<div class="row">
+	  			<div class="medium-12 columns">		
+	  				<div class="panel clearfix" style="height:75px;">
+	  					<button class="button success tiny right">Registrar</button>	
+
+	  				</div>	
+	  			</div>
+	  		</div>	
 	  	</form>
 	  	<!-- fim formulário --> 
 	  	<a class="close-reveal-modal" aria-label="Close">&#215;</a>
@@ -257,7 +265,7 @@
 	  		$('#form_pagamento').on('valid.fndtn.abide', function() {
 	  			var data = $(this).serializeArray(); 
 
-	  			sendAjax('index.php?uc=contas&a=cadastro','POST',data,function(data){
+	  			sendAjax('index.php?uc=contas&a=cadastroPagamento','POST',data,function(data){
 	  				alertify.log(data); 
 	  			}); 
 

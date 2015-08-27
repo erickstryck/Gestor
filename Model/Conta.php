@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "conta"
- * in 2015-08-26
+ * in 2015-08-27
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -62,7 +62,7 @@ class Conta extends Lumine_Base {
         $this->metadata()->addField('cadastrarVezesId', 'cadastrar_vezes_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'CadastrarVezes'));
         $this->metadata()->addField('planoContaId', 'plano_conta_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'PlanoConta'));
         $this->metadata()->addField('contaOrigemId', 'conta_origem_id', 'int', 11, array('notnull' => true));
-        $this->metadata()->addField('intervaloId', 'intervalo_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'idintervalo', 'class' => 'Intervalo'));
+        $this->metadata()->addField('intervaloId', 'intervalo_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Intervalo'));
         $this->metadata()->addField('contatoId', 'contato_id', 'int', 11, array('foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Contato'));
         $this->metadata()->addField('tipoDocumentoId', 'tipo_documento_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'TipoDocumento'));
 
