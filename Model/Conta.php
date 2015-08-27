@@ -22,7 +22,7 @@ class Conta extends Lumine_Base {
     public $numeroDocumento;
     public $apenasPrevisao;
     public $observacoes;
-    public $palavra-chave;
+    public $palavraChave;
     public $valorPagamento;
     public $dataPagamento;
     public $empresaId;
@@ -57,7 +57,7 @@ class Conta extends Lumine_Base {
         $this->metadata()->addField('numeroDocumento', 'numero_documento', 'varchar', 45, array());
         $this->metadata()->addField('apenasPrevisao', 'apenas_previsao', 'boolean', 1, array());
         $this->metadata()->addField('observacoes', 'observacoes', 'varchar', 5000, array());
-        $this->metadata()->addField('palavra-chave', 'palavra-chave', 'varchar', 60, array());
+        $this->metadata()->addField('palavraChave', 'palavra_chave', 'varchar', 60, array());
         $this->metadata()->addField('valorPagamento', 'valor_pagamento', 'double', null, array());
         $this->metadata()->addField('dataPagamento', 'data_pagamento', 'date', null, array());
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));

@@ -15,29 +15,34 @@ class Contas extends GenericController {
 	}
 
 	public function cadastroPagamento($arg){
-	 	//Depois tratar a entrada de dados aqui. 
+		var_dump($arg);
+		die; 
+	 	//Depois tratar a entrada de dados aqui.
 	 	Lumine::import("Conta"); 
 	 	$conta = new Conta(); 
-	 	$conta = self::casdatra($conta); 
+	 	$conta = self::cadastra($conta,$arg); 
 
 	 	//registrando se a conta já 
-	 	$conta->paga = (empty($arg['pagar_agora']) ? 1 : 0 ); 
+	 	$conta->paga = (empty($arg['pagar_agora']))? 1 : 0; 
 	 	$conta->receber = 0;// Essa conta não é para receber, então adiciona-se 0 sinalizando que é para pagamento.  
+	 	$conta->insert(); 
+
+	 	$this->contasView->sendAjax(array('status' => true) ); 
 	}
 
 	private function cadastra($conta , $arg){
 		$conta->descricao  			= $arg['descricao']; 
-		$conta->dataLancamento  	= $arg['data_lacamento']; 
+		$conta->dataLancamento  	= $arg['data_lancamento']; 
 		$conta->dataVencimento  	= $arg['data_vencimento']; 
 		$conta->valor  				= $arg['valor_cobrado']; 
-		$conta->isCaixaInterno  	= ( (strcmp($arg['is_caixa_interno'],'1') == 0)  ? 1 : 0 ); 
+		$conta->isCaixaInterno  	= ( (strcmp($arg['is_caixa_interno'],'1') == 0) ? 1 : 0 ); 
 		$conta->numeroDocumento  	= $arg['numero_documento']; 
 		$conta->apenasPrevisao  	= !empty($arg['apenas_previsao']); 
 		$conta->pagarAgora  		= !empty($arg['pagar_agora']); 
 		$conta->observacoes  		= $arg['observacoes']; 
 		$conta->palavraChave  		= $arg['palavra_chave']; 
 		$conta->empresaId  			= $_SESSION['empresa_id']; 
-		$conta->cadastraVezesId 	= $arg['cadastrar_vezes_id']; 
+		$conta->cadastrarVezesId 	= $arg['cadastrar_vezes_id']; 
 		$conta->planoContaId  		= $arg['plano_conta_id']; 
 		$conta->intervaloId  		= $arg['intervalo_id']; 
 		$conta->contatoId  			= $arg['contato_id']; 

@@ -97,7 +97,7 @@
 	  		<h2 id="modalTitle">Conta a pagar</h2>
 	  		<p class="lead">Insira os dados abaixo</p>
 	  		<!-- formulário --> 
-	  		<form id="form_pagamento" data-abide="ajax">
+	  		<form id="form_conta" data-abide="ajax">
 	  			<div class="row">
 	  				<!-- primeira coluna -->
 	  				<div class="medium-9 columns">
@@ -203,7 +203,7 @@
 	  				<!-- quinta linha -->
 	  				<div class="row">
 	  					<div class="medium-4 columns">
-	  						<input id="checkbox2" type="checkbox" name="pagar_agora"><label for="checkbox2">Pagar agora</label>
+	  						<input id="pagar_agora" type="checkbox" name="pagar_agora"><label for="pagar_agora">Pagar agora</label>
 	  					</div>
 
 	  					<div class="medium-4 columns">
@@ -221,7 +221,7 @@
 	  				<!-- primeira linha -->
 	  				<div class="row">
 	  					<div class="medium-12">
-	  						<label>Observações<textarea style="height:260px;" name="observacoes"></textarea></label>
+	  						<label>Observações<textarea style="height:280px;" name="observacoes"></textarea></label>
 	  					</div>		
 	  				</div>
 
@@ -248,27 +248,30 @@
 	  	<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 	  </div>
 
-
-	  <script src="templates/lib/js/vendor/jquery.js"></script>
-	  <script src="templates/lib/notify/lib/alertify.min.js"></script>
-	  <script src="templates/lib/js/foundation.min.js"></script>
-
-	  <script src="templates/lib/js/ajax.js"type="text/javascript"></script>
-	  <link rel="stylesheet" href="templates/lib/notify/themes/alertify.default.css" />
-	  <link rel="stylesheet" href="templates/lib/notify/themes/alertify.core.css" />
-	  <link rel="stylesheet" href="templates/lib/css/foundation.css" />
+	  <!--footer bagin -->  
+	  <!-- $Include templates/lib/html/footer.html --> 
+	  <!--footer end--> 
+	
 
 	  <script>
 	  	$(document).foundation();
 
 	  	$(document).ready(function(){
-	  		$('#form_pagamento').on('valid.fndtn.abide', function() {
+	  		//Manipulador para o formulário
+	  		$('#form_conta').on('valid.fndtn.abide', function() {
 	  			var data = $(this).serializeArray(); 
 
 	  			sendAjax('index.php?uc=contas&a=cadastroPagamento','POST',data,function(data){
 	  				alertify.log(data); 
 	  			}); 
+	  		}); 
 
+	  		$('#pagar_agora').change(function(){
+	  			if($(this).is(':checked')){
+
+	  			}else{
+
+	  			}
 	  		}); 
 	  	}); 
 	  </script>
