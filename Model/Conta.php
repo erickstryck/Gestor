@@ -21,16 +21,17 @@ class Conta extends Lumine_Base {
     public $isCaixaInterno;
     public $numeroDocumento;
     public $apenasPrevisao;
-    public $pagarAgora;
     public $observacoes;
     public $palavra-chave;
+    public $valorPagamento;
+    public $dataPagamento;
     public $empresaId;
     public $cadastrarVezesId;
     public $planoContaId;
-    public $contaOrigemId;
     public $intervaloId;
     public $contatoId;
     public $tipoDocumentoId;
+    public $paga;
     
     
     
@@ -55,16 +56,17 @@ class Conta extends Lumine_Base {
         $this->metadata()->addField('isCaixaInterno', 'is_caixa_interno', 'int', 11, array());
         $this->metadata()->addField('numeroDocumento', 'numero_documento', 'varchar', 45, array());
         $this->metadata()->addField('apenasPrevisao', 'apenas_previsao', 'boolean', 1, array());
-        $this->metadata()->addField('pagarAgora', 'pagar_agora', 'boolean', 1, array());
         $this->metadata()->addField('observacoes', 'observacoes', 'varchar', 5000, array());
         $this->metadata()->addField('palavra-chave', 'palavra-chave', 'varchar', 60, array());
+        $this->metadata()->addField('valorPagamento', 'valor_pagamento', 'double', null, array());
+        $this->metadata()->addField('dataPagamento', 'data_pagamento', 'date', null, array());
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
         $this->metadata()->addField('cadastrarVezesId', 'cadastrar_vezes_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'CadastrarVezes'));
         $this->metadata()->addField('planoContaId', 'plano_conta_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'PlanoConta'));
-        $this->metadata()->addField('contaOrigemId', 'conta_origem_id', 'int', 11, array('notnull' => true));
         $this->metadata()->addField('intervaloId', 'intervalo_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Intervalo'));
         $this->metadata()->addField('contatoId', 'contato_id', 'int', 11, array('foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Contato'));
         $this->metadata()->addField('tipoDocumentoId', 'tipo_documento_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'TipoDocumento'));
+        $this->metadata()->addField('paga', 'paga', 'boolean', 1, array());
 
         
     }

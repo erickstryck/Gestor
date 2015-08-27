@@ -12,8 +12,8 @@
 class Prioridade extends Lumine_Base {
 
     
-    public $idprioridade;
-    public $tipo;
+    public $id;
+    public $des;
     public $tarefas = array();
     
     
@@ -30,8 +30,8 @@ class Prioridade extends Lumine_Base {
         
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
         
-        $this->metadata()->addField('idprioridade', 'idprioridade', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
-        $this->metadata()->addField('tipo', 'tipo', 'varchar', 45, array('notnull' => true));
+        $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
+        $this->metadata()->addField('des', 'des', 'varchar', 45, array('notnull' => true));
 
         
         $this->metadata()->addRelation('tarefas', Lumine_Metadata::ONE_TO_MANY, 'Tarefa', 'prioridadeIdprioridade', null, null, null);
