@@ -10,6 +10,17 @@ class ContasView extends GenericView{
 
 	public function novoPagamentoView(){
 		parent::getTemplateByAction('contasPagar'); 
+		self::novaConta(); 
+		parent::show(); 
+	}
+
+	public function novoRecebimentoView(){
+		parent::getTemplateByAction('contasReceber'); 
+		self::novaConta(); 
+		parent::show(); 
+	}
+
+	private function novaConta(){
 		Lumine::import("TipoDocumento"); 
 		Lumine::import("PlanoConta"); 
 		Lumine::import("Intervalo"); 
@@ -67,9 +78,7 @@ class ContasView extends GenericView{
 
 
 		//Adicionando data atual para o lançamento: 
-	 	parent::$templator->setVariable('date_now', date('Y-m-d')); 
-
-		parent::show(); 
+		parent::$templator->setVariable('date_now', date('Y-m-d')); 
 	}
 
 

@@ -20,6 +20,7 @@ class GenericView {
 		die;
 	}
 
+	//Sempre tem que ser um array; 
 	public function sendAjax($value){
 		 die (json_encode($value));
 	}

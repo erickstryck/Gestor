@@ -14,6 +14,12 @@ class Contas extends GenericController {
 		$this->contasView->novoPagamentoView(); 
 	}
 
+	// Isso aqui é uma fachada
+	public function novoRecebimentoView(){
+		$this->contasView->novoRecebimentoView(); 
+	}
+
+
 	public function cadastroPagamento($arg){
 	 	//Depois tratar a entrada de dados aqui.
 	 	Lumine::import("Conta"); 
@@ -23,6 +29,20 @@ class Contas extends GenericController {
 	 	//registrando se a conta já 
 	 	$conta->paga = (empty($arg['pagar_agora']))? 1 : 0; 
 	 	$conta->receber = 0;// Essa conta não é para receber, então adiciona-se 0 sinalizando que é para pagamento.  
+	 	$conta->insert(); 
+
+	 	$this->contasView->sendAjax(array('status' => true) ); 
+	}
+
+	public function cadastroRecebimento($arg){
+	 	//Depois tratar a entrada de dados aqui.
+	 	Lumine::import("Conta"); 
+	 	$conta = new Conta(); 
+	 	$conta = self::cadastra($conta,$arg); 
+
+	 	//registrando se a conta já 
+	 	$conta->paga = (empty($arg['pagar_agora']))? 1 : 0; 
+	 	$conta->receber = 1;// Essa conta não é para receber, então adiciona-se 0 sinalizando que é para pagamento.  
 	 	$conta->insert(); 
 
 	 	$this->contasView->sendAjax(array('status' => true) ); 

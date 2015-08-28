@@ -32,14 +32,25 @@
 	  	<!-- title -->
 	  	<div class="row">
 	  		<div class="medium-12 columns ">
-	  			<h3>CONTAS A PAGAR</h3>
+	  			<h3>CONTAS A RECEBER</h3>
 	  		</div>	
 	  	</div>
+
+	  	<!-- Local para mensagens via redirect -->
+	  	<!-- <div class="row ${is_hide}">
+	  		<div class="medium-12 columns">
+	  			<div data-alert class="alert-box success">
+	  				${mensagem}
+	  				<a href="#" class="close">&times;</a>
+	  			</div>
+	  		</div>	
+	  	</div>	  	 -->
+	  	<!-- Local para mensagens via redirect fim-->
 
 	  	<!-- botões --> 
 	  	<div class="row">
 	  		<div class="medium-12 columns">
-	  			<button class="button success small" data-reveal-id="novo_pagamento"> <i class="fa fa-plus fa-lg"></i> Novo Pagamento</button>
+	  			<button class="button success small" data-reveal-id="novo_recebimento"> <i class="fa fa-plus fa-lg"></i> Novo Receber</button>
 	  			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
 	  		</div>
 	  	</div>
@@ -93,8 +104,8 @@
 
 	  	
 	  	<!-- nova venda --> 
-	  	<div id="novo_pagamento" class="reveal-modal xlarge" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-	  		<h2 id="modalTitle">Conta a pagar</h2>
+	  	<div id="novo_recebimento" class="reveal-modal xlarge" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	  		<h2 id="modalTitle">Conta a receber</h2>
 	  		<p class="lead">Insira os dados abaixo</p>
 	  		<!-- formulário --> 
 	  		<form id="form_conta" data-abide="ajax">
@@ -114,7 +125,9 @@
 	  						</div>
 
 	  						<div class="medium-4 columns">
-	  							<label>Data de vencimento<input type="date" name="data_vencimento" /> </label>
+	  							<label>Data de vencimento <small style="color:red;">Obrigatório</small>
+	  								<input type="date" name="data_vencimento" required /> 
+	  							</label> <small class="error">Você precisa preencer este campo.</small>
 	  						</div>
 	  					</div>
 	  					<!-- segunda linha -->
@@ -163,7 +176,7 @@
 	  						</div>
 
 	  						<div class="medium-4 columns">
-	  							<label>Conta de origem <small style="color:red;"></small> 
+	  							<label>Conta de destino <small style="color:red;"></small> 
 	  								<select name="is_caixa_interno" required >
 	  									<option value="0">-Selecione-</option>
 	  									<option value="1">Caixa Interno</option>
@@ -268,7 +281,7 @@
 	  			sendAjax('index.php?uc=contas&a=cadastroPagamento','POST',data,function(data){
 	  				data = JSON.parse(data); 
 	  				if(data['status']){
-	  					window.location.reload(); 
+	  					window.location.reload();  
 	  				}else{
 	  					alertify.error("Error ao cadastrar"); 
 	  				}
