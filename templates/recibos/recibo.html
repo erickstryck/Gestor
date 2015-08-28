@@ -1,0 +1,183 @@
+	  <!DOCTYPE html>
+	  <html class="no-js" lang="pt">
+	  <head>
+	  	<meta charset="utf-8" />
+	  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	  	<title>Novo Recibo</title>
+	  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+	  	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
+	  	<script src="templates/lib/js/vendor/modernizr.js"></script>
+
+	  	<style type="text/css">
+	  		.separator{
+	  			margin-top: 0; 
+	  			margin-bottom: 0; 
+	  		}
+
+	  		select option:disabled {
+	  			color:red;
+	  			font-weight: bold;
+	  		}
+
+	  	</style>
+
+	  </head>
+	  <body>
+	  	<!--top bar bagin -->  
+	  	<!-- $Include templates/lib/html/header.html --> 
+	  	<!--top bar end--> 
+
+	  	<!-- body section-->
+
+	  	<!-- title -->
+	  	<div class="row">
+	  		<div class="medium-12 columns ">
+	  			<h3>RECIBOS</h3>
+	  		</div>	
+	  	</div>
+
+	  	<!-- botões --> 
+	  	<div class="row">
+	  		<div class="medium-12 columns">
+	  			<button class="button success small" data-reveal-id="novo_recibo"> <i class="fa fa-plus fa-lg"></i> Novo Recibo</button>
+	  			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
+	  		</div>
+	  	</div>
+
+	  	<!-- container main --> 
+	  	<div class="row">
+	  		<div class="medium-12 columns">
+
+	  			<!-- tabela --> 
+	  			<table >
+	  				<thead>
+	  					<tr>
+	  						<th width="30;"></th>
+	  						<th width="30">COD</th>
+	  						<th width="600">VENDA</th>
+	  						<th width="600">ENTREGA</th>
+	  						<th width="150">VENDEDOR</th>
+	  						<th width="600">REFERÊNCIA</th>
+	  						<th width="30;">SITUAÇÃO</th>
+	  						<th width="30">TOTAL PRODUTO</th>
+	  						<th width="150">TOTAL VENDA</th>
+
+	  					</tr>
+	  				</thead>
+	  				<tbody>
+
+	  					<!-- $BeginBlock row --> 
+	  					<tr>
+	  						<td><input type="checkbox" name="none" value="${catogoria.id}"></td>
+	  						<td style="font-size: 12px;">${catogoria.id}</td>
+	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
+	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
+	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
+	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
+	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
+	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
+	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
+	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
+	  					</tr>
+	  					<!-- $EndBlock row --> 
+
+	  				</tbody>
+	  			</table>
+	  			<!-- fim tabela --> 
+	  		</div>	
+	  	</div>	
+	  	<!-- end body section--> 
+
+
+	  	<!-- modal sections --> 
+
+	  	
+	  	<!-- nova venda --> 
+	  	<div id="novo_recibo" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	  		<h2 id="modalTitle">Novo Recibo</h2>
+	  		<p class="lead">Insira os dados abaixo</p>
+	  		<!-- formulário --> 
+	  		<form id="form_recibo" data-abide="ajax">
+	  			<!-- primeira linha -->
+	  				<div class="row">
+	  					<div class="medium-4 columns">
+	  						<label>Emissor <input type="text" name="emissor"/> </label>
+	  					</div>
+
+	  					<div class="medium-8 columns">
+	  						<label>Vias a imprimir 
+	  						<select name="vias_id">
+	  							<option value="">-Selecione-</option>
+	  							<option value="1">Apenas a 1ª via - cliente</option>
+	  							<option value="2">Apenas a 2ª via - emissor</option>
+	  							<option value="3">1ª e 2ª vias - cliente e emissor</option>
+	  						</select> 
+	  						</label>
+	  					</div>
+	  				</div>
+
+	  				<!-- segunda linha -->
+	  				<div class="row">
+	  					<div class="medium-4 columns">
+	  						<label>Recebi de <input list="recebi" type="text" name="recebi_de"></label> 
+							<datalist id="recebi">
+							 <!-- $BeginBlock contato --> 
+	  							<option value="${nome}">
+	  						<!-- $EndBlock  contato -->
+							</datalist>
+	  					</div>
+
+	  					<div class="medium-4 columns">
+	  						<label>CPF ou CNPJ <input type="text" name="cpf_cnpj" /> </label>
+	  					</div>
+
+	  					<div class="medium-4 columns">
+	  						<label>Valor pago<input type="number" name="valor_pago" /> </label>
+	  					</div>
+	  				</div>
+
+	  				<!-- terceira linha -->
+	  				<div class="row">
+	  					<div class="medium-4 columns">
+	  						<label>Data recibo <input type="date" value="${data_now}" name="data_recibo" /> </label>
+	  					</div>
+
+	  					<div class="medium-8 columns">
+	  						<label>Referente a <input type="text" name="referente" /> </label>
+	  					</div>
+	  				</div>
+	  				<!-- botões -->
+	  				<div class="row">
+	  					<div class="medium-12 columns">		
+	  						<div class="panel clearfix">
+	  							<button type="submit" class="button tiny success right">Salvar</button>	
+	  						</div>										
+	  					</div>
+	  				</div>	
+	  		</form>
+	  		<!-- fim formulário --> 
+	  		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	  	</div>
+
+	  	<!--footer bagin -->  
+	  	<!-- $Include templates/lib/html/footer.html --> 
+	  	<!--footer end--> 
+
+
+	  	<script>
+	  		$(document).foundation();
+
+	  		$(document).ready(function(){
+	  		//Manipulador para o formulário
+	  		$('#form_recibo').on('valid.fndtn.abide', function() {
+	  			var data = $(this).serializeArray(); 
+	  			sendAjax('index.php?uc=recibos&a=cadastro','POST',data,function(data){
+	  				alertify.log(data); 
+	  			}); 
+	  		}); 
+	  		
+	  	}); 
+	  	</script>
+	  </body>
+
+	  </html>

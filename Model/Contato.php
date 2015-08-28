@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "contato"
- * in 2015-08-27
+ * in 2015-08-28
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -38,6 +38,7 @@ class Contato extends Lumine_Base {
     public $contatohastipocontatos = array();
     public $mudancaestoquehascontatos = array();
     public $pedidovendas = array();
+    public $recibos = array();
     
     
     
@@ -81,6 +82,7 @@ class Contato extends Lumine_Base {
         $this->metadata()->addRelation('contatohastipocontatos', Lumine_Metadata::ONE_TO_MANY, 'ContatoHasTipoContato', 'contatoId', null, null, null);
         $this->metadata()->addRelation('mudancaestoquehascontatos', Lumine_Metadata::ONE_TO_MANY, 'MudancaEstoqueHasContato', 'contatoId', null, null, null);
         $this->metadata()->addRelation('pedidovendas', Lumine_Metadata::ONE_TO_MANY, 'PedidoVenda', 'contatoId', null, null, null);
+        $this->metadata()->addRelation('recibos', Lumine_Metadata::ONE_TO_MANY, 'Recibo', 'contatoId', null, null, null);
     }
 
     #### END AUTOCODE

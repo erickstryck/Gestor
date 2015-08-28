@@ -11,6 +11,7 @@ require_once(PATH.'Controller'.DS.'UseCase'.DS.'Vendas.php');
 require_once(PATH.'Controller'.DS.'UseCase'.DS.'OrdemServico.php');
 require_once(PATH.'Controller'.DS.'UseCase'.DS.'Contas.php');
 require_once(PATH.'Controller'.DS.'UseCase'.DS.'Tarefas.php');
+require_once(PATH.'Controller'.DS.'UseCase'.DS.'Recibos.php');
 
 class MainController {
 	private $controllersArray;
@@ -28,7 +29,8 @@ class MainController {
 				'estoques'     => new Estoques(), 
 				'vendas'	   => new Vendas(), 
 				'ordemServico' => new OrdemServico(),
-				'tarefas' 	   => new Tarefas()
+				'tarefas' 	   => new Tarefas(), 
+				'recibos'      => new Recibos()
 		);
 	}
 	

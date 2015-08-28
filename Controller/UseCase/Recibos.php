@@ -2,33 +2,47 @@
 require_once(PATH.'Controller'.DS.'GenericController.php'); 
 require_once(PATH.'View'.DS.'CustomViews'.DS.'RecibosView.php'); 
 
-class Servicos extends GenericController {
+class Recibos extends GenericController {
 	private $recibosView; 
 
 	public function __construct() {
 		$this->recibosView = new RecibosView(); 
 	}
 
-	public function novoServicoView(){
-		$this->recibosView->novoServicoView(); 
+	public function novoReciboView(){
+		$this->recibosView->novoReciboView(); 
 	}
 
 	public function cadastro($arg){
-		//Roteiro: 
-		//Validar os dados que estão vindo da visão ( fazer isso depois )
-		//Armazenar os dados no banco
-		//Enviar confirmação de sucesso ou falha via JSON.
-		Lumine::import("Servico"); 
-		$servico = new Servico(); 
+		Lumine::import("Recibo"); 
 
-		$servico->nomeServico = $arg['nome_servico']; 
-		$servico->preco = $arg['preco']; 
-		$servico->palavraChave = $arg['palavra_chave']; 
-		$servico->empresaId = $_SESSION['empresa_id']; 
+		$recibo = new Recibo(); 
 
-		$servico->insert(); 
-		//Enviar essa linha apenas se tudo acima estiver sido feito corretamente. 
-		$this->servicosView->sendAjax(array('status' => true) );
+		$recibo->viasId       = $arg['vias_id']; 
+		$recibo->emissor      = $arg['emissor'];
+		$recibo->valorPago    = $arg['valor_pago']; 
+		$recibo->recebiDe     = $arg['recebi_de']; 
+		$recibo->cpfCnpj      = $arg['cpf_cnpj']; 
+		$recibo->dataRecibo   = $arg['data_recibo']; 
+		$recibo->referente    = $arg['referente']; 
+		$recibo->empresaId    = $_SESSION['empresa_id']; 
+
+		//procurando o id do contato para fazer a associação: 
+		// Lumine::import("Contato"); 
+		// $contato = new Contato(); 
+
+		// $total = $contato->get('nomeFantasia', $arg['recebi_de']); 
+
+		// if($total > 0 ){
+		// 	$recibo->contatoId = $contato->id; 
+		// }else{
+		// 	$recibo->contatoId = null; 
+		// }
+
+		$recibo->insert(); 
+
+		$this->recibosView->sendAjax(array('status' => true)); 
+
 	}
 
 }

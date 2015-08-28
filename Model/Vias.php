@@ -1,7 +1,7 @@
 <?php
 #### START AUTOCODE
 /**
- * Classe generada para a tabela "situacao"
+ * Classe generada para a tabela "vias"
  * in 2015-08-28
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
@@ -9,12 +9,12 @@
  *
  */
 
-class Situacao extends Lumine_Base {
+class Vias extends Lumine_Base {
 
     
     public $id;
     public $des;
-    public $tarefas = array();
+    public $recibos = array();
     
     
     
@@ -25,16 +25,16 @@ class Situacao extends Lumine_Base {
      */
     protected function _initialize()
     {
-        $this->metadata()->setTablename('situacao');
+        $this->metadata()->setTablename('vias');
         $this->metadata()->setPackage('Model');
         
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
         
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
-        $this->metadata()->addField('des', 'des', 'varchar', 45, array('notnull' => true));
+        $this->metadata()->addField('des', 'des', 'varchar', 45, array());
 
         
-        $this->metadata()->addRelation('tarefas', Lumine_Metadata::ONE_TO_MANY, 'Tarefa', 'situacaoIdsituacao', null, null, null);
+        $this->metadata()->addRelation('recibos', Lumine_Metadata::ONE_TO_MANY, 'Recibo', 'viasId', null, null, null);
     }
 
     #### END AUTOCODE
