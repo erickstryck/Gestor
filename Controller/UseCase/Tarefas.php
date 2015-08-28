@@ -1,6 +1,6 @@
 <?php
 require_once(PATH.'Controller'.DS.'GenericController.php');
-require_once(PATH.'View'.DS.'CustomViews'.DS.'ClientesView.php');
+require_once(PATH.'View'.DS.'CustomViews'.DS.'TarefasView.php');
 /**
  * Created by PhpStorm.
  * User: pc

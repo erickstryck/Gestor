@@ -1,333 +1,192 @@
-	  <!doctype html>
-	  <html class="no-js" lang="en">
-	  <head>
-	  	<meta charset="utf-8" />
-	  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	  	<title>Tela Principal</title>
-	  	<link rel="stylesheet" href="css/foundation.css" />
-	  	<script src="js/vendor/modernizr.js"></script>
+<!doctype html>
+<html class="no-js" lang="pt">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Tela Principal</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.8/datatables.min.css"/>
+	<link rel="stylesheet" type="text/css" href="templates/lib/css/dhtmlxcalendar.css"/>
+	<!-- <link rel="stylesheet" href="css/tabela.css" /> -->
+	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
+	<script src="templates/lib/js/vendor/modernizr.js"></script>
+	<style type="text/css">
+		.separator{
+			margin-top: 0;
+			margin-bottom: 0;
+		}
 
-	  	<style type="text/css">
-	  		.separator{
-	  			margin-top: 0; 
-	  			margin-bottom: 0; 
-	  		}
+		input.fix{
+			margin:0;
+			padding:0;
+		}
 
-	  		input.fix{
-	  			margin:0;
-	  			padding:0;
-	  		}
+		select.fix{
+			margin:0;
+			padding:0;
+		}
 
-	  		select.fix{
-	  				margin:0;
-	  			    padding:0;
-	  		}
+		td.fix{
+			padding-top:2px !important;
+			padding-bottom:2px !important;
+		}
+	</style>
 
-	  		td.fix{	
-	  			padding-top:2px !important;
-	  			padding-bottom:2px !important; 
-	  		}
-	  	</style>
+</head>
+<body>
+<!--top bar bagin -->
+<!-- $Include templates/lib/html/header.html -->
+<!--top bar end-->
 
-	  </head>
-	  <body>
-	  <!--top bar bagin -->
-	  <!-- $Include templates/lib/html/header.html -->
-	  <!--top bar end-->
+<!-- body section-->
+<!-- title -->
+<div class="row">
+	<div class="medium-12 columns panel">
+		<h3>GESTÃO DE TAREFAS</h3>
+	</div>
+</div>
+<!-- alerta -->
 
-	  	<!-- body section-->
+<!-- botões -->
+<div class="row">
+	<div class="medium-12 columns">
+		<button class="button success small" data-reveal-id="nova_tarefa">NOVA TAREFA</button>
+	</div>
+</div>
 
-	  	<!-- title -->
-	  	<div class="row">
-	  		<div class="medium-12 columns panel">
-	  			<h3>CADASTRO DE CLIENTES</h3>
-	  		</div>	
-	  	</div>
+<!-- container main -->
+<div class="row">
+	<div class="medium-12 columns">
+		<!-- formulário -->
+		<form id="myform" data-abide="ajax" >
+			<div class="row">
+				<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
+					<thead>
+					<tr>
+						<th>COD</th>
+						<th>DATA</th>
+						<th>RESPONSÁVEL</th>
+						<th>PRIORIDADE</th>
+						<th>DESCRIÇÃO</th>
+						<th>SITUAÇÃO</th>
+						<th></th>
+						<th></th>
+					</tr>
+					</thead>
+					<tfoot>
+					<tr>
+						<th>COD</th>
+						<th>DATA</th>
+						<th>RESPONSÁVEL</th>
+						<th>PRIORIDADE</th>
+						<th>DESCRIÇÃO</th>
+						<th>SITUAÇÃO</th>
+						<th></th>
+						<th></th>
+					</tr>
+					</tfoot>
+					<tr>
+						<td>123</td>
+						<td>28/07/2015</td>
+						<td>Erick</td>
+						<td>Alta</td>
+						<td>Leite leite</td>
+						<td>Criada</td>
+						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+						<td>
+							<div style="font-size: 16px;">
+								<select style="width: 136px; height: 23px;">
+									<option value="1">Criada</option>
+									<option value="2">Em execução</option>
+									<option value="3">Finalizada</option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</form>
+		<!-- fim formulário -->
+	</div>
+</div>
+<!--modal-->
+<div id="nova_tarefa" class="reveal-modal xlarge" data-reveal aria-labelledby="tarefa" aria-hidden="true" role="dialog">
+	<form id="tarefa" data-abide="ajax">
+		<h2 id="tarefa">Gestão de tarefas.</h2>
+		<p class="lead">Insira os dados abaixo</p>
+		<div class="row">
+			<div class="medium-6 columns">
+				<label>Título <input type="text" name="descricao"  value="" required></label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="medium-12 columns">
+				<label>Descrição da tarefa <textarea name=""></textarea></label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="medium-3 columns">
+				<label>Respons./destinat.<select name="">
+					<option value="">Teste</option>
+				</select>
+				</label>
+			</div>
+			<div class="medium-2 columns">
+				<label>Data<input type="date" id="calendar" name="data" value=""></label>
+			</div>
+			<div class="medium-2 columns">
+				<label>Prioridade
+					<select name="prioridade">
+						<option value="">Teste</option>
+					</select>
+				</label>
+			</div>
+			<div class="medium-2 columns">
+				<label>Situação
+					<select name="">
+						<option value="">Teste</option>
+					</select>
+				</label>
+			</div>
+			<div class="medium-3 columns">
+				<label>Palavra-chave <input type="text" name="p_chave" required></label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="medium-12 columns">
+				<input type="checkbox" name="alerta" id="alerta"><label for="alerta"> Ativar alerta</label>
+			</div>
+		</div>
 
-	  	<!-- botões --> 
-	  	<div class="row">
-	  		<div class="medium-12 columns">
-	  			<button class="button success small" data-reveal-id="novo_contato">Novo Contato</button>
-	  			<button class="button alert small">Remover Contato</button>
-	  			<button class="button secondary small">Etiquetas</button>
-	  		</div>
-	  	</div>
-
-	  	<!-- container main --> 
-	  	<div class="row">
-	  		<div class="medium-12 columns">
-	  			<!-- formulário --> 
-	  			<form id="myform" data-abide="ajax" >
-
-	  				<div class="row">
-	  					<!--coluna 1--> 
-	  					<div class="medium-6 columns">
-	  						<div class="row">
-	  							<div class="medium-8 columns">
-	  								<label>Nome do Cliente 
-	  									<select required > <small style="color:red; ">Obrigatório</small>
-	  										<option>- Selecione -</option>
-	  									</select> <small class="error">Selecione um item</small>
-	  								</label>
-	  							</div>
-
-	  							<div class="medium-4 columns">
-	  								<label>Vendedor 
-	  									<select required > <small style="color:red; ">Obrigatório</small>
-	  										<option>- Selecione -</option>
-	  									</select> <small class="error">Selecione um item</small>
-	  								</label>
-	  							</div>
-
-	  						</div>
-
-	  						<div class="row">
-	  							<div class="medium-4 columns">
-	  								<label>Data de venda <input type="date" /></label>
-	  							</div>
-
-	  							<div class="medium-4 columns">
-	  								<label>Data entrega <input type="date" /></label>
-	  							</div>
-
-	  							<div class="medium-4 columns">
-	  								<label>Referência <input type="text" /></label>
-	  							</div>
-	  						</div>
-
-	  						<div class="row">
-	  							<div class="medium-4 columns">
-	  								<label>Valor frete <input type="number" /></label>
-	  							</div>
-
-	  							<div class="medium-4 columns">
-	  								<label>Valor seguro <input type="number" /></label>
-	  							</div>
-
-	  							<div class="medium-4 columns">
-	  								<label>Outras despesas <input type="number" /></label>
-	  							</div>
-	  						</div>
-
-	  						<div class="row">
-	  							<div class="medium-12 columns">
-	  								<label>Observações gerais <textarea></textarea></label>
-	  							</div>
-	  						</div>
-
-	  					</div>	
-
-	  					<!-- coluna 2--> 
-	  					<div class="medium-6 columns">
-
-	  						<div class="row">
-	  							<div class="medium-12 columns">
-	  								<h3>Adicionar produtos</h3>
-	  							</div>
-	  						</div>
-
-	  						<hr class="separator" />
-
-	  						<div class="row">
-	  							<div class="medium-6 columns">
-	  								<label>Adicionar produto. 
-	  									<select required > <small style="color:red; ">Obrigatório</small>
-	  										<option>- Selecione -</option>
-	  									</select> <small class="error">Selecione um item</small>
-	  								</label>
-	  							</div>
-
-	  							<div class="medium-3 columns">
-	  								<label>Quant.  <input type="number" /></label>
-	  							</div>
-
-	  							<div class="medium-3 columns">
-	  								<label>Preço unit.<input type="number" /></label>
-	  							</div>
-	  						</div>	
-
-	  						<div class="row">
-	  							<div class="medium-9 columns">
-	  								<label>Observações adicionais<textarea></textarea></label>
-	  							</div>
-
-	  							<div class="medium-2 columns end">
-	  								<button class="button info tiny" style="margin-top:30px;margin-left:15px;"> Adicionar</button>
-	  							</div>
-	  						</div>
-
-	  						<hr class="separator" />
-
-	  						<div class="row">
-	  							<div class="medium-12 columns">
-	  								<!--tabela--> 
-	  								<table>
-	  									<caption><small>Produtos adicionados neste pedido de venda.</small></caption>
-	  									<tr>
-	  										<th width="350">Produto</th>
-	  										<th >Quantidade</th>
-	  										<th width="350">Price</th>
-	  										<th width="50"></th>
-	  									</tr>
-	  									
-	  									<tr>
-	  										<td>Drone</td>
-	  										<td>3</td>
-	  										<td>$9.99</td>
-	  										<td> <i class="fa fa-trash"></i></td>
-	  									</tr>
-	  								</table>
-	  								<!--fim tabela--> 
-	  							</div>
-	  						</div>
-
-	  					</div>
-
-	  					<!-- botões -->
-	  					<div class="row">
-	  						<div class="medium-12 columns">		
-	  							<div class="panel clearfix" style="height:75px;">
-	  								<button class="button success tiny right"  >Vender</button>	
-	  								<button class="button info tiny left"  >Apenas Orçar</button>	
-	  							</div>	
-	  						</div>
-	  					</div>	
-
-	  				</div>
-
-
-	  			</form>
-	  			<!-- fim formulário --> 
-	  		</div>	
-	  	</div>	
-
-	  	<!-- container main --> 
-	  	<div class="row">
-	  		<div class="medium-12 columns">
-	  			<!-- formulário --> 
-	  			<form id="myform" data-abide="ajax" >
-
-	  				<div class="row">
-	  					<!--coluna 1--> 
-	  					<div class="medium-12 columns">
-	  						<div class="row">
-	  							<div class="medium-3 columns">
-	  								<label> Forma de pegamento
-	  									<select>
-	  										<option>- Selecione -</option>
-	  									</select>
-	  								</label>
-	  							</div>
-
-	  							<div class="medium-3 columns">
-	  								<label>Parcelas 
-	  									<select>
-	  										<option>- Selecione -</option>
-	  									</select>
-	  								</label>
-	  							</div>
-
-	  							<div class="medium-3 columns">
-	  								<label>Tipo entrada 
-	  									<select>
-	  										<option>- Selecione -</option>
-	  									</select>
-	  								</label>
-	  							</div>
-
-	  							<div class="medium-3 columns">
-	  								<label>Valor entrada 
-	  									<select>
-	  										<option>- Selecione -</option>
-	  									</select>
-	  								</label>
-	  							</div>
-
-	  						</div>	
-
-	  						<div class="row">
-	  							<div class="medium-3 columns">
-	  								<label>Tipo de desconto 
-	  									<select>
-	  										<option>- Selecione -</option>
-	  									</select>
-	  								</label>
-	  							</div>
-
-	  							<div class="medium-3 columns end">
-	  								<label>Valor entrada 
-	  									<select>
-	  										<option>- Selecione -</option>
-	  									</select>
-	  								</label>
-	  							</div>
-	  						</div>
-
-	  						<div class="row">
-	  							<div class="medium-2 columns">
-	  								<input id="checkbox1" type="checkbox"><label for="checkbox1">Juros</label>
-	  							</div>	
-	  						</div>
-
-	  						<div class="row"> 
-	  							<div class="medium-2 columns">
-	  								<input id="checkbox2" type="checkbox"><label for="checkbox2">Taxa Fixa</label>
-	  							</div>
-	  						</div>
-
-	  						<hr class="separator" /> 
-
-	  						<!-- table --> 
-
-	  						<div class="row">
-	  							<div class="medium-12 columns">
-
-	  								<table>
-	  									<thead>
-	  										<tr>
-	  											<th width="200">Valor Entrada</th>
-	  											<th width="50">Data Entrada</th>
-	  											<th width="150">Destino</th>
-	  											<th width="150">Documento</th>
-	  											<th width="200">Número do doc.</th>
-	  											<th width="500">Palavra-chave</th>
-	  											<th width="150">Custo Int.</th>
-	  											
-	  										</tr>
-	  									</thead>
-	  									<tbody>
-	  										
-	  										<tr>
-	  											<td class="fix" ><input  class="fix" type="number" /> </td>
-	  											<td class="fix" ><input  class="fix" type="date" /></td>
-	  											<td class="fix" ><select class="fix" ><option>-valor-</option></select></td>
-	  											<td class="fix" ><select class="fix" ><option>-valor-</option></select></td>
-	  											<td class="fix" ><input  class="fix" type="text" /></td>
-	  											<td class="fix" ><input  class="fix" type="text" /></td>
-	  											<td class="fix" ><input  class="fix"type="text" /></td>
-	  										</tr>
-	  										
-	  									</tbody>
-	  								</table>
-
-	  							</div>
-	  						</div>	
-
-	  					</div>	
-	  					
-	  				</form>
-	  				<!-- fim formulário --> 
-	  			</div>	
-	  		</div>	
-
-	  		<script src="js/vendor/jquery.js"></script>
-	  		<script src="js/foundation.min.js"></script>
-	  		<script>
-	  			$(document).foundation();
-	  			$('#myform').on('valid.fndtn.abide', function(){
-
-	  			}); 
-
-	  		</script>
-	  	</body>
-	  	</html>
+		<!-- botões -->
+		<div class="row">
+			<div class="medium-12 columns">
+				<div class="panel clearfix" style="height:75px;">
+					<button class="button tiny right" style="margin-left:5px;" >Fechar</button>
+					<button class="button success tiny right" >Salvar</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<!--footer bagin -->
+<!-- $Include templates/lib/html/footer.html -->
+<!--footer end-->
+<script src="templates/lib/js/jquery.dataTables.min.js"></script>
+<script src="templates/lib/js/dhtmlxcalendar.js"></script>
+<script src="templates/lib/js/metro.js"></script>
+<script>
+	$( document ).ready(function() {
+		$(document).foundation();
+		var myCalendar = new dhtmlXCalendarObject(["calendar"]);
+		myCalendar.loadUserLanguage("pt");
+	});
+	$('#tarefa').on('valid.fndtn.abide', function(){
+		var data=serializeArray();
+		sendAjax('index.php')
+	});
+</script>
+</body>
+</html>
