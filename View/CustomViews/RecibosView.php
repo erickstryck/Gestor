@@ -20,7 +20,6 @@ class RecibosView extends GenericView{
 			parent::$templator->addBlock('contato'); 
 		}
 
-
 		//Colocando a data atual: 
 		parent::$templator->setVariable('data_now', date('Y-m-d')); 
 		parent::show(); 

@@ -21,7 +21,7 @@ class Recibos extends GenericController {
 		$recibo->viasId       = $arg['vias_id']; 
 		$recibo->emissor      = $arg['emissor'];
 		$recibo->valorPago    = $arg['valor_pago']; 
-		$recibo->recebiDe     = $arg['recebi_de']; 
+		$recibo->recebidoDe   = $arg['recebi_de']; 
 		$recibo->cpfCnpj      = $arg['cpf_cnpj']; 
 		$recibo->dataRecibo   = $arg['data_recibo']; 
 		$recibo->referente    = $arg['referente']; 
