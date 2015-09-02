@@ -527,32 +527,32 @@
 
 	  			}); 
 
-	  $("#produto").change(function(){
-	  	var value = $("#produto option:selected").val();
-	  	data = { 'produto_id' : value}
-	  	sendAjax('index.php?uc=ajaxServices&a=getProductPrince','POST',data,function(data){
-	  		data = JSON.parse(data); 
-	  		$('#preco_unit').val(data['prince']); 
-	  	}); 
-	  }); 
+	  			$("#produto").change(function(){
+	  				var value = $("#produto option:selected").val();
+	  				data = { 'produto_id' : value}
+	  				sendAjax('index.php?uc=ajaxServices&a=getProductPrince','POST',data,function(data){
+	  					data = JSON.parse(data); 
+	  					$('#preco_unit').val(data['prince']); 
+	  				}); 
+	  			}); 
 
-	  $("#adicionar").click(function(){
-	  	var nome = $('#produto option:selected').text(); 
-	  	var id   = $('#produto option:selected').val();
-	  	var quantidade = $("#quantidade").val(); 
-	  	var preco_unit = $("#preco_unit").val(); 
-	  	var info       = $("#pedido_info").val(); 
+	  			$("#adicionar").click(function(){
+	  				var nome = $('#produto option:selected').text(); 
+	  				var id   = $('#produto option:selected').val();
+	  				var quantidade = $("#quantidade").val(); 
+	  				var preco_unit = $("#preco_unit").val(); 
+	  				var info       = $("#pedido_info").val(); 
 
-	  	var preco = parseFloat((parseFloat(preco_unit) * parseFloat(quantidade)).toFixed(3)); 
-	  	if(!addProduto(id,preco,quantidade,info))return ;
+	  				var preco = parseFloat((parseFloat(preco_unit) * parseFloat(quantidade)).toFixed(3)); 
+	  				if(!addProduto(id,preco,quantidade,info))return ;
 
-	  	$("#pedido_info").val('');
+	  				$("#pedido_info").val('');
 
-	  	total += preco; 
-	  	$("#total").text(total); 
+	  				total += preco; 
+	  				$("#total").text(total); 
 
-	  	var row = '<tr> <td>'+nome+'</td><td>'+quantidade+'</td><td>'+preco+'</td><td> <button value="'+id+'"class="fa fa-trash" style="padding:10px;margin-bottom:0;"></button></td></tr>'
-	  	$('#table').append(row); 	
+	  				var row = '<tr> <td>'+nome+'</td><td>'+quantidade+'</td><td>'+preco+'</td><td> <button value="'+id+'"class="fa fa-trash" style="padding:10px;margin-bottom:0;"></button></td></tr>'
+	  				$('#table').append(row); 	
 
 
 	  				//Adicionando manipulador de eventos a linha recém adicionanda; 
@@ -738,5 +738,7 @@
 }); 
 	</script>
 </body>
-
+<!--footer bagin -->  
+<!-- $Include templates/lib/html/footertag.html --> 
+<!--footer end--> 
 </html>

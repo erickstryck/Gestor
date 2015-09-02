@@ -34,121 +34,121 @@
 
 </head>
 <body>
-<!--top bar bagin -->
-<!-- $Include templates/lib/html/header.html -->
-<!--top bar end-->
+	<!--top bar bagin -->
+	<!-- $Include templates/lib/html/header.html -->
+	<!--top bar end-->
 
-<!-- body section-->
-<!-- title -->
-<div class="row">
-	<div class="medium-12 columns panel">
-		<h3>GESTÃO DE TAREFAS</h3>
+	<!-- body section-->
+	<!-- title -->
+	<div class="row">
+		<div class="medium-12 columns panel">
+			<h3>GESTÃO DE TAREFAS</h3>
+		</div>
 	</div>
-</div>
-<!-- alerta -->
+	<!-- alerta -->
 
-<!-- botões -->
-<div class="row">
-	<div class="medium-12 columns">
-		<button class="button success small" data-reveal-id="nova_tarefa">NOVA TAREFA</button>
+	<!-- botões -->
+	<div class="row">
+		<div class="medium-12 columns">
+			<button class="button success small" data-reveal-id="nova_tarefa">NOVA TAREFA</button>
+		</div>
 	</div>
-</div>
 
-<!-- container main -->
-<div class="row">
-	<div class="medium-12 columns">
-		<!-- formulário -->
-		<form id="myform" data-abide="ajax" >
+	<!-- container main -->
+	<div class="row">
+		<div class="medium-12 columns">
+			<!-- formulário -->
+			<form id="myform" data-abide="ajax" >
+				<div class="row">
+					<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
+						<thead>
+							<tr>
+								<th>COD</th>
+								<th>DATA</th>
+								<th>RESPONSÁVEL</th>
+								<th>PRIORIDADE</th>
+								<th>DESCRIÇÃO</th>
+								<th>SITUAÇÃO</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>123</td>
+								<td>28/07/2015</td>
+								<td>Erick</td>
+								<td>Alta</td>
+								<td>Leite leite</td>
+								<td>Criada</td>
+								<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+								<td>
+									<div style="font-size: 16px;">
+										<select style="width: 136px; height: 23px;">
+											<option value="1">Criada</option>
+											<option value="2">Em execução</option>
+											<option value="3">Finalizada</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>321</td>
+								<td>28/07/2015</td>
+								<td>loco</td>
+								<td>Alta</td>
+								<td>Leite leite</td>
+								<td>Criada</td>
+								<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+								<td>
+									<div style="font-size: 16px;">
+										<select style="width: 136px; height: 23px;">
+											<option value="1">Criada</option>
+											<option value="2">Em execução</option>
+											<option value="3">Finalizada</option>
+										</select>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>COD</th>
+								<th>DATA</th>
+								<th>RESPONSÁVEL</th>
+								<th>PRIORIDADE</th>
+								<th>DESCRIÇÃO</th>
+								<th>SITUAÇÃO</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</form>
+			<!-- fim formulário -->
+		</div>
+	</div>
+	<!--modal-->
+	<div id="nova_tarefa" class="reveal-modal xlarge" data-reveal aria-labelledby="tarefa" aria-hidden="true" role="dialog">
+		<form id="tarefa" data-abide="ajax">
+			<h2 id="tarefa">Gestão de tarefas.</h2>
+			<p class="lead">Insira os dados abaixo</p>
 			<div class="row">
-				<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
-					<thead>
-					<tr>
-						<th>COD</th>
-						<th>DATA</th>
-						<th>RESPONSÁVEL</th>
-						<th>PRIORIDADE</th>
-						<th>DESCRIÇÃO</th>
-						<th>SITUAÇÃO</th>
-						<th></th>
-						<th></th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td>123</td>
-						<td>28/07/2015</td>
-						<td>Erick</td>
-						<td>Alta</td>
-						<td>Leite leite</td>
-						<td>Criada</td>
-						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
-						<td>
-							<div style="font-size: 16px;">
-								<select style="width: 136px; height: 23px;">
-									<option value="1">Criada</option>
-									<option value="2">Em execução</option>
-									<option value="3">Finalizada</option>
-								</select>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>321</td>
-						<td>28/07/2015</td>
-						<td>loco</td>
-						<td>Alta</td>
-						<td>Leite leite</td>
-						<td>Criada</td>
-						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
-						<td>
-							<div style="font-size: 16px;">
-								<select style="width: 136px; height: 23px;">
-									<option value="1">Criada</option>
-									<option value="2">Em execução</option>
-									<option value="3">Finalizada</option>
-								</select>
-							</div>
-						</td>
-					</tr>
-					</tbody>
-					<tfoot>
-					<tr>
-						<th>COD</th>
-						<th>DATA</th>
-						<th>RESPONSÁVEL</th>
-						<th>PRIORIDADE</th>
-						<th>DESCRIÇÃO</th>
-						<th>SITUAÇÃO</th>
-						<th></th>
-						<th></th>
-					</tr>
-					</tfoot>
-				</table>
+				<div class="medium-6 columns">
+					<label>Título <input type="text" name="descricao"  value="" required></label>
+				</div>
 			</div>
-		</form>
-		<!-- fim formulário -->
-	</div>
-</div>
-<!--modal-->
-<div id="nova_tarefa" class="reveal-modal xlarge" data-reveal aria-labelledby="tarefa" aria-hidden="true" role="dialog">
-	<form id="tarefa" data-abide="ajax">
-		<h2 id="tarefa">Gestão de tarefas.</h2>
-		<p class="lead">Insira os dados abaixo</p>
-		<div class="row">
-			<div class="medium-6 columns">
-				<label>Título <input type="text" name="descricao"  value="" required></label>
+			<div class="row">
+				<div class="medium-12 columns">
+					<label>Descrição da tarefa <textarea name=""></textarea></label>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="medium-12 columns">
-				<label>Descrição da tarefa <textarea name=""></textarea></label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="medium-3 columns">
-				<label>Respons./destinat.<select name="">
-					<option value="">Teste</option>
-				</select>
+			<div class="row">
+				<div class="medium-3 columns">
+					<label>Respons./destinat.<select name="">
+						<option value="">Teste</option>
+					</select>
 				</label>
 			</div>
 			<div class="medium-2 columns">
@@ -205,4 +205,7 @@
 	});
 </script>
 </body>
+<!--footer bagin -->  
+<!-- $Include templates/lib/html/footertag.html --> 
+<!--footer end--> 
 </html>
