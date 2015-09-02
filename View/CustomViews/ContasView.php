@@ -11,24 +11,108 @@ class ContasView extends GenericView{
 	public function novoPagamentoView(){
 		parent::getTemplateByAction('contasPagar'); 
 		self::novaConta(); 
+
+		//anexando elementos a tabela: 
+		Lumine::import("Conta"); 
+		Lumine::import("Contato");
+		Lumine::import("PlanoConta");  
+		Lumine::import("TipoDocumento"); 
+
+		$conta = new Conta();
+
+		$conta->where("empresa_id = ". $_SESSION['empresa_id']." and receber = 1 ")->limit(500)->find(); 
+		while($conta->fetch()){
+			parent::$templator->setVariable('conta.id',$conta->id); 
+			parent::$templator->setVariable('conta.descricao',$conta->descricao);
+
+			$contato = new Contato(); 
+			$contato->get($conta->contatoId); 
+
+			parent::$templator->setVariable('conta.contato',$contato->nomeFantasia); 
+
+			$tipo = new TipoDocumento(); 
+			$tipo->get($tipo->tipoDocumentoId); 
+
+			parent::$templator->setVariable('conta.tipo_doc',$tipo->des); 
+			parent::$templator->setVariable('conta.nro_doc',$conta->numeroDocumento); 
+			parent::$templator->setVariable('conta.situcao',(($conta->pago)?"Paga":"Pendente")); 
+			parent::$templator->setVariable('conta.vencimento',$conta->dataVencimento); 
+			parent::$templator->setVariable('conta.data_pagamento',$conta->dataPagamento); 
+			parent::$templator->setVariable('conta.valor',$conta->valor); 
+			parent::$templator->setVariable('conta.valor_pago',$conta->valorPagamento); 
+
+			parent::$templator->addBlock('row'); 
+		} 
+
+		$plano = new PlanoConta(); 
+		$plano->where('id <= 38')->find(); 
+
+		while($plano->fetch()){
+			parent::$templator->setVariable('plano_conta.id',$plano->id); 
+			parent::$templator->setVariable('plano_conta.des',Convert::toUTF_8(( ($plano->label)? '--'.$plano->des.'--' : $plano->des ) ));
+			parent::$templator->setVariable('disabled', (($plano->label)? 'disabled' : '' ) ); 
+			parent::$templator->addBlock('plano_conta'); 
+		}
+
 		parent::show(); 
 	}
 
 	public function novoRecebimentoView(){
 		parent::getTemplateByAction('contasReceber'); 
 		self::novaConta(); 
+
+		//anexando elementos a tabela: 
+		Lumine::import("Conta"); 
+		Lumine::import("Contato"); 
+		Lumine::import("PlanoConta"); 
+		Lumine::import("TipoDocumento"); 
+
+		$conta = new Conta();
+
+		$conta->where("empresa_id = ". $_SESSION['empresa_id']." and receber = 0 ")->limit(500)->find(); 
+		while($conta->fetch()){
+			parent::$templator->setVariable('conta.id',$conta->id); 
+			parent::$templator->setVariable('conta.descricao',$conta->descricao);
+
+			$contato = new Contato(); 
+			$contato->get($conta->contatoId); 
+
+			parent::$templator->setVariable('conta.contato',$contato->nomeFantasia); 
+
+			$tipo = new TipoDocumento(); 
+			$tipo->get($tipo->tipoDocumentoId); 
+
+			parent::$templator->setVariable('conta.tipo_doc',$tipo->des); 
+			parent::$templator->setVariable('conta.nro_doc',$conta->numeroDocumento); 
+			parent::$templator->setVariable('conta.situcao',(($conta->pago)?"Paga":"Pendente")); 
+			parent::$templator->setVariable('conta.vencimento',$conta->dataVencimento); 
+			parent::$templator->setVariable('conta.data_pagamento',$conta->dataPagamento); 
+			parent::$templator->setVariable('conta.valor',$conta->valor); 
+			parent::$templator->setVariable('conta.valor_pago',$conta->valorPagamento); 
+
+			parent::$templator->addBlock('row'); 
+		} 
+
+		$plano = new PlanoConta(); 
+		$plano->where('id > 38')->find(); 
+
+		while($plano->fetch()){
+			parent::$templator->setVariable('plano_conta.id',$plano->id); 
+			parent::$templator->setVariable('plano_conta.des',Convert::toUTF_8(( ($plano->label)? '--'.$plano->des.'--' : $plano->des ) ));
+			parent::$templator->setVariable('disabled', (($plano->label)? 'disabled' : '' ) ); 
+			parent::$templator->addBlock('plano_conta'); 
+		}
+
 		parent::show(); 
 	}
 
 	private function novaConta(){
 		Lumine::import("TipoDocumento"); 
-		Lumine::import("PlanoConta"); 
 		Lumine::import("Intervalo"); 
 		Lumine::import("Contato"); 
 		Lumine::import("CadastrarVezes"); 
 
 		$tipoDocumento = new TipoDocumento(); 
-		$plano = new PlanoConta(); 
 		$intervalo = new Intervalo(); 
 		$vezes = new CadastrarVezes(); 
 
@@ -39,15 +123,6 @@ class ContasView extends GenericView{
 			parent::$templator->setVariable('tipo_documento.des',Convert::toUTF_8($tipoDocumento->des));
 
 			parent::$templator->addBlock('tipo_documento'); 
-		}
-
-		$plano->where('id <= 38')->find(); 
-
-		while($plano->fetch()){
-			parent::$templator->setVariable('plano_conta.id',$plano->id); 
-			parent::$templator->setVariable('plano_conta.des',Convert::toUTF_8(( ($plano->label)? '--'.$plano->des.'--' : $plano->des ) ));
-			parent::$templator->setVariable('disabled', (($plano->label)? 'disabled' : '' ) ); 
-			parent::$templator->addBlock('plano_conta'); 
 		}
 
 		$intervalo->find(); 

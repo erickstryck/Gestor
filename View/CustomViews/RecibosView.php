@@ -22,6 +22,21 @@ class RecibosView extends GenericView{
 
 		//Colocando a data atual: 
 		parent::$templator->setVariable('data_now', date('Y-m-d')); 
+
+		//Adicionando elementos na tabela: 
+		Lumine::import("Recibo"); 
+		$recibo = new Recibo(); 
+		$recibo->where("empresa_id = ". $_SESSION['empresa_id'])->limit(500)->find(); 
+
+		while($recibo->fetch()){
+			parent::$templator->setVariable('recibo.id', $recibo->id);
+			parent::$templator->setVariable('recibo.recebido_de', $recibo->recebidoDe);
+			parent::$templator->setVariable('recibo.data_recibo', $recibo->dataRecibo);
+			parent::$templator->setVariable('recibo.valor', $recibo->valorPago);
+			parent::$templator->setVariable('recibo.referente', $recibo->referente); 
+			parent::$templator->addBlock('row'); 
+		}
+
 		parent::show(); 
 	}
 }

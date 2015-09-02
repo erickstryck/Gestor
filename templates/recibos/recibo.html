@@ -1,12 +1,12 @@
 	  <!DOCTYPE html>
 	  <html class="no-js" lang="pt">
 	  <head>
-	  	<meta charset="utf-8" />
-	  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	  	<title>Novo Recibo</title>
-	  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
-	  	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
-	  	<script src="templates/lib/js/vendor/modernizr.js"></script>
+	  	<!-- init script and css -->  
+	  	<!-- $Include templates/lib/html/scripthead.html --> 
+	  	<!--init script and css end-->
+
+	  	<title>Recibo</title>
+
 
 	  	<style type="text/css">
 	  		.separator{
@@ -18,6 +18,7 @@
 	  			color:red;
 	  			font-weight: bold;
 	  		}
+
 
 	  	</style>
 
@@ -47,41 +48,42 @@
 	  	<!-- container main --> 
 	  	<div class="row">
 	  		<div class="medium-12 columns">
-
 	  			<!-- tabela --> 
-	  			<table >
+	  			<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
 	  				<thead>
 	  					<tr>
-	  						<th width="30;"></th>
-	  						<th width="30">COD</th>
-	  						<th width="600">VENDA</th>
-	  						<th width="600">ENTREGA</th>
-	  						<th width="150">VENDEDOR</th>
-	  						<th width="600">REFERÊNCIA</th>
-	  						<th width="30;">SITUAÇÃO</th>
-	  						<th width="30">TOTAL PRODUTO</th>
-	  						<th width="150">TOTAL VENDA</th>
-
+	  						<th>COD</th>
+	  						<th>RECEBI DE</th>
+	  						<th>EM</th>
+	  						<th>O VALOR DE</th>
+	  						<th>REFERENTE</th>
+	  						<th></th>
 	  					</tr>
 	  				</thead>
 	  				<tbody>
-
 	  					<!-- $BeginBlock row --> 
 	  					<tr>
-	  						<td><input type="checkbox" name="none" value="${catogoria.id}"></td>
-	  						<td style="font-size: 12px;">${catogoria.id}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
+	  						<td>${recibo.id}</td>
+	  						<td>${recibo.recebido_de}</td>
+	  						<td>${recibo.data_recibo}</td>
+	  						<td>${recibo.valor}</td>
+	  						<td>${recibo.referente}</td>
+	  						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+
 	  					</tr>
 	  					<!-- $EndBlock row --> 
-
 	  				</tbody>
+
+	  				<tfoot>
+	  					<tr>
+	  						<th>COD</th>
+	  						<th>RECEBI DE</th>
+	  						<th>EM</th>
+	  						<th>O VALOR DE</th>
+	  						<th>REFERENTE</th>
+	  						<th></th>
+	  					</tr>
+	  				</tfoot>
 	  			</table>
 	  			<!-- fim tabela --> 
 	  		</div>	
@@ -99,32 +101,32 @@
 	  		<!-- formulário --> 
 	  		<form id="form_recibo" data-abide="ajax">
 	  			<!-- primeira linha -->
-	  				<div class="row">
-	  					<div class="medium-4 columns">
-	  						<label>Emissor <input type="text" name="emissor"/> </label>
-	  					</div>
+	  			<div class="row">
+	  				<div class="medium-4 columns">
+	  					<label>Emissor <input type="text" name="emissor"/> </label>
+	  				</div>
 
-	  					<div class="medium-8 columns">
-	  						<label>Vias a imprimir 
+	  				<div class="medium-8 columns">
+	  					<label>Vias a imprimir 
 	  						<select name="vias_id">
 	  							<option value="">-Selecione-</option>
 	  							<option value="1">Apenas a 1ª via - cliente</option>
 	  							<option value="2">Apenas a 2ª via - emissor</option>
 	  							<option value="3">1ª e 2ª vias - cliente e emissor</option>
 	  						</select> 
-	  						</label>
-	  					</div>
+	  					</label>
 	  				</div>
+	  			</div>
 
-	  				<!-- segunda linha -->
-	  				<div class="row">
-	  					<div class="medium-4 columns">
-	  						<label>Recebi de <input list="recebi" type="text" name="recebi_de"></label> 
-							<datalist id="recebi">
-							 <!-- $BeginBlock contato --> 
-	  							<option value="${nome}">
-	  						<!-- $EndBlock  contato -->
-							</datalist>
+	  			<!-- segunda linha -->
+	  			<div class="row">
+	  				<div class="medium-4 columns">
+	  					<label>Recebi de <input list="recebi" type="text" name="recebi_de"></label> 
+	  					<datalist id="recebi">
+	  						<!-- $BeginBlock contato --> 
+	  						<option value="${nome}">
+	  							<!-- $EndBlock  contato -->
+	  						</datalist>
 	  					</div>
 
 	  					<div class="medium-4 columns">
@@ -154,30 +156,36 @@
 	  						</div>										
 	  					</div>
 	  				</div>	
-	  		</form>
-	  		<!-- fim formulário --> 
-	  		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
-	  	</div>
+	  			</form>
+	  			<!-- fim formulário --> 
+	  			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	  		</div>
 
-	  	<!--footer bagin -->  
-	  	<!-- $Include templates/lib/html/footer.html --> 
-	  	<!--footer end--> 
+	  		<!--footer bagin -->  
+	  		<!-- $Include templates/lib/html/footer.html --> 
+	  		<!--footer end--> 
 
 
-	  	<script>
-	  		$(document).foundation();
+	  		<script>
+	  			$(document).foundation();
 
-	  		$(document).ready(function(){
+	  			$(document).ready(function(){
 	  		//Manipulador para o formulário
 	  		$('#form_recibo').on('valid.fndtn.abide', function() {
 	  			var data = $(this).serializeArray(); 
 	  			sendAjax('index.php?uc=recibos&a=cadastro','POST',data,function(data){
-	  				alertify.log(data); 
+	  				var data = JSON.parse(data); 
+	  				if(data['status']){
+	  					alertify.success("O recibo foi cadastrado com sucesso"); 
+	  					window.location.reload(); 
+	  				}else{
+	  					alertify.error("Ocorreu algum error, tente novamente."); 
+	  				}
 	  			}); 
 	  		}); 
 	  		
 	  	}); 
-	  	</script>
-	  </body>
+	  		</script>
+	  	</body>
 
-	  </html>
+	  	</html>

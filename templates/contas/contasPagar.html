@@ -1,14 +1,11 @@
 	  <!DOCTYPE html>
 	  <html class="no-js" lang="pt">
 	  <head>
-	  	<meta charset="utf-8" />
-	  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	  	<title>Novo Contato</title>
-	  	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.8/datatables.min.css"/>
-	  	<link rel="stylesheet" type="text/css" href="templates/lib/css/dhtmlxcalendar.css"/>
-	  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
-	  	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
-	  	<script src="templates/lib/js/vendor/modernizr.js"></script>
+	  	<!-- init script and css -->  
+	  	<!-- $Include templates/lib/html/scripthead.html --> 
+	  	<!--init script and css end-->
+	  	<title>Contas a pagar</title>
+	  	
 
 	  	<style type="text/css">
 	  		.separator{
@@ -49,55 +46,58 @@
 	  	<!-- container main --> 
 	  	<div class="row">
 	  		<div class="medium-12 columns">
-
-	  			<!-- tabela --> 
+<!-- tabela --> 
 	  			<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
-					<thead>
-					<tr>
-						<th>COD</th>
-						<th>DESCRIÇÃO</th>
-						<th>CONTATO</th>
-						<th>TIPO DOCUMENTO</th>
-						<th>NRO DOCUMENTO</th>
-						<th>DATA PAGAMENTO</th>
-						<th>VENCIMENTO</th>
-						<th>VALOR</th>
-						<th>VALOR PAGO</th>
-						<th></th>
-						
-					</tr>
-					</thead>
-					<tfoot>
-					<tr>
-						<th>COD</th>
-						<th>DESCRIÇÃO</th>
-						<th>CONTATO</th>
-						<th>TIPO DOCUMENTO</th>
-						<th>NRO DOCUMENTO</th>
-						<th>DATA PAGAMENTO</th>
-						<th>VENCIMENTO</th>
-						<th>VALOR</th>
-						<th>VALOR PAGO</th>
-						<th></th>
-						
-					</tr>
-					</tfoot>
-					<tr>
-						<td>123</td>
-						<td>28/07/2015</td>
-						<td>Erick</td>
-						<td>Alta</td>
-						<td>Leite leite</td>
-						<td>Criada</td>
-						<td>Alta</td>
-						<td>Leite leite</td>
-						<td>Criada</td>
-						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
-						
-					</tr>
-					<tbody>
-					</tbody>
-				</table>
+	  				<thead>
+	  					<tr>
+	  						<th>COD</th>
+	  						<th>DESCRIÇÃO</th>
+	  						<th>CONTATO</th>
+	  						<th>TIPO DOC</th>
+	  						<th>NRO DOC</th>
+	  						<th>SITUAÇÃO</th>
+	  						<th>VENCIMENTO</th>
+	  						<th>DATA PGTO</th>
+	  						<th>VALOR</th>
+	  						<th>VALOR PAGO</th>
+	  						<th></th>
+	  					</tr>
+	  				</thead>
+	  				<tbody>
+	  					<!-- $BeginBlock row --> 
+	  					<tr>
+	  						<td>${conta.id}</td>
+	  						<td>${conta.descricao}</td>
+	  						<td>${conta.contato}</td>
+	  						<td>${conta.tipo_doc}</td>
+	  						<td>${conta.nro_doc}</td>
+	  						<td>${conta.situcao}</td>
+	  						<td>${conta.vencimento}</td>
+	  						<td>${conta.data_pagamento}</td>
+	  						<td>${conta.valor}</td>
+	  						<td>${conta.valor_pago}</td>
+	  						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+
+	  					</tr>
+	  					<!-- $EndBlock row --> 
+	  				</tbody>
+
+	  				<tfoot>
+	  					<tr>
+	  						<th>COD</th>
+	  						<th>DESCRIÇÃO</th>
+	  						<th>CONTATO</th>
+	  						<th>TIPO DOC</th>
+	  						<th>NRO DOC</th>
+	  						<th>SITUAÇÃO</th>
+	  						<th>VENCIMENTO</th>
+	  						<th>DATA PGTO</th>
+	  						<th>VALOR</th>
+	  						<th>VALOR PAGO</th>
+	  						<th></th>
+	  					</tr>
+	  				</tfoot>
+	  			</table>
 	  			<!-- fim tabela --> 
 	  		</div>	
 	  	</div>	

@@ -1,12 +1,11 @@
 	  <!DOCTYPE html>
 	  <html class="no-js" lang="pt">
 	  <head>
-	  	<meta charset="utf-8" />
-	  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	  	<!-- init script and css -->  
+	  	<!-- $Include templates/lib/html/scripthead.html --> 
+	  	<!--init script and css end-->
 	  	<title>Novo Contato</title>
-	  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
-	  	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
-	  	<script src="templates/lib/js/vendor/modernizr.js"></script>
+	  	
 
 	  	<style type="text/css">
 	  		.separator{
@@ -58,41 +57,57 @@
 	  	<!-- container main --> 
 	  	<div class="row">
 	  		<div class="medium-12 columns">
-
 	  			<!-- tabela --> 
-	  			<table >
+	  			<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
 	  				<thead>
 	  					<tr>
-	  						<th width="30;"></th>
-	  						<th width="30">COD</th>
-	  						<th width="600">VENDA</th>
-	  						<th width="600">ENTREGA</th>
-	  						<th width="150">VENDEDOR</th>
-	  						<th width="600">REFERÊNCIA</th>
-	  						<th width="30;">SITUAÇÃO</th>
-	  						<th width="30">TOTAL PRODUTO</th>
-	  						<th width="150">TOTAL VENDA</th>
-
+	  						<th>COD</th>
+	  						<th>DESCRIÇÃO</th>
+	  						<th>CONTATO</th>
+	  						<th>TIPO DOC</th>
+	  						<th>NRO DOC</th>
+	  						<th>SITUAÇÃO</th>
+	  						<th>VENCIMENTO</th>
+	  						<th>DATA PGTO</th>
+	  						<th>VALOR</th>
+	  						<th>VALOR PAGO</th>
+	  						<th></th>
 	  					</tr>
 	  				</thead>
 	  				<tbody>
-
 	  					<!-- $BeginBlock row --> 
 	  					<tr>
-	  						<td><input type="checkbox" name="none" value="${catogoria.id}"></td>
-	  						<td style="font-size: 12px;">${catogoria.id}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
+	  						<td>${conta.id}</td>
+	  						<td>${conta.descricao}</td>
+	  						<td>${conta.contato}</td>
+	  						<td>${conta.tipo_doc}</td>
+	  						<td>${conta.nro_doc}</td>
+	  						<td>${conta.situcao}</td>
+	  						<td>${conta.vencimento}</td>
+	  						<td>${conta.data_pagamento}</td>
+	  						<td>${conta.valor}</td>
+	  						<td>${conta.valor_pago}</td>
+	  						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+
 	  					</tr>
 	  					<!-- $EndBlock row --> 
-
 	  				</tbody>
+
+	  				<tfoot>
+	  					<tr>
+	  						<th>COD</th>
+	  						<th>DESCRIÇÃO</th>
+	  						<th>CONTATO</th>
+	  						<th>TIPO DOC</th>
+	  						<th>NRO DOC</th>
+	  						<th>SITUAÇÃO</th>
+	  						<th>VENCIMENTO</th>
+	  						<th>DATA PGTO</th>
+	  						<th>VALOR</th>
+	  						<th>VALOR PAGO</th>
+	  						<th></th>
+	  					</tr>
+	  				</tfoot>
 	  			</table>
 	  			<!-- fim tabela --> 
 	  		</div>	
