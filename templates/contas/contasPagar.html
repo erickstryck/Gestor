@@ -4,6 +4,8 @@
 	  	<meta charset="utf-8" />
 	  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	  	<title>Novo Contato</title>
+	  	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.8/datatables.min.css"/>
+	  	<link rel="stylesheet" type="text/css" href="templates/lib/css/dhtmlxcalendar.css"/>
 	  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
 	  	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
 	  	<script src="templates/lib/js/vendor/modernizr.js"></script>
@@ -49,40 +51,53 @@
 	  		<div class="medium-12 columns">
 
 	  			<!-- tabela --> 
-	  			<table >
-	  				<thead>
-	  					<tr>
-	  						<th width="30;"></th>
-	  						<th width="30">COD</th>
-	  						<th width="600">VENDA</th>
-	  						<th width="600">ENTREGA</th>
-	  						<th width="150">VENDEDOR</th>
-	  						<th width="600">REFERÊNCIA</th>
-	  						<th width="30;">SITUAÇÃO</th>
-	  						<th width="30">TOTAL PRODUTO</th>
-	  						<th width="150">TOTAL VENDA</th>
-
-	  					</tr>
-	  				</thead>
-	  				<tbody>
-
-	  					<!-- $BeginBlock row --> 
-	  					<tr>
-	  						<td><input type="checkbox" name="none" value="${catogoria.id}"></td>
-	  						<td style="font-size: 12px;">${catogoria.id}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
-	  					</tr>
-	  					<!-- $EndBlock row --> 
-
-	  				</tbody>
-	  			</table>
+	  			<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
+					<thead>
+					<tr>
+						<th>COD</th>
+						<th>DESCRIÇÃO</th>
+						<th>CONTATO</th>
+						<th>TIPO DOCUMENTO</th>
+						<th>NRO DOCUMENTO</th>
+						<th>DATA PAGAMENTO</th>
+						<th>VENCIMENTO</th>
+						<th>VALOR</th>
+						<th>VALOR PAGO</th>
+						<th></th>
+						
+					</tr>
+					</thead>
+					<tfoot>
+					<tr>
+						<th>COD</th>
+						<th>DESCRIÇÃO</th>
+						<th>CONTATO</th>
+						<th>TIPO DOCUMENTO</th>
+						<th>NRO DOCUMENTO</th>
+						<th>DATA PAGAMENTO</th>
+						<th>VENCIMENTO</th>
+						<th>VALOR</th>
+						<th>VALOR PAGO</th>
+						<th></th>
+						
+					</tr>
+					</tfoot>
+					<tr>
+						<td>123</td>
+						<td>28/07/2015</td>
+						<td>Erick</td>
+						<td>Alta</td>
+						<td>Leite leite</td>
+						<td>Criada</td>
+						<td>Alta</td>
+						<td>Leite leite</td>
+						<td>Criada</td>
+						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+						
+					</tr>
+					<tbody>
+					</tbody>
+				</table>
 	  			<!-- fim tabela --> 
 	  		</div>	
 	  	</div>	

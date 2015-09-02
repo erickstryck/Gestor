@@ -1,12 +1,11 @@
 	  <!doctype html>
 	  <html class="no-js" lang="pt-br">
 	  <head>
-	  	<meta charset="utf-8" />
-	  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	  	<title>Novo Contato</title>
-	  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
-	  	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
-	  	<script src="templates/lib/js/vendor/modernizr.js"></script>
+	  	<!-- init script and css -->  
+	  	<!-- $Include templates/lib/html/scripthead.html --> 
+	  	<!--init script and css end--> 
+	  	<title>Categorias</title>
+
 
 	  	<style type="text/css">
 	  		.separator{
@@ -43,29 +42,35 @@
 	  	<!-- container main --> 
 	  	<div class="row">
 	  		<div class="medium-12 columns">
-
 	  			<!-- tabela --> 
-	  			<table >
+	  			<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
 	  				<thead>
 	  					<tr>
-	  						<th width="30;"></th>
-	  						<th width="30">COD</th>
-	  						<th width="150">NOME</th>
-	  						<th width="600">MARGEM DE LUCRO (%)</th>
+	  						<th >COD</th>
+	  						<th >NOME</th>
+	  						<th >MARGEM DE LUCRO (%)</th>
+	  						<th ></th>
 	  					</tr>
 	  				</thead>
 	  				<tbody>
-
 	  					<!-- $BeginBlock row --> 
 	  					<tr>
-	  						<td><input type="checkbox" name="none" value="${catogoria.id}"></td>
-	  						<td style="font-size: 12px;">${catogoria.id}</td>
-	  						<td style="font-size: 12px;">${categoria.nome_categoria}</td>
-	  						<td style="font-size: 12px;">${categoria.margem_lucro}</td>
+	  						<td >${catogoria.id}</td>
+	  						<td >${categoria.nome_categoria}</td>
+	  						<td >${categoria.margem_lucro}</td>
+	  						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
 	  					</tr>
 	  					<!-- $EndBlock row --> 
-
 	  				</tbody>
+
+	  				<tfoot>
+	  					<tr>
+	  						<th >COD</th>
+	  						<th >NOME</th>
+	  						<th >MARGEM DE LUCRO (%)</th>
+	  						<th ></th>
+	  					</tr>
+	  				</tfoot>
 	  			</table>
 	  			<!-- fim tabela --> 
 	  		</div>	
@@ -115,14 +120,9 @@
 
 	  	<!-- end modal sections --> 
 
-	  	<script src="templates/lib/js/vendor/jquery.js"></script>
-	  	<script src="templates/lib/notify/lib/alertify.min.js"></script>
-	  	<script src="templates/lib/js/foundation.min.js"></script>
-
-	  	<script src="templates/lib/js/ajax.js"type="text/javascript"></script>
-	  	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.default.css" />
-	  	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.core.css" />
-	  	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+	  	<!--footer begin -->  
+	  	<!-- $Include templates/lib/html/footer.html --> 
+	  	<!--footer end--> 
 
 	  	<script>
 	  		$(document).foundation();

@@ -2,13 +2,11 @@
 <!doctype html>
 <html class="no-js" lang="pt-br">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Novo Contato</title>
-	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
-	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
-	<script src="templates/lib/js/vendor/modernizr.js"></script>
-
+	<!-- init script and css -->  
+	<!-- $Include templates/lib/html/scripthead.html --> 
+	<!--init script and css end--> 
+	<title>Produtos</title>
+	
 	<style type="text/css">
 		.separator{
 			margin-top: 0; 
@@ -44,39 +42,58 @@
 	<!-- container main --> 
 	<div class="row">
 		<div class="medium-12 columns">
-
 			<!-- tabela --> 
-			<table >
+			<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
 				<thead>
 					<tr>
-						<th width="30;"></th>
-						<th width="30">COD</th>
-						<th width="30">PRODUTO</th>
-						<th width="30">CATEGORIA</th>
-						<th width="70">PREÇO VENDA</th>
-						<th width="30">ESTOQUE</th>
-						<th width="30">RESERVA</th>
-						<th width="30">OC</th>
-						<th width="30">OP</th>
-						<th width="30">SALDO</th>
+						<th >COD</th>
+						<th >PRODUTO</th>
+						<th >CATEGORIA</th>
+						<th >PREÇO VENDA</th>
+						<th >ESTOQUE</th>
+						<th >RESERVA</th>
+						<th >OC</th>
+						<th >OP</th>
+						<th >SALDO</th>
+						<th></th>
+						
 					</tr>
 				</thead>
 				<tbody>
-
 					<!-- $BeginBlock row --> 
 					<tr>
-						<td><input type="checkbox" name="none" value="${produto.id}"></td>
-						<td style="font-size: 12px;">${produto.id}</td>
-						<td style="font-size: 12px;">${produto.nome}</td>
-						<td style="font-size: 12px;">${produto.categoria}</td>
-						<td style="font-size: 12px;">${produto.preco_venda}</td>
-						<td style="font-size: 12px;">${produto.estoque}</td>
-						<td style="font-size: 12px;">${produto.reserva}</td>
-						<td style="font-size: 12px;">${produto.oc}</td>
-						<td style="font-size: 12px;">${produto.op}</td>
-						<td style="font-size: 12px;">${produto.saldo}</td>
+						<td>${produto.id}</td>
+						<td>${produto.nome}</td>
+						<td>${produto.categoria}</td>
+						<td>${produto.preco_venda}</td>
+						<td>${produto.estoque}</td>
+						<td>${produto.reserva}</td>
+						<td>${produto.oc}</td>
+						<td>${produto.op}</td>
+						<td>${produto.saldo}</td>
+						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+
 					</tr>
 					<!-- $EndBlock row --> 
+				</tbody>
+				
+				<tfoot>
+					<tr>
+						<th>COD</th>
+						<th>PRODUTO</th>
+						<th>CATEGORIA</th>
+						<th>PREÇO VENDA</th>
+						<th>ESTOQUE</th>
+						<th>RESERVA</th>
+						<th>OC</th>
+						<th>OP</th>
+						<th>SALDO</th>
+						<th></th>
+						
+					</tr>
+				</tfoot>
+				
+				<tbody>
 
 				</tbody>
 			</table>
@@ -219,14 +236,9 @@
 
 	<!-- end modal sections --> 
 
-	<script src="templates/lib/js/vendor/jquery.js"></script>
-	<script src="templates/lib/notify/lib/alertify.min.js"></script>
-	<script src="templates/lib/js/foundation.min.js"></script>
-
-	<script src="templates/lib/js/ajax.js"type="text/javascript"></script>
-	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.default.css" />
-	<link rel="stylesheet" href="templates/lib/notify/themes/alertify.core.css" />
-	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
+	<!--footer begin -->  
+	<!-- $Include templates/lib/html/footer.html --> 
+	<!--footer end--> 
 
 	<script>
 		$(document).foundation();
