@@ -23,4 +23,8 @@ class Convert
 		$numberFormatter = new NumberFormatter('pt-BR',NumberFormatter::CURRENCY); 
 		return $numberFormatter->format($number);
 	}
+
+	public static function zeroEsquerda( $valor ){
+		return str_pad($valor, 6, "0", STR_PAD_LEFT);
+	}
 }

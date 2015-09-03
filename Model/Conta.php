@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "conta"
- * in 2015-08-28
+ * in 2015-09-03
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -50,8 +50,8 @@ class Conta extends Lumine_Base {
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->metadata()->addField('receber', 'receber', 'boolean', 1, array());
         $this->metadata()->addField('descricao', 'descricao', 'varchar', 45, array());
-        $this->metadata()->addField('dataLancamento', 'data_lancamento', 'datetime', null, array());
-        $this->metadata()->addField('dataVencimento', 'data_vencimento', 'datetime', null, array());
+        $this->metadata()->addField('dataLancamento', 'data_lancamento', 'date', null, array());
+        $this->metadata()->addField('dataVencimento', 'data_vencimento', 'date', null, array());
         $this->metadata()->addField('valor', 'valor', 'double', null, array());
         $this->metadata()->addField('isCaixaInterno', 'is_caixa_interno', 'int', 11, array());
         $this->metadata()->addField('numeroDocumento', 'numero_documento', 'varchar', 45, array());

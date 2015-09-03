@@ -20,9 +20,9 @@ class ContasView extends GenericView{
 
 		$conta = new Conta();
 
-		$conta->where("empresa_id = ". $_SESSION['empresa_id']." and receber = 1 ")->limit(500)->find(); 
+		$conta->where("empresa_id = ". $_SESSION['empresa_id']." and receber = 0 ")->limit(500)->find(); 
 		while($conta->fetch()){
-			parent::$templator->setVariable('conta.id',$conta->id); 
+			parent::$templator->setVariable('conta.id',Convert::zeroEsquerda($conta->id)); 
 			parent::$templator->setVariable('conta.descricao',$conta->descricao);
 
 			$contato = new Contato(); 
@@ -35,7 +35,7 @@ class ContasView extends GenericView{
 
 			parent::$templator->setVariable('conta.tipo_doc',$tipo->des); 
 			parent::$templator->setVariable('conta.nro_doc',$conta->numeroDocumento); 
-			parent::$templator->setVariable('conta.situcao',(($conta->pago)?"Paga":"Pendente")); 
+			parent::$templator->setVariable('conta.situcao',(( (bool) $conta->paga)?"Paga":"<i style='color:red;'> Pendente </i>")); 
 			parent::$templator->setVariable('conta.vencimento',$conta->dataVencimento); 
 			parent::$templator->setVariable('conta.data_pagamento',$conta->dataPagamento); 
 			parent::$templator->setVariable('conta.valor',$conta->valor); 
@@ -69,9 +69,9 @@ class ContasView extends GenericView{
 
 		$conta = new Conta();
 
-		$conta->where("empresa_id = ". $_SESSION['empresa_id']." and receber = 0 ")->limit(500)->find(); 
+		$conta->where("empresa_id = ". $_SESSION['empresa_id']." and receber = 1 ")->limit(500)->find(); 
 		while($conta->fetch()){
-			parent::$templator->setVariable('conta.id',$conta->id); 
+			parent::$templator->setVariable('conta.id',Convert::zeroEsquerda($conta->id)); 
 			parent::$templator->setVariable('conta.descricao',$conta->descricao);
 
 			$contato = new Contato(); 
@@ -84,7 +84,7 @@ class ContasView extends GenericView{
 
 			parent::$templator->setVariable('conta.tipo_doc',$tipo->des); 
 			parent::$templator->setVariable('conta.nro_doc',$conta->numeroDocumento); 
-			parent::$templator->setVariable('conta.situcao',(($conta->pago)?"Paga":"Pendente")); 
+			parent::$templator->setVariable('conta.situcao',( ((bool) $conta->paga) ? "Paga" : "<i style='color:red;'> Pendente </i>") ); 
 			parent::$templator->setVariable('conta.vencimento',$conta->dataVencimento); 
 			parent::$templator->setVariable('conta.data_pagamento',$conta->dataPagamento); 
 			parent::$templator->setVariable('conta.valor',$conta->valor); 

@@ -293,7 +293,7 @@
 	  		$('#form_conta').on('valid.fndtn.abide', function() {
 	  			var data = $(this).serializeArray(); 
 
-	  			sendAjax('index.php?uc=contas&a=cadastroPagamento','POST',data,function(data){
+	  			sendAjax('index.php?uc=contas&a=cadastroRecebimento','POST',data,function(data){
 	  				data = JSON.parse(data); 
 	  				if(data['status']){
 	  					window.location.reload();  
