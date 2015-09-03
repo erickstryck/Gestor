@@ -2,6 +2,9 @@
 require_once(PATH.'Controller'.DS.'GenericController.php'); 
 require_once(PATH.'View'.DS.'CustomViews'.DS.'RecibosView.php'); 
 
+require_once(PATH.'Library'.DS.'dompdf'.DS.'dompdf_config.inc.php'); 
+require_once(PATH.'Library'.DS.'MiniTemplator.php'); 
+
 class Recibos extends GenericController {
 	private $recibosView; 
 
@@ -42,6 +45,14 @@ class Recibos extends GenericController {
 		$recibo->insert(); 
 
 		$this->recibosView->sendAjax(array('status' => true)); 
+
+	}
+
+	public function gerarRecibo($arg){
+		$pdf = new DOMPDF(); 
+
+
+		var_dump($arg); 	
 
 	}
 
