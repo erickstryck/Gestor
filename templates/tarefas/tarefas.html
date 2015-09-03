@@ -131,40 +131,47 @@
 	</div>
 	<!--modal-->
 	<div id="nova_tarefa" class="reveal-modal xlarge" data-reveal aria-labelledby="tarefa" aria-hidden="true" role="dialog">
-		<form id="tarefa" data-abide="ajax">
+		<form id="form-tarefa" data-abide="ajax">
 			<h2 id="tarefa">Gestão de tarefas.</h2>
 			<p class="lead">Insira os dados abaixo</p>
 			<div class="row">
 				<div class="medium-6 columns">
-					<label>Título <input type="text" name="descricao"  value="" required></label>
+					<label>Título <input type="text" name="titulo" required></label>
+					<small class="error">Insira um título!</small>
 				</div>
 			</div>
 			<div class="row">
 				<div class="medium-12 columns">
-					<label>Descrição da tarefa <textarea name=""></textarea></label>
+					<label>Descrição da tarefa <textarea name="descricao"></textarea></label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="medium-3 columns">
-					<label>Respons./destinat.<select name="">
-						<option value="">Teste</option>
+					<label>Respons./destinat.<select name="usuario">
+						<!-- $BeginBlock dest -->
+						<option value="${id}">${user}</option>
+						<!-- $EndBlock dest -->
 					</select>
 				</label>
 			</div>
 			<div class="medium-2 columns">
-				<label>Data<input type="date" id="calendar" name="data" value=""></label>
+				<label>Data<input type="date" id="calendar" name="data" ></label>
 			</div>
 			<div class="medium-2 columns">
 				<label>Prioridade
 					<select name="prioridade">
-						<option value="">Teste</option>
+						<option value="1">Baixa</option>
+						<option value="2">Normal</option>
+						<option value="3">Alta</option>
 					</select>
 				</label>
 			</div>
 			<div class="medium-2 columns">
 				<label>Situação
-					<select name="">
-						<option value="">Teste</option>
+					<select name="situacao">
+						<option value="1">Criada</option>
+						<option value="2">Em execução</option>
+						<option value="3">Finalizada</option>
 					</select>
 				</label>
 			</div>
@@ -182,14 +189,14 @@
 		<div class="row">
 			<div class="medium-12 columns">
 				<div class="panel clearfix" style="height:75px;">
-					<button class="button tiny right" style="margin-left:5px;" >Fechar</button>
 					<button class="button success tiny right" >Salvar</button>
 				</div>
 			</div>
 		</div>
 	</form>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
-<!--footer bagin -->
+<!--footer begin -->
 <!-- $Include templates/lib/html/footer.html -->
 <!--footer end-->
 

@@ -18,7 +18,17 @@ class TarefasView extends GenericView{
     }
 
     function tarefaView(){
+        Lumine::import("Usuario");
+        Lumine::import("UsuarioHasEmpresa");
+        $user= new Usuario();
+        $has=new UsuarioHasEmpresa();
+        $user->join($has,'LEFT')->where("empresa_id=".$_SESSION["empresa_id"])->find();
         parent::getTemplateByAction("tarefas");
+        while($user->fetch()){
+            parent::$templator->setVariable("id",$user->id);
+            parent::$templator->setVariable("user",$user->nomeCompleto);
+            parent::$templator->addBlock("dest");
+        }
         parent::show();
     }
 }

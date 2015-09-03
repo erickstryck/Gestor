@@ -20,4 +20,14 @@ class Tarefas extends GenericController{
     function tarefasView(){
         $this->tarefasView->tarefaView();
     }
+
+    function gravarTarefa($arg){
+        Lumine::import("Tarefa");
+        $tarefa=new Tarefa();
+        $tarefa->descricao=$arg['descricao'];
+        $tarefa->prioridadeIdprioridade=$arg['prioridade'];
+        $tarefa->titulo=$arg['titulo'];
+        $tarefa->situacaoIdsituacao=$arg['situacao'];
+        $tarefa->usuarioId=$arg['usuario'];
+    }
 }
