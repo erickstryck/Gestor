@@ -34,7 +34,7 @@ class Situacao extends Lumine_Base {
         $this->metadata()->addField('des', 'des', 'varchar', 45, array('notnull' => true));
 
         
-        $this->metadata()->addRelation('tarefas', Lumine_Metadata::ONE_TO_MANY, 'Tarefa', 'situacaoIdsituacao', null, null, null);
+        $this->metadata()->addRelation('tarefas', Lumine_Metadata::ONE_TO_MANY, 'Tarefa', 'situacaoId', null, null, null);
     }
 
     #### END AUTOCODE

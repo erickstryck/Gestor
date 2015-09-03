@@ -14,8 +14,8 @@ class Tarefa extends Lumine_Base {
     
     public $id;
     public $descricao;
-    public $prioridadeIdprioridade;
-    public $situacaoIdsituacao;
+    public $prioridadeId;
+    public $situacaoId;
     public $usuarioId;
     public $titulo;
     public $ativo;
@@ -38,8 +38,8 @@ class Tarefa extends Lumine_Base {
         
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->metadata()->addField('descricao', 'descricao', 'varchar', 4000, array());
-        $this->metadata()->addField('prioridadeIdprioridade', 'prioridade_idprioridade', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Prioridade'));
-        $this->metadata()->addField('situacaoIdsituacao', 'situacao_idsituacao', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Situacao'));
+        $this->metadata()->addField('prioridadeId', 'prioridade_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Prioridade'));
+        $this->metadata()->addField('situacaoId', 'situacao_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Situacao'));
         $this->metadata()->addField('usuarioId', 'usuario_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Usuario'));
         $this->metadata()->addField('titulo', 'titulo', 'varchar', 45, array('notnull' => true));
         $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('notnull' => true));

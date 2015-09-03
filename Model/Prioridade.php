@@ -34,7 +34,7 @@ class Prioridade extends Lumine_Base {
         $this->metadata()->addField('des', 'des', 'varchar', 45, array('notnull' => true));
 
         
-        $this->metadata()->addRelation('tarefas', Lumine_Metadata::ONE_TO_MANY, 'Tarefa', 'prioridadeIdprioridade', null, null, null);
+        $this->metadata()->addRelation('tarefas', Lumine_Metadata::ONE_TO_MANY, 'Tarefa', 'prioridadeId', null, null, null);
     }
 
     #### END AUTOCODE

@@ -25,9 +25,15 @@ class Tarefas extends GenericController{
         Lumine::import("Tarefa");
         $tarefa=new Tarefa();
         $tarefa->descricao=$arg['descricao'];
-        $tarefa->prioridadeIdprioridade=$arg['prioridade'];
+        $tarefa->prioridadeId=$arg['prioridade'];
         $tarefa->titulo=$arg['titulo'];
-        $tarefa->situacaoIdsituacao=$arg['situacao'];
+        $tarefa->situacaoId=$arg['situacao'];
         $tarefa->usuarioId=$arg['usuario'];
+        $tarefa->data=$arg['data'];
+        $tarefa->pChave=$arg['p_chave'];
+        if(array_key_exists ('alerta',$arg))$tarefa->ativo=true;
+        else $tarefa->ativo=false;
+        $tarefa->insert();
+        $this->tarefasView->sendAjax(array('status' => true,'msg'=>'A tarefa foi registrada!'));
     }
 }

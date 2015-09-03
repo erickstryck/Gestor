@@ -70,46 +70,20 @@
 								<th>DESCRIÇÃO</th>
 								<th>SITUAÇÃO</th>
 								<th></th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>
+                        <!-- $BeginBlock tarefas -->
 							<tr>
-								<td>123</td>
-								<td>28/07/2015</td>
-								<td>Erick</td>
-								<td>Alta</td>
-								<td>Leite leite</td>
-								<td>Criada</td>
+								<td>${id}</td>
+								<td>${date}</td>
+								<td>${user}</td>
+								<td>${prioridade}</td>
+								<td><span data-tooltip aria-haspopup="true" class="has-tip [tip-top tip-bottom tip-left tip-right] [radius round]" title="${abreviacao}">${descricao}</span></td>
+								<td>${situacao}</td>
 								<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
-								<td>
-									<div style="font-size: 16px;">
-										<select style="width: 136px; height: 23px;">
-											<option value="1">Criada</option>
-											<option value="2">Em execução</option>
-											<option value="3">Finalizada</option>
-										</select>
-									</div>
-								</td>
 							</tr>
-							<tr>
-								<td>321</td>
-								<td>28/07/2015</td>
-								<td>loco</td>
-								<td>Alta</td>
-								<td>Leite leite</td>
-								<td>Criada</td>
-								<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
-								<td>
-									<div style="font-size: 16px;">
-										<select style="width: 136px; height: 23px;">
-											<option value="1">Criada</option>
-											<option value="2">Em execução</option>
-											<option value="3">Finalizada</option>
-										</select>
-									</div>
-								</td>
-							</tr>
+                        <!-- $EndBlock tarefas -->
 						</tbody>
 						<tfoot>
 							<tr>
@@ -119,7 +93,6 @@
 								<th>PRIORIDADE</th>
 								<th>DESCRIÇÃO</th>
 								<th>SITUAÇÃO</th>
-								<th></th>
 								<th></th>
 							</tr>
 						</tfoot>
@@ -155,7 +128,7 @@
 				</label>
 			</div>
 			<div class="medium-2 columns">
-				<label>Data<input type="date" id="calendar" name="data" ></label>
+				<label>Data<input type="text" id="calendar" name="data" ></label>
 			</div>
 			<div class="medium-2 columns">
 				<label>Prioridade
@@ -176,7 +149,7 @@
 				</label>
 			</div>
 			<div class="medium-3 columns">
-				<label>Palavra-chave <input type="text" name="p_chave" required></label>
+				<label>Palavra-chave <input type="text" name="p_chave"></label>
 			</div>
 		</div>
 		<div class="row">
@@ -189,7 +162,7 @@
 		<div class="row">
 			<div class="medium-12 columns">
 				<div class="panel clearfix" style="height:75px;">
-					<button class="button success tiny right" >Salvar</button>
+					<input class="button success tiny right" type="submit" value="Salvar"/>
 				</div>
 			</div>
 		</div>
@@ -205,11 +178,16 @@
 		$(document).foundation();
 		var myCalendar = new dhtmlXCalendarObject(["calendar"]);
 		myCalendar.loadUserLanguage("pt");
-	});
-	$('#tarefa').on('valid.fndtn.abide', function(){
-		var data=serializeArray();
-		sendAjax('index.php')
-	});
+        $('#form-tarefa').on('valid.fndtn.abide', function(){
+            var data=$(this).serializeArray();
+            sendAjax('index.php?uc=tarefas&a=gravarTarefa','post',data,function(resposta){
+                data = JSON.parse(resposta);
+                if(data['status']) {
+                    alertify.success(data['msg']);
+                }else alertify.error("Houve um erro ao cadastrar a tarefa!");
+            });
+        });
+    });
 </script>
 </body>
 <!--footer bagin -->  

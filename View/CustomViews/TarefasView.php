@@ -22,7 +22,7 @@ class TarefasView extends GenericView{
         Lumine::import("UsuarioHasEmpresa");
         $user= new Usuario();
         $has=new UsuarioHasEmpresa();
-        $user->join($has,'LEFT')->where("empresa_id=".$_SESSION["empresa_id"])->find();
+        $user->join($has)->where("empresa_id=".$_SESSION["empresa_id"])->find();
         parent::getTemplateByAction("tarefas");
         while($user->fetch()){
             parent::$templator->setVariable("id",$user->id);

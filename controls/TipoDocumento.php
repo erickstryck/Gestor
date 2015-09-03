@@ -17,8 +17,8 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>
 ################################################################################
 
-require_once '/var/www/html/Gestor/Gestor/Persistence/Lumine.php';
-require_once '/var/www/html/Gestor/Gestor/lumine-conf.php';
+require_once '/var/www/html/Gestor/Persistence/Lumine.php';
+require_once '/var/www/html/Gestor/lumine-conf.php';
 
 Lumine::load('Form_White');
 
