@@ -128,7 +128,7 @@
 				</label>
 			</div>
 			<div class="medium-2 columns">
-				<label>Data<input type="text" id="calendar" name="data" ></label>
+				<label>Data<input id="calendar" type="text" name="data" ></label>
 			</div>
 			<div class="medium-2 columns">
 				<label>Prioridade
@@ -176,14 +176,15 @@
 <script>
 	$( document ).ready(function() {
 		$(document).foundation();
-		var myCalendar = new dhtmlXCalendarObject(["calendar"]);
-		myCalendar.loadUserLanguage("pt");
+        var myCalendar = new dhtmlXCalendarObject(["calendar"]);
+        myCalendar.loadUserLanguage("pt");
         $('#form-tarefa').on('valid.fndtn.abide', function(){
             var data=$(this).serializeArray();
             sendAjax('index.php?uc=tarefas&a=gravarTarefa','post',data,function(resposta){
                 data = JSON.parse(resposta);
                 if(data['status']) {
                     alertify.success(data['msg']);
+                    $('#nova_tarefa').foundation('reveal', 'close');
                 }else alertify.error("Houve um erro ao cadastrar a tarefa!");
             });
         });

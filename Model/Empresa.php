@@ -20,6 +20,7 @@ class Empresa extends Lumine_Base {
     public $produtos = array();
     public $recibos = array();
     public $servicos = array();
+    public $tarefas = array();
     public $tipodocumentohasempresas = array();
     public $usuariohasempresas = array();
     
@@ -47,6 +48,7 @@ class Empresa extends Lumine_Base {
         $this->metadata()->addRelation('produtos', Lumine_Metadata::ONE_TO_MANY, 'Produto', 'empresaId', null, null, null);
         $this->metadata()->addRelation('recibos', Lumine_Metadata::ONE_TO_MANY, 'Recibo', 'empresaId', null, null, null);
         $this->metadata()->addRelation('servicos', Lumine_Metadata::ONE_TO_MANY, 'Servico', 'empresaId', null, null, null);
+        $this->metadata()->addRelation('tarefas', Lumine_Metadata::ONE_TO_MANY, 'Tarefa', 'empresaId', null, null, null);
         $this->metadata()->addRelation('tipodocumentohasempresas', Lumine_Metadata::ONE_TO_MANY, 'TipoDocumentoHasEmpresa', 'empresaId', null, null, null);
         $this->metadata()->addRelation('usuariohasempresas', Lumine_Metadata::ONE_TO_MANY, 'UsuarioHasEmpresa', 'empresaId', null, null, null);
     }

@@ -21,6 +21,7 @@ class Tarefa extends Lumine_Base {
     public $ativo;
     public $pChave;
     public $data;
+    public $empresaId;
     
     
     
@@ -45,6 +46,7 @@ class Tarefa extends Lumine_Base {
         $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('notnull' => true));
         $this->metadata()->addField('pChave', 'p_chave', 'varchar', 45, array());
         $this->metadata()->addField('data', 'data', 'varchar', 10, array());
+        $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
 
         
     }
