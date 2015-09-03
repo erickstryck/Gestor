@@ -31,6 +31,7 @@ class Tarefas extends GenericController{
         $tarefa->usuarioId=$arg['usuario'];
         $tarefa->data=$arg['data'];
         $tarefa->pChave=$arg['p_chave'];
+        $tarefa->empresaId=$_SESSION["empresa_id"];
         if(array_key_exists ('alerta',$arg))$tarefa->ativo=true;
         else $tarefa->ativo=false;
         $tarefa->insert();

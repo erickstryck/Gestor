@@ -79,7 +79,7 @@
 								<td>${date}</td>
 								<td>${user}</td>
 								<td>${prioridade}</td>
-								<td><span data-tooltip aria-haspopup="true" class="has-tip [tip-top tip-bottom tip-left tip-right] [radius round]" title="${abreviacao}">${descricao}</span></td>
+								<td><span data-tooltip aria-haspopup="true" class="has-tips" data-options="show_on:large" title="${descricao}">${abreviacao}</span></td>
 								<td>${situacao}</td>
 								<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
 							</tr>
@@ -185,6 +185,7 @@
                 if(data['status']) {
                     alertify.success(data['msg']);
                     $('#nova_tarefa').foundation('reveal', 'close');
+                    window.location.reload();
                 }else alertify.error("Houve um erro ao cadastrar a tarefa!");
             });
         });
