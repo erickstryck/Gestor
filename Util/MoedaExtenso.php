@@ -5,7 +5,7 @@ class MoedaExtenso
     public static function valorPorExtenso( $valor = 0, $bolExibirMoeda = true, $bolPalavraFeminina = false )
     {
  
-        $valor = self::removerFormatacaoNumero( $valor );
+        // $valor = self::removerFormatacaoNumero( $valor );
  
         $singular = null;
         $plural = null;
