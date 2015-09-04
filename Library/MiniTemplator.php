@@ -554,7 +554,7 @@ function setVariable ($variableName, $variableValue, $isOptional=false) {
       if ($isOptional) return true;
       $this->triggerError ("Variable \"$variableName\" not defined in template.");
       return false; }
-   $this->varTab[$varNo]['varValue'] = $variableValue;
+   $this->varTab[$varNo]['varValue'] = utf8_encode($variableValue);
    return true; }
 
 /**
