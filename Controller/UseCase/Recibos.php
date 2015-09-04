@@ -5,6 +5,9 @@ require_once(PATH.'View'.DS.'CustomViews'.DS.'RecibosView.php');
 require_once(PATH.'Library'.DS.'dompdf'.DS.'dompdf_config.inc.php'); 
 require_once(PATH.'Library'.DS.'MiniTemplator.php'); 
 
+require_once(PATH.'Util'.DS.'Convert.php'); 
+require_once(PATH.'Util'.DS.'MoedaExtenso.php');
+
 class Recibos extends GenericController {
 	private $recibosView; 
 
@@ -48,12 +51,85 @@ class Recibos extends GenericController {
 
 	}
 
-	public function gerarRecibo($arg){
-		$pdf = new DOMPDF(); 
+	public function gerarRecibo($arg){	
+		Lumine::import("Recibo"); 
+		$recibo = new Recibo(); 
+		
+		$recibo->where("empresa_id = ". $_SESSION['empresa_id']." and recibo.id = ". (int) $arg['codigo'] )->find(); 
+
+		if(count($recibo->allToArray()) == 0 )
+			die("O codigo enviado nao corresponde a nenhum recibo valido.");
 
 
-		var_dump($arg); 	
+		$template = new MiniTemplator(); 
+		
+		$template->readTemplateFromFile(PATH.'templates'.DS.'recibos'.DS.'reciboTemplate'.DS.'index.html'); 
+		Lumine::import("Empresa"); 
 
+		switch ($recibo->viasId) {
+			case 1:
+				$html = self::viaCliente($recibo, $template); 
+				break;
+			case 2:
+				$html = self::viaEmissor($recibo, $template); 
+				break;
+			case 3:
+				$html = self::viaDupla($recibo, $template); 
+				break;
+			default:
+				die("Há algum proglema com esse registro"); 
+		}
+
+		$dom = new DOMPDF(); 
+
+		$dom->load_html($html); 
+		$dom->set_paper('A4','portrait'); 
+		$dom->render(); 
+
+		$dom->stream("recibo".Convert::zeroEsquerda($recibo->id).".pdf"); 
 	}
 
+	private function viaCliente($recibo,$template){
+		Lumine::import("Empresa"); 
+
+		$empresa = new Empresa(); 
+		$empresa->get($_SESSION['empresa_id']); 
+
+		$template->setVariable('numero', "Número - ".Convert::zeroEsquerda($recibo->id)); 
+		$template->setVariable('via_quem','Via 1 - Clientes'); 
+		$template->setVariable('nome_fantasia', Convert::toUTF_8($empresa->nomeFantasia)); 
+		$template->setVariable('cpf',$recibo->cpfCnpj); 
+		$template->setVariable('valor', "(".$recibo->valorPago.") ". MoedaExtenso::valorPorExtenso($recibo->valorPago)); 
+		$template->setVariable('referente',Convert::toUTF_8($recibo->referente)); 
+		$template->setVariable('data', date('Y-m-d')); 
+		$template->setVariable('nome_cpf', "".$recibo->emissor." (".$recibo->cpfCnpj.")"); 
+
+		$html; 
+		$template->generateOutputToString($html); 
+		return $html; 
+	}
+
+	private function viaEmissor($recibo, $template){
+		Lumine::import("Empresa"); 
+
+		$empresa = new Empresa(); 
+		$empresa->get($_SESSION['empresa_id']); 
+
+		$template->setVariable('numero', "Número - ".Convert::zeroEsquerda($recibo->id)); 
+		$template->setVariable('via_quem','Via 2 - Emissor'); 
+		$template->setVariable('nome_fantasia', Convert::toUTF_8($empresa->nomeFantasia)); 
+		$template->setVariable('cpf',$recibo->cpfCnpj); 
+		$template->setVariable('valor', "(".$recibo->valorPago.") ". MoedaExtenso::valorPorExtenso($recibo->valorPago)); 
+		$template->setVariable('referente',Convert::toUTF_8($recibo->referente)); 
+		$template->setVariable('data', date('Y-m-d')); 
+		$template->setVariable('nome_cpf', "".$recibo->emissor." (".$recibo->cpfCnpj.")"); 
+
+		$html; 
+		$template->generateOutputToString($html); 
+		return $html; 
+	}
+
+	private function viaDupla($recibo, $template){
+		die("O sistema ainda nao esta gerando recibos com via dupla."); 
+	}
 }

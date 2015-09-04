@@ -29,7 +29,7 @@ class RecibosView extends GenericView{
 		$recibo->where("empresa_id = ". $_SESSION['empresa_id'])->limit(500)->find(); 
 
 		while($recibo->fetch()){
-			parent::$templator->setVariable('recibo.id', $recibo->id);
+			parent::$templator->setVariable('recibo.id', Convert::zeroEsquerda($recibo->id));
 			parent::$templator->setVariable('recibo.recebido_de', $recibo->recebidoDe);
 			parent::$templator->setVariable('recibo.data_recibo', $recibo->dataRecibo);
 			parent::$templator->setVariable('recibo.valor', $recibo->valorPago);
