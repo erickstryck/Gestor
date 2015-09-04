@@ -29,15 +29,18 @@ class TarefasView extends GenericView{
         $tar=new Tarefa();
         $tar->where("empresa_id=".$_SESSION['empresa_id'])->find();
         parent::getTemplateByAction("tarefas");
-        $tempu=new Usuario();
-        $tempp=new Prioridade();
-        $temps=new Situacao();
+        $usuario=new Usuario();
+        $prioridade=new Prioridade();
+        $situacao=new Situacao();
         while($tar->fetch()){
+            $usuario->get($tar->usuarioId);
+            $prioridade->get($tar->prioridadeId);
+            $situacao->get($tar->situacaoId);
             parent::$templator->setVariable("id",Convert::zeroEsquerda($tar->id));
             parent::$templator->setVariable("date",$tar->data);
-            parent::$templator->setVariable("user",$tempu->get($tar->usuarioId)->id);
-            parent::$templator->setVariable("prioridade",$tempp->get($tar->prioridadeId)->id);
-            parent::$templator->setVariable("situacao",$temps->get($tar->situacaoId)->id);
+            parent::$templator->setVariable("user",$usuario->nomeCompleto);
+            parent::$templator->setVariable("prioridade",$prioridade->des);
+            parent::$templator->setVariable("situacao",$situacao->des);
             parent::$templator->setVariable("abreviacao",Convert::minification($tar->descricao,20));
             parent::$templator->setVariable("descricao",$tar->descricao);
             parent::$templator->addBlock("tarefas");
