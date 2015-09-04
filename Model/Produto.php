@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "produto"
- * in 2015-09-03
+ * in 2015-09-04
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -29,6 +29,7 @@ class Produto extends Lumine_Base {
     public $margemLucro;
     public $inforNfe;
     public $empresaId;
+    public $ativo;
     public $categoriahasprodutos = array();
     public $mudancaestoques = array();
     public $pedidovendahasprodutos = array();
@@ -64,6 +65,7 @@ class Produto extends Lumine_Base {
         $this->metadata()->addField('margemLucro', 'margem_lucro', 'double', null, array());
         $this->metadata()->addField('inforNfe', 'infor_nfe', 'varchar', 45, array());
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
+        $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
 
         
         $this->metadata()->addRelation('categoriahasprodutos', Lumine_Metadata::ONE_TO_MANY, 'CategoriaHasProduto', 'produtoId', null, null, null);

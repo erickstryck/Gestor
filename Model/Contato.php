@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "contato"
- * in 2015-09-03
+ * in 2015-09-04
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -33,6 +33,7 @@ class Contato extends Lumine_Base {
     public $empresaId;
     public $indicadorDeIeId;
     public $localId;
+    public $ativo;
     public $contas = array();
     public $contatohasenderecoentregadiferentes = array();
     public $contatohastipocontatos = array();
@@ -75,6 +76,7 @@ class Contato extends Lumine_Base {
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
         $this->metadata()->addField('indicadorDeIeId', 'indicador_de_ie_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'IndicadorDeIe'));
         $this->metadata()->addField('localId', 'local_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Local'));
+        $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
 
         
         $this->metadata()->addRelation('contas', Lumine_Metadata::ONE_TO_MANY, 'Conta', 'contatoId', null, null, null);

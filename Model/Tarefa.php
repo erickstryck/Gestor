@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "tarefa"
- * in 2015-09-03
+ * in 2015-09-04
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -18,10 +18,11 @@ class Tarefa extends Lumine_Base {
     public $situacaoId;
     public $usuarioId;
     public $titulo;
-    public $ativo;
+    public $tarefaAtiva;
     public $pChave;
     public $data;
     public $empresaId;
+    public $ativo;
     
     
     
@@ -43,10 +44,11 @@ class Tarefa extends Lumine_Base {
         $this->metadata()->addField('situacaoId', 'situacao_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Situacao'));
         $this->metadata()->addField('usuarioId', 'usuario_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Usuario'));
         $this->metadata()->addField('titulo', 'titulo', 'varchar', 45, array('notnull' => true));
-        $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('notnull' => true));
+        $this->metadata()->addField('tarefaAtiva', 'tarefa_ativa', 'boolean', 1, array('notnull' => true));
         $this->metadata()->addField('pChave', 'p_chave', 'varchar', 45, array());
         $this->metadata()->addField('data', 'data', 'varchar', 10, array());
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
+        $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
 
         
     }

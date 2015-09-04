@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "conta"
- * in 2015-09-03
+ * in 2015-09-04
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -32,6 +32,7 @@ class Conta extends Lumine_Base {
     public $contatoId;
     public $tipoDocumentoId;
     public $paga;
+    public $ativo;
     
     
     
@@ -67,6 +68,7 @@ class Conta extends Lumine_Base {
         $this->metadata()->addField('contatoId', 'contato_id', 'int', 11, array('foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Contato'));
         $this->metadata()->addField('tipoDocumentoId', 'tipo_documento_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'TipoDocumento'));
         $this->metadata()->addField('paga', 'paga', 'boolean', 1, array());
+        $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
 
         
     }

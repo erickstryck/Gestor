@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "mudanca_estoque"
- * in 2015-09-03
+ * in 2015-09-04
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -19,6 +19,7 @@ class MudancaEstoque extends Lumine_Base {
     public $dataMudanca;
     public $tipoAjusteId;
     public $produtoId;
+    public $ativo;
     public $mudancaestoquehascontatos = array();
     
     
@@ -42,6 +43,7 @@ class MudancaEstoque extends Lumine_Base {
         $this->metadata()->addField('dataMudanca', 'data_mudanca', 'date', null, array());
         $this->metadata()->addField('tipoAjusteId', 'tipo_ajuste_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'TipoAjuste'));
         $this->metadata()->addField('produtoId', 'produto_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Produto'));
+        $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
 
         
         $this->metadata()->addRelation('mudancaestoquehascontatos', Lumine_Metadata::ONE_TO_MANY, 'MudancaEstoqueHasContato', 'mudancaEstoqueId', null, null, null);

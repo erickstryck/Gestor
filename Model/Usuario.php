@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "usuario"
- * in 2015-09-03
+ * in 2015-09-04
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -18,6 +18,7 @@ class Usuario extends Lumine_Base {
     public $nomeCompleto;
     public $palavraChave;
     public $email;
+    public $ativo;
     public $pedidovendas = array();
     public $tarefas = array();
     public $usuariohasempresas = array();
@@ -42,6 +43,7 @@ class Usuario extends Lumine_Base {
         $this->metadata()->addField('nomeCompleto', 'nome_completo', 'varchar', 45, array());
         $this->metadata()->addField('palavraChave', 'palavra_chave', 'varchar', 45, array());
         $this->metadata()->addField('email', 'email', 'varchar', 400, array());
+        $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
 
         
         $this->metadata()->addRelation('pedidovendas', Lumine_Metadata::ONE_TO_MANY, 'PedidoVenda', 'usuarioId', null, null, null);

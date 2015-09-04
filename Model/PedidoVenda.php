@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "pedido_venda"
- * in 2015-09-03
+ * in 2015-09-04
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -21,6 +21,7 @@ class PedidoVenda extends Lumine_Base {
     public $obsGerais;
     public $referencia;
     public $isOrcamento;
+    public $ativo;
     public $usuarioId;
     public $contatoId;
     public $formapagamentos = array();
@@ -49,6 +50,7 @@ class PedidoVenda extends Lumine_Base {
         $this->metadata()->addField('obsGerais', 'obs_gerais', 'varchar', 500, array());
         $this->metadata()->addField('referencia', 'referencia', 'varchar', 150, array());
         $this->metadata()->addField('isOrcamento', 'is_orcamento', 'boolean', 1, array());
+        $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
         $this->metadata()->addField('usuarioId', 'usuario_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Usuario'));
         $this->metadata()->addField('contatoId', 'contato_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Contato'));
 
