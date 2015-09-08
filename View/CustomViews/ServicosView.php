@@ -14,7 +14,7 @@ class ServicosView extends GenericView{
 		Lumine::import("Servico"); 
 		$servico = new Servico(); 
 
-		$servico->where("empresa_id = ". $_SESSION['empresa_id'])->find(); 
+		$servico->where("empresa_id = ". $_SESSION['empresa_id']." and ativo = 1")->find(); 
 
 		
 		while($servico->fetch()){

@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "categoria"
- * in 2015-09-04
+ * in 2015-09-08
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model

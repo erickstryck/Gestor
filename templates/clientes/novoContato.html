@@ -64,7 +64,8 @@
           <td><span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="${contato.endereco.tooltip} ">${contato.endereco} </span></td>
           <td >${contato.telefone}</td>
           <td >${contato.email}</td>
-          <td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+          <td><button class="alterar fix" value="${contato.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${contato.id}" ><i class="fa fa-trash"></i></button>
+          </td>
 
         </tr>
         <!-- $EndBlock row --> 
@@ -496,7 +497,23 @@
 	        		}
 
 	        	}); 
-  
+
+            //Código para a deleção; 
+            var interval; 
+            $('.del').click(function(){
+              var id  = parseInt($(this).val()); 
+              alertify.confirm("Deseja realmente deletar este registro",function(resposta){
+                if(resposta){
+                  deletar('clientes', id) 
+                  interval = setInterval(function(){window.location.reload()},1500); 
+                }
+                else{
+                  alertify.error("Operação cancelada.");  
+                }
+              }); 
+            }); 
+
+
 	        //fim do ready; 
        }); 
 

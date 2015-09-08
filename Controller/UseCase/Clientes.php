@@ -122,5 +122,19 @@ class Clientes extends GenericController {
 		//Em formato JSON, envie se a execução da inserção foi bem sucedida. 
 		$this->clientesView->sendAjax(array('status' => true) ); 
 	}
+
+	public function deletar($arg){
+		Lumine::import("Contato"); 
+		$contato = new Contato(); 
+		$contato->get((int) $arg['id']);
+
+		//Desativando o registro no banco. 
+		$contato->ativo = 0;  
+		$contato->update(); 
+
+		$this->contatosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
+
+		$tarefas->join($usuario)->where(" empresa_id  =" . $_SESSION['empresa_id'] );
+	}
 }	
 

@@ -20,7 +20,7 @@ class EstoquesView extends GenericView{
 		Lumine::import("MudancaEstoqueHasEstoque"); 
 
 		$categoria = new Categoria(); 
-		$categoria->where('empresa_id = '. $_SESSION['empresa_id'] )->find(); 
+		$categoria->where('empresa_id = '. $_SESSION['empresa_id']." and ativo = 1")->find(); 
 
 		while($categoria->fetch()){
 			parent::$templator->setVariable('categoria.id', $categoria->id);
@@ -41,7 +41,7 @@ class EstoquesView extends GenericView{
 
 
 		$contato = new Contato(); 
-		$contato->where("empresa_id = ". $_SESSION['empresa_id'])->find(); 
+		$contato->where("empresa_id = ". $_SESSION['empresa_id']." and ativo = 1")->find(); 
 
 		while($contato->fetch() ){
 			parent::$templator->setVariable('contato.id', $contato->id);
@@ -58,7 +58,7 @@ class EstoquesView extends GenericView{
 		$tipo    = new Tipoajuste();  
 		//$associativaContato = new MudancaEstoqueHasEstoque(); 
 
-		$produto->where('empresa_id = '. $_SESSION['empresa_id'])->find(); 
+		$produto->where('empresa_id = '. $_SESSION['empresa_id']." and ativo = 1")->find(); 
 
 		while($produto->fetch() ){
 

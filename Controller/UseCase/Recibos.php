@@ -54,7 +54,6 @@ class Recibos extends GenericController {
 	public function gerarRecibo($arg){	
 		Lumine::import("Recibo"); 
 		$recibo = new Recibo(); 
-		
 		$recibo->where("empresa_id = ". $_SESSION['empresa_id']." and recibo.id = ". (int) $arg['codigo'] )->find(); 
 
 		if(count($recibo->allToArray()) == 0 )
@@ -91,7 +90,6 @@ class Recibos extends GenericController {
 
 	private function viaCliente($recibo,$template){
 		Lumine::import("Empresa"); 
-
 		$empresa = new Empresa(); 
 		$empresa->get($_SESSION['empresa_id']); 
 
@@ -111,7 +109,6 @@ class Recibos extends GenericController {
 
 	private function viaEmissor($recibo, $template){
 		Lumine::import("Empresa"); 
-
 		$empresa = new Empresa(); 
 		$empresa->get($_SESSION['empresa_id']); 
 
@@ -131,5 +128,17 @@ class Recibos extends GenericController {
 
 	private function viaDupla($recibo, $template){
 		die("O sistema ainda nao esta gerando recibos com via dupla."); 
+	}
+
+	public function deletar($arg){
+		Lumine::import("Recibo"); 
+		$recibo = new Recibo(); 
+		$recibo->get((int) $arg['id']);
+
+		//Desativando o registro no banco. 
+		$recibo->ativo = 0;  
+		$recibo->update(); 
+
+		$this->recibosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
 	}
 }

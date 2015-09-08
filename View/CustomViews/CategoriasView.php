@@ -13,7 +13,7 @@ class CategoriasView extends GenericView{
 		Lumine::import("Categoria"); 
 
 		$categoria = new Categoria();
-		$categoria->where("empresa_id = ". $_SESSION['empresa_id'])->find(); 
+		$categoria->where("empresa_id = ". $_SESSION['empresa_id']." and ativo = 1")->find(); 
 
 		
 		while($categoria->fetch()){

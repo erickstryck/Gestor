@@ -19,6 +19,10 @@
 	  			font-weight: bold;
 	  		}
 
+	  		button.fix{
+	  			padding:5px !important;
+	  			margin:1px !important;
+	  		}
 
 	  	</style>
 
@@ -40,7 +44,7 @@
 	  	<!-- botões --> 
 	  	<div class="row">
 	  		<div class="medium-12 columns">
-	  			<button class="button success small" data-reveal-id="novo_recibo"> <i class="fa fa-plus fa-lg"></i> Novo Recibo</button>
+	  			<button class="button success small cadastro" > <i class="fa fa-plus fa-lg"></i> Novo Recibo</button>
 	  			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
 	  		</div>
 	  	</div>
@@ -70,7 +74,7 @@
 	  						<td>${recibo.valor}</td>
 	  						<td>${recibo.referente}</td>
 	  						<th><a href="index.php?uc=recibos&a=gerarRecibo&codigo=${recibo.id}" style="font-size: 16px; margin-right: 8px;" target="popup"><i class="fa fa-print"></i></a></th>
-	  						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+	  						<td><button class="alterar fix" value="${recibo.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${recibo.id}" ><i class="fa fa-trash"></i></button></td>
 
 	  					</tr>
 	  					<!-- $EndBlock row --> 
@@ -99,10 +103,17 @@
 	  	
 	  	<!-- nova venda --> 
 	  	<div id="novo_recibo" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+
 	  		<h2 id="modalTitle">Novo Recibo</h2>
 	  		<p class="lead">Insira os dados abaixo</p>
 	  		<!-- formulário --> 
+
+	  		<!-- identificador -->
+	  		<input type="hidden" id="identificar" />
+	  		
+
 	  		<form id="form_recibo" data-abide="ajax">
+	  			<input type="hidden" id="id_item" />
 	  			<!-- primeira linha -->
 	  			<div class="row">
 	  				<div class="medium-4 columns">
@@ -187,10 +198,46 @@
 	  			}); 
 	  		}); 
 	  		
+	  		//true = cadastro, false = alterar
+	  		$('.cadastro').click(function(){
+	  			// <input type="hidden" id="identificar" />
+	  			$('#identificador').val(true); 
+	  			$('#novo_recibo').foundation('reveal', 'open');
+	  		}); 
+
+	  		$('.alterar').click(function(){
+	  			// <input type="hidden" id="identificar" />
+	  			// <input type="hidden" id="id_item" />
+	  			var idItem = $('#alterar').val(); 
+	  			$('#identificador').val(false); 
+	  			$('#id_item').val(idItem); 
+	  			
+	  			//restaurarForm(idItem); 
+	  			
+	  			$('#novo_recibo').foundation('reveal', 'open');
+	  		}); 
+
+	  		//Código para a deleção; 
+	  		var interval; 
+	  		$('.del').click(function(){
+	  			var id  = parseInt($(this).val()); 
+
+	  			alertify.confirm("Deseja realmente deletar este registro",function(resposta){
+	  				
+	  				if(resposta){
+	  					deletar('recibos', id) 
+	  					interval = setInterval(function(){window.location.reload()},1500); 
+	  				}
+	  				else{
+	  					alertify.error("Operação cancelada.");  
+	  				}
+	  			}); 
 	  	}); 
-	  		</script>
-	  	</body>
-	  	<!--footer bagin -->  
-	  	<!-- $Include templates/lib/html/footertag.html --> 
-	  	<!--footer end--> 
-	  	</html>
+
+	}); 
+	</script>
+</body>
+<!--footer bagin -->  
+<!-- $Include templates/lib/html/footertag.html --> 
+<!--footer end--> 
+</html>

@@ -24,7 +24,7 @@ class UsuariosView extends GenericView{
 
 			$usuario = new Usuario(); 
 
-			$usuario->where('id = '. $associativa->usuarioId)->find();
+			$usuario->where('id = '. $associativa->usuarioId." and ativo = 1")->find();
 
 			while( $usuario->fetch()){
 				parent::$templator->setVariable('usuario.id', Convert::zeroEsquerda($usuario->id));
