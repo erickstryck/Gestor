@@ -53,4 +53,16 @@ class Produtos extends GenericController {
 		//Em formato JSON, envie se a execução da inserção foi bem sucedida. 
 		$this->produtosView->sendAjax(array('status' => true) ); 
 	}
+
+	public function deletar($arg){
+		Lumine::import("Produto"); 
+		$produto = new Produto(); 
+		$produto->get((int) $arg['id']);
+
+		//Desativando o registro no banco. 
+		$produto->ativo = 0;  
+		$produto->update(); 
+
+		$this->produtosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
+	}
 }

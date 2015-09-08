@@ -133,8 +133,6 @@ class Clientes extends GenericController {
 		$contato->update(); 
 
 		$this->contatosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
-
-		$tarefas->join($usuario)->where(" empresa_id  =" . $_SESSION['empresa_id'] );
 	}
 }	
 

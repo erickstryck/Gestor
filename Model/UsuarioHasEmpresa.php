@@ -20,6 +20,7 @@ class UsuarioHasEmpresa extends Lumine_Base {
     public $temAcesso;
     public $usuarioId;
     public $empresaId;
+    public $ativo;
     
     
     
@@ -43,6 +44,7 @@ class UsuarioHasEmpresa extends Lumine_Base {
         $this->metadata()->addField('temAcesso', 'tem_acesso', 'boolean', 1, array());
         $this->metadata()->addField('usuarioId', 'usuario_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Usuario'));
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
+        $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
 
         
     }

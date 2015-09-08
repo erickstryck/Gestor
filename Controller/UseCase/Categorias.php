@@ -33,4 +33,16 @@ class Categorias extends GenericController {
 		$this->categoriasView->sendAjax(array('status' => true) );
 	}
 
+	public function deletar($arg){
+		Lumine::import("Categoria"); 
+		$categoria = new Categoria(); 
+		$categoria->get((int) $arg['id']);
+
+		//Desativando o registro no banco. 
+		$categoria->ativo = 0;  
+		$categoria->update(); 
+
+		$this->categoriasView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
+	}
+
 }

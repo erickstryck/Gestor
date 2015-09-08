@@ -17,7 +17,7 @@ class CategoriasView extends GenericView{
 
 		
 		while($categoria->fetch()){
-			parent::$templator->setVariable('catogoria.id', $categoria->id);
+			parent::$templator->setVariable('categoria.id', Convert::zeroEsquerda($categoria->id));
 			parent::$templator->setVariable('categoria.nome_categoria', $categoria->nomeCategoria); 
 			parent::$templator->setVariable('categoria.margem_lucro', Convert::toUpperCase(Convert::toUTF_8($categoria->margemLucro))); 
 			parent::$templator->addBlock('row'); 

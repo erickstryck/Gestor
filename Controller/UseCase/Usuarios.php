@@ -60,4 +60,25 @@ class Usuarios extends GenericController {
 		$this->usuariosView->sendAjax(array('status' => true) );
 	}
 
+	public function deletar($arg){
+		Lumine::import("Usuario"); 
+		Lumine::import("UsuarioHasEmpresa"); 
+		$usuario = new Usuario(); 
+		$associativa = new UsuarioHasEmpresa();
+
+		$usuario->join($associativa)->where('id = '. (int) $arg['id'] )->find(); 
+		$usuario->fetch(true); 
+
+		if($usuario->isAdmin)
+			$this->usuariosView->sendAjax(array('status' => false, 'msg' => 'O adminstrador não pode ser deletado.')); 
+
+		//Testando se o usuário é um adminstrador: 
+		
+		//Desativando o registro no banco. 
+		$usuario->ativo = 0;  
+		$usuario->update(); 
+
+		$this->usuariosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
+	}
+
 }

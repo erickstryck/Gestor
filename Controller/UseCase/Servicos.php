@@ -31,4 +31,16 @@ class Servicos extends GenericController {
 		$this->servicosView->sendAjax(array('status' => true) );
 	}
 
+	public function deletar($arg){
+		Lumine::import("Servico"); 
+		$Servico = new Servico(); 
+		$Servico->get((int) $arg['id']);
+
+		//Desativando o registro no banco. 
+		$Servico->ativo = 0;  
+		$Servico->update(); 
+
+		$this->servicosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
+	}
+
 }

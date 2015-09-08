@@ -73,8 +73,12 @@
 	  						<td>${recibo.data_recibo}</td>
 	  						<td>${recibo.valor}</td>
 	  						<td>${recibo.referente}</td>
-	  						<th><a href="index.php?uc=recibos&a=gerarRecibo&codigo=${recibo.id}" style="font-size: 16px; margin-right: 8px;" target="popup"><i class="fa fa-print"></i></a></th>
-	  						<td><button class="alterar fix" value="${recibo.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${recibo.id}" ><i class="fa fa-trash"></i></button></td>
+	  						<td>
+	  						<a href="index.php?uc=recibos&a=gerarRecibo&codigo=${recibo.id}" style="font-size: 16px; margin-right: 8px;" target="popup"><i class="fa fa-print"></i></a>
+	  						</td>
+	  						<td>
+	  						<button class="alterar fix" value="${recibo.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${recibo.id}" ><i class="fa fa-trash"></i></button>
+	  						</td>
 
 	  					</tr>
 	  					<!-- $EndBlock row --> 
@@ -221,9 +225,7 @@
 	  		var interval; 
 	  		$('.del').click(function(){
 	  			var id  = parseInt($(this).val()); 
-
 	  			alertify.confirm("Deseja realmente deletar este registro",function(resposta){
-	  				
 	  				if(resposta){
 	  					deletar('recibos', id) 
 	  					interval = setInterval(function(){window.location.reload()},1500); 
@@ -232,7 +234,7 @@
 	  					alertify.error("Operação cancelada.");  
 	  				}
 	  			}); 
-	  	}); 
+	  		}); 
 
 	}); 
 	</script>
