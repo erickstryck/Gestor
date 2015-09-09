@@ -31,7 +31,7 @@ class Recibos extends GenericController {
 		$recibo->cpfCnpj      = $arg['cpfCnpj'];
 		$recibo->dataRecibo   = $arg['dataRecibo'];
 		$recibo->referente    = $arg['referente']; 
-		$recibo->empresaId    = $_SESSION['empresaId'];
+		$recibo->empresaId    = $_SESSION['empresa_id'];
 
 		//procurando o id do contato para fazer a associação: 
 		// Lumine::import("Contato"); 
@@ -154,7 +154,6 @@ class Recibos extends GenericController {
 
 		$recibo->get($id); 
 
-		
 		$this->recibosView->sendAjax($recibo->toArray()); 
 	}
 }

@@ -42,7 +42,8 @@
 		//pegar o valor do objeto: 
 		//distribuir o valor do objeto nos elementos do formulário. 
 		//done. 
-		var idItem = this.find('input#id_item').val(); 
+		//var idItem = this.find('input#id_item').val(); 
+		var idItem =1; 
 		var url = 'index.php?uc='+useCase+'&a=getObject'; 
 
 		var form = this; 
@@ -54,13 +55,27 @@
 
 			console.log("inputs > "); 
 			form.find('input').each(function(){
-				$(this).attr('name')); 
+				var element = $(this); 
+				//console.log($(this).attr('name'));
+				//indice 0 é o nome do campo. índice 1 é o valor. 
+				jQuery.each(data,function(key,value){
+					if(key == element.attr('name'))
+						element.val(value); 
+				})
 			}); 
 
 
 			console.log("select > "); 
 			form.find('select').each(function(){
-				console.log($(this).attr('name')); 
+				var element = $(this); 
+
+				jQuery.each(data,function(key,value){
+					if(key == element.attr('name')){
+						element.children('option').each(function(){
+							if($(this).val() == value) $(this).attr('selected', 'selected');
+						}); 
+					}
+				}); 
 			}); 
 
 
