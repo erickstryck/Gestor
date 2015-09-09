@@ -24,20 +24,20 @@ class Recibos extends GenericController {
 
 		$recibo = new Recibo(); 
 
-		$recibo->viasId       = $arg['vias_id']; 
+		$recibo->viasId       = $arg['viasId'];
 		$recibo->emissor      = $arg['emissor'];
-		$recibo->valorPago    = $arg['valor_pago']; 
-		$recibo->recebidoDe   = $arg['recebi_de']; 
-		$recibo->cpfCnpj      = $arg['cpf_cnpj']; 
-		$recibo->dataRecibo   = $arg['data_recibo']; 
+		$recibo->valorPago    = $arg['valorPago'];
+		$recibo->recebidoDe   = $arg['recebidoDe'];
+		$recibo->cpfCnpj      = $arg['cpfCnpj'];
+		$recibo->dataRecibo   = $arg['dataRecibo'];
 		$recibo->referente    = $arg['referente']; 
-		$recibo->empresaId    = $_SESSION['empresa_id']; 
+		$recibo->empresaId    = $_SESSION['empresaId'];
 
 		//procurando o id do contato para fazer a associação: 
 		// Lumine::import("Contato"); 
 		// $contato = new Contato(); 
 
-		// $total = $contato->get('nomeFantasia', $arg['recebi_de']); 
+		// $total = $contato->get('nomeFantasia', $arg['recebidoDe']);
 
 		// if($total > 0 ){
 		// 	$recibo->contatoId = $contato->id; 
@@ -54,7 +54,7 @@ class Recibos extends GenericController {
 	public function gerarRecibo($arg){	
 		Lumine::import("Recibo"); 
 		$recibo = new Recibo(); 
-		$recibo->where("empresa_id = ". $_SESSION['empresa_id']." and recibo.id = ". (int) $arg['codigo'] )->find(); 
+		$recibo->where("empresaId = ". $_SESSION['empresaId']." and recibo.id = ". (int) $arg['codigo'] )->find();
 
 		if(count($recibo->allToArray()) == 0 )
 			die("O codigo enviado nao corresponde a nenhum recibo valido.");
@@ -91,7 +91,7 @@ class Recibos extends GenericController {
 	private function viaCliente($recibo,$template){
 		Lumine::import("Empresa"); 
 		$empresa = new Empresa(); 
-		$empresa->get($_SESSION['empresa_id']); 
+		$empresa->get($_SESSION['empresaId']);
 
 		$template->setVariable('numero', "Número - ".Convert::zeroEsquerda($recibo->id)); 
 		$template->setVariable('via_quem','Via 1 - Clientes'); 
@@ -110,7 +110,7 @@ class Recibos extends GenericController {
 	private function viaEmissor($recibo, $template){
 		Lumine::import("Empresa"); 
 		$empresa = new Empresa(); 
-		$empresa->get($_SESSION['empresa_id']); 
+		$empresa->get($_SESSION['empresaId']);
 
 		$template->setVariable('numero', "Número - ".Convert::zeroEsquerda($recibo->id)); 
 		$template->setVariable('via_quem','Via 2 - Emissor'); 
@@ -134,7 +134,7 @@ class Recibos extends GenericController {
 		Lumine::import("Recibo"); 
 		$recibo = new Recibo(); 
 
-		$recibo->where("empresa_id = ". $_SESSION['empresa_id']." and id = ". (int) $arg['id'])->find();
+		$recibo->where("empresaId = ". $_SESSION['empresaId']." and id = ". (int) $arg['id'])->find();
 		$recibo->fetch(true); 
 
 		if( $recibo->id == null )

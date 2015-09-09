@@ -70,7 +70,7 @@
 	  					<tr>
 	  						<td>${recibo.id}</td>
 	  						<td>${recibo.recebido_de}</td>
-	  						<td>${recibo.data_recibo}</td>
+	  						<td>${recibo.dataRecibo}</td>
 	  						<td>${recibo.valor}</td>
 	  						<td>${recibo.referente}</td>
 	  						<td>
@@ -126,7 +126,7 @@
 
 	  				<div class="medium-8 columns">
 	  					<label>Vias a imprimir 
-	  						<select name="vias_id">
+	  						<select name="viasId">
 	  							<option value="">-Selecione-</option>
 	  							<option value="1">Apenas a 1ª via - cliente</option>
 	  							<option value="2">Apenas a 2ª via - emissor</option>
@@ -139,7 +139,7 @@
 	  			<!-- segunda linha -->
 	  			<div class="row">
 	  				<div class="medium-4 columns">
-	  					<label>Recebi de <input list="recebi" type="text" name="recebi_de"></label> 
+	  					<label>Recebi de <input list="recebi" type="text" name="recebidoDe"></label>
 	  					<datalist id="recebi">
 	  						<!-- $BeginBlock contato --> 
 	  						<option value="${nome}">
@@ -148,18 +148,18 @@
 	  					</div>
 
 	  					<div class="medium-4 columns">
-	  						<label>CPF ou CNPJ <input type="text" name="cpf_cnpj" /> </label>
+	  						<label>CPF ou CNPJ <input type="text" name="cpfCnpj" /> </label>
 	  					</div>
 
 	  					<div class="medium-4 columns">
-	  						<label>Valor pago<input type="number" name="valor_pago" /> </label>
+	  						<label>Valor pago<input type="number" name="valorPago" /> </label>
 	  					</div>
 	  				</div>
 
 	  				<!-- terceira linha -->
 	  				<div class="row">
 	  					<div class="medium-4 columns">
-	  						<label>Data recibo <input type="date" value="${data_now}" name="data_recibo" /> </label>
+	  						<label>Data recibo <input type="date" value="${data_now}" name="dataRecibo" /> </label>
 	  					</div>
 
 	  					<div class="medium-8 columns">
