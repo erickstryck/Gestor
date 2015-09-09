@@ -133,12 +133,28 @@ class Recibos extends GenericController {
 	public function deletar($arg){
 		Lumine::import("Recibo"); 
 		$recibo = new Recibo(); 
-		$recibo->get((int) $arg['id']);
+
+		$recibo->where("empresa_id = ". $_SESSION['empresa_id']." and id = ". (int) $arg['id'])->find();
+		$recibo->fetch(true); 
+
+		if( $recibo->id == null )
+			$this->recibosView->sendAjax(array('status' => false, 'msg' => 'Operação ilegal')); 
 
 		//Desativando o registro no banco. 
 		$recibo->ativo = 0;  
 		$recibo->update(); 
 
 		$this->recibosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
+	}
+
+	public function getObject($arg){
+		$id = (int) $arg['id']; 
+		Lumine::import("Recibo"); 
+		$recibo = new Recibo(); 
+
+		$recibo->get($id); 
+
+		
+		$this->recibosView->sendAjax($recibo->toArray()); 
 	}
 }

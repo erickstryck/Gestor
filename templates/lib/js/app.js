@@ -18,7 +18,6 @@
 	var interval; 
 
 	$.fn.deletar = function(useCase, delay){
-
 		if( typeof delay == 'undefined')
 			delay = 1500; 
 
@@ -38,4 +37,40 @@
 			});
 		}); 
 	}
+
+	$.fn.reestabelecerForm = function(useCase){
+		//pegar o valor do objeto: 
+		//distribuir o valor do objeto nos elementos do formulário. 
+		//done. 
+		var idItem = this.find('input#id_item').val(); 
+		var url = 'index.php?uc='+useCase+'&a=getObject'; 
+
+		var form = this; 
+
+		sendAjax(url,'POST',{'id' : idItem},function(data){
+			//casos triviais: 
+			//select, input, checbox; 
+			data = JSON.parse(data); 
+
+			console.log("inputs > "); 
+			form.find('input').each(function(){
+				$(this).attr('name')); 
+			}); 
+
+
+			console.log("select > "); 
+			form.find('select').each(function(){
+				console.log($(this).attr('name')); 
+			}); 
+
+
+			console.log("checbox > "); 
+			form.find('checbox').each(function(){
+				console.log($(this).attr('name')); 
+			}); 
+
+		}); 
+
+	}
+
 }(jQuery))

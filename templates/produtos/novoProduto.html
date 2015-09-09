@@ -279,20 +279,8 @@
 
 			}); 
 
-			//Código para a deleção; 
-	  		var interval; 
-	  		$('.del').click(function(){
-	  			var id  = parseInt($(this).val()); 
-	  			alertify.confirm("Deseja realmente deletar este registro",function(resposta){
-	  				if(resposta){
-	  					deletar('produtos', id) 
-	  					interval = setInterval(function(){window.location.reload()},1500); 
-	  				}
-	  				else{
-	  					alertify.error("Operação cancelada.");  
-	  				}
-	  			}); 
-	  		}); 
+	  		//Código para a deleção: 
+	  		$('.del').deletar('produtos'); 
 
 		}); 
 

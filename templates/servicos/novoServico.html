@@ -65,7 +65,7 @@
 	  						<td>${servico.palavra_chave}</td>
 	  						<td>${servico.preco}</td>
 	  						<td>
-	  						<button class="alterar fix" value="${servico.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${servico.id}" ><i class="fa fa-trash"></i></button>
+	  							<button class="alterar fix" value="${servico.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${servico.id}" ><i class="fa fa-trash"></i></button>
 	  						</td>
 	  					</tr>
 	  					<!-- $EndBlock row --> 
@@ -158,20 +158,8 @@
 	  				}); 
 	  			}); 
 
-	  			//Código para a deleção; 
-	  			var interval; 
-	  			$('.del').click(function(){
-	  				var id  = parseInt($(this).val()); 
-	  				alertify.confirm("Deseja realmente deletar este registro",function(resposta){
-	  					if(resposta){
-	  						deletar('servicos', id) 
-	  						interval = setInterval(function(){window.location.reload()},1500); 
-	  					}
-	  					else{
-	  						alertify.error("Operação cancelada.");  
-	  					}
-	  				}); 
-	  			}); 
+	  			//Código para a deleção: 
+	  			$('.del').deletar('servicos'); 
 	  			
 	  		}); 
 

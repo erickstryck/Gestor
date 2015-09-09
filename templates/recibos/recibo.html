@@ -117,7 +117,7 @@
 	  		
 
 	  		<form id="form_recibo" data-abide="ajax">
-	  			<input type="hidden" id="id_item" />
+	  			<input type="hidden" id="id_item" value="1"/>
 	  			<!-- primeira linha -->
 	  			<div class="row">
 	  				<div class="medium-4 columns">
@@ -222,19 +222,9 @@
 	  		}); 
 
 	  		//Código para a deleção; 
-	  		var interval; 
-	  		$('.del').click(function(){
-	  			var id  = parseInt($(this).val()); 
-	  			alertify.confirm("Deseja realmente deletar este registro",function(resposta){
-	  				if(resposta){
-	  					deletar('recibos', id) 
-	  					interval = setInterval(function(){window.location.reload()},1500); 
-	  				}
-	  				else{
-	  					alertify.error("Operação cancelada.");  
-	  				}
-	  			}); 
-	  		}); 
+	  		//Código para a deleção: 
+	  		$('.del').deletar('recibos');  
+	  		$('#form_recibo').reestabelecerForm('recibos'); 
 
 	}); 
 	</script>
