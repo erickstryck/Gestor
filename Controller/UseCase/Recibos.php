@@ -156,4 +156,9 @@ class Recibos extends GenericController {
 
 		$this->recibosView->sendAjax($recibo->toArray()); 
 	}
+
+	public function alterar($arg){
+		var_dump($arg); 
+		die; 
+	}
 }
