@@ -55,7 +55,7 @@
 	  				<tbody>
 	  					<!-- $BeginBlock row --> 
 	  					<tr>
-	  						<td >${catogoria.id}</td>
+	  						<td >${categoria.id}</td>
 	  						<td >${categoria.nome_categoria}</td>
 	  						<td >${categoria.margem_lucro}</td>
 	  						<td>
@@ -141,20 +141,9 @@
 	  				}); 
 	  			}); 
 
-	  		//Código para a deleção; 
-	  		var interval; 
-	  		$('.del').click(function(){
-	  			var id  = parseInt($(this).val()); 
-	  			alertify.confirm("Deseja realmente deletar este registro",function(resposta){
-	  				if(resposta){
-	  					deletar('categorias', id) 
-	  					interval = setInterval(function(){window.location.reload()},1500); 
-	  				}
-	  				else{
-	  					alertify.error("Operação cancelada.");  
-	  				}
-	  			}); 
-	  		}); 
+	  		//Código para a deleção: 
+	  		$('.del').deletar('categorias'); 
+
 	  	}); 
 
 	  	</script>
