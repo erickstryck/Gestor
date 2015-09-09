@@ -13,7 +13,7 @@ class RecibosView extends GenericView{
 		Lumine::import("Contato"); 
 		//Pegando os contatos da empresa da sessão corrente: 
 		$contato = new Contato(); 
-		$contato->where("empresa_id = ". $_SESSION['empresa_id'])->find(); 
+		$contato->where("empresa_id = ". $_SESSION['empresaId'])->find(); 
 
 		while($contato->fetch()){
 			parent::$templator->setVariable('nome', $contato->nomeFantasia); 
@@ -26,7 +26,7 @@ class RecibosView extends GenericView{
 		//Adicionando elementos na tabela: 
 		Lumine::import("Recibo"); 
 		$recibo = new Recibo(); 
-		$recibo->where("empresa_id = ". $_SESSION['empresa_id']." and ativo = 1")->limit(500)->find(); 
+		$recibo->where("empresa_id = ". $_SESSION['empresaId']." and ativo = 1")->limit(500)->find(); 
 
 		while($recibo->fetch()){
 			parent::$templator->setVariable('recibo.id', Convert::zeroEsquerda($recibo->id));

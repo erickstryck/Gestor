@@ -44,7 +44,7 @@
 	  	<!-- botões --> 
 	  	<div class="row">
 	  		<div class="medium-12 columns">
-	  			<button class="button success small cadastro" > <i class="fa fa-plus fa-lg"></i> Novo Recibo</button>
+	  			<button class="button success small cadastrar" > <i class="fa fa-plus fa-lg"></i> Novo Recibo</button>
 	  			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
 	  		</div>
 	  	</div>
@@ -70,7 +70,7 @@
 	  					<tr>
 	  						<td>${recibo.id}</td>
 	  						<td>${recibo.recebido_de}</td>
-	  						<td>${recibo.dataRecibo}</td>
+	  						<td>${recibo.data_recibo}</td>
 	  						<td>${recibo.valor}</td>
 	  						<td>${recibo.referente}</td>
 	  						<td>
@@ -117,7 +117,7 @@
 	  		
 
 	  		<form id="form_recibo" data-abide="ajax">
-	  			<input type="hidden" id="id_item" value="1"/>
+	  			<input type="hidden" id="id_item" />
 	  			<!-- primeira linha -->
 	  			<div class="row">
 	  				<div class="medium-4 columns">
@@ -202,24 +202,26 @@
 	  			}); 
 	  		}); 
 	  		
-	  		//true = cadastro, false = alterar
-	  		$('.cadastro').click(function(){
-	  			// <input type="hidden" id="identificar" />
-	  			$('#identificador').val(true); 
-	  			$('#novo_recibo').foundation('reveal', 'open');
-	  		}); 
+	  		// //true = cadastro, false = alterar
+	  		// $('.cadastro').click(function(){
+	  		// 	// <input type="hidden" id="identificar" />
+	  		// 	$('#identificador').val(true); 
+	  		// 	$('#novo_recibo').foundation('reveal', 'open');
+	  		// }); 
 
-	  		$('.alterar').click(function(){
-	  			// <input type="hidden" id="identificar" />
-	  			// <input type="hidden" id="id_item" />
-	  			var idItem = $('#alterar').val(); 
-	  			$('#identificador').val(false); 
-	  			$('#id_item').val(idItem); 
+	  		// $('.alterar').click(function(){
+	  		// 	// <input type="hidden" id="identificar" />
+	  		// 	// <input type="hidden" id="id_item" />
+	  		// 	var idItem = $(this).val(); 
+	  		// 	$('#identificador').val(false); 
+	  		// 	$('#id_item').val(idItem); 
 	  			
-	  			//restaurarForm(idItem); 
-	  			
-	  			$('#novo_recibo').foundation('reveal', 'open');
-	  		}); 
+	  		// 	//restaurarForm(idItem); 
+	  		// 	$('#form_recibo').reestabelecerForm('recibos');
+	  		// 	$('#novo_recibo').foundation('reveal', 'open');
+	  		// }); 
+
+	  		$(document).initCrud('recibos','#novo_recibo','.alterar','.cadastrar'); 
 
 	  		//Código para a deleção; 
 	  		//Código para a deleção: 

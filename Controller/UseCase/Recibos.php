@@ -31,7 +31,7 @@ class Recibos extends GenericController {
 		$recibo->cpfCnpj      = $arg['cpfCnpj'];
 		$recibo->dataRecibo   = $arg['dataRecibo'];
 		$recibo->referente    = $arg['referente']; 
-		$recibo->empresaId    = $_SESSION['empresa_id'];
+		$recibo->empresaId    = $_SESSION['empresaId'];
 
 		//procurando o id do contato para fazer a associação: 
 		// Lumine::import("Contato"); 
@@ -54,7 +54,7 @@ class Recibos extends GenericController {
 	public function gerarRecibo($arg){	
 		Lumine::import("Recibo"); 
 		$recibo = new Recibo(); 
-		$recibo->where("empresaId = ". $_SESSION['empresaId']." and recibo.id = ". (int) $arg['codigo'] )->find();
+		$recibo->where("empresa_id = ". $_SESSION['empresaId']." and recibo.id = ". (int) $arg['codigo'] )->find();
 
 		if(count($recibo->allToArray()) == 0 )
 			die("O codigo enviado nao corresponde a nenhum recibo valido.");
@@ -134,7 +134,7 @@ class Recibos extends GenericController {
 		Lumine::import("Recibo"); 
 		$recibo = new Recibo(); 
 
-		$recibo->where("empresaId = ". $_SESSION['empresaId']." and id = ". (int) $arg['id'])->find();
+		$recibo->where("empresa_id = ". $_SESSION['empresaId']." and id = ". (int) $arg['id'])->find();
 		$recibo->fetch(true); 
 
 		if( $recibo->id == null )

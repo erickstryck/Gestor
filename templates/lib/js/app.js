@@ -38,12 +38,12 @@
 		}); 
 	}
 
+
 	$.fn.reestabelecerForm = function(useCase){
 		//pegar o valor do objeto: 
 		//distribuir o valor do objeto nos elementos do formulário. 
 		//done. 
-		//var idItem = this.find('input#id_item').val(); 
-		var idItem =1; 
+		var idItem = parseInt( this.find('input#id').val()); 
 		var url = 'index.php?uc='+useCase+'&a=getObject'; 
 
 		var form = this; 
@@ -72,7 +72,8 @@
 				jQuery.each(data,function(key,value){
 					if(key == element.attr('name')){
 						element.children('option').each(function(){
-							if($(this).val() == value) $(this).attr('selected', 'selected');
+							if($(this).val() == value) 
+								$(this).attr('selected', 'selected');
 						}); 
 					}
 				}); 
@@ -86,6 +87,43 @@
 
 		}); 
 
+	}
+
+	$.fn.initCrud = function(useCase,modalId,handleAlterar, handleCadastrar, callback){
+		// <input type="hidden" id="cadastrar" />
+	  	// <input type="hidden" id="id" />
+	  	// 
+	  	var form = $(modalId).find('form'); 
+	  	//id=cadastrar sendo true significa que o modal é invocado para um cadastro,
+	  	//caso contrário, é para alteração. 
+	  	
+	  	$(form).append('<input type="hidden" id="cadastrar" />'); 
+	  	$(form).append('<input type="hidden" id="id" />'); 
+
+		//Tratando manipuladores com parâmetro nulo:
+		if( typeof handleAlterar == 'undefined' )
+			handleAlterar = '.alterar'; 
+		if( typeof handleCadastrar == 'undefined' )
+			handleAlterar = '.cadastrar'; 
+
+		$(handleCadastrar).click(function(){
+			$(form).find('#cadastrar').val(true); 
+			$(form).find('#id_item').val();
+
+			$(form).get(0).reset(); 
+
+			$(modalId).foundation('reveal', 'open'); 
+		}); 
+
+		$(handleAlterar).click(function(){
+			$(form).find('#cadastrar').val(false);
+			//Pegando valor botão que é o pivô da ação de deletar. 
+			$(form).find('#id').val($(this).val());
+			
+			//Restabelecendo valores no formulário: 
+			$(form).reestabelecerForm(useCase); 
+			$(modalId).foundation('reveal', 'open'); 
+		}); 
 	}
 
 }(jQuery))
