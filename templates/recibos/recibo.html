@@ -74,10 +74,10 @@
 	  						<td>${recibo.valor}</td>
 	  						<td>${recibo.referente}</td>
 	  						<td>
-	  						<a href="index.php?uc=recibos&a=gerarRecibo&codigo=${recibo.id}" style="font-size: 16px; margin-right: 8px;" target="popup"><i class="fa fa-print"></i></a>
+	  							<a href="index.php?uc=recibos&a=gerarRecibo&codigo=${recibo.id}" style="font-size: 16px; margin-right: 8px;" target="popup"><i class="fa fa-print"></i></a>
 	  						</td>
 	  						<td>
-	  						<button class="alterar fix" value="${recibo.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${recibo.id}" ><i class="fa fa-trash"></i></button>
+	  							<button class="alterar fix" value="${recibo.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${recibo.id}" ><i class="fa fa-trash"></i></button>
 	  						</td>
 
 	  					</tr>
@@ -112,12 +112,8 @@
 	  		<p class="lead">Insira os dados abaixo</p>
 	  		<!-- formulário --> 
 
-	  		<!-- identificador -->
-	  		<input type="hidden" id="identificar" />
-	  		
-
 	  		<form id="form_recibo" data-abide="ajax">
-	  			<input type="hidden" id="id_item" />
+	  		
 	  			<!-- primeira linha -->
 	  			<div class="row">
 	  				<div class="medium-4 columns">
@@ -188,54 +184,18 @@
 	  			$(document).foundation();
 
 	  			$(document).ready(function(){
-	  		//Manipulador para o formulário
-	  		// $('#form_recibo').on('valid.fndtn.abide', function() {
-	  		// 	var data = $(this).serializeArray(); 
-	  		// 	sendAjax('index.php?uc=recibos&a=cadastro','POST',data,function(data){
-	  		// 		var data = JSON.parse(data); 
-	  		// 		if(data['status']){
-	  		// 			alertify.success("O recibo foi cadastrado com sucesso"); 
-	  		// 			window.location.reload(); 
-	  		// 		}else{
-	  		// 			alertify.error("Ocorreu algum error, tente novamente."); 
-	  		// 		}
-	  		// 	}); 
-	  		// }); 
-	  		
 
-	  		
-	  		// //true = cadastro, false = alterar
-	  		// $('.cadastro').click(function(){
-	  		// 	// <input type="hidden" id="identificar" />
-	  		// 	$('#identificador').val(true); 
-	  		// 	$('#novo_recibo').foundation('reveal', 'open');
-	  		// }); 
 
-	  		// $('.alterar').click(function(){
-	  		// 	// <input type="hidden" id="identificar" />
-	  		// 	// <input type="hidden" id="id_item" />
-	  		// 	var idItem = $(this).val(); 
-	  		// 	$('#identificador').val(false); 
-	  		// 	$('#id_item').val(idItem); 
-	  			
-	  		// 	//restaurarForm(idItem); 
-	  		// 	$('#form_recibo').reestabelecerForm('recibos');
-	  		// 	$('#novo_recibo').foundation('reveal', 'open');
-	  		// }); 
+	  				$(document).initCrud('recibos','#novo_recibo',function(data){
+	  					alertify.log(data); 
+	  				}); 
 
-	  		$(document).initCrud('recibos','#novo_recibo',function(data){
-	  			alertify.log(data); 
-	  		}); 
 
-	  		//Código para a deleção; 
-	  		//Código para a deleção: 
-	  		//$('.del').deletar('recibos');  
-	  		//$('#form_recibo').reestabelecerForm('recibos'); 
 
-	}); 
-	</script>
-</body>
-<!--footer bagin -->  
-<!-- $Include templates/lib/html/footertag.html --> 
-<!--footer end--> 
-</html>
+	  			}); 
+	  		</script>
+	  	</body>
+	  	<!--footer bagin -->  
+	  	<!-- $Include templates/lib/html/footertag.html --> 
+	  	<!--footer end--> 
+	  	</html>

@@ -73,4 +73,15 @@ class Contas extends GenericController {
 		return $conta;  
 	}
 
+
+	public function getObject($arg){
+		$id = (int) $arg['id']; 
+		Lumine::import("Conta"); 
+		$conta = new Conta(); 
+
+		$conta->get($id); 
+
+		$this->contasView->sendAjax($conta->toArray()); 
+	}
+
 }
