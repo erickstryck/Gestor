@@ -1,15 +1,10 @@
 <!doctype html>
 <html class="no-js" lang="pt">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- init script and css -->
+	<!-- $Include templates/lib/html/scripthead.html -->
+	<!--init script and css end-->
 	<title>Tela Principal</title>
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.8/datatables.min.css"/>
-	<link rel="stylesheet" type="text/css" href="templates/lib/css/dhtmlxcalendar.css"/>
-	<!-- <link rel="stylesheet" href="css/tabela.css" /> -->
-	<link rel="stylesheet" href="templates/lib/css/foundation.css" />
-	<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css" />
-	<script src="templates/lib/js/vendor/modernizr.js"></script>
 	<style type="text/css">
 		.separator{
 			margin-top: 0;
@@ -81,7 +76,8 @@
 								<td>${prioridade}</td>
 								<td><span data-tooltip aria-haspopup="true" class="has-tips" data-options="show_on:large" title="${descricao}">${abreviacao}</span></td>
 								<td>${situacao}</td>
-								<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+								<td><button class="alterar fix" value="${id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${id}" ><i class="fa fa-trash"></i></button></td>
+
 							</tr>
                         <!-- $EndBlock tarefas -->
 						</tbody>
@@ -103,19 +99,19 @@
 		</div>
 	</div>
 	<!--modal-->
-	<div id="nova_tarefa" class="reveal-modal xlarge" data-reveal aria-labelledby="tarefa" aria-hidden="true" role="dialog">
+	<div id="nova_tarefa" class="reveal-modal xlarge cadastro" data-reveal aria-labelledby="tarefa" aria-hidden="true" role="dialog">
 		<form id="form-tarefa" data-abide="ajax">
 			<h2 id="tarefa">Gestão de tarefas.</h2>
 			<p class="lead">Insira os dados abaixo</p>
 			<div class="row">
 				<div class="medium-6 columns">
-					<label>Título <input type="text" name="titulo" required></label>
+					<label>Título <input type="text" name="titulo" required val="${titulo}"></label>
 					<small class="error">Insira um título!</small>
 				</div>
 			</div>
 			<div class="row">
 				<div class="medium-12 columns">
-					<label>Descrição da tarefa <textarea name="descricao"></textarea></label>
+					<label>Descrição da tarefa <textarea name="descricao" val="${descricao}"></textarea></label>
 				</div>
 			</div>
 			<div class="row">
@@ -128,13 +124,13 @@
 				</label>
 			</div>
 			<div class="medium-2 columns">
-				<label>Data<input id="calendar" type="text" name="data" ></label>
+				<label>Data<input id="calendar" type="text" name="data" val="${data}"></label>
 			</div>
 			<div class="medium-2 columns">
 				<label>Prioridade
 					<select name="prioridade">
 						<option value="1">Baixa</option>
-						<option value="2">Normal</option>
+						<option value="2" selected>Normal</option>
 						<option value="3">Alta</option>
 					</select>
 				</label>
@@ -175,6 +171,7 @@
 
 <script>
 	$( document ).ready(function() {
+		var interval;
 		$(document).foundation();
         var myCalendar = new dhtmlXCalendarObject(["calendar"]);
         myCalendar.loadUserLanguage("pt");
@@ -185,11 +182,30 @@
                 if(data['status']) {
                     alertify.success(data['msg']);
                     $('#nova_tarefa').foundation('reveal', 'close');
-                    window.location.reload();
+					interval = setInterval(function(){window.location.reload()},1500);
                 }else alertify.error("Houve um erro ao cadastrar a tarefa!");
             });
         });
-    });
+		$('.cadastro').click(function(){
+			// <input type="hidden" id="identificar" />
+			$('#identificador').val(true);
+			$('#novo_recibo').foundation('reveal', 'open');
+		});
+
+		$('.alterar').click(function(){
+			// <input type="hidden" id="identificar" />
+			// <input type="hidden" id="id_item" />
+			var idItem = $('#alterar').val();
+			$('#identificador').val(false);
+			$('#id_item').val(idItem);
+
+			//restaurarForm(idItem);
+
+			$('#novo_recibo').foundation('reveal', 'open');
+		});
+		//Código para a deleção;1
+		$('.del').deletar("tarefas");
+	});
 </script>
 </body>
 <!--footer bagin -->  

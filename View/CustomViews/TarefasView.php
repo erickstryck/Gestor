@@ -23,11 +23,13 @@ class TarefasView extends GenericView{
         Lumine::import("Tarefa");
         Lumine::import("Prioridade");
         Lumine::import("Situacao");
+        //pegar user da empresa
         $user= new Usuario();
         $has=new UsuarioHasEmpresa();
         $user->join($has)->where("empresa_id=".$_SESSION["empresa_id"])->find();
+        //pegar tarefas da empresa
         $tar=new Tarefa();
-        $tar->where("empresa_id=".$_SESSION['empresa_id'])->find();
+        $tar->where("empresa_id=".$_SESSION['empresa_id']." and ativo = 1")->find();
         parent::getTemplateByAction("tarefas");
         $usuario=new Usuario();
         $prioridade=new Prioridade();

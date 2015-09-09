@@ -31,10 +31,22 @@ class Tarefas extends GenericController{
         $tarefa->usuarioId=$arg['usuario'];
         $tarefa->data=$arg['data'];
         $tarefa->pChave=$arg['p_chave'];
+        $tarefa->ativo=true;
         $tarefa->empresaId=$_SESSION["empresa_id"];
-        if(array_key_exists ('alerta',$arg))$tarefa->ativo=true;
-        else $tarefa->ativo=false;
+        if(array_key_exists ('alerta',$arg))$tarefa->tarefaAtiva=true;
+        else $tarefa->tarefaAtiva=false;
         $tarefa->insert();
         $this->tarefasView->sendAjax(array('status' => true,'msg'=>'A tarefa foi registrada!'));
+    }
+    function deletar($arg){
+        Lumine::import("Tarefa");
+        $tarefa=new Tarefa();
+        $tarefa->where("empresa_id = ".$_SESSION["empresa_id"]." and id=".(int)$arg["id"])->find();
+        $tarefa->fetch(true);
+        if($tarefa->id==null)
+            $this->tarefasView->sendAjax(array('status' => false,'msg'=>'Operação ilegal!'));
+        $tarefa->ativo=0;
+        $tarefa->update();
+        $this->tarefasView->sendAjax(array('status' => true));
     }
 }
