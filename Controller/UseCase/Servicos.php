@@ -21,10 +21,10 @@ class Servicos extends GenericController {
 		Lumine::import("Servico"); 
 		$servico = new Servico(); 
 
-		$servico->nomeServico = $arg['nome_servico']; 
+		$servico->nomeServico = $arg['nomeServico'];
 		$servico->preco = $arg['preco']; 
 		$servico->palavraChave = $arg['palavra_chave']; 
-		$servico->empresaId = $_SESSION['empresa_id']; 
+		$servico->empresaId = $_SESSION['empresa_id'];
 
 		$servico->insert(); 
 		//Enviar essa linha apenas se tudo acima estiver sido feito corretamente. 

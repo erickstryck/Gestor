@@ -40,17 +40,17 @@ class Usuarios extends GenericController {
 
 		$usuario->login = $arg['login']; 
 		$usuario->senha = $arg['senha']; 
-		$usuario->nomeCompleto = $arg['nome_completo']; 
+		$usuario->nomeCompleto = $arg['nomeCompleto'];
 		$usuario->email = $arg['email']; 
-		$usuario->palavraChave = $arg['palavra_chave']; 
+		$usuario->palavraChave = $arg['palavraChave'];
 
 		$usuario->insert(); 
 		//Associando usuário a uma empresa com os seus devidos privilégios: 
 		
-		$associativa->isTecnico = ((empty($arg['is_tecnico']))) ? false : true;  
-		$associativa->isVendedor = ((empty($arg['is_vendedor']))) ? false : true;
-		$associativa->temAcesso = ((empty($arg['tem_acesso']))) ? false : true;
-		$associativa->comissaoProduto = $arg['comissao_produto']; 
+		$associativa->isTecnico = ((empty($arg['isTecnico']))) ? false : true;
+		$associativa->isVendedor = ((empty($arg['isVendedor']))) ? false : true;
+		$associativa->temAcesso = ((empty($arg['temAcesso']))) ? false : true;
+		$associativa->comissaoProduto = $arg['comissaoProduto'];
 		$associativa->comissaoVendedor = $arg['comissao_vendedor']; 
 		$associativa->empresaId = $_SESSION['empresa_id']; 
 		$associativa->usuarioId = $usuario->id;  

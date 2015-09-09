@@ -25,12 +25,12 @@ class Tarefas extends GenericController{
         Lumine::import("Tarefa");
         $tarefa=new Tarefa();
         $tarefa->descricao=$arg['descricao'];
-        $tarefa->prioridadeId=$arg['prioridade'];
+        $tarefa->prioridadeId=$arg['prioridadeId'];
         $tarefa->titulo=$arg['titulo'];
-        $tarefa->situacaoId=$arg['situacao'];
+        $tarefa->situacaoId=$arg['situacaoId'];
         $tarefa->usuarioId=$arg['usuario'];
         $tarefa->data=$arg['data'];
-        $tarefa->pChave=$arg['p_chave'];
+        $tarefa->pChave=$arg['pChave'];
         $tarefa->ativo=true;
         $tarefa->empresaId=$_SESSION["empresa_id"];
         if(array_key_exists ('alerta',$arg))$tarefa->tarefaAtiva=true;

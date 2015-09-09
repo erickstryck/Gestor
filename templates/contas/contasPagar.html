@@ -125,22 +125,22 @@
 	  						</div>
 
 	  						<div class="medium-4 columns">
-	  							<label>Data do lançamento<input value="${date_now}" type="date" name="data_lancamento" /> </label>
+	  							<label>Data do lançamento<input value="${date_now}" type="date" name="dataLancamento" /> </label>
 	  						</div>
 
 	  						<div class="medium-4 columns">
-	  							<label>Data de vencimento<input type="date" name="data_vencimento" /> </label>
+	  							<label>Data de vencimento<input type="date" name="dataVencimento" /> </label>
 	  						</div>
 	  					</div>
 	  					<!-- segunda linha -->
 	  					<div class="row">
 	  						<div class="medium-4 columns">
-	  							<label>Valor cobrado<input  type="number" name="valor_cobrado" /> </label>
+	  							<label>Valor cobrado<input  type="number" name="valor" /> </label>
 	  						</div>
 
 	  						<div class="medium-4 columns">
 	  							<label>Tipo documento <small style="color:red;">Obrigatório</small>
-	  								<select required name="tipo_documento_id"> 
+	  								<select required name="tipoDocumentoId">
 	  									<option value="">-Selecione-</option>
 	  									<!-- $BeginBlock tipo_documento --> 
 	  									<option value="${tipo_documento.id}">${tipo_documento.des}</option>
@@ -150,14 +150,14 @@
 	  						</div>
 
 	  						<div class="medium-4 columns">
-	  							<label>Nru. documento <input type="number" name="numero_documento" /> </label>
+	  							<label>Nru. documento <input type="number" name="numeroDocumento" /> </label>
 	  						</div>
 	  					</div>
 	  					<!-- terceira linha -->
 	  					<div class="row">
 	  						<div class="medium-4 columns">
 	  							<label>Contato <small style="color:red;">Obrigatório</small>
-	  								<select required name="contato_id">
+	  								<select required name="contatoId">
 	  									<option value="">-Selecione</option>
 	  									<!-- $BeginBlock contato --> 
 	  									<option value="${contato.id}">${contato.des}</option>
@@ -168,7 +168,7 @@
 
 	  						<div class="medium-4 columns">
 	  							<label>Plano de contas <small style="color:red;">Obrigatório</small>
-	  								<select required name="plano_conta_id"> 
+	  								<select required name="planoContaId">
 	  									<option value="">-Selecione-</option>
 	  									<!-- $BeginBlock plano_conta --> 
 	  									<option value="${plano_conta.id}" ${disabled} >${plano_conta.des}</option>
@@ -179,7 +179,7 @@
 
 	  						<div class="medium-4 columns">
 	  							<label>Conta de origem <small style="color:red;"></small> 
-	  								<select name="is_caixa_interno" required >
+	  								<select name="isCaixaInterno" required >
 	  									<option value="0">-Selecione-</option>
 	  									<option value="1">Caixa Interno</option>
 	  								</select>
@@ -189,13 +189,13 @@
 	  					<!-- quarta linha -->
 	  					<div class="row">
 	  						<div class="medium-4 columns">
-	  							<input id="checkbox1" type="checkbox" name="apenas_previsao"><label for="checkbox1">Apenas previsão	
+	  							<input id="checkbox1" type="checkbox" name="apenasPrevisao"><label for="checkbox1">Apenas previsão
 	  						</label>
 	  					</div>
 
 	  					<div class="medium-4 columns">
 	  						<label>Cadastrar mais de uma vez <small style="color:red;">Obrigatório</small>
-	  							<select required name="cadastrar_vezes_id">
+	  							<select required name="cadastrarVezesId">
 	  								<option value="">-Selecione-</option>
 	  								<!-- $BeginBlock cadastrar_vezes --> 
 	  								<option value="${cadastrar_vezes.id}">${cadastrar_vezes.des}</option>
@@ -206,7 +206,7 @@
 
 	  					<div class="medium-4 columns">
 	  						<label>Repetir o seguinte intervalo <small style="color:red;">Obrigatório</small>
-	  							<select required name="intervalo_id">
+	  							<select required name="intervaloId">
 	  								<option value="">-Selecione-</option>
 	  								<!-- $BeginBlock intervalo --> 
 	  								<option value="${intervalo.id}">${intervalo.des}</option>
@@ -218,15 +218,15 @@
 	  				<!-- quinta linha -->
 	  				<div class="row">
 	  					<div class="medium-4 columns">
-	  						<input id="pagar_agora" type="checkbox" name="pagar_agora"><label for="pagar_agora">Pagar agora</label>
+	  						<input id="pagar_agora" type="checkbox" name="pagarAgora"><label for="pagar_agora">Pagar agora</label>
 	  					</div>
 
 	  					<div class="medium-4 columns">
-	  						<label>Valor Pagamento<input type="number" name="valor_pagamento" id="valor_pagamento" /> </label>
+	  						<label>Valor Pagamento<input type="number" name="valorPagamento" id="valor_pagamento" /> </label>
 	  					</div>
 
 	  					<div class="medium-4 columns">
-	  						<label>Data pagamento <input type="date" value="${date_now}" name="data_pagamento" id="data_pagamento"/> </label>
+	  						<label>Data pagamento <input type="date" value="${date_now}" name="dataPagamento" id="data_pagamento"/> </label>
 	  					</div>
 	  				</div>
 	  			</div>
@@ -243,7 +243,7 @@
 	  				<!-- segunda linha -->
 	  				<div class="row">
 	  					<div class="medium-12">
-	  						<label>Palavra-chave <input type="text"  name="palavra_chave"/></label>
+	  						<label>Palavra-chave <input type="text"  name="palavraChave"/></label>
 	  					</div>		
 	  				</div>		
 	  			</div>

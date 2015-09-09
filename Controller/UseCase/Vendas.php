@@ -45,15 +45,15 @@ class Vendas extends GenericController {
 
 		$pedidoVenda = new PedidoVenda(); 
 
-		$pedidoVenda->dataVenda      = $arg['data_venda']; 
-		$pedidoVenda->dataEntrega    = $arg['data_entrega']; 
-		$pedidoVenda->valorFrete     = $arg['valor_frete']; 
-		$pedidoVenda->valorSeguro    = $arg['valor_seguro']; 
-		$pedidoVenda->outrasDespesas = $arg['outras_despesas']; 
-		$pedidoVenda->obsGerais      = $arg['obs_gerais']; 
+		$pedidoVenda->dataVenda      = $arg['dataVenda'];
+		$pedidoVenda->dataEntrega    = $arg['dataEntrega'];
+		$pedidoVenda->valorFrete     = $arg['valorFrete'];
+		$pedidoVenda->valorSeguro    = $arg['valorSeguro'];
+		$pedidoVenda->outrasDespesas = $arg['outrasDespesas'];
+		$pedidoVenda->obsGerais      = $arg['obsGerais'];
 		$pedidoVenda->refenrecia     = $arg['referencia']; 
-		$pedidoVenda->usuarioId      = $arg['usuario_id']; 
-		$pedidoVenda->contatoId      = $arg['contato_id']; 
+		$pedidoVenda->usuarioId      = $arg['usuarioId'];
+		$pedidoVenda->contatoId      = $arg['contatoId'];
 		$pedidoVenda->isOrcamento    = true;
 		$pedidoVenda->insert(); 
 
@@ -84,12 +84,12 @@ class Vendas extends GenericController {
 
 		$formaPagamento = new FormaPagamento(); 
 		$formaPagamento->juros            = empty($arg['juros']); 
-		$formaPagamento->taxaFixa         = empty($arg['taxa_fixa']);
+		$formaPagamento->taxaFixa         = empty($arg['taxaFixa']);
 		$formaPagamento->pedidoVendaId    = $pedidoVenda->id; 
-		$formaPagamento->tipoPagamentoId = $arg['forma_pagamento_id']; 
+		$formaPagamento->tipoPagamentoId = $arg['tipoPagamentoId'];
 		// Caso o id do tipo de desconto venha vazio, será interpretado como sem desconto. 
-		$formaPagamento->tipoDescontoId   = ((empty($arg['tipo_desconto_id'])) ? 1 : $arg['tipo_desconto_id']);
-		$formaPagamento->tipoEntradaId    = $arg['tipo_entrada_id']; 
+		$formaPagamento->tipoDescontoId   = ((empty($arg['tipoDescontoId'])) ? 1 : $arg['tipoDescontoId']);
+		$formaPagamento->tipoEntradaId    = $arg['tipoEntradaId'];
 		$formaPagamento->insert(); 
 
 
@@ -102,13 +102,13 @@ class Vendas extends GenericController {
 		if(!empty($arg['parcela']))
 			$parcelas  = $arg['parcela']; 
 
-		$arg['tipo_entrada_id'] = (int) $arg['tipo_entrada_id']; 
+		$arg['tipoEntradaId'] = (int) $arg['tipoEntradaId'];
 		
-		if( $arg['tipo_entrada_id'] === 3 || $arg['tipo_entrada_id'] === 2){
+		if( $arg['tipoEntradaId'] === 3 || $arg['tipoEntradaId'] === 2){
 			$temp = new Parcela(); 
 			$p = json_decode($parcelas[0]); 
 			
-			$temp->valor              = (float) $arg['valor_entrada']; 
+			$temp->valor              = (float) $arg['valor'];
 			$temp->dataVencimento     = $p->data ; 
 			$temp->numeroDocumento    = $p->num_documento; 
 			$temp->palavraChave       = $p->palavra_chave; 

@@ -14,22 +14,22 @@ class Categorias extends GenericController {
 	}
 
 	public function cadastro($arg){
-		//Roteiro: 
+		//Roteiro:
 		//Validar os dados que estão vindo da visão ( fazer isso depois )
 		//Armazenar os dados no banco
-		//Enviar confirmação de sucesso ou falha via JSON. 
-		
-		Lumine::import("Categoria"); 
+		//Enviar confirmação de sucesso ou falha via JSON.
 
-		$categoria = new Categoria(); 
+		Lumine::import("Categoria");
 
-		$categoria->nomeCategoria = 		$arg['nome_categoria']; 
-		$categoria->margemLucro   = (float) $arg['margem_lucro']; 
-		$categoria->empresaId     = 		$_SESSION['empresa_id']; 
+		$categoria = new Categoria();
 
-		$categoria->insert(); 
+		$categoria->nomeCategoria = 		$arg['nomeCategoria'];
+		$categoria->margemLucro   = (float) $arg['margemLucro'];
+		$categoria->empresaId     = 		$_SESSION['empresa_id'];
 
-		//Enviar essa linha apenas se tudo acima estiver sido feito corretamente. 
+		$categoria->insert();
+
+		//Enviar essa linha apenas se tudo acima estiver sido feito corretamente.
 		$this->categoriasView->sendAjax(array('status' => true) );
 	}
 

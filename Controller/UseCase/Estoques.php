@@ -29,8 +29,8 @@ class Estoques extends GenericController {
 		$mudanca = new MudancaEstoque(); 
 
 		$mudanca->dataMudanca   = date('Y-m-d H:i');
-		$mudanca->obsGerais     = $arg['obs_gerais']; 
-		$mudanca->tipoAjusteId  = $arg['tipo_ajuste_id']; 
+		$mudanca->obsGerais     = $arg['obsGerais'];
+		$mudanca->tipoAjusteId  = $arg['tipoAjusteId'];
 		$mudanca->produtoId     = $produto->id; 
 		$mudanca->estoqueAntigo = $produto->estoqueAtual; 
 
@@ -42,10 +42,10 @@ class Estoques extends GenericController {
 		$produto->estoqueAtual  = $novoEstoque; 
 		$produto->update(); 
 
-		if(!empty($arg['contato_id'])){
+		if(!empty($arg['contatoId'])){
 			//Associativa de mudança a um contato
 			$associativa                   = new MudancaEstoqueHasContato(); 
-			$associativa->contatoId        = (int) $arg['contato_id']; 
+			$associativa->contatoId        = (int) $arg['contatoId'];
 			$associativa->mudancaEstoqueId = $mudanca->id;
 			$associativa->insert();  
 			

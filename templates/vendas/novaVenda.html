@@ -134,7 +134,7 @@
 	  					<div class="row">
 	  						<div class="medium-8 columns">
 	  							<label>Nome do Cliente 
-	  								<select required name="contato_id"> <small style="color:red; ">Obrigatório</small>
+	  								<select required name="contatoId"> <small style="color:red; ">Obrigatório</small>
 	  									<option value="">- Selecione -</option>
 	  									<!-- $BeginBlock contato --> 
 	  									<option value="${contato.id}">${contato.nome}</option>
@@ -145,7 +145,7 @@
 
 	  						<div class="medium-4 columns">
 	  							<label>Vendedor 
-	  								<select name="usuario_id" required > <small style="color:red; ">Obrigatório</small>
+	  								<select name="usuarioId" required > <small style="color:red; ">Obrigatório</small>
 	  									<option value="" >- Selecione -</option>
 	  									<!-- $BeginBlock vendedor --> 
 	  									<option value="${vendedor.id}">${vendedor.nome}</option>
@@ -158,11 +158,11 @@
 
 	  					<div class="row">
 	  						<div class="medium-4 columns">
-	  							<label>Data de venda <input type="date" name="data_venda" value="${data_venda}" /></label>
+	  							<label>Data de venda <input type="date" name="dataVenda" value="${data_venda}" /></label>
 	  						</div>
 
 	  						<div class="medium-4 columns">
-	  							<label>Data entrega <input type="date" name="data_entrega" /></label>
+	  							<label>Data entrega <input type="date" name="dataEntrega" /></label>
 	  						</div>
 
 	  						<div class="medium-4 columns">
@@ -172,21 +172,21 @@
 
 	  					<div class="row">
 	  						<div class="medium-4 columns">
-	  							<label>Valor frete <input type="number" value="0" id="valor_frete" name="valor_frete" /></label>
+	  							<label>Valor frete <input type="number" value="0" id="valor_frete" name="valorFrete" /></label>
 	  						</div>
 
 	  						<div class="medium-4 columns">
-	  							<label>Valor seguro <input type="number" value="0" id="valor_seguro" name="valor_seguro" /></label>
+	  							<label>Valor seguro <input type="number" value="0" id="valor_seguro" name="valorSeguro" /></label>
 	  						</div>
 
 	  						<div class="medium-4 columns">
-	  							<label>Outras despesas <input type="number" value="0" id="outras_despesas" name="outras_despesas" /></label>
+	  							<label>Outras despesas <input type="number" value="0" id="outras_despesas" name="outrasDespesas" /></label>
 	  						</div>
 	  					</div>
 
 	  					<div class="row">
 	  						<div class="medium-12 columns">
-	  							<label>Observações gerais <textarea name="obs_gerais"></textarea></label>
+	  							<label>Observações gerais <textarea name="obsGerais"></textarea></label>
 	  						</div>
 	  					</div>
 
@@ -279,7 +279,7 @@
 	  						<div class="row">
 	  							<div class="medium-3 columns">
 	  								<label> Forma de pegamento
-	  									<select id="forma_pagamento" name="forma_pagamento_id">
+	  									<select id="forma_pagamento" name="tipoPagamentoId">
 	  										<option value="">- Selecione -</option>
 	  										<option value="1">A vista</option>
 	  										<option value="2">Parcelado</option>
@@ -309,7 +309,7 @@
 
 	  							<div class="medium-3 columns">
 	  								<label>Tipo entrada 
-	  									<select id="tipo_entrada" name="tipo_entrada_id" > 
+	  									<select id="tipo_entrada" name="tipoEntradaId" >
 	  										<option value="">- Selecione -</option>
 	  										<option value="1">Sem entrada</option>
 	  										<option value="2">Com entrada igual</option>
@@ -320,7 +320,7 @@
 
 	  							<div class="medium-3 columns">
 	  								<label>Valor entrada 
-	  									<input id="valor_entrada" type="number" value="0" min="0" name="valor_entrada" /> 
+	  									<input id="valor_entrada" type="number" value="0" min="0" name="valor" />
 	  								</label>
 	  							</div>
 
@@ -329,7 +329,7 @@
 	  						<div class="row">
 	  							<div class="medium-3 columns">
 	  								<label>Tipo de desconto 
-	  									<select id="tipo_desconto" name="tipo_desconto_id">
+	  									<select id="tipo_desconto" name="tipoDescontoId">
 	  										<option value="">- Selecione -</option>
 	  										<option value="1">Sem Desconto</option>
 	  										<option value="2">Desconto em porcentagem</option>
@@ -353,7 +353,7 @@
 
 	  						<div class="row"> 
 	  							<div class="medium-2 columns">
-	  								<input id="checkbox2" type="checkbox" value="on" name="taxa_fixa"><label for="checkbox2">Taxa Fixa</label>
+	  								<input id="checkbox2" type="checkbox" value="on" name="taxaFixa"><label for="checkbox2">Taxa Fixa</label>
 	  							</div>
 	  						</div>
 

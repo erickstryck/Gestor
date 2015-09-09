@@ -50,25 +50,25 @@ class Contas extends GenericController {
 
 	private function cadastra($conta , $arg){
 		$conta->descricao  			= $arg['descricao']; 
-		$conta->dataLancamento  	= $arg['data_lancamento']; 
-		$conta->dataVencimento  	= $arg['data_vencimento']; 
-		$conta->valor  				= $arg['valor_cobrado']; 
-		$conta->isCaixaInterno  	= ( (strcmp($arg['is_caixa_interno'],'1') == 0) ? 1 : 0 ); 
-		$conta->numeroDocumento  	= $arg['numero_documento']; 
-		$conta->apenasPrevisao  	= !empty($arg['apenas_previsao']); 
-		$conta->pagarAgora  		= !empty($arg['pagar_agora']); 
+		$conta->dataLancamento  	= $arg['dataLancamento'];
+		$conta->dataVencimento  	= $arg['dataVencimento'];
+		$conta->valor  				= $arg['valor'];
+		$conta->isCaixaInterno  	= ( (strcmp($arg['isCaixaInterno'],'1') == 0) ? 1 : 0 );
+		$conta->numeroDocumento  	= $arg['numeroDocumento'];
+		$conta->apenasPrevisao  	= !empty($arg['apenasPrevisao']);
+		$conta->pagarAgora  		= !empty($arg['pagarAgora']);
 		$conta->observacoes  		= $arg['observacoes']; 
-		$conta->palavraChave  		= $arg['palavra_chave']; 
+		$conta->palavraChave  		= $arg['palavraChave'];
 		$conta->empresaId  			= $_SESSION['empresa_id']; 
-		$conta->cadastrarVezesId 	= $arg['cadastrar_vezes_id']; 
-		$conta->planoContaId  		= $arg['plano_conta_id']; 
-		$conta->intervaloId  		= $arg['intervalo_id']; 
-		$conta->contatoId  			= $arg['contato_id']; 
+		$conta->cadastrarVezesId 	= $arg['cadastrarVezesId'];
+		$conta->planoContaId  		= $arg['planoContaId'];
+		$conta->intervaloId  		= $arg['intervaloId'];
+		$conta->contatoId  			= $arg['contatoId'];
 
-		$conta->valorPagamento  	=  (empty($arg['valor_pagamento']))? null  : $arg['valor_pagamento']; 
-		$conta->dataPagamento 		=  (empty($arg['data_pagamento'])) ? null : $arg['data_pagamento']; 
+		$conta->valorPagamento  	=  (empty($arg['valorPagamento']))? null  : $arg['valorPagamento'];
+		$conta->dataPagamento 		=  (empty($arg['dataPagamento'])) ? null : $arg['dataPagamento'];
 
-		$conta->tipoDocumentoId  	= $arg['tipo_documento_id'];
+		$conta->tipoDocumentoId  	= $arg['tipoDocumentoId'];
 
 		return $conta;  
 	}

@@ -32,8 +32,8 @@ class Clientes extends GenericController {
 		$local->numero      = $arg['numero'];
 		$local->complemento = $arg['complemento'];
 		$local->bairro      = $arg['bairro'];
-		$local->paisId      = $arg['pais'];
-		$local->cidadeId    = $arg['cidade'];  
+		$local->paisId      = $arg['paisId'];
+		$local->cidadeId    = $arg['cidadeId'];
 
 		$local->insert();  
 
@@ -48,21 +48,21 @@ class Clientes extends GenericController {
 		
         //Inserindo dados do contato. 
 
-		$contato->nomeRazaoSocial    = $arg['nome_razao_social']; 
-		$contato->nomeFantasia       = $arg['nome_fantasia']; 
-		$contato->cpfCnpj            = $arg['cpf_cnpj']; 
-		$contato->inscriEstSubstTrib = $arg['inscr_est_subst_trip'];
-		$contato->inscrEstadual      = $arg['inscr_estatual'];  
-		$contato->inscrMunicipal     = $arg['inscr_municipal'];
-		$contato->inscrSumafra       = $arg['inscr_sumafra'];
-		$contato->nomeResponsavel    = $arg['nome_responsavel'];
+		$contato->nomeRazaoSocial    = $arg['nomeRazaoSocial'];
+		$contato->nomeFantasia       = $arg['nomeFantasia'];
+		$contato->cpfCnpj            = $arg['cpfCnpj'];
+		$contato->inscriEstSubstTrib = $arg['inscriEstSubstTrib'];
+		$contato->inscrEstadual      = $arg['inscrEstadual'];
+		$contato->inscrMunicipal     = $arg['inscrMunicipal'];
+		$contato->inscrSumafra       = $arg['inscrSumafra'];
+		$contato->nomeResponsavel    = $arg['nomeResponsavel'];
 		$contato->telefone           = $arg['telefone'];
 		$contato->telefone1          = $arg['telefone1'];
 		$contato->telefone2          = $arg['telefone2'];
-		$contato->palavraChave       = $arg['palavra_chave'];
+		$contato->palavraChave       = $arg['palavraChave'];
 		$contato->email              = $arg['email'];
 		$contato->email1             = $arg['email1'];
-		$contato->anotacoesGerais    = $arg['anotacoes_gerais'];
+		$contato->anotacoesGerais    = $arg['anotacoesGerais'];
 		$contato->dataNasci          = $arg['data_nasc'];
 		$contato->empresaId          = $_SESSION['empresa_id']; //Pegando o id da empresa do usuário corrente na sessão do sistema.
 
@@ -74,14 +74,14 @@ class Clientes extends GenericController {
 
 			$enderecoDif = new EnderecoEntregaDiferente(); 
 
-			$enderecoDif->cpfCnpj         = $arg['entrega_cpf_cnpj']; 
-			$enderecoDif->cep             = $arg['entrega_cep'];
-			$enderecoDif->endereco        = $arg['entrega_endereco'];
-			$enderecoDif->numero          = $arg['entrega_numero'];
-			$enderecoDif->complemento     = $arg['entrega_complemento'];
-			$enderecoDif->bairro          = $arg['entrega_barrio'];
-			$enderecoDif->pontoReferencia = $arg['entrega_ponto_referencia'];
-			$enderecoDif->cidadeId        = $arg['entrega_cidade'];
+			$enderecoDif->cpfCnpj         = $arg['cpfCnpj'];
+			$enderecoDif->cep             = $arg['cep'];
+			$enderecoDif->endereco        = $arg['endereco'];
+			$enderecoDif->numero          = $arg['numero'];
+			$enderecoDif->complemento     = $arg['complemento'];
+			$enderecoDif->bairro          = $arg['bairro'];
+			$enderecoDif->pontoReferencia = $arg['pontoReferencia'];
+			$enderecoDif->cidadeId        = $arg['cidadeId'];
 			$enderecoDif->insert(); 
 
 			$associativa = new ContatoHasEnderecoEntregaDiferente(); 
@@ -97,25 +97,25 @@ class Clientes extends GenericController {
 
 		if( !empty($arg['is_cliente']) ){
 			$tipoContato->contatoId     = $contato->id; 
-			$tipoContato->tipoContatoId = (int) $arg['is_cliente'];  
+			$tipoContato->tipoContatoId = (int) $arg['isCliente'];
 			$tipoContato->insert(); 
 		}
 
 		if(!empty($arg['is_fornecedor']) ){
 			$tipoContato->contatoId     = $contato->id; 
-			$tipoContato->tipoContatoId = (int) $arg['is_fornecedor']; 
+			$tipoContato->tipoContatoId = (int) $arg['isFornecedor'];
 			$tipoContato->insert(); 
 		}
 
 		if(!empty($arg['is_transportador']) ){
 			$tipoContato->contatoId     = $contato->id; 
-			$tipoContato->tipoContatoId = (int) $arg['is_transportador']; 
+			$tipoContato->tipoContatoId = (int) $arg['isTransportador'];
 			$tipoContato->insert(); 
 		}
 
 		if(!empty($arg['is_cosumidor_final']) ){
 			$tipoContato->contatoId     = $contato->id; 
-			$tipoContato->tipoContatoId = (int) $arg['is_cosumidor_final']; 
+			$tipoContato->tipoContatoId = (int) $arg['isCosumidorFinal'];
 			$tipoContato->insert(); 
 		}
 

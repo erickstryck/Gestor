@@ -112,19 +112,19 @@
    <!-- primeira etapa --> 
    <div class="row checkbox-group" data-abide-validator-min="1">
     <div class="medium-2 columns">
-     <input id="checkbox1" name="is_cliente" value="1" data-abide-validator="checkbox_limit" type="checkbox"><label for="checkbox1">Cliente</label>
+     <input id="checkbox1" name="isCliente" value="1" data-abide-validator="checkbox_limit" type="checkbox"><label for="checkbox1">Cliente</label>
    </div>
 
    <div class="medium-2 columns">
-     <input id="checkbox1" name="is_fornecedor" value="2" data-abide-validator="checkbox_limit"type="checkbox"><label for="checkbox1">Fornecedor</label>
+     <input id="checkbox1" name="isFornecedor" value="2" data-abide-validator="checkbox_limit"type="checkbox"><label for="checkbox1">Fornecedor</label>
    </div>
 
    <div class="medium-3 columns">
-     <input id="checkbox1" name="is_transportador" value="3" data-abide-validator="checkbox_limit" type="checkbox"><label for="checkbox1">Transportador</label>
+     <input id="checkbox1" name="isTransportador" value="3" data-abide-validator="checkbox_limit" type="checkbox"><label for="checkbox1">Transportador</label>
    </div>
 
    <div class="medium-3 columns">
-     <input id="checkbox1" name="is_cosumidor_final" data-abide-validator="checkbox_limit" value="4" type="checkbox"><label for="checkbox1">Consumidor final</label>
+     <input id="checkbox1" name="isCosumidorFinal" data-abide-validator="checkbox_limit" value="4" type="checkbox"><label for="checkbox1">Consumidor final</label>
    </div>
  </div>
 
@@ -134,22 +134,22 @@
  <div class="row">
   <div class="medium-3 columns">
    <label>Nome ou Razão social <small style="color:red">Obrigatório</small>
-    <input name="nome_razao_social" type="text" required />
+    <input name="nomeRazaoSocial" type="text" required />
   </label><small class="error" >É obrigatório preencher este campo.</small>
 </div>
 <div class="medium-3 columns">
  <label>Nome Fantasia
-  <input name="nome_fantasia" type="text"  />
+  <input name="nomeFantasia" type="text"  />
 </label>
 </div>
 <div class="medium-3 columns">
  <label>CPF ou CNPJ
-  <input name="cpf_cnpj"type="text"  />
+  <input name="cpfCnpj"type="text"  />
 </label>
 </div>
 <div class="medium-3 columns">
  <label>inscr Est Subst Trib
-  <input name="inscr_est_subst_trip" type="text"  />
+  <input name="inscriEstSubstTrib" type="text"  />
 </label>
 </div>
 </div>
@@ -168,17 +168,17 @@
 </div>
 <div class="medium-3 columns">
  <label>Inscrição Estatual
-  <input name="inscr_estatual" type="text"  />
+  <input name="inscrEstadual" type="text"  />
 </label>
 </div>
 <div class="medium-3 columns">
  <label>Inscrição Municipal
-  <input name="inscr_municipal" type="text"  />
+  <input name="inscrMunicipal" type="text"  />
 </label>
 </div>
 <div class="medium-3 columns">
  <label>Inscrição Suframa
-  <input name="inscr_sumafra" type="text"  />
+  <input name="inscrSumafra" type="text"  />
 </label>
 </div>
 </div>
@@ -226,7 +226,7 @@
 </div>
 <div class="medium-3 columns">
  <label>Cidade <small style="color:red">Obrigatório</small>
-  <select id="cidade" name="cidade" required>
+  <select id="cidade" name="cidadeId" required>
    <option value="" > - Selecione - </option>
 
  </select> 
@@ -234,7 +234,7 @@
 </div>
 <div class="medium-3 columns">
  <label>País <small style="color:red">Obrigatório</small>
-  <select name="pais" required>
+  <select name="paisId" required>
    <option value=""> - Selecione - </option>
    <!-- $BeginBlock contato.pais --> 
    <option value="${contato.pais.id}">${contato.pais.des}</option>
@@ -248,7 +248,7 @@
 <div class="row">
   <div class="medium-3 columns">
    <label>Nome do responsável
-    <input name="nome_responsavel" type="text"  />
+    <input name="nomeResponsavel" type="text"  />
   </label>
 </div>
 <div class="medium-3 columns">
@@ -282,12 +282,12 @@
 </div>
 <div class="medium-3 columns">
  <label>Palavra-chave
-  <input name="palavra_chave" type="text"  />
+  <input name="palavraChave" type="text"  />
 </label>
 </div>
 <div class="medium-3 columns">
  <label>Data nascimento
-  <input name="data_nasc" type="date"  />
+  <input name="dataNasci" type="date"  />
 </label>
 </div>
 </div>
@@ -296,7 +296,7 @@
 <div class="row">
   <div class="medium-12 columns">
    <label>Anotações gerais
-    <textarea name="anotacoes_gerais" ></textarea>
+    <textarea name="anotacoesGerais" ></textarea>
   </label>
 </div>
 </div>
@@ -318,7 +318,7 @@
   <div class="row">
    <div class="medium-3 columns end">
     <label>CNPJ ou CPF
-     <input name="entrega_cpf_cnpj" type="text"  />
+     <input name="cpfCnpj" type="text"  />
    </label>
  </div>
 </div>
@@ -327,22 +327,22 @@
 <div class="row">
  <div class="medium-3 columns">
   <label>CEP
-   <input name="entrega_cep" type="text" />
+   <input name="cep" type="text" />
  </label>
 </div>
 <div class="medium-3 columns">
   <label>Endereço
-   <input name="entrega_endereco" type="text"  />
+   <input name="endereco" type="text"  />
  </label>
 </div>
 <div class="medium-3 columns">
   <label>Número
-   <input name="entrega_numero" type="number"  />
+   <input name="numero" type="number"  />
  </label>
 </div>
 <div class="medium-3 columns">
   <label>Complemento
-   <input name="entrega_complemento" type="text"  />
+   <input name="complemento" type="text"  />
  </label>
 </div>
 </div>
@@ -351,7 +351,7 @@
 <div class="row">
  <div class="medium-3 columns">
   <label>Bairro
-   <input name="entrega_barrio" type="text"  />
+   <input name="bairro" type="text"  />
  </label>
 </div>
 <div class="medium-3 columns">
@@ -366,7 +366,7 @@
 </div>
 <div class="medium-3 columns">
   <label>Cidade <small style="color:red">Obrigatório</small>
-   <select id="entrega_cidade" name="entrega_cidade" required>
+   <select id="entrega_cidade" name="cidadeId" required>
     <option value="" > - Selecione - </option>
 
   </select>
@@ -374,7 +374,7 @@
 </div>
 <div class="medium-3 columns">
   <label>Ponto de Referência
-   <input name="entrega_ponto_referencia" type="text"  />
+   <input name="pontoReferencia" type="text"  />
  </label>
 </div>
 </div>
