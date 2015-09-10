@@ -17,7 +17,7 @@ class UsuariosView extends GenericView{
 		$associativa = new UsuarioHasEmpresa(); 
 		
 
-		$associativa->where("empresa_id = ". $_SESSION['empresa_id'])->find(); 
+		$associativa->where("empresa_id = ". $_SESSION['empresaId'])->find(); 
 
 		
 		while($associativa->fetch()){

@@ -3,7 +3,7 @@
 	var interval; 
 
 	var DELETE, CADASTRO, ALTERAR
-
+	var DELAY = 1500; 
 
 	//O array de configuração tem que estar neste formato: 
 	//data = {delete: 'info', alterar : 'info', cadastro : 'info'}; 
@@ -21,25 +21,31 @@
 		}
 	}
 
-	$.fn.deletar = function(useCase, delay){
-		if( typeof delay == 'undefined')
-			delay = 1500; 
-
+	$.fn.deletar = function(useCase){
 		this.click(function(){
 			var id  = this.value; 
-			var url = 'index.php?uc='+useCase+'&a='+DELETE; 
+			alertify.confirm("Deseja realmente deletar este registro",function(resposta){
+				if(resposta){
+					onDelete(id); 
+					interval = setInterval(function(){window.location.reload()},DELAY); 
+				}
+				else
+					alertify.error("Operação cancelada.");  
+			}); 
+		});
 
-			sendAjax(url,'POST',{'id' : id},function(data){
+		function onDelete(id){ 
+			sendAjax('index.php?uc='+useCase+'&a='+DELETE,'POST',{'id' : id},function(data){
 				data = JSON.parse(data);
 
 				if(data['status']){
 					alertify.success("Registro deletado com sucesso."); 
-					interval = setInterval(function(){window.location.reload(); clearInterval(interval); },delay); 
+					interval = setInterval(function(){window.location.reload(); clearInterval(interval); },DELAY); 
 				}
 				else
 					alertify.error(data['msg']); 
 			});
-		}); 
+		}
 	}
 
 
@@ -185,7 +191,7 @@ $.fn.Crud = function(useCase,modalId,callback,handleAlterar, handleCadastrar, ha
 				var data = JSON.parse(data); 
 				if(data['status']){
 					alertify.success("O recibo foi cadastrado com sucesso"); 
-					interval = setInterval(function(){window.location.reload(); clearInterval(interval); },1500); 
+					interval = setInterval(function(){window.location.reload(); clearInterval(interval); },DELAY); 
 				}else
 				alertify.error("Ocorreu algum error, tente novamente."); 
 			}); 
@@ -196,7 +202,7 @@ $.fn.Crud = function(useCase,modalId,callback,handleAlterar, handleCadastrar, ha
 				var data = JSON.parse(data); 
 				if(data['status']){
 					alertify.success("Registro alterado com sucesso."); 
-					interval = setInterval(function(){window.location.reload(); clearInterval(interval); },1500); 
+					interval = setInterval(function(){window.location.reload(); clearInterval(interval); },DELAY); 
 				}else
 				alertify.error("Ocorreu algum error, tente novamente."); 
 				
