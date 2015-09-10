@@ -14,33 +14,47 @@ class Servicos extends GenericController {
 	}
 
 	public function cadastro($arg){
-		//Roteiro: 
-		//Validar os dados que estão vindo da visão ( fazer isso depois )
-		//Armazenar os dados no banco
-		//Enviar confirmação de sucesso ou falha via JSON.
 		Lumine::import("Servico"); 
-		$servico = new Servico(); 
-
+		$servico = new Servico();
 		$servico->nomeServico = $arg['nomeServico'];
 		$servico->preco = $arg['preco']; 
-		$servico->palavraChave = $arg['palavra_chave']; 
-		$servico->empresaId = $_SESSION['empresa_id'];
-
-		$servico->insert(); 
-		//Enviar essa linha apenas se tudo acima estiver sido feito corretamente. 
+		$servico->palavraChave = $arg['palavraChave'];
+		$servico->empresaId = $_SESSION['empresaId'];
+		$servico->insert();
 		$this->servicosView->sendAjax(array('status' => true) );
 	}
 
-	public function deletar($arg){
-		Lumine::import("Servico"); 
-		$Servico = new Servico(); 
-		$Servico->get((int) $arg['id']);
+	public function getObject($arg){
+		Lumine::import("Servico");
+		$servico = new Servico();
+		$servico->where("empresa_id = ".$_SESSION["empresaId"]." and id=".(int)$arg["id"])->find();
+		$servico->fetch(true);
+		$this->servicosView->sendAjax($servico->toArray());
+	}
 
-		//Desativando o registro no banco. 
-		$Servico->ativo = 0;  
-		$Servico->update(); 
+	public function alterar($arg){
+		Lumine::import("Servico");
+		$servico = new Servico();
+		$servico->where("empresa_id = ".$_SESSION["empresaId"]." and id=".(int)$arg["id"])->find();
+		$servico->fetch(true);
+		$servico->nomeServico = $arg['nomeServico'];
+		$servico->preco = $arg['preco'];
+		$servico->palavraChave = $arg['palavraChave'];
+		$servico->empresaId = $_SESSION['empresaId'];
+		$servico->update();
+		$this->servicosView->sendAjax(array('status' => true) );
+	}
 
-		$this->servicosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
+	function delete($arg){
+		Lumine::import("Servico");
+		$servico=new Servico();
+		$servico->where("empresa_id = ".$_SESSION["empresaId"]." and id=".(int)$arg["id"])->find();
+		$servico->fetch(true);
+		if($servico->id==null)
+			$this->servicosView->sendAjax(array('status' => false,'msg'=>'Operação ilegal!'));
+		$servico->ativo=0;
+		$servico->update();
+		$this->servicosView->sendAjax(array('status' => true));
 	}
 
 }

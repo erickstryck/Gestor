@@ -37,9 +37,7 @@
 	  	<!-- botões --> 
 	  	<div class="row">
 	  		<div class="medium-12 columns">
-	  			<button class="button success small" data-reveal-id="novo_servico"> <i class="fa fa-plus fa-lg"></i> Novo Serviço</button>
-	  			<button class="button alert small" id="teste"><i class="fa fa-times fa-lg"></i> Remover Serviço</button>
-	  			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
+	  			<button class="button success small cadastrar"> <i class="fa fa-plus fa-lg"></i> Novo Serviço</button>
 	  		</div>
 	  	</div>
 
@@ -144,25 +142,14 @@
 	  	<!--footer end--> 
 
 	  	<script>
-	  		$(document).foundation();
+			$(document).foundation();
+			$(document).ready(function(){
 
-	  		$(document).ready(function(){
-	  			$('#form_servico').on('valid.fndtn.abide', function() {
-	  				var data = $('#form_servico').serializeArray(); 
-
-	  				sendAjax('index.php?uc=servicos&a=cadastro','POST',data,function(data){
-	  					data = JSON.parse(data); 
-	  					
-	  					if(data['status'])
-	  						window.location.reload(); 
-	  				}); 
-	  			}); 
-
-	  			//Código para a deleção: 
-	  			$('.del').deletar('servicos'); 
-	  			
-	  		}); 
-
+				$(document).Conf();
+				$(document).Crud('servicos','#novo_servico',function(data){
+					alertify.log(data);
+				});
+			});
 	  	</script>
 	  </body>
 	  <!--footer bagin -->  

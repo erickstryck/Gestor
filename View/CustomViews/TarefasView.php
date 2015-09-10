@@ -26,10 +26,10 @@ class TarefasView extends GenericView{
         //pegar user da empresa
         $user= new Usuario();
         $has=new UsuarioHasEmpresa();
-        $user->join($has)->where("empresa_id=".$_SESSION["empresa_id"])->find();
+        $user->join($has)->where("empresa_id=".$_SESSION["empresaId"])->find();
         //pegar tarefas da empresa
         $tar=new Tarefa();
-        $tar->where("empresa_id=".$_SESSION['empresa_id']." and ativo = 1")->find();
+        $tar->where("empresa_id=".$_SESSION['empresaId']." and ativo = 1")->find();
         parent::getTemplateByAction("tarefas");
         $usuario=new Usuario();
         $prioridade=new Prioridade();
