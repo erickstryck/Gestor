@@ -2,13 +2,26 @@
 (function($){
 	var interval; 
 
+	var DELETE, CADASTRO, ALTERAR
+
+
+	//O array de configuração tem que estar neste formato: 
+	//data = {delete: 'info', alterar : 'info', cadastro : 'info'}; 
+	//data = {alterar : 'info'}; 
+	
+	$.fn.Conf = function(conf){
+		DELETE   = (typeof conf['delete']   == 'undefined') ? 'delete'   : conf['delete']; 
+		ALTERAR  = (typeof conf['alterar']  == 'undefined') ? 'alterar'  : conf['alterar'];
+		CADASTRO = (typeof conf['cadastro'] == 'undefined') ? 'cadastro' : conf['cadastro'];
+	}
+
 	$.fn.deletar = function(useCase, delay){
 		if( typeof delay == 'undefined')
 			delay = 1500; 
 
 		this.click(function(){
 			var id  = this.value; 
-			var url = 'index.php?uc='+useCase+'&a=deletar'; 
+			var url = 'index.php?uc='+useCase+'&a='+DELETE; 
 
 			sendAjax(url,'POST',{'id' : id},function(data){
 				data = JSON.parse(data);
@@ -51,6 +64,27 @@
 				})
 			}); 
 
+			console.log("textarea > "); 
+			form.find('textarea').each(function(){
+				var element = $(this); 
+				//console.log($(this).attr('name'));
+				//indice 0 é o nome do campo. índice 1 é o valor. 
+				jQuery.each(data,function(key,value){
+					if(key == element.attr('name'))
+						element.val(value); 
+				})
+			}); 
+
+			console.log("checkbox > "); 
+			form.find('input[type=checkbox]').each(function(){
+				var element = $(this);
+
+				jQuery.each(data,function(key,value){
+					console.log(key); 
+					if( key == element.attr('name'))
+						element.attr('checked',((value) ? true : false ) ); 
+				}); 
+			}); 
 
 			console.log("select > "); 
 			form.find('select').each(function(){
@@ -67,16 +101,12 @@
 			}); 
 
 
-			console.log("checbox > "); 
-			form.find('checbox').each(function(){
-				console.log($(this).attr('name')); 
-			}); 
 
 		}); 
 
 	}
 
-	$.fn.initCrud = function(useCase,modalId,callback,handleAlterar, handleCadastrar, handleDeletar){
+	$.fn.Crud = function(useCase,modalId,callback,handleAlterar, handleCadastrar, handleDeletar){
 		// <input type="hidden" id="cadastrar" />
 	  	// <input type="hidden" id="id" />
 	  	// 
@@ -145,7 +175,7 @@
 		}); 
 
 		function onCadastro(data){
-			sendAjax('index.php?uc='+useCase+'&a=cadastro','POST',data,function(data){
+			sendAjax('index.php?uc='+useCase+'&a='+CADASTRO,'POST',data,function(data){
 				var data = JSON.parse(data); 
 				if(data['status']){
 					alertify.success("O recibo foi cadastrado com sucesso"); 
@@ -156,7 +186,7 @@
 		}
 
 		function onAlterar(data){
-			sendAjax('index.php?uc='+useCase+'&a=alterar','POST',data,function(data){
+			sendAjax('index.php?uc='+useCase+'&a='+ALTERAR,'POST',data,function(data){
 				alertify.log(data); 
 				return;
 				var data = JSON.parse(data); 

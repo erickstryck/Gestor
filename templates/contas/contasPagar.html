@@ -220,7 +220,7 @@
 	  				<!-- quinta linha -->
 	  				<div class="row">
 	  					<div class="medium-4 columns">
-	  						<input id="pagar_agora" type="checkbox" name="pagarAgora"><label for="pagar_agora">Pagar agora</label>
+	  						<input id="paga" type="checkbox" name="paga"><label for="paga">Pagar agora</label>
 	  					</div>
 
 	  					<div class="medium-4 columns">
@@ -275,20 +275,22 @@
 
 	  	$(document).ready(function(){
 	  		//Trancando os campos para não edição: 
-	  		desabilitarCampos($('#pagar_agora')); 
+	  		desabilitarCampos($('#paga')); 
 
 	  		//Manipulador para o formulário
-	  		$(document).initCrud('contas','#novo_pagamento',function(data){
-	  			desabilitarCampos($('#pagar_agora')); 
+	  		$(document).Conf({'cadastro' : 'cadastroPagamento'}); 
+
+	  		$(document).Crud('contas','#novo_pagamento',function(data){
+	  			desabilitarCampos($('#paga')); 
 	  		}); 
 
 	  		//Informando se a conta é para ser paga agora.
 	  		
-	  		$('#pagar_agora').change(desabilitarCampos(this)); 
+	  		$('#paga').change(function(){desabilitarCampos(this)}); 
 	  	}); 
 
-	  	function desabilitarCampos(){
-	  			if($(this).is(':checked')){
+	  	function desabilitarCampos(target){
+	  			if($(target).is(':checked')){
 	  				$("#data_pagamento").attr("disabled", false);  
 	  				$("#valor_pagamento").attr("disabled", false); 
 	  			}else{

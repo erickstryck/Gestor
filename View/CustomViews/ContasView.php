@@ -20,7 +20,7 @@ class ContasView extends GenericView{
 
 		$conta = new Conta();
 
-		$conta->where("empresa_id = ". $_SESSION['empresa_id']." and receber = 0 ")->limit(500)->find(); 
+		$conta->where("empresa_id = ". $_SESSION['empresaId']." and receber = 0 ")->limit(500)->find(); 
 		while($conta->fetch()){
 			parent::$templator->setVariable('conta.id',Convert::zeroEsquerda($conta->id)); 
 			parent::$templator->setVariable('conta.descricao',$conta->descricao);
@@ -69,7 +69,7 @@ class ContasView extends GenericView{
 
 		$conta = new Conta();
 
-		$conta->where("empresa_id = ". $_SESSION['empresa_id']." and receber = 1 ")->limit(500)->find(); 
+		$conta->where("empresa_id = ". $_SESSION['empresaId']." and receber = 1 ")->limit(500)->find(); 
 		while($conta->fetch()){
 			parent::$templator->setVariable('conta.id',Convert::zeroEsquerda($conta->id)); 
 			parent::$templator->setVariable('conta.descricao',$conta->descricao);
@@ -143,7 +143,7 @@ class ContasView extends GenericView{
 		}
 
 		$contato = new Contato(); 
-		$contato->where("empresa_id = ". (int) $_SESSION['empresa_id'] )->find(); 
+		$contato->where("empresa_id = ". (int) $_SESSION['empresaId'] )->find(); 
 
 		while($contato->fetch()){
 			parent::$templator->setVariable('contato.id',$contato->id); 

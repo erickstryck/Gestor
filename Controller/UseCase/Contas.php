@@ -27,7 +27,7 @@ class Contas extends GenericController {
 	 	$conta = self::cadastra($conta,$arg); 
 
 	 	//registrando se a conta já 
-	 	$conta->paga = (!empty($arg['pagar_agora']))? 1 : 0; 
+	 	$conta->paga = (!empty($arg['paga']))? 1 : 0; 
 	 	$conta->receber = 0;// Essa conta não é para receber, então adiciona-se 0 sinalizando que é para pagamento.  
 	 	$conta->insert(); 
 
@@ -41,7 +41,7 @@ class Contas extends GenericController {
 	 	$conta = self::cadastra($conta,$arg); 
 
 	 	//registrando se a conta já 
-	 	$conta->paga = (!empty($arg['pagar_agora']))? 1 : 0; 
+	 	$conta->paga = (!empty($arg['paga']))? 1 : 0; 
 	 	$conta->receber = 1;// Essa conta não é para receber, então adiciona-se 0 sinalizando que é para pagamento.  
 	 	$conta->insert(); 
 
@@ -59,7 +59,7 @@ class Contas extends GenericController {
 		$conta->pagarAgora  		= !empty($arg['pagarAgora']);
 		$conta->observacoes  		= $arg['observacoes']; 
 		$conta->palavraChave  		= $arg['palavraChave'];
-		$conta->empresaId  			= $_SESSION['empresa_id']; 
+		$conta->empresaId  			= $_SESSION['empresaId']; 
 		$conta->cadastrarVezesId 	= $arg['cadastrarVezesId'];
 		$conta->planoContaId  		= $arg['planoContaId'];
 		$conta->intervaloId  		= $arg['intervaloId'];

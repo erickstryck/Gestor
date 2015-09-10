@@ -49,7 +49,7 @@
 	  	<!-- botões --> 
 	  	<div class="row">
 	  		<div class="medium-12 columns">
-	  			<button class="button success small" data-reveal-id="novo_recebimento"> <i class="fa fa-plus fa-lg"></i> Novo Receber</button>
+	  			<button class="button success small cadastrar"  <i class="fa fa-plus fa-lg"></i> Novo Receber</button>
 	  			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
 	  		</div>
 	  	</div>
@@ -87,7 +87,9 @@
 	  						<td>${conta.data_pagamento}</td>
 	  						<td>${conta.valor}</td>
 	  						<td>${conta.valor_pago}</td>
-	  						<td><a href="#" style="font-size: 16px; margin-right: 8px;"><i class="fa fa-pencil-square-o"></i></a><a href="#" style="font-size: 16px;"><i class="fa fa-trash"></i></a></td>
+	  						<td>
+	  						<button class="alterar fix" value="${conta.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${conta.id}" ><i class="fa fa-trash"></i></button>
+	  						</td>
 
 	  					</tr>
 	  					<!-- $EndBlock row --> 
@@ -231,7 +233,7 @@
 	  				<!-- quinta linha -->
 	  				<div class="row">
 	  					<div class="medium-4 columns">
-	  						<input id="pagar_agora" type="checkbox" name="pagarAgora"><label for="pagar_agora">Pagar agora</label>
+	  						<input id="paga" type="checkbox" name="paga"><label for="paga">Pagar agora</label>
 	  					</div>
 
 	  					<div class="medium-4 columns">
@@ -285,37 +287,34 @@
 	  	$(document).foundation();
 
 	  	$(document).ready(function(){
-	  		//Trancando os campos para não edição: 
-	  		$("#data_pagamento").attr("disabled", true); 
-	  		$("#valor_pagamento").attr("disabled", true); 
+	  			//Trancando os campos para não edição: 
+	  			desabilitarCampos($('#paga')); 
 
 	  		//Manipulador para o formulário
-	  		$('#form_conta').on('valid.fndtn.abide', function() {
-	  			var data = $(this).serializeArray(); 
+	  		$(document).Conf({'cadastro' : 'cadastroRecebimento'}); 
 
-	  			sendAjax('index.php?uc=contas&a=cadastroRecebimento','POST',data,function(data){
-	  				data = JSON.parse(data); 
-	  				if(data['status']){
-	  					window.location.reload();  
-	  				}else{
-	  					alertify.error("Error ao cadastrar"); 
-	  				}
-	  			}); 
+	  		$(document).Crud('contas','#novo_recebimento',function(data){
+	  			desabilitarCampos($('#paga')); 
 	  		}); 
+
 	  		//Informando se a conta é para ser paga agora.
-	  		$('#pagar_agora').change(function(){
-	  			if($(this).is(':checked')){
-	  				$("#data_pagamento").attr("disabled", false);  
-	  				$("#valor_pagamento").attr("disabled", false); 
-	  			}else{
-	  				$("#data_pagamento").attr("disabled", true); 
-	  				$("#valor_pagamento").attr("disabled", true); 
-	  			}
-	  		}); 
-	  	}); 
-	  </script>
-	</body>
-	<!--footer bagin -->  
-	<!-- $Include templates/lib/html/footertag.html --> 
-	<!--footer end--> 
-	</html>
+	  		
+	  		$('#paga').change(function(){desabilitarCampos(this)}); 
+	
+
+	  	function desabilitarCampos(target){
+	  		if($(target).is(':checked')){
+	  			$("#data_pagamento").attr("disabled", false);  
+	  			$("#valor_pagamento").attr("disabled", false); 
+	  		}else{
+	  			$("#data_pagamento").attr("disabled", true); 
+	  			$("#valor_pagamento").attr("disabled", true); 
+	  		}
+	  	}
+	  }); 
+	</script>
+</body>
+<!--footer bagin -->  
+<!-- $Include templates/lib/html/footertag.html --> 
+<!--footer end--> 
+</html>
