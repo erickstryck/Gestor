@@ -39,7 +39,7 @@ class Produtos extends GenericController {
 		$produto->estoqueAtual = 0; 
 
 		//associando produto a empresa corrente da sessão. 
-		$produto->empresaId = $_SESSION['empresa_id'];
+		$produto->empresaId = $_SESSION['empresaId'];
 		$produto->insert(); 
 
 		if( $arg['categoriaId'] != ""){

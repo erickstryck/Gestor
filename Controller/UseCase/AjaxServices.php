@@ -23,7 +23,7 @@ class AjaxServices extends GenericController{
 	public function getcategoryProfit($arg){
 		Lumine::import('Categoria'); 
 		$categoria = new Categoria(); 
-		$categoria->where(" empresa_id = ". $_SESSION['empresa_id']." and id = ". $arg['id'])->find(); 
+		$categoria->where(" empresa_id = ". $_SESSION['empresaId']." and id = ". $arg['id'])->find(); 
 
 		$array; 
 
@@ -56,7 +56,7 @@ class AjaxServices extends GenericController{
 
 		if(empty($clausura) ) return; 
 		
-		$produto->join($associativa)->where("empresa_id = ". $_SESSION['empresa_id'] . " and nao_controlar_estoque = 0". $clausura)->find();
+		$produto->join($associativa)->where("empresa_id = ". $_SESSION['empresaId'] . " and nao_controlar_estoque = 0". $clausura)->find();
 
 		$array = array(); 
 		while($produto->fetch()){

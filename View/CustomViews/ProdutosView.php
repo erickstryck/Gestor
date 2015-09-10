@@ -15,7 +15,7 @@ class ProdutosView extends GenericView{
 		Lumine::import("Produto"); 
 
 		$produto = new Produto(); 
-		$produto->where(" empresa_id = ". $_SESSION['empresa_id']." and ativo = 1")->find(); 
+		$produto->where(" empresa_id = ". $_SESSION['empresaId']." and ativo = 1")->find(); 
 
 		while($produto->fetch()){
 			parent::$templator->setVariable('produto.id', $produto->id);
@@ -47,7 +47,7 @@ class ProdutosView extends GenericView{
 
 
 		$categoria = new Categoria(); 
-		$categoria->where('empresa_id = '. $_SESSION['empresa_id'] )->find(); 
+		$categoria->where('empresa_id = '. $_SESSION['empresaId'] )->find(); 
 
 		while($categoria->fetch()){
 			parent::$templator->setVariable('categoria.id', $categoria->id);

@@ -10,9 +10,15 @@
 	//data = {alterar : 'info'}; 
 	
 	$.fn.Conf = function(conf){
-		DELETE   = (typeof conf['delete']   == 'undefined') ? 'delete'   : conf['delete']; 
-		ALTERAR  = (typeof conf['alterar']  == 'undefined') ? 'alterar'  : conf['alterar'];
-		CADASTRO = (typeof conf['cadastro'] == 'undefined') ? 'cadastro' : conf['cadastro'];
+		if( typeof conf == 'undefined'){
+			DELETE = 'delete'; 
+			ALTERAR = 'alterar'; 
+			CADASTRO = 'cadastro'; 
+		}else{
+			DELETE   = (typeof conf['delete']   == 'undefined') ? 'delete'   : conf['delete']; 
+			ALTERAR  = (typeof conf['alterar']  == 'undefined') ? 'alterar'  : conf['alterar'];
+			CADASTRO = (typeof conf['cadastro'] == 'undefined') ? 'cadastro' : conf['cadastro'];
+		}
 	}
 
 	$.fn.deletar = function(useCase, delay){
@@ -104,9 +110,9 @@
 
 		}); 
 
-	}
+}
 
-	$.fn.Crud = function(useCase,modalId,callback,handleAlterar, handleCadastrar, handleDeletar){
+$.fn.Crud = function(useCase,modalId,callback,handleAlterar, handleCadastrar, handleDeletar){
 		// <input type="hidden" id="cadastrar" />
 	  	// <input type="hidden" id="id" />
 	  	// 

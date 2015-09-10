@@ -33,7 +33,7 @@
 	<!-- botões --> 
 	<div class="row">
 		<div class="medium-12 columns">
-			<button class="button success small" data-reveal-id="novo_produto"> <i class="fa fa-plus fa-lg"></i> Novo Produto</button>
+			<button class="button success small cadastrar" > <i class="fa fa-plus fa-lg"></i> Novo Produto</button>
 			<button class="button alert small" id="teste"><i class="fa fa-times fa-lg"></i> Remover Produto</button>
 			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
 		</div>
@@ -280,8 +280,10 @@
 			}); 
 
 	  		//Código para a deleção: 
-	  		$('.del').deletar('produtos'); 
-
+	  		$(document).Conf(); 
+	  		$(document).Crud('produtos','#novo_produto',function(data){
+	  			alertify.log(data); 
+	  		}); 
 		}); 
 
 	</script>
