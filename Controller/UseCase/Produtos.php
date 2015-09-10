@@ -54,7 +54,7 @@ class Produtos extends GenericController {
 		$this->produtosView->sendAjax(array('status' => true) ); 
 	}
 
-	public function deletar($arg){
+	public function delete($arg){
 		Lumine::import("Produto"); 
 		$produto = new Produto(); 
 		$produto->get((int) $arg['id']);

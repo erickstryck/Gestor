@@ -130,7 +130,7 @@ class Recibos extends GenericController {
 		die("O sistema ainda nao esta gerando recibos com via dupla."); 
 	}
 
-	public function deletar($arg){
+	public function delete($arg){
 		Lumine::import("Recibo"); 
 		$recibo = new Recibo(); 
 
