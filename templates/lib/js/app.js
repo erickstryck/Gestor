@@ -193,8 +193,6 @@ $.fn.Crud = function(useCase,modalId,callback,handleAlterar, handleCadastrar, ha
 
 		function onAlterar(data){
 			sendAjax('index.php?uc='+useCase+'&a='+ALTERAR,'POST',data,function(data){
-				alertify.log(data); 
-				return;
 				var data = JSON.parse(data); 
 				if(data['status']){
 					alertify.success("Registro alterado com sucesso."); 

@@ -242,17 +242,6 @@
 		$(document).foundation();
 
 		$(document).ready(function(){
-			$('#form_produtos').on('valid.fndtn.abide', function() {
-				var data = $('#form_produtos').serializeArray(); 
-
-				sendAjax('index.php?uc=produtos&a=cadastro','POST',data,function(data){
-					data = JSON.parse(data); 
-
-					if(data['status'])
-						window.location.reload();
-				}); 
-			}); 
-
 			$('#categoria').change(function(){
 				var idCategoria = $('#categoria option:selected').attr('value'); 
 

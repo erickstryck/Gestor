@@ -15,12 +15,11 @@ class Produtos extends GenericController {
 
 	public function cadastro( $arg){
 		Lumine::import("Produto"); 
-		Lumine::import("CategoriaHasProduto");
 
 		$produto = new Produto(); 
 
-		$produto->naoControlarEstoque = (empty($arg['naoControlarEstoque'])) ? false : true ;
-		$produto->arquivar            = (empty($arg['arquivar'])) ? false : true ;
+		$produto->naoControlarEstoque = !empty($arg['naoControlarEstoque']); 
+		$produto->arquivar            = !empty($arg['arquivar']);
 
 		$produto->precoCusto = $arg['precoCusto'];
 		$produto->precoVenda = $arg['precoVenda'];
@@ -34,6 +33,7 @@ class Produtos extends GenericController {
 		$produto->codigoPersonalizado = $arg['codigoPersonalizado'];
 		$produto->margemLucro = $arg['margemLucro'];
 		$produto->inforNfe = $arg['inforNfe'];
+		$produto->categoriaId = $arg['categoriaId']; 
 
 		//Apenas iniciando o estoque atual com zero. 
 		$produto->estoqueAtual = 0; 
@@ -42,13 +42,6 @@ class Produtos extends GenericController {
 		$produto->empresaId = $_SESSION['empresaId'];
 		$produto->insert(); 
 
-		if( $arg['categoriaId'] != ""){
-			$associativa = new CategoriaHasProduto(); 
-			$associativa->produtoId = $produto->id; 
-			$associativa->categoriaId = (int) $arg['categoriaId'];
-
-			$associativa->insert(); 
-		}
 		
 		//Em formato JSON, envie se a execução da inserção foi bem sucedida. 
 		$this->produtosView->sendAjax(array('status' => true) ); 
@@ -64,5 +57,15 @@ class Produtos extends GenericController {
 		$produto->update(); 
 
 		$this->produtosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
+	}
+
+	public function getObject($arg){
+		$id = (int) $arg['id']; 
+		Lumine::import("Produto"); 
+		$produto = new Produto(); 
+
+		$produto->get($id); 
+
+		$this->produtosView->sendAjax($produto->toArray()); 
 	}
 }

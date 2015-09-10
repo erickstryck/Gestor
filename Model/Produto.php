@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "produto"
- * in 2015-09-09
+ * in 2015-09-10
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -30,7 +30,7 @@ class Produto extends Lumine_Base {
     public $inforNfe;
     public $empresaId;
     public $ativo;
-    public $categoriahasprodutos = array();
+    public $categoriaId;
     public $mudancaestoques = array();
     public $pedidovendahasprodutos = array();
     
@@ -66,9 +66,9 @@ class Produto extends Lumine_Base {
         $this->metadata()->addField('inforNfe', 'infor_nfe', 'varchar', 45, array());
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
         $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
+        $this->metadata()->addField('categoriaId', 'categoria_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Categoria'));
 
         
-        $this->metadata()->addRelation('categoriahasprodutos', Lumine_Metadata::ONE_TO_MANY, 'CategoriaHasProduto', 'produtoId', null, null, null);
         $this->metadata()->addRelation('mudancaestoques', Lumine_Metadata::ONE_TO_MANY, 'MudancaEstoque', 'produtoId', null, null, null);
         $this->metadata()->addRelation('pedidovendahasprodutos', Lumine_Metadata::ONE_TO_MANY, 'PedidoVendaHasProduto', 'produtoId', null, null, null);
     }

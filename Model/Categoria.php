@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "categoria"
- * in 2015-09-09
+ * in 2015-09-10
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -17,7 +17,7 @@ class Categoria extends Lumine_Base {
     public $margemLucro;
     public $empresaId;
     public $ativo;
-    public $categoriahasprodutos = array();
+    public $produtos = array();
     
     
     
@@ -40,7 +40,7 @@ class Categoria extends Lumine_Base {
         $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
 
         
-        $this->metadata()->addRelation('categoriahasprodutos', Lumine_Metadata::ONE_TO_MANY, 'CategoriaHasProduto', 'categoriaId', null, null, null);
+        $this->metadata()->addRelation('produtos', Lumine_Metadata::ONE_TO_MANY, 'Produto', 'categoriaId', null, null, null);
     }
 
     #### END AUTOCODE

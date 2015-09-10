@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "contato_has_endereco_entrega_diferente"
- * in 2015-09-09
+ * in 2015-09-10
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
