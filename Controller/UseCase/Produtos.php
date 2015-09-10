@@ -21,25 +21,25 @@ class Produtos extends GenericController {
 		$produto->naoControlarEstoque = !empty($arg['naoControlarEstoque']); 
 		$produto->arquivar            = !empty($arg['arquivar']);
 
-		$produto->precoCusto = $arg['precoCusto'];
-		$produto->precoVenda = $arg['precoVenda'];
-		$produto->eanGtin = $arg['eanGtin'];
-		$produto->excecaoIpi = $arg['excecaoIpi'];
-		$produto->estoqueMinimo = $arg['estoqueMinimo'];
-		$produto->palavraChave = $arg['palavraChave'];
-		$produto->ncm = $arg['ncm'];
-		$produto->anotacoesInternas = $arg['anotacoesInternas'];
-		$produto->nome = $arg['nome'];
+		$produto->precoCusto          = $arg['precoCusto'];
+		$produto->precoVenda          = $arg['precoVenda'];
+		$produto->eanGtin             = $arg['eanGtin'];
+		$produto->excecaoIpi          = $arg['excecaoIpi'];
+		$produto->estoqueMinimo       = $arg['estoqueMinimo'];
+		$produto->palavraChave        = $arg['palavraChave'];
+		$produto->ncm                 = $arg['ncm'];
+		$produto->anotacoesInternas   = $arg['anotacoesInternas'];
+		$produto->nome                = $arg['nome'];
 		$produto->codigoPersonalizado = $arg['codigoPersonalizado'];
-		$produto->margemLucro = $arg['margemLucro'];
-		$produto->inforNfe = $arg['inforNfe'];
-		$produto->categoriaId = $arg['categoriaId']; 
+		$produto->margemLucro         = $arg['margemLucro'];
+		$produto->inforNfe            = $arg['inforNfe'];
+		$produto->categoriaId         = $arg['categoriaId']; 
 
 		//Apenas iniciando o estoque atual com zero. 
-		$produto->estoqueAtual = 0; 
+		$produto->estoqueAtual        = 0; 
 
 		//associando produto a empresa corrente da sessão. 
-		$produto->empresaId = $_SESSION['empresaId'];
+		$produto->empresaId           = $_SESSION['empresaId'];
 		$produto->insert(); 
 
 		

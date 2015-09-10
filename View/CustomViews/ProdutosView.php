@@ -22,19 +22,10 @@ class ProdutosView extends GenericView{
 			parent::$templator->setVariable('produto.nome', $produto->nome);
 
 			//Pegando associação com alguma categoria aqui: 
-			$associativa = new CategoriaHasProduto(); 
+			$categoria = new Categoria(); 
+			$categoria->get($produto->categoriaId); 
 
-			$associativa->where('produto_id = '. $produto->id)->find(); 
-
-			$categoria; 
-			while($associativa->fetch()){
-				$categoria = new Categoria(); 
-				$categoria->where('id = '. $associativa->categoriaId)->find(); 
-				while($categoria->fetch())
-					parent::$templator->setVariable('produto.categoria', $categoria->nomeCategoria);
-			}
-
-			
+			parent::$templator->setVariable('produto.categoria', ((!$categoria->ativo) ? "<i style='color:red'>Categoria Deletada</i>": $categoria->nomeCategoria));
 			parent::$templator->setVariable('produto.preco_venda', $produto->precoVenda);
 			parent::$templator->setVariable('produto.estoque', '0');
 			parent::$templator->setVariable('produto.reserva', '0');
@@ -47,7 +38,7 @@ class ProdutosView extends GenericView{
 
 
 		$categoria = new Categoria(); 
-		$categoria->where('empresa_id = '. $_SESSION['empresaId'] )->find(); 
+		$categoria->where('empresa_id = '. $_SESSION['empresaId']. ' and ativo = 1')->find(); 
 
 		while($categoria->fetch()){
 			parent::$templator->setVariable('categoria.id', $categoria->id);

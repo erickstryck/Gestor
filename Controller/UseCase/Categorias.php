@@ -25,7 +25,7 @@ class Categorias extends GenericController {
 
 		$categoria->nomeCategoria = 		$arg['nomeCategoria'];
 		$categoria->margemLucro   = (float) $arg['margemLucro'];
-		$categoria->empresaId     = 		$_SESSION['empresa_id'];
+		$categoria->empresaId     = 		$_SESSION['empresaId'];
 
 		$categoria->insert();
 
@@ -33,7 +33,40 @@ class Categorias extends GenericController {
 		$this->categoriasView->sendAjax(array('status' => true) );
 	}
 
-	public function deletar($arg){
+	public function alterar($arg){
+		//Roteiro:
+		//Validar os dados que estão vindo da visão ( fazer isso depois )
+		//Armazenar os dados no banco
+		//Enviar confirmação de sucesso ou falha via JSON.
+
+		Lumine::import("Categoria");
+
+		$categoria = new Categoria();
+
+		$categoria->where("empresa_id = ". $_SESSION['empresaId']." and id = ". (int) $arg['id'])->find(); 
+		$categoria->fetch(true); 
+
+		$categoria->nomeCategoria = 		$arg['nomeCategoria'];
+		$categoria->margemLucro   = (float) $arg['margemLucro'];
+		$categoria->empresaId     = 		$_SESSION['empresaId'];
+
+		$categoria->update();
+
+		//Enviar essa linha apenas se tudo acima estiver sido feito corretamente.
+		$this->categoriasView->sendAjax(array('status' => true) );
+	}
+
+	public function getObject($arg){
+		$id = (int) $arg['id']; 
+		Lumine::import("Categoria"); 
+		$categoria = new Categoria(); 
+
+		$categoria->get($id); 
+
+		$this->categoriasView->sendAjax($categoria->toArray()); 
+	}
+
+	public function delete($arg){
 		Lumine::import("Categoria"); 
 		$categoria = new Categoria(); 
 		$categoria->get((int) $arg['id']);
