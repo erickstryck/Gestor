@@ -17,7 +17,7 @@ class VendasView extends GenericView{
 
 		//Adicionando produtos no modal
 		$produto = new Produto(); 
-		$produto->where("empresa_id = ". $_SESSION['empresa_id'])->find(); 
+		$produto->where("empresa_id = ". $_SESSION['empresaId'])->find(); 
 
 		while($produto->fetch()){
 			parent::$templator->setVariable('produto.id', $produto->id); 
@@ -29,7 +29,7 @@ class VendasView extends GenericView{
 		//Adicionando clientes ao modal
 		
 		$contato = new Contato(); 
-		$contato->where("empresa_id = ". $_SESSION['empresa_id'])->find(); 
+		$contato->where("empresa_id = ". $_SESSION['empresaId'])->find(); 
 
 		while($contato->fetch()){
 			parent::$templator->setVariable('contato.id', $contato->id); 
@@ -43,7 +43,7 @@ class VendasView extends GenericView{
 		$associativa = new UsuarioHasEmpresa(); 
 
 
-		$associativa->join($usuario)->where("empresa_id = ". $_SESSION['empresa_id'])->find(); 
+		$associativa->join($usuario)->where("empresa_id = ". $_SESSION['empresaId'])->find(); 
 
 		while($associativa->fetch()){
 			
