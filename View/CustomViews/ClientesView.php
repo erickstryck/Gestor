@@ -55,7 +55,7 @@ class ClientesView extends GenericView{
 		//Anexando registro de contatos que já tem na base de dados. 
 		$contato = new Contato();
 
-		$contato->where('empresa_id = '. (int) $_SESSION['empresa_id']." and ativo = 1")->find(); 
+		$contato->where('empresa_id = '. (int) $_SESSION['empresaId']." and ativo = 1")->find(); 
 
 		while( $contato->fetch() ){
 			parent::$templator->setVariable('contato.id', $contato->id); 

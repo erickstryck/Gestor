@@ -13,6 +13,7 @@ class Produtos extends GenericController {
 		$this->produtosView->novoProdutoView(); 
 	}
 
+
 	public function cadastro( $arg){
 		Lumine::import("Produto"); 
 

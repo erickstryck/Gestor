@@ -44,7 +44,7 @@ class Clientes extends GenericController {
 		//Adicionando relacionamentos: 
 		//
 		$contato->localId                    = $local->id;
-		$contato->indicadorDeIeId            = $arg['indicador_de_ie'];
+		$contato->indicadorDeIeId            = $arg['indicadorDeIe'];
 		
         //Inserindo dados do contato. 
 
@@ -63,8 +63,8 @@ class Clientes extends GenericController {
 		$contato->email              = $arg['email'];
 		$contato->email1             = $arg['email1'];
 		$contato->anotacoesGerais    = $arg['anotacoesGerais'];
-		$contato->dataNasci          = $arg['data_nasc'];
-		$contato->empresaId          = $_SESSION['empresa_id']; //Pegando o id da empresa do usuário corrente na sessão do sistema.
+		$contato->dataNasci          = $arg['dataNasci'];
+		$contato->empresaId          = $_SESSION['empresaId']; //Pegando o id da empresa do usuário corrente na sessão do sistema.
 
 		$contato->dataInclusao = date('Y-m-d H:i') ; 		
 		$contato->insert(); 
@@ -81,7 +81,7 @@ class Clientes extends GenericController {
 			$enderecoDif->complemento     = $arg['complemento'];
 			$enderecoDif->bairro          = $arg['bairro'];
 			$enderecoDif->pontoReferencia = $arg['pontoReferencia'];
-			$enderecoDif->cidadeId        = $arg['cidadeId'];
+			$enderecoDif->cidadeId        = $arg['EntregaCidadeId'];
 			$enderecoDif->insert(); 
 
 			$associativa = new ContatoHasEnderecoEntregaDiferente(); 
@@ -95,25 +95,25 @@ class Clientes extends GenericController {
 		//Adicionando os tipos do contato: 
 		$tipoContato = new ContatoHasTipoContato(); 
 
-		if( !empty($arg['is_cliente']) ){
+		if( !empty($arg['isCliente']) ){
 			$tipoContato->contatoId     = $contato->id; 
 			$tipoContato->tipoContatoId = (int) $arg['isCliente'];
 			$tipoContato->insert(); 
 		}
 
-		if(!empty($arg['is_fornecedor']) ){
+		if(!empty($arg['isFornecedor']) ){
 			$tipoContato->contatoId     = $contato->id; 
 			$tipoContato->tipoContatoId = (int) $arg['isFornecedor'];
 			$tipoContato->insert(); 
 		}
 
-		if(!empty($arg['is_transportador']) ){
+		if(!empty($arg['isTransportador']) ){
 			$tipoContato->contatoId     = $contato->id; 
 			$tipoContato->tipoContatoId = (int) $arg['isTransportador'];
 			$tipoContato->insert(); 
 		}
 
-		if(!empty($arg['is_cosumidor_final']) ){
+		if(!empty($arg['isCosumidorFinal']) ){
 			$tipoContato->contatoId     = $contato->id; 
 			$tipoContato->tipoContatoId = (int) $arg['isCosumidorFinal'];
 			$tipoContato->insert(); 

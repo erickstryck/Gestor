@@ -66,7 +66,7 @@
 			data = JSON.parse(data); 
 
 			console.log("inputs > "); 
-			form.find('input').each(function(){
+			form.find('input[type=hidden] ,input[type=text] ,input[type=number] ,input[type=email],input[type=date]').each(function(){
 				var element = $(this); 
 				//console.log($(this).attr('name'));
 				//indice 0 é o nome do campo. índice 1 é o valor. 
@@ -93,8 +93,10 @@
 
 				jQuery.each(data,function(key,value){
 					console.log(key); 
-					if( key == element.attr('name'))
-						element.attr('checked',((value) ? true : false ) ); 
+					if( key == element.attr('name')){
+						var a = ((value == 1) ? true : false ); 
+						element.attr('checked',a); 
+					}
 				}); 
 			}); 
 
@@ -190,7 +192,7 @@ $.fn.Crud = function(useCase,modalId,callback,handleAlterar, handleCadastrar, ha
 			sendAjax('index.php?uc='+useCase+'&a='+CADASTRO,'POST',data,function(data){
 				var data = JSON.parse(data); 
 				if(data['status']){
-					alertify.success("O recibo foi cadastrado com sucesso"); 
+					alertify.success("O registro foi cadastrado com sucesso"); 
 					interval = setInterval(function(){window.location.reload(); clearInterval(interval); },DELAY); 
 				}else
 				alertify.error("Ocorreu algum error, tente novamente."); 

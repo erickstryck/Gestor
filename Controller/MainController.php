@@ -40,13 +40,17 @@ class MainController {
 		// 2 A action existe no controlador?
 		// 3 Invocar método;
 		// 4 Gerar output.
+		//limpar sqlinjection
+	
 		$useCase = $_REQUEST ['uc'];
 		$action  = $_REQUEST ['a'];
-		
+
 		// if( $this->$controllersArray[$useCase] == null ) return;
 		$controller = $this->controllersArray [$useCase];
 		$realNameMethod = '';
-		
+
+		//if( $this->$controllersArray[$useCase] == null ) return;//404
+
 		$arrayMethods = $controller->sayMyActions();
 		
 		foreach ( $arrayMethods as $a ) {
@@ -57,8 +61,11 @@ class MainController {
 		}
 		
 		if (strlen ( $realNameMethod ) == 0) {
-			die('Não há ação para ser executada');
+			die('404');
 		}
+		
+		//firewall; 
+		//Firewall::permissao($controller,$realNameMethod )//return true or false
 		
 		$reflection = new ReflectionMethod ( $controller->sayMyName (), $realNameMethod );
 		return $reflection->invoke( $controller, self::preparingArray( $_REQUEST ));
