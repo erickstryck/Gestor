@@ -19,7 +19,7 @@ class Usuarios extends GenericController {
 		//Armazenar os dados no banco
 		//Enviar confirmação de sucesso ou falha via JSON.
 		
-		if(strcmp($arg['senha'], $arg['senha_confirmacao']) != 0 )
+		if(strcmp($arg['senha'], $arg['senhaConfirmacao']) != 0 )
 			$this->usuariosView->sendAjax(array('status' => false) );
 
 		Lumine::import("Usuario"); 
@@ -47,13 +47,13 @@ class Usuarios extends GenericController {
 		$usuario->insert(); 
 		//Associando usuário a uma empresa com os seus devidos privilégios: 
 		
-		$associativa->isTecnico = ((empty($arg['isTecnico']))) ? false : true;
-		$associativa->isVendedor = ((empty($arg['isVendedor']))) ? false : true;
-		$associativa->temAcesso = ((empty($arg['temAcesso']))) ? false : true;
-		$associativa->comissaoProduto = $arg['comissaoProduto'];
-		$associativa->comissaoVendedor = $arg['comissao_vendedor']; 
-		$associativa->empresaId = $_SESSION['empresa_id']; 
-		$associativa->usuarioId = $usuario->id;  
+		$associativa->isTecnico        = ((empty($arg['isTecnico']))) ? false : true;
+		$associativa->isVendedor       = ((empty($arg['isVendedor']))) ? false : true;
+		$associativa->temAcesso        = ((empty($arg['temAcesso']))) ? false : true;
+		$associativa->comissaoProduto  = $arg['comissaoProduto'];
+		$associativa->comissaoVendedor = $arg['comissaoVendedor']; 
+		$associativa->empresaId        = $_SESSION['empresaId']; 
+		$associativa->usuarioId        = $usuario->id;  
 
 		$associativa->insert(); 
 
@@ -80,5 +80,19 @@ class Usuarios extends GenericController {
 
 		$this->usuariosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
 	}
+
+	 public function getObject($arg){
+	 	$id = (int) $arg['id']; 
+	 	Lumine::import("Usuario"); 
+		Lumine::import("UsuarioHasEmpresa"); 
+		$usuario = new Usuario(); 
+		$associativa = new UsuarioHasEmpresa();
+
+		$usuario->join($associativa)->where('id = '. (int) $arg['id'].' and empresa_id = '. $_SESSION['empresaId'] )->find(); 
+		$usuario->fetch(true); 
+
+
+	 	$this->usuariosView->sendAjax($usuario->toArray()); 
+	 }
 
 }

@@ -133,4 +133,4 @@ class Contas extends GenericController {
 	 	$this->contasView->sendAjax($conta->toArray()); 
 	 }
 
-	}
+}

@@ -183,7 +183,7 @@
 
 	  				<div class="medium-4 columns">
 	  					<label>Repita a senha <small style="color:red" >Obrigatório</small>
-	  						<input type="password" name="senha_confirmacao" required data-equalto="password" />
+	  						<input type="password" name="senhaConfirmacao" required data-equalto="password" />
 	  					</label> <small class="error">Esse campo deve ser idêntico ao conteúdo do <i>Definir senha</i> </small>
 	  				</div>
 
@@ -214,32 +214,10 @@
 	  		$(document).foundation();
 
 	  		$(document).ready(function(){
-	  			$('#form_usuario').on('valid.fndtn.abide', function() {
-	  				var data = $('#form_usuario').serializeArray(); 
+	  			$(document).Conf(); 
 
-	  				sendAjax('index.php?uc=usuarios&a=cadastro','POST',data,function(data){
-	  					data = JSON.parse(data); 
-
-	  					if(data['status'])
-	  						window.location.reload(); 
-
-	  					if(!data['status'])
-	  						alertify.error(data['msg']); 
-	  				}); 
-	  			}); 
-
-	  			var interval; 
-	  			$('.del').click(function(){
-	  				var id  = parseInt($(this).val()); 
-	  				alertify.confirm("Deseja realmente deletar este registro",function(resposta){
-	  					if(resposta){
-	  						deletar('usuarios', id) 
-	  						interval = setInterval(function(){window.location.reload()},1500); 
-	  					}
-	  					else{
-	  						alertify.error("Operação cancelada.");  
-	  					}
-	  				}); 
+	  			$(document).Crud('usuarios','#novo_usuario',function(data){
+	  				console.log(data); 
 	  			}); 
 	  			
 	  		}); 
