@@ -60,7 +60,7 @@ class Usuarios extends GenericController {
 		$this->usuariosView->sendAjax(array('status' => true) );
 	}
 
-	public function deletar($arg){
+	public function delete($arg){
 		Lumine::import("Usuario"); 
 		Lumine::import("UsuarioHasEmpresa"); 
 		$usuario = new Usuario(); 

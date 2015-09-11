@@ -23,7 +23,7 @@
 
 	$.fn.deletar = function(useCase){
 		this.click(function(){
-			var id  = this.value; 
+			var id  = parseInt(this.value); 
 			alertify.confirm("Deseja realmente deletar este registro",function(resposta){
 				if(resposta){
 					onDelete(id); 
