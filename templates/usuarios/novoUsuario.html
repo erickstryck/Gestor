@@ -1,227 +1,242 @@
-	  <!doctype html>
-	  <html class="no-js" lang="pt-br">
-	  <head>
-	  	<!-- init script and css -->  
-	  	<!-- $Include templates/lib/html/scripthead.html --> 
-	  	<!--init script and css end-->
-	  	<title>Novo Contato</title>
+<!doctype html>
+<html class="no-js" lang="pt-br">
+<head>
+    <!-- init script and css -->
+    <!-- $Include templates/lib/html/scripthead.html -->
+    <!--init script and css end-->
+    <title>Novo Contato</title>
 
 
-	  	<style type="text/css">
-	  		.separator{
-	  			margin-top: 0; 
-	  			margin-bottom: 0; 
-	  		}
+    <style type="text/css">
+        .separator {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
 
-	  	</style>
+    </style>
 
-	  </head>
-	  <body>
-	  	<!--top bar bagin -->  
-	  	<!-- $Include templates/lib/html/header.html --> 
-	  	<!--top bar end--> 
+</head>
+<body>
+<!--top bar bagin -->
+<!-- $Include templates/lib/html/header.html -->
+<!--top bar end-->
 
-	  	<!-- body section-->
+<!-- body section-->
 
-	  	<!-- title -->
-	  	<div class="row full-width">
-	  		<div class="medium-12 columns ">
-	  			<h3>CADASTRO DE USUÁRIOS</h3>
-	  		</div>	
-	  	</div>
+<!-- title -->
+<div class="row full-width">
+    <div class="medium-12 columns ">
+        <h3>CADASTRO DE USUÁRIOS</h3>
+    </div>
+</div>
 
-	  	<!-- botões --> 
-	  	<div class="row full-width">
-	  		<div class="medium-12 columns">
-	  			<button class="button success small" data-reveal-id="novo_usuario"> <i class="fa fa-plus fa-lg"></i> Novo Usuário</button>
-	  			<button class="button alert small" id="teste"><i class="fa fa-times fa-lg"></i> Remover Usuário</button>
-	  			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
-	  		</div>
-	  	</div>
+<!-- botões -->
+<div class="row full-width">
+    <div class="medium-12 columns">
+        <button class="button success small" data-reveal-id="novo_usuario"><i class="fa fa-plus fa-lg"></i> Novo Usuário
+        </button>
+        <button class="button alert small" id="teste"><i class="fa fa-times fa-lg"></i> Remover Usuário</button>
+        <button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas
+        </button>
+    </div>
+</div>
 
-	  	<!-- container main --> 
-	  	<div class="row full-width">
-	  		<div class="medium-12 columns">
-	  			<!-- tabela --> 
-	  			<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
-	  				<thead>
-	  					<tr>
-	  						<th>COD</th>
-	  						<th>NOME</th>
-	  						<th>E-MAIL</th>
-	  						<th>LOGIN</th>
-	  						<th>ACESSO</th>
-	  						<th>VENDEDOR</th>
-	  						<th>TÉCNICO</th>
-	  						<th>PERMISSÕES</th>
-	  						<th></th>
-	  					</tr>
-	  				</thead>
-	  				<tbody>
-	  					<!-- $BeginBlock row --> 
-	  					<tr>
-	  						<td>${usuario.id}</td>
-	  						<td>${usuario.nome_completo}</td>
-	  						<td>${usuario.email}</td>
-	  						<td>${usuario.login}</td>
-	  						<td>${usuario.acesso}</td>
-	  						<td>${usuario.vendedor}</td>
-	  						<td>${usuario.tecnico}</td>
-	  						<td>${usuario.permissoes}</td>
-	  						<td>
-	  							<button class="alterar fix" value="${usuario.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${usuario.id}" ><i class="fa fa-trash"></i></button>
-	  						</td>
-	  					</tr>
-	  					<!-- $EndBlock row --> 
-	  				</tbody>
+<!-- container main -->
+<div class="row full-width">
+    <div class="medium-12 columns">
+        <!-- tabela -->
+        <table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
+            <thead>
+            <tr>
+                <th>COD</th>
+                <th>NOME</th>
+                <th>E-MAIL</th>
+                <th>LOGIN</th>
+                <th>ACESSO</th>
+                <th>VENDEDOR</th>
+                <th>TÉCNICO</th>
+                <th>PERMISSÕES</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- $BeginBlock row -->
+            <tr>
+                <td>${usuario.id}</td>
+                <td>${usuario.nome_completo}</td>
+                <td>${usuario.email}</td>
+                <td>${usuario.login}</td>
+                <td>${usuario.acesso}</td>
+                <td>${usuario.vendedor}</td>
+                <td>${usuario.tecnico}</td>
+                <td>${usuario.permissoes}</td>
+                <td>
+                    <button class="alterar fix" value="${usuario.id}"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="fix del" value="${usuario.id}"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+            <!-- $EndBlock row -->
+            </tbody>
 
-	  				<tfoot>
-	  					<tr>
-	  						<th>COD</th>
-	  						<th>NOME</th>
-	  						<th>E-MAIL</th>
-	  						<th>LOGIN</th>
-	  						<th>ACESSO</th>
-	  						<th>VENDEDOR</th>
-	  						<th>TÉCNICO</th>
-	  						<th>PERMISSÕES</th>
-	  						<th></th>
-	  					</tr>
-	  				</tfoot>
-	  			</table>
-	  			<!-- fim tabela --> 
-	  		</div>	
-	  	</div>	
-	  	<!-- end body section--> 
-
-
-	  	<!-- modal sections --> 
-
-	  	<!-- nova categoria --> 
-	  	<div id="novo_usuario" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-	  		<h2 id="modalTitle">Novo Serviço</h2>
-	  		<p class="lead">Insira os dados abaixo</p>
-	  		<!-- formulário --> 
-	  		<form id="form_usuario" data-abide="ajax" >
-
-	  			<div class="row">
-	  				<div class="medium-4 columns">
-	  					<label>Nome completo <small style="color:red">Obrigatório:</small>
-	  						<input type="text" name="nomeCompleto" required />
-	  					</label> <small class="error" >Preencha este campo</small>
-	  				</div>
-
-	  				<div class="medium-4 columns">
-	  					<label>E-mail de contato
-	  						<input type="email" name="email" />
-	  					</label> 
-	  				</div>
-
-	  				<div class="medium-4 columns">
-	  					<label>Palavra-chave
-	  						<input type="text" name="palavraChave" />
-	  					</label> 
-	  				</div>
-
-	  			</div>
-
-	  			<!--Técnico--> 
-	  			<div class="row">
-	  				<div class="medium-4 columns">
-	  					<input id="checkbox1" name="isTecnico" value="true"  type="checkbox"><label for="checkbox1">É um Técnico</label>
-	  				</div>
-
-	  				<div class="medium-4 columns end">
-	  					<label>Comissão por serviço (%) 
-	  						<input type="number" name="comissaoVendedor"  />
-	  					</label> 
-	  				</div>
-	  			</div>
-
-	  			<!--Vendedor--> 
-	  			<div class="row">
-	  				<div class="medium-4 columns">
-	  					<input id="checkbox2" name="isVendedor" value="true" type="checkbox"><label for="checkbox2">É um Vendedor</label>
-	  				</div>
-
-	  				<div class="medium-4 columns end">
-	  					<label>Comissão por produto (%)
-	  						<input type="number"  name="comissaoProduto" />
-	  					</label> 
-	  				</div>
-	  			</div>
-
-	  			
-
-	  			<!-- Label informativo--> 
-	  			<div class="row">
-	  				<div class="medium-2 columns">
-	  					<span class="info label">Defina o login e senha do usuário</span>
-	  				</div>			
-	  			</div>
-	  			<!-- Definição de login e senha--> 
-	  			<hr class="separator" /> 
-	  			<div class="row">
-	  				<div class="medium-4 columns">
-	  					<input id="checkbox3" name="temAcesso" value="true" type="checkbox"><label for="checkbox3">Tem acesso ao sistema</label>
-	  				</div>
-	  			</div>
-	  			<hr class="separator" /> 
-
-	  			<div class="row">
-	  				<div class="medium-4 columns">
-	  					<label>Login <small style="color:red">Obrigatório:</small>
-	  						<input type="text" name="login" required />
-	  					</label> <small class="error" >Preencha este campo</small>
-	  				</div>
-
-	  				<div class="medium-4 columns">
-	  					<label>Definir senha <small style="color:red"> Obrigatório</small>
-	  						<input type="password" id="password" name="senha" required />
-	  					</label> <small class="error">Preencha este campo</small>
-	  				</div>
-
-	  				<div class="medium-4 columns">
-	  					<label>Repita a senha <small style="color:red" >Obrigatório</small>
-	  						<input type="password" name="senhaConfirmacao" required data-equalto="password" />
-	  					</label> <small class="error">Esse campo deve ser idêntico ao conteúdo do <i>Definir senha</i> </small>
-	  				</div>
-
-	  			</div>
-
-	  			<!-- botões -->
-	  			<div class="row">
-	  				<div class="medium-12 columns">		
-	  					<div class="panel clearfix">
-	  						<button type="submit" class="button small secondary right">Salvar</button>	
-	  					</div>										
-	  				</div>
-	  			</div>	
-
-	  		</form>
-	  		<!-- fim formulário --> 
-	  		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
-	  	</div>
+            <tfoot>
+            <tr>
+                <th>COD</th>
+                <th>NOME</th>
+                <th>E-MAIL</th>
+                <th>LOGIN</th>
+                <th>ACESSO</th>
+                <th>VENDEDOR</th>
+                <th>TÉCNICO</th>
+                <th>PERMISSÕES</th>
+                <th></th>
+            </tr>
+            </tfoot>
+        </table>
+        <!-- fim tabela -->
+    </div>
+</div>
+<!-- end body section-->
 
 
-	  	<!-- end modal sections --> 
+<!-- modal sections -->
 
-	  	<!--footer begin -->  
-	  	<!-- $Include templates/lib/html/footer.html --> 
-	  	<!--footer end--> 
+<!-- nova categoria -->
+<div id="novo_usuario" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+     role="dialog">
+    <h2 id="modalTitle">Novo Serviço</h2>
 
-	  	<script>
-	  		$(document).foundation();
+    <p class="lead">Insira os dados abaixo</p>
+    <!-- formulário -->
+    <form id="form_usuario" data-abide="ajax">
 
-	  		$(document).ready(function(){
-	  			$(document).Conf(); 
+        <div class="row">
+            <div class="medium-4 columns">
+                <label>Nome completo
+                    <small style="color:red">Obrigatório:</small>
+                    <input type="text" name="nomeCompleto" required/>
+                </label>
+                <small class="error">Preencha este campo</small>
+            </div>
 
-	  			$(document).Crud('usuarios','#novo_usuario',function(data){
-	  				console.log(data); 
-	  			}); 
-	  			
-	  		}); 
+            <div class="medium-4 columns">
+                <label>E-mail de contato
+                    <input type="email" name="email"/>
+                </label>
+            </div>
 
-	  	</script>
-	  </body>
-	  </html>
+            <div class="medium-4 columns">
+                <label>Palavra-chave
+                    <input type="text" name="palavraChave"/>
+                </label>
+            </div>
+
+        </div>
+
+        <!--Técnico-->
+        <div class="row">
+            <div class="medium-4 columns">
+                <input id="checkbox1" name="isTecnico" value="true" type="checkbox"><label for="checkbox1">É um
+                Técnico</label>
+            </div>
+
+            <div class="medium-4 columns end">
+                <label>Comissão por serviço (%)
+                    <input type="number" name="comissaoVendedor"/>
+                </label>
+            </div>
+        </div>
+
+        <!--Vendedor-->
+        <div class="row">
+            <div class="medium-4 columns">
+                <input id="checkbox2" name="isVendedor" value="true" type="checkbox"><label for="checkbox2">É um
+                Vendedor</label>
+            </div>
+
+            <div class="medium-4 columns end">
+                <label>Comissão por produto (%)
+                    <input type="number" name="comissaoProduto"/>
+                </label>
+            </div>
+        </div>
+
+
+        <!-- Label informativo-->
+        <div class="row">
+            <div class="medium-2 columns">
+                <span class="info label">Defina o login e senha do usuário</span>
+            </div>
+        </div>
+        <!-- Definição de login e senha-->
+        <hr class="separator"/>
+        <div class="row">
+            <div class="medium-4 columns">
+                <input id="checkbox3" name="temAcesso" value="true" type="checkbox"><label for="checkbox3">Tem acesso ao
+                sistema</label>
+            </div>
+        </div>
+        <hr class="separator"/>
+
+        <div class="row">
+            <div class="medium-4 columns">
+                <label>Login
+                    <small style="color:red">Obrigatório:</small>
+                    <input type="text" name="login" required/>
+                </label>
+                <small class="error">Preencha este campo</small>
+            </div>
+
+            <div class="medium-4 columns">
+                <label>Definir senha
+                    <small style="color:red"> Obrigatório</small>
+                    <input type="password" id="password" name="senha" required/>
+                </label>
+                <small class="error">Preencha este campo</small>
+            </div>
+
+            <div class="medium-4 columns">
+                <label>Repita a senha
+                    <small style="color:red">Obrigatório</small>
+                    <input type="password" name="senhaConfirmacao" required data-equalto="password"/>
+                </label>
+                <small class="error">Esse campo deve ser idêntico ao conteúdo do <i>Definir senha</i></small>
+            </div>
+
+        </div>
+
+        <!-- botões -->
+        <div class="row">
+            <div class="medium-12 columns">
+                <div class="panel clearfix">
+                    <button type="submit" class="button small secondary right">Salvar</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <!-- fim formulário -->
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+
+<!-- end modal sections -->
+
+<!--footer begin -->
+<!-- $Include templates/lib/html/footer.html -->
+<!--footer end-->
+
+<script>
+    $(document).foundation();
+
+    $(document).ready(function () {
+        $(document).Conf();
+
+        $(document).Crud('usuarios', '#novo_usuario', function (data) {
+            console.log(data);
+        });
+
+    });
+
+</script>
+</body>
+</html>

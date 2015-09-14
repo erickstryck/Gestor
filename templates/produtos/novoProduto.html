@@ -1,283 +1,290 @@
-
 <!doctype html>
 <html class="no-js" lang="pt-br">
 <head>
-	<!-- init script and css -->  
-	<!-- $Include templates/lib/html/scripthead.html --> 
-	<!--init script and css end--> 
-	<title>Produtos</title>
-	
-	<style type="text/css">
-		.separator{
-			margin-top: 0; 
-			margin-bottom: 0; 
-		}
+    <!-- init script and css -->
+    <!-- $Include templates/lib/html/scripthead.html -->
+    <!--init script and css end-->
+    <title>Produtos</title>
 
-	</style>
+    <style type="text/css">
+        .separator {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+    </style>
 
 </head>
 <body>
-	<!--top bar bagin -->  
-	<!-- $Include templates/lib/html/header.html --> 
-	<!--top bar end--> 
+<!--top bar bagin -->
+<!-- $Include templates/lib/html/header.html -->
+<!--top bar end-->
 
-	<!-- body section-->
+<!-- body section-->
 
-	<!-- title -->
-	<div class="row">
-		<div class="medium-12 columns ">
-			<h3>CADASTRO DE NOVOS PRODUTOS</h3>
-		</div>	
-	</div>
+<!-- title -->
+<div class="row">
+    <div class="medium-12 columns ">
+        <h3>CADASTRO DE NOVOS PRODUTOS</h3>
+    </div>
+</div>
 
-	<!-- botões --> 
-	<div class="row">
-		<div class="medium-12 columns">
-			<button class="button success small cadastrar" > <i class="fa fa-plus fa-lg"></i> Novo Produto</button>
-			<button class="button alert small" ><i class="fa fa-times fa-lg"></i> Remover Produto</button>
-			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
-		</div>
-	</div>
+<!-- botões -->
+<div class="row">
+    <div class="medium-12 columns">
+        <button class="button success small cadastrar"><i class="fa fa-plus fa-lg"></i> Novo Produto</button>
+        <button class="button alert small"><i class="fa fa-times fa-lg"></i> Remover Produto</button>
+        <button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas
+        </button>
+    </div>
+</div>
 
-	<!-- container main --> 
-	<div class="row">
-		<div class="medium-12 columns">
-			<!-- tabela --> 
-			<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
-				<thead>
-					<tr>
-						<th >COD</th>
-						<th >PRODUTO</th>
-						<th >CATEGORIA</th>
-						<th >PREÇO VENDA</th>
-						<th >ESTOQUE</th>
-						<th >RESERVA</th>
-						<th >OC</th>
-						<th >OP</th>
-						<th >SALDO</th>
-						<th></th>
-						
-					</tr>
-				</thead>
-				<tbody>
-					<!-- $BeginBlock row --> 
-					<tr>
-						<td>${produto.id}</td>
-						<td>${produto.nome}</td>
-						<td>${produto.categoria}</td>
-						<td>${produto.preco_venda}</td>
-						<td>${produto.estoque}</td>
-						<td>${produto.reserva}</td>
-						<td>${produto.oc}</td>
-						<td>${produto.op}</td>
-						<td>${produto.saldo}</td>
-						<td>
-							<button class="alterar fix" value="${produto.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${produto.id}" ><i class="fa fa-trash"></i></button>
-						</td>
+<!-- container main -->
+<div class="row">
+    <div class="medium-12 columns">
+        <!-- tabela -->
+        <table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
+            <thead>
+            <tr>
+                <th>COD</th>
+                <th>PRODUTO</th>
+                <th>CATEGORIA</th>
+                <th>PREÇO VENDA</th>
+                <th>ESTOQUE</th>
+                <th>RESERVA</th>
+                <th>OC</th>
+                <th>OP</th>
+                <th>SALDO</th>
+                <th></th>
 
-					</tr>
-					<!-- $EndBlock row --> 
-				</tbody>
-				
-				<tfoot>
-					<tr>
-						<th>COD</th>
-						<th>PRODUTO</th>
-						<th>CATEGORIA</th>
-						<th>PREÇO VENDA</th>
-						<th>ESTOQUE</th>
-						<th>RESERVA</th>
-						<th>OC</th>
-						<th>OP</th>
-						<th>SALDO</th>
-						<th></th>
-						
-					</tr>
-				</tfoot>
-			</table>
-			<!-- fim tabela --> 
-		</div>	
-	</div>	
-	<!-- end body section--> 
+            </tr>
+            </thead>
+            <tbody>
+            <!-- $BeginBlock row -->
+            <tr>
+                <td>${produto.id}</td>
+                <td>${produto.nome}</td>
+                <td>${produto.categoria}</td>
+                <td>${produto.preco_venda}</td>
+                <td>${produto.estoque}</td>
+                <td>${produto.reserva}</td>
+                <td>${produto.oc}</td>
+                <td>${produto.op}</td>
+                <td>${produto.saldo}</td>
+                <td>
+                    <button class="alterar fix" value="${produto.id}"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="fix del" value="${produto.id}"><i class="fa fa-trash"></i></button>
+                </td>
 
+            </tr>
+            <!-- $EndBlock row -->
+            </tbody>
 
-	<!-- modal sections --> 
+            <tfoot>
+            <tr>
+                <th>COD</th>
+                <th>PRODUTO</th>
+                <th>CATEGORIA</th>
+                <th>PREÇO VENDA</th>
+                <th>ESTOQUE</th>
+                <th>RESERVA</th>
+                <th>OC</th>
+                <th>OP</th>
+                <th>SALDO</th>
+                <th></th>
 
-	<!-- nova categoria --> 
-	<div id="novo_produto" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog"> 
-		<h2 id="modalTitle">Novo Produto</h2>
-		<p class="lead">Insira os dados abaixo</p>
-		<!-- formulário --> 
-		<form id="form_produtos" data-abide="ajax" >
-
-			<hr class="separator" /> 
-
-			<div class="row">
-				<div class="medium-4 columns">
-					<input id="checkbox1"  type="checkbox" name="naoControlarEstoque"><label for="checkbox1">Não controlar estoque</label>
-				</div>
-
-				<div class="medium-4 columns ">
-					<input id="checkbox2"  type="checkbox" name="arquivar"><label for="checkbox2">Arquivar (esconder)</label>
-				</div>		
-			</div>
-
-			<hr class="separator" />
-
-			<div class="row">
-
-				<div class="medium-12 columns">
-					<!-- primeira seção --> 
-					<div class="row">
-						<div class="medium-4 columns">
-							<label>Nome <small style="color:red">Obrigatório</small>
-								<input name="nome" type="text" />
-							</label>
-						</div>
-
-						<div class="medium-4 columns">
-							<label>Categoria  
-								<select id="categoria" name="categoriaId">
-									<option value="">- Selecione -</option>
-									<!-- $BeginBlock categoria--> 
-									<option value="${categoria.id}">${categoria.nome_categoria}</option>
-									<!-- $EndBlock  categoria -->
-								</select>
-							</label>
-						</div>
-
-						<div class="medium-4 columns">
-							<label>Código personalizado <input name="codigoPersonalizado" type="text" /> </label>
-						</div>
-					</div>
-
-					<!-- segundo seção --> 
-					<div class="row">
-						<div class="medium-4 columns">
-							<label>Unidade tributada 
-								<select name="unidade_tributaria">
-									<option value="">- Selecine -</option>
-								</select>
-							</label>
-						</div>
-
-						<div class="medium-4 columns">
-							<label>Margem de lucro (%)<input type="number" name="margemLucro" id="margem_lucro" /> </label>
-						</div>
-
-						<div class="medium-4 columns">
-							<label> Preço de custo<input type="number" id="preco_custo" name="precoCusto" /> </label>
-						</div>
-					</div>
-
-					<!-- terceiro seção --> 
-					<div class="row">
-						<div class="medium-4 columns">
-							<label>Preço de venda <input type="number" id="preco_venda" name="precoVenda"/> </label>
-						</div>
-
-						<div class="medium-4 columns">
-							<label>inform. adicionais para o NFe <input type="text" name="inforNfe" /> </label>
-						</div>
-
-						<div class="medium-4 columns">
-							<label>Referência EAN/GTIN <input type="text" name="eanGtin" /> </label>
-						</div>
-					</div>
-
-					<!-- quarta seção --> 
-					<div class="row">
-						<div class="medium-4 columns">
-							<label>Exceção tabela IPI <input type="text" name="excecaoIpi" /> </label>
-						</div>
-
-						<div class="medium-4 columns">
-							<label>Estoque mínimo<input type="number" name="estoqueMinimo" /> </label>
-						</div>
-
-						<div class="medium-4 columns">
-							<label>Palavras-chave <input type="text" name="palavraChave" /> </label>
-						</div>
-					</div>
-
-					<!-- quinta seção --> 
-					<div class="row">
-						<div class="medium-4 columns">
-							<label>NCM <a target="_blank" href="http://www4.receita.fazenda.gov.br/simulador/PesquisarNCM.jsp">(Encontre aqui)</a> <input type="text" name="ncm" /> </label>
-						</div>
-					</div>
-
-					<!-- sexta seção -->
-					<div class="row">
-						<div class="medium-12 columns">
-							<label>Anotações internas<textarea name="anotacoesInternas"></textarea></label>
-						</div>		
-					</div>	
-
-					<!-- botões -->
-					<div class="row">
-						<div class="medium-12 columns">		
-							<div class="panel clearfix">
-								<button type="submit" class="button small secondary right">Salvar</button>	
-							</div>										
-						</div>
-					</div>	
-
-				</div>
-			</div>
-
-		</form>
-		<!-- fim formulário --> 
-		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
-	</div>
+            </tr>
+            </tfoot>
+        </table>
+        <!-- fim tabela -->
+    </div>
+</div>
+<!-- end body section-->
 
 
-	<!-- end modal sections --> 
+<!-- modal sections -->
 
-	<!--footer begin -->  
-	<!-- $Include templates/lib/html/footer.html --> 
-	<!--footer end--> 
+<!-- nova categoria -->
+<div id="novo_produto" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+     role="dialog">
+    <h2 id="modalTitle">Novo Produto</h2>
 
-	<script>
-		$(document).foundation();
+    <p class="lead">Insira os dados abaixo</p>
+    <!-- formulário -->
+    <form id="form_produtos" data-abide="ajax">
 
-		$(document).ready(function(){
-			$('#categoria').change(function(){
-				var idCategoria = $('#categoria option:selected').attr('value'); 
+        <hr class="separator"/>
 
-				if( idCategoria == '' )
-					$('#margem_lucro').val(''); 
+        <div class="row">
+            <div class="medium-4 columns">
+                <input id="checkbox1" type="checkbox" name="naoControlarEstoque"><label for="checkbox1">Não controlar
+                estoque</label>
+            </div>
 
-				var data = {'id' : idCategoria}; 
-				sendAjax('index.php?uc=ajaxServices&a=getCategoryProfit','POST',data,function( data){
-					data = JSON.parse(data); 
+            <div class="medium-4 columns ">
+                <input id="checkbox2" type="checkbox" name="arquivar"><label for="checkbox2">Arquivar (esconder)</label>
+            </div>
+        </div>
 
-					if( data['profit'] == null) return; 
+        <hr class="separator"/>
 
-					$('#margem_lucro').val(data['profit']); 
+        <div class="row">
 
-				}); 
+            <div class="medium-12 columns">
+                <!-- primeira seção -->
+                <div class="row">
+                    <div class="medium-4 columns">
+                        <label>Nome
+                            <small style="color:red">Obrigatório</small>
+                            <input name="nome" type="text"/>
+                        </label>
+                    </div>
 
-				$('input').focusout(function(){
-					var margem = parseFloat($('#margem_lucro').val()); 
-					var preco  = parseFloat($('#preco_custo').val()); 
+                    <div class="medium-4 columns">
+                        <label>Categoria
+                            <select id="categoria" name="categoriaId">
+                                <option value="">- Selecione -</option>
+                                <!-- $BeginBlock categoria-->
+                                <option value="${categoria.id}">${categoria.nome_categoria}</option>
+                                <!-- $EndBlock  categoria -->
+                            </select>
+                        </label>
+                    </div>
 
-					$('#preco_venda').val( preco + ( (preco / 100) * margem) );
+                    <div class="medium-4 columns">
+                        <label>Código personalizado <input name="codigoPersonalizado" type="text"/> </label>
+                    </div>
+                </div>
 
-				}); 
+                <!-- segundo seção -->
+                <div class="row">
+                    <div class="medium-4 columns">
+                        <label>Unidade tributada
+                            <select name="unidade_tributaria">
+                                <option value="">- Selecine -</option>
+                            </select>
+                        </label>
+                    </div>
 
-			}); 
+                    <div class="medium-4 columns">
+                        <label>Margem de lucro (%)<input type="number" name="margemLucro" id="margem_lucro"/> </label>
+                    </div>
 
-	  		//Código para a deleção: 
-	  		$(document).Conf(); 
-	  		$(document).Crud('produtos','#novo_produto',function(data){
-	  			alertify.log(data); 
-	  		}); 
-		}); 
+                    <div class="medium-4 columns">
+                        <label> Preço de custo<input type="number" id="preco_custo" name="precoCusto"/> </label>
+                    </div>
+                </div>
 
-	</script>
+                <!-- terceiro seção -->
+                <div class="row">
+                    <div class="medium-4 columns">
+                        <label>Preço de venda <input type="number" id="preco_venda" name="precoVenda"/> </label>
+                    </div>
+
+                    <div class="medium-4 columns">
+                        <label>inform. adicionais para o NFe <input type="text" name="inforNfe"/> </label>
+                    </div>
+
+                    <div class="medium-4 columns">
+                        <label>Referência EAN/GTIN <input type="text" name="eanGtin"/> </label>
+                    </div>
+                </div>
+
+                <!-- quarta seção -->
+                <div class="row">
+                    <div class="medium-4 columns">
+                        <label>Exceção tabela IPI <input type="text" name="excecaoIpi"/> </label>
+                    </div>
+
+                    <div class="medium-4 columns">
+                        <label>Estoque mínimo<input type="number" name="estoqueMinimo"/> </label>
+                    </div>
+
+                    <div class="medium-4 columns">
+                        <label>Palavras-chave <input type="text" name="palavraChave"/> </label>
+                    </div>
+                </div>
+
+                <!-- quinta seção -->
+                <div class="row">
+                    <div class="medium-4 columns">
+                        <label>NCM <a target="_blank"
+                                      href="http://www4.receita.fazenda.gov.br/simulador/PesquisarNCM.jsp">(Encontre
+                            aqui)</a> <input type="text" name="ncm"/> </label>
+                    </div>
+                </div>
+
+                <!-- sexta seção -->
+                <div class="row">
+                    <div class="medium-12 columns">
+                        <label>Anotações internas<textarea name="anotacoesInternas"></textarea></label>
+                    </div>
+                </div>
+
+                <!-- botões -->
+                <div class="row">
+                    <div class="medium-12 columns">
+                        <div class="panel clearfix">
+                            <button type="submit" class="button small secondary right">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+    <!-- fim formulário -->
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+
+<!-- end modal sections -->
+
+<!--footer begin -->
+<!-- $Include templates/lib/html/footer.html -->
+<!--footer end-->
+
+<script>
+    $(document).foundation();
+
+    $(document).ready(function () {
+        $('#categoria').change(function () {
+            var idCategoria = $('#categoria option:selected').attr('value');
+
+            if (idCategoria == '')
+                $('#margem_lucro').val('');
+
+            var data = {'id': idCategoria};
+            sendAjax('index.php?uc=ajaxServices&a=getCategoryProfit', 'POST', data, function (data) {
+                data = JSON.parse(data);
+
+                if (data['profit'] == null) return;
+
+                $('#margem_lucro').val(data['profit']);
+
+            });
+
+            $('input').focusout(function () {
+                var margem = parseFloat($('#margem_lucro').val());
+                var preco = parseFloat($('#preco_custo').val());
+
+                $('#preco_venda').val(preco + ( (preco / 100) * margem));
+
+            });
+
+        });
+
+        //Código para a deleção:
+        $(document).Conf();
+        $(document).Crud('produtos', '#novo_produto', function (data) {
+            alertify.log(data);
+        });
+    });
+
+</script>
 </body>
-<!--footer bagin -->  
-<!-- $Include templates/lib/html/footertag.html --> 
-<!--footer end--> 
+<!--footer bagin -->
+<!-- $Include templates/lib/html/footertag.html -->
+<!--footer end-->
 </html>

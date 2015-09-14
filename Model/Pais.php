@@ -8,17 +8,16 @@
  * @package Model
  *
  */
+class Pais extends Lumine_Base
+{
 
-class Pais extends Lumine_Base {
 
-    
     public $id;
     public $des;
     public $estados = array();
     public $locais = array();
-    
-    
-    
+
+
     /**
      * Inicia os valores da classe
      * @author Hugo Ferreira da Silva
@@ -28,13 +27,13 @@ class Pais extends Lumine_Base {
     {
         $this->metadata()->setTablename('pais');
         $this->metadata()->setPackage('Model');
-        
+
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
-        
+
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true));
         $this->metadata()->addField('des', 'des', 'varchar', 45, array('notnull' => true));
 
-        
+
         $this->metadata()->addRelation('estados', Lumine_Metadata::ONE_TO_MANY, 'Estado', 'paisId', null, null, null);
         $this->metadata()->addRelation('locais', Lumine_Metadata::ONE_TO_MANY, 'Local', 'paisId', null, null, null);
     }

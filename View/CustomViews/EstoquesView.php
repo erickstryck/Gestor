@@ -1,84 +1,87 @@
 <?php
-require_once(PATH.'View'.DS.'GenericView.php'); 
-require_once(PATH.'Util'.DS.'Convert.php'); 
+require_once(PATH . 'View' . DS . 'GenericView.php');
+require_once(PATH . 'Util' . DS . 'Convert.php');
 
-class EstoquesView extends GenericView{
-	
-	public function __construct(){
-		parent::__construct($this); 
-	}
+class EstoquesView extends GenericView
+{
 
-	public function novoAjusteView(){
-		parent::getTemplateByAction('ajusteEstoque');
+    public function __construct()
+    {
+        parent::__construct($this);
+    }
 
-		Lumine::import("Categoria"); 
-		Lumine::import("Produto"); 
-		Lumine::import("Contato"); 
-		Lumine::import("TipoAjuste"); 
-		Lumine::import("Contato"); 
-		Lumine::import("MudancaEstoque"); 
-		Lumine::import("MudancaEstoqueHasEstoque"); 
+    public function novoAjusteView()
+    {
+        parent::getTemplateByAction('ajusteEstoque');
 
-		$categoria = new Categoria(); 
-		$categoria->where('empresa_id = '. $_SESSION['empresaId']." and ativo = 1")->find(); 
+        Lumine::import("Categoria");
+        Lumine::import("Produto");
+        Lumine::import("Contato");
+        Lumine::import("TipoAjuste");
+        Lumine::import("Contato");
+        Lumine::import("MudancaEstoque");
+        Lumine::import("MudancaEstoqueHasEstoque");
 
-		while($categoria->fetch()){
-			parent::$templator->setVariable('categoria.id', $categoria->id);
-			parent::$templator->setVariable('categoria.nome_categoria', $categoria->nomeCategoria);
-			
-			parent::$templator->addBlock('categoria'); 
-		}
+        $categoria = new Categoria();
+        $categoria->where('empresa_id = ' . $_SESSION['empresaId'] . " and ativo = 1")->find();
 
-		$tipoAjuste = new TipoAjuste(); 
-		$tipoAjuste->find(); 
+        while ($categoria->fetch()) {
+            parent::$templator->setVariable('categoria.id', $categoria->id);
+            parent::$templator->setVariable('categoria.nome_categoria', $categoria->nomeCategoria);
 
-		while($tipoAjuste->fetch()){
-			parent::$templator->setVariable('tipo_ajuste.id', $tipoAjuste->id);
-			parent::$templator->setVariable('tipo_ajuste.des', Convert::toUTF_8($tipoAjuste->des));
-			
-			parent::$templator->addBlock('tipo_ajuste'); 
-		}
+            parent::$templator->addBlock('categoria');
+        }
+
+        $tipoAjuste = new TipoAjuste();
+        $tipoAjuste->find();
+
+        while ($tipoAjuste->fetch()) {
+            parent::$templator->setVariable('tipo_ajuste.id', $tipoAjuste->id);
+            parent::$templator->setVariable('tipo_ajuste.des', Convert::toUTF_8($tipoAjuste->des));
+
+            parent::$templator->addBlock('tipo_ajuste');
+        }
 
 
-		$contato = new Contato(); 
-		$contato->where("empresa_id = ". $_SESSION['empresaId']." and ativo = 1")->find(); 
+        $contato = new Contato();
+        $contato->where("empresa_id = " . $_SESSION['empresaId'] . " and ativo = 1")->find();
 
-		while($contato->fetch() ){
-			parent::$templator->setVariable('contato.id', $contato->id);
-			parent::$templator->setVariable('contato.nome_fantasia', Convert::toUTF_8($contato->nomeFantasia));
-			
-			parent::$templator->addBlock('contato'); 
-		}
-		
+        while ($contato->fetch()) {
+            parent::$templator->setVariable('contato.id', $contato->id);
+            parent::$templator->setVariable('contato.nome_fantasia', Convert::toUTF_8($contato->nomeFantasia));
 
-		//ficçando itens na tela da mudança de estoque. 
-		$produto = new Produto(); 
-		
-		$contato = new Contato();
-		$tipo    = new Tipoajuste();  
-		//$associativaContato = new MudancaEstoqueHasEstoque(); 
+            parent::$templator->addBlock('contato');
+        }
 
-		$produto->where('empresa_id = '. $_SESSION['empresaId']." and ativo = 1")->find(); 
 
-		while($produto->fetch() ){
+        //ficçando itens na tela da mudança de estoque.
+        $produto = new Produto();
 
-			$mudanca = new MudancaEstoque(); 
-			$mudanca->where("produto_id =". $produto->id)->find(); 
+        $contato = new Contato();
+        $tipo = new Tipoajuste();
+        //$associativaContato = new MudancaEstoqueHasEstoque();
 
-			while($mudanca->fetch()){
-				parent::$templator->setVariable('mudanca.id', $mudanca->id);
+        $produto->where('empresa_id = ' . $_SESSION['empresaId'] . " and ativo = 1")->find();
 
-				$tipo = new TipoAjuste(); 
-				$tipo->get($mudanca->tipoAjusteId); 
+        while ($produto->fetch()) {
 
-				parent::$templator->setVariable('mudanca.tipo', Convert::toUTF_8($tipo->des));
-				parent::$templator->setVariable('mudanca.obs', $mudanca->obsGerais);
-				parent::$templator->setVariable('mudanca.data', $mudanca->dataMudanca);
+            $mudanca = new MudancaEstoque();
+            $mudanca->where("produto_id =" . $produto->id)->find();
 
-				parent::$templator->addBlock('row'); 
-			}
-			
-		}
-		parent::show(); 
-	}
+            while ($mudanca->fetch()) {
+                parent::$templator->setVariable('mudanca.id', $mudanca->id);
+
+                $tipo = new TipoAjuste();
+                $tipo->get($mudanca->tipoAjusteId);
+
+                parent::$templator->setVariable('mudanca.tipo', Convert::toUTF_8($tipo->des));
+                parent::$templator->setVariable('mudanca.obs', $mudanca->obsGerais);
+                parent::$templator->setVariable('mudanca.data', $mudanca->dataMudanca);
+
+                parent::$templator->addBlock('row');
+            }
+
+        }
+        parent::show();
+    }
 }

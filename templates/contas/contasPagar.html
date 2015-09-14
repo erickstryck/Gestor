@@ -1,308 +1,333 @@
-	  <!DOCTYPE html>
-	  <html class="no-js" lang="pt">
-	  <head>
-	  	<!-- init script and css -->  
-	  	<!-- $Include templates/lib/html/scripthead.html --> 
-	  	<!--init script and css end-->
-	  	<title>Contas a pagar</title>
-	  	
-
-	  	<style type="text/css">
-	  		.separator{
-	  			margin-top: 0; 
-	  			margin-bottom: 0; 
-	  		}
-
-	  		select option:disabled {
-	  			color:red;
-	  			font-weight: bold;
-	  		}
-
-	  	</style>
-
-	  </head>
-	  <body>
-	  	<!--top bar bagin -->  
-	  	<!-- $Include templates/lib/html/header.html --> 
-	  	<!--top bar end--> 
-
-	  	<!-- body section-->
-
-	  	<!-- title -->
-	  	<div class="row full-width">
-	  		<div class="medium-12 columns ">
-	  			<h3>CONTAS A PAGAR</h3>
-	  		</div>	
-	  	</div>
-
-	  	<!-- botões --> 
-	  	<div class="row full-width">
-	  		<div class="medium-12 columns">
-	  			<button class="button success small cadastrar"  <i class="fa fa-plus fa-lg"></i> Novo Pagamento</button>
-	  			<button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas</button>
-	  		</div>
-	  	</div>
-
-	  	<!-- container main --> 
-	  	<div class="row full-width">
-	  		<div class="medium-12 columns">
-	  			<!-- tabela --> 
-	  			<table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
-	  				<thead>
-	  					<tr>
-	  						<th>COD</th>
-	  						<th>DESCRIÇÃO</th>
-	  						<th>CONTATO</th>
-	  						<th>TIPO DOC</th>
-	  						<th>NRO DOC</th>
-	  						<th>SITUAÇÃO</th>
-	  						<th>VENCIMENTO</th>
-	  						<th>DATA PGTO</th>
-	  						<th>VALOR</th>
-	  						<th>VALOR PAGO</th>
-	  						<th></th>
-	  					</tr>
-	  				</thead>
-	  				<tbody>
-	  					<!-- $BeginBlock row --> 
-	  					<tr>
-	  						<td>${conta.id}</td>
-	  						<td>${conta.descricao}</td>
-	  						<td>${conta.contato}</td>
-	  						<td>${conta.tipo_doc}</td>
-	  						<td>${conta.nro_doc}</td>
-	  						<td>${conta.situcao}</td>
-	  						<td>${conta.vencimento}</td>
-	  						<td>${conta.data_pagamento}</td>
-	  						<td>${conta.valor}</td>
-	  						<td>${conta.valor_pago}</td>
-	  						<td>
-	  						<button class="alterar fix" value="${conta.id}" ><i class="fa fa-pencil-square-o"></i></button><button class="fix del" value="${conta.id}" ><i class="fa fa-trash"></i></button>
-	  						</td>
-
-	  					</tr>
-	  					<!-- $EndBlock row --> 
-	  				</tbody>
-
-	  				<tfoot>
-	  					<tr>
-	  						<th>COD</th>
-	  						<th>DESCRIÇÃO</th>
-	  						<th>CONTATO</th>
-	  						<th>TIPO DOC</th>
-	  						<th>NRO DOC</th>
-	  						<th>SITUAÇÃO</th>
-	  						<th>VENCIMENTO</th>
-	  						<th>DATA PGTO</th>
-	  						<th>VALOR</th>
-	  						<th>VALOR PAGO</th>
-	  						<th></th>
-	  					</tr>
-	  				</tfoot>
-	  			</table>
-	  			<!-- fim tabela --> 
-	  		</div>	
-	  <!-- 	</div>	 -->
-	  	<!-- end body section--> 
+<!DOCTYPE html>
+<html class="no-js" lang="pt">
+<head>
+    <!-- init script and css -->
+    <!-- $Include templates/lib/html/scripthead.html -->
+    <!--init script and css end-->
+    <title>Contas a pagar</title>
 
 
-	  	<!-- modal sections --> 
+    <style type="text/css">
+        .separator {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
 
-	  	
-	  	<!-- nova venda --> 
-	  	<div id="novo_pagamento" class="reveal-modal xlarge" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-	  		<h2 id="modalTitle">Conta a pagar</h2>
-	  		<p class="lead">Insira os dados abaixo</p>
-	  		<!-- formulário --> 
-	  		<form id="form_conta" data-abide="ajax">
-	  			<div class="row">
-	  				<!-- primeira coluna -->
-	  				<div class="medium-9 columns">
-	  					<!-- primeira linha -->
-	  					<div class="row">
-	  						<div class="medium-4 columns">
-	  							<label>Descrição <small style="color:red;">Obrigatório</small>
-	  								<input type="text" name="descricao" required /> 
-	  							</label> <small class="error">Você precisa preencher este campo.</small>
-	  						</div>
+        select option:disabled {
+            color: red;
+            font-weight: bold;
+        }
 
-	  						<div class="medium-4 columns">
-	  							<label>Data do lançamento<input value="${date_now}" type="date" name="dataLancamento" /> </label>
-	  						</div>
+    </style>
 
-	  						<div class="medium-4 columns">
-	  							<label>Data de vencimento<input type="date" name="dataVencimento" /> </label>
-	  						</div>
-	  					</div>
-	  					<!-- segunda linha -->
-	  					<div class="row">
-	  						<div class="medium-4 columns">
-	  							<label>Valor cobrado<input  type="number" name="valor" /> </label>
-	  						</div>
+</head>
+<body>
+<!--top bar bagin -->
+<!-- $Include templates/lib/html/header.html -->
+<!--top bar end-->
 
-	  						<div class="medium-4 columns">
-	  							<label>Tipo documento <small style="color:red;">Obrigatório</small>
-	  								<select required name="tipoDocumentoId">
-	  									<option value="">-Selecione-</option>
-	  									<!-- $BeginBlock tipo_documento --> 
-	  									<option value="${tipo_documento.id}">${tipo_documento.des}</option>
-	  									<!-- $EndBlock  tipo_documento -->
-	  								</select> 
-	  							</label><small class="error"> Selecione uma opção</small>
-	  						</div>
+<!-- body section-->
 
-	  						<div class="medium-4 columns">
-	  							<label>Nru. documento <input type="number" name="numeroDocumento" /> </label>
-	  						</div>
-	  					</div>
-	  					<!-- terceira linha -->
-	  					<div class="row">
-	  						<div class="medium-4 columns">
-	  							<label>Contato <small style="color:red;">Obrigatório</small>
-	  								<select required name="contatoId">
-	  									<option value="">-Selecione</option>
-	  									<!-- $BeginBlock contato --> 
-	  									<option value="${contato.id}">${contato.des}</option>
-	  									<!-- $EndBlock  contato -->
-	  								</select> 
-	  							</label><small class="error"> Selecione uma opção</small>
-	  						</div>
+<!-- title -->
+<div class="row full-width">
+    <div class="medium-12 columns ">
+        <h3>CONTAS A PAGAR</h3>
+    </div>
+</div>
 
-	  						<div class="medium-4 columns">
-	  							<label>Plano de contas <small style="color:red;">Obrigatório</small>
-	  								<select required name="planoContaId">
-	  									<option value="">-Selecione-</option>
-	  									<!-- $BeginBlock plano_conta --> 
-	  									<option ${disabled} value="${plano_conta.id}">${plano_conta.des}</option>
-	  									<!-- $EndBlock  plano_conta -->
-	  								</select> 
-	  							</label><small class="error">Selecione uma opção</small>
-	  						</div>
+<!-- botões -->
+<div class="row full-width">
+    <div class="medium-12 columns">
+        <button class="button success small cadastrar"
+        <i class="fa fa-plus fa-lg"></i> Novo Pagamento</button>
+        <button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas
+        </button>
+    </div>
+</div>
 
-	  						<div class="medium-4 columns">
-	  							<label>Conta de origem <small style="color:red;"></small> 
-	  								<select name="recipienteId" required >
-	  									<option value="">-Selecione-</option>
-	  									<!-- $BeginBlock recipiente --> 
-	  									<option value="${recipiente.id}" >${recipiente.des}</option>
-	  									<!-- $EndBlock  recipiente -->
-	  								</select>
-	  							</label><small class="error">Selecione uma opção</small>
-	  						</div>
-	  					</div>
-	  					<!-- quarta linha -->
-	  					<div class="row">
-	  						<div class="medium-4 columns">
-	  							<input id="checkbox1" type="checkbox" name="apenasPrevisao"><label for="checkbox1">Apenas previsão
-	  						</label>
-	  					</div>
+<!-- container main -->
+<div class="row full-width">
+    <div class="medium-12 columns">
+        <!-- tabela -->
+        <table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
+            <thead>
+            <tr>
+                <th>COD</th>
+                <th>DESCRIÇÃO</th>
+                <th>CONTATO</th>
+                <th>TIPO DOC</th>
+                <th>NRO DOC</th>
+                <th>SITUAÇÃO</th>
+                <th>VENCIMENTO</th>
+                <th>DATA PGTO</th>
+                <th>VALOR</th>
+                <th>VALOR PAGO</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- $BeginBlock row -->
+            <tr>
+                <td>${conta.id}</td>
+                <td>${conta.descricao}</td>
+                <td>${conta.contato}</td>
+                <td>${conta.tipo_doc}</td>
+                <td>${conta.nro_doc}</td>
+                <td>${conta.situcao}</td>
+                <td>${conta.vencimento}</td>
+                <td>${conta.data_pagamento}</td>
+                <td>${conta.valor}</td>
+                <td>${conta.valor_pago}</td>
+                <td>
+                    <button class="alterar fix" value="${conta.id}"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="fix del" value="${conta.id}"><i class="fa fa-trash"></i></button>
+                </td>
 
-	  					<div class="medium-4 columns">
-	  						<label>Cadastrar mais de uma vez <small style="color:red;">Obrigatório</small>
-	  							<select required name="cadastrarVezesId">
-	  								<option value="">-Selecione-</option>
-	  								<!-- $BeginBlock cadastrar_vezes --> 
-	  								<option value="${cadastrar_vezes.id}">${cadastrar_vezes.des}</option>
-	  								<!-- $EndBlock  cadastrar_vezes -->
-	  							</select>
-	  						</label> <small class="error">Selecione uma opção</small>
-	  					</div>
+            </tr>
+            <!-- $EndBlock row -->
+            </tbody>
 
-	  					<div class="medium-4 columns">
-	  						<label>Repetir o seguinte intervalo <small style="color:red;">Obrigatório</small>
-	  							<select required name="intervaloId">
-	  								<option value="">-Selecione-</option>
-	  								<!-- $BeginBlock intervalo --> 
-	  								<option value="${intervalo.id}">${intervalo.des}</option>
-	  								<!-- $EndBlock  intervalo -->
-	  							</select>
-	  						</label> <small class="error">Selecione uma opção</small>
-	  					</div>
-	  				</div>
-	  				<!-- quinta linha -->
-	  				<div class="row">
-	  					<div class="medium-4 columns">
-	  						<input id="paga" type="checkbox" name="paga"><label for="paga">Pagar agora</label>
-	  					</div>
-
-	  					<div class="medium-4 columns">
-	  						<label>Valor Pagamento<input type="number" name="valorPagamento" id="valor_pagamento" /> </label>
-	  					</div>
-
-	  					<div class="medium-4 columns">
-	  						<label>Data pagamento <input type="date" value="${date_now}" name="dataPagamento" id="data_pagamento"/> </label>
-	  					</div>
-	  				</div>
-	  			</div>
-
-	  			<!-- segunda colunha -->
-	  			<div class="medium-3 columns">
-	  				<!-- primeira linha -->
-	  				<div class="row">
-	  					<div class="medium-12">
-	  						<label>Observações<textarea style="height:280px;" name="observacoes"></textarea></label>
-	  					</div>		
-	  				</div>
-
-	  				<!-- segunda linha -->
-	  				<div class="row">
-	  					<div class="medium-12">
-	  						<label>Palavra-chave <input type="text"  name="palavraChave"/></label>
-	  					</div>		
-	  				</div>		
-	  			</div>
-
-	  		</div>
-	  		<!-- botões -->
-	  		<div class="row">
-	  			<div class="medium-12 columns">		
-	  				<div class="panel clearfix" style="height:75px;">
-	  					<button type="submit" class="button success tiny right">Registrar</button>	
-
-	  				</div>	
-	  			</div>
-	  		</div>	
-	  	</form>
-	  	<!-- fim formulário --> 
-	  	<a class="close-reveal-modal" aria-label="Close">&#215;</a>
-	  </div>
-
-	  <!--footer bagin -->  
-	  <!-- $Include templates/lib/html/footer.html --> 
-	  <!--footer end--> 
+            <tfoot>
+            <tr>
+                <th>COD</th>
+                <th>DESCRIÇÃO</th>
+                <th>CONTATO</th>
+                <th>TIPO DOC</th>
+                <th>NRO DOC</th>
+                <th>SITUAÇÃO</th>
+                <th>VENCIMENTO</th>
+                <th>DATA PGTO</th>
+                <th>VALOR</th>
+                <th>VALOR PAGO</th>
+                <th></th>
+            </tr>
+            </tfoot>
+        </table>
+        <!-- fim tabela -->
+    </div>
+    <!-- 	</div>	 -->
+    <!-- end body section-->
 
 
-	  <script>
-	  	$(document).foundation();
+    <!-- modal sections -->
 
-	  	$(document).ready(function(){
-	  		//Trancando os campos para não edição: 
-	  		desabilitarCampos($('#paga')); 
 
-	  		//Manipulador para o formulário
-	  		$(document).Conf({'cadastro' : 'cadastroPagamento', 'alterar' : 'alteraPagamento'}); 
+    <!-- nova venda -->
+    <div id="novo_pagamento" class="reveal-modal xlarge" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+         role="dialog">
+        <h2 id="modalTitle">Conta a pagar</h2>
 
-	  		$(document).Crud('contas','#novo_pagamento',function(data){
-	  			desabilitarCampos($('#paga')); 
-	  		}); 
+        <p class="lead">Insira os dados abaixo</p>
+        <!-- formulário -->
+        <form id="form_conta" data-abide="ajax">
+            <div class="row">
+                <!-- primeira coluna -->
+                <div class="medium-9 columns">
+                    <!-- primeira linha -->
+                    <div class="row">
+                        <div class="medium-4 columns">
+                            <label>Descrição
+                                <small style="color:red;">Obrigatório</small>
+                                <input type="text" name="descricao" required/>
+                            </label>
+                            <small class="error">Você precisa preencher este campo.</small>
+                        </div>
 
-	  		//Informando se a conta é para ser paga agora.
-	  		
-	  		$('#paga').change(function(){desabilitarCampos(this)}); 
-	  	}); 
+                        <div class="medium-4 columns">
+                            <label>Data do lançamento<input value="${date_now}" type="date" name="dataLancamento"/>
+                            </label>
+                        </div>
 
-	  	function desabilitarCampos(target){
-	  			if($(target).is(':checked')){
-	  				$("#data_pagamento").attr("disabled", false);  
-	  				$("#valor_pagamento").attr("disabled", false); 
-	  			}else{
-	  				$("#data_pagamento").attr("disabled", true); 
-	  				$("#valor_pagamento").attr("disabled", true); 
-	  			}
-	  		}
-	  </script>
-	</body>
-	<!--footer bagin -->  
-	<!-- $Include templates/lib/html/footertag.html --> 
-	<!--footer end--> 
-	</html>
+                        <div class="medium-4 columns">
+                            <label>Data de vencimento<input type="date" name="dataVencimento"/> </label>
+                        </div>
+                    </div>
+                    <!-- segunda linha -->
+                    <div class="row">
+                        <div class="medium-4 columns">
+                            <label>Valor cobrado<input type="number" name="valor"/> </label>
+                        </div>
+
+                        <div class="medium-4 columns">
+                            <label>Tipo documento
+                                <small style="color:red;">Obrigatório</small>
+                                <select required name="tipoDocumentoId">
+                                    <option value="">-Selecione-</option>
+                                    <!-- $BeginBlock tipo_documento -->
+                                    <option value="${tipo_documento.id}">${tipo_documento.des}</option>
+                                    <!-- $EndBlock  tipo_documento -->
+                                </select>
+                            </label>
+                            <small class="error"> Selecione uma opção</small>
+                        </div>
+
+                        <div class="medium-4 columns">
+                            <label>Nru. documento <input type="number" name="numeroDocumento"/> </label>
+                        </div>
+                    </div>
+                    <!-- terceira linha -->
+                    <div class="row">
+                        <div class="medium-4 columns">
+                            <label>Contato
+                                <small style="color:red;">Obrigatório</small>
+                                <select required name="contatoId">
+                                    <option value="">-Selecione</option>
+                                    <!-- $BeginBlock contato -->
+                                    <option value="${contato.id}">${contato.des}</option>
+                                    <!-- $EndBlock  contato -->
+                                </select>
+                            </label>
+                            <small class="error"> Selecione uma opção</small>
+                        </div>
+
+                        <div class="medium-4 columns">
+                            <label>Plano de contas
+                                <small style="color:red;">Obrigatório</small>
+                                <select required name="planoContaId">
+                                    <option value="">-Selecione-</option>
+                                    <!-- $BeginBlock plano_conta -->
+                                    <option ${disabled} value="${plano_conta.id}">${plano_conta.des}</option>
+                                    <!-- $EndBlock  plano_conta -->
+                                </select>
+                            </label>
+                            <small class="error">Selecione uma opção</small>
+                        </div>
+
+                        <div class="medium-4 columns">
+                            <label>Conta de origem
+                                <small style="color:red;"></small>
+                                <select name="recipienteId" required>
+                                    <option value="">-Selecione-</option>
+                                    <!-- $BeginBlock recipiente -->
+                                    <option value="${recipiente.id}">${recipiente.des}</option>
+                                    <!-- $EndBlock  recipiente -->
+                                </select>
+                            </label>
+                            <small class="error">Selecione uma opção</small>
+                        </div>
+                    </div>
+                    <!-- quarta linha -->
+                    <div class="row">
+                        <div class="medium-4 columns">
+                            <input id="checkbox1" type="checkbox" name="apenasPrevisao"><label for="checkbox1">Apenas
+                            previsão
+                        </label>
+                        </div>
+
+                        <div class="medium-4 columns">
+                            <label>Cadastrar mais de uma vez
+                                <small style="color:red;">Obrigatório</small>
+                                <select required name="cadastrarVezesId">
+                                    <option value="">-Selecione-</option>
+                                    <!-- $BeginBlock cadastrar_vezes -->
+                                    <option value="${cadastrar_vezes.id}">${cadastrar_vezes.des}</option>
+                                    <!-- $EndBlock  cadastrar_vezes -->
+                                </select>
+                            </label>
+                            <small class="error">Selecione uma opção</small>
+                        </div>
+
+                        <div class="medium-4 columns">
+                            <label>Repetir o seguinte intervalo
+                                <small style="color:red;">Obrigatório</small>
+                                <select required name="intervaloId">
+                                    <option value="">-Selecione-</option>
+                                    <!-- $BeginBlock intervalo -->
+                                    <option value="${intervalo.id}">${intervalo.des}</option>
+                                    <!-- $EndBlock  intervalo -->
+                                </select>
+                            </label>
+                            <small class="error">Selecione uma opção</small>
+                        </div>
+                    </div>
+                    <!-- quinta linha -->
+                    <div class="row">
+                        <div class="medium-4 columns">
+                            <input id="paga" type="checkbox" name="paga"><label for="paga">Pagar agora</label>
+                        </div>
+
+                        <div class="medium-4 columns">
+                            <label>Valor Pagamento<input type="number" name="valorPagamento" id="valor_pagamento"/>
+                            </label>
+                        </div>
+
+                        <div class="medium-4 columns">
+                            <label>Data pagamento <input type="date" value="${date_now}" name="dataPagamento"
+                                                         id="data_pagamento"/> </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- segunda colunha -->
+                <div class="medium-3 columns">
+                    <!-- primeira linha -->
+                    <div class="row">
+                        <div class="medium-12">
+                            <label>Observações<textarea style="height:280px;" name="observacoes"></textarea></label>
+                        </div>
+                    </div>
+
+                    <!-- segunda linha -->
+                    <div class="row">
+                        <div class="medium-12">
+                            <label>Palavra-chave <input type="text" name="palavraChave"/></label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- botões -->
+            <div class="row">
+                <div class="medium-12 columns">
+                    <div class="panel clearfix" style="height:75px;">
+                        <button type="submit" class="button success tiny right">Registrar</button>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- fim formulário -->
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+    <!--footer bagin -->
+    <!-- $Include templates/lib/html/footer.html -->
+    <!--footer end-->
+
+
+    <script>
+        $(document).foundation();
+
+        $(document).ready(function () {
+            //Trancando os campos para não edição:
+            desabilitarCampos($('#paga'));
+
+            //Manipulador para o formulário
+            $(document).Conf({'cadastro': 'cadastroPagamento', 'alterar': 'alteraPagamento'});
+
+            $(document).Crud('contas', '#novo_pagamento', function (data) {
+                desabilitarCampos($('#paga'));
+            });
+
+            //Informando se a conta é para ser paga agora.
+
+            $('#paga').change(function () {
+                desabilitarCampos(this)
+            });
+        });
+
+        function desabilitarCampos(target) {
+            if ($(target).is(':checked')) {
+                $("#data_pagamento").attr("disabled", false);
+                $("#valor_pagamento").attr("disabled", false);
+            } else {
+                $("#data_pagamento").attr("disabled", true);
+                $("#valor_pagamento").attr("disabled", true);
+            }
+        }
+    </script>
+</body>
+<!--footer bagin -->
+<!-- $Include templates/lib/html/footertag.html -->
+<!--footer end-->
+</html>

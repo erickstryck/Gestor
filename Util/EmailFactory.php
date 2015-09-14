@@ -1,12 +1,15 @@
-<?php 
-namespace Util; 
+<?php
+namespace Util;
 
-class EmailFactory{
-	public function __construct(){
+class EmailFactory
+{
+    public function __construct()
+    {
 
-	}
+    }
 
-	public static function emailOnCadastre( $nome, $cpf, $senha){
-		return "<p>Olar<p>"; 
-	}
+    public static function emailOnCadastre($nome, $cpf, $senha)
+    {
+        return "<p>Olar<p>";
+    }
 }

@@ -1,28 +1,31 @@
 <?php
-require_once(PATH.'View'.DS.'GenericView.php'); 
-require_once(PATH.'Util'.DS.'Convert.php'); 
+require_once(PATH . 'View' . DS . 'GenericView.php');
+require_once(PATH . 'Util' . DS . 'Convert.php');
 
-class CategoriasView extends GenericView{
-	
-	public function __construct(){
-		parent::__construct($this); 
-	}
+class CategoriasView extends GenericView
+{
 
-	public function novaCategoriaView(){
-		parent::getTemplateByAction('novaCategoria'); 
-		Lumine::import("Categoria"); 
+    public function __construct()
+    {
+        parent::__construct($this);
+    }
 
-		$categoria = new Categoria();
-		$categoria->where("empresa_id = ". $_SESSION['empresaId']." and ativo = 1")->find(); 
+    public function novaCategoriaView()
+    {
+        parent::getTemplateByAction('novaCategoria');
+        Lumine::import("Categoria");
 
-		
-		while($categoria->fetch()){
-			parent::$templator->setVariable('categoria.id', Convert::zeroEsquerda($categoria->id));
-			parent::$templator->setVariable('categoria.nome_categoria', $categoria->nomeCategoria); 
-			parent::$templator->setVariable('categoria.margem_lucro', Convert::toUpperCase(Convert::toUTF_8($categoria->margemLucro))); 
-			parent::$templator->addBlock('row'); 
-		} 
+        $categoria = new Categoria();
+        $categoria->where("empresa_id = " . $_SESSION['empresaId'] . " and ativo = 1")->find();
 
-		parent::show(); 
-	}
+
+        while ($categoria->fetch()) {
+            parent::$templator->setVariable('categoria.id', Convert::zeroEsquerda($categoria->id));
+            parent::$templator->setVariable('categoria.nome_categoria', $categoria->nomeCategoria);
+            parent::$templator->setVariable('categoria.margem_lucro', Convert::toUpperCase(Convert::toUTF_8($categoria->margemLucro)));
+            parent::$templator->addBlock('row');
+        }
+
+        parent::show();
+    }
 }

@@ -1,30 +1,37 @@
-<?php 
-class Convert 
+<?php
+
+class Convert
 {
-	function __construct(){
-	}
+    function __construct()
+    {
+    }
 
-	public static function toUTF_8($string){
-		return utf8_encode($string); 
-	}
+    public static function toUTF_8($string)
+    {
+        return utf8_encode($string);
+    }
 
-	public static function toUpperCase($string){
-		return strtoupper($string); 
-	}
+    public static function toUpperCase($string)
+    {
+        return strtoupper($string);
+    }
 
-	public static function minification($string, $minLength){
-		if($string == null ) return null; 
-		if(strlen($string) <= $minLength ) return $string; 
+    public static function minification($string, $minLength)
+    {
+        if ($string == null) return null;
+        if (strlen($string) <= $minLength) return $string;
 
-		return substr($string,0,$minLength).'...'; 
-	}
+        return substr($string, 0, $minLength) . '...';
+    }
 
-	public static function numberFormat( $number){
-		$numberFormatter = new NumberFormatter('pt-BR',NumberFormatter::CURRENCY); 
-		return $numberFormatter->format($number);
-	}
+    public static function numberFormat($number)
+    {
+        $numberFormatter = new NumberFormatter('pt-BR', NumberFormatter::CURRENCY);
+        return $numberFormatter->format($number);
+    }
 
-	public static function zeroEsquerda( $valor ){
-		return str_pad($valor, 6, "0", STR_PAD_LEFT);
-	}
+    public static function zeroEsquerda($valor)
+    {
+        return str_pad($valor, 6, "0", STR_PAD_LEFT);
+    }
 }

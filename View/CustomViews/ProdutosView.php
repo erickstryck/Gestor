@@ -1,52 +1,55 @@
 <?php
-require_once(PATH.'View'.DS.'GenericView.php'); 
-require_once(PATH.'Util'.DS.'Convert.php'); 
+require_once(PATH . 'View' . DS . 'GenericView.php');
+require_once(PATH . 'Util' . DS . 'Convert.php');
 
-class ProdutosView extends GenericView{
-	
-	public function __construct(){
-		parent::__construct($this); 
-	}
+class ProdutosView extends GenericView
+{
 
-	public function novoProdutoView(){
-		parent::getTemplateByAction('novoProduto'); 
-		Lumine::import("Categoria");
-		Lumine::import("CategoriaHasProduto");  
-		Lumine::import("Produto"); 
+    public function __construct()
+    {
+        parent::__construct($this);
+    }
 
-		$produto = new Produto(); 
-		$produto->where(" empresa_id = ". $_SESSION['empresaId']." and ativo = 1")->find(); 
+    public function novoProdutoView()
+    {
+        parent::getTemplateByAction('novoProduto');
+        Lumine::import("Categoria");
+        Lumine::import("CategoriaHasProduto");
+        Lumine::import("Produto");
 
-		while($produto->fetch()){
-			parent::$templator->setVariable('produto.id', $produto->id);
-			parent::$templator->setVariable('produto.nome', $produto->nome);
+        $produto = new Produto();
+        $produto->where(" empresa_id = " . $_SESSION['empresaId'] . " and ativo = 1")->find();
 
-			//Pegando associação com alguma categoria aqui: 
-			$categoria = new Categoria(); 
-			$categoria->get($produto->categoriaId); 
+        while ($produto->fetch()) {
+            parent::$templator->setVariable('produto.id', $produto->id);
+            parent::$templator->setVariable('produto.nome', $produto->nome);
 
-			parent::$templator->setVariable('produto.categoria', ((!$categoria->ativo) ? "<i style='color:red'>Categoria Deletada</i>": $categoria->nomeCategoria));
-			parent::$templator->setVariable('produto.preco_venda', $produto->precoVenda);
-			parent::$templator->setVariable('produto.estoque', '0');
-			parent::$templator->setVariable('produto.reserva', '0');
-			parent::$templator->setVariable('produto.oc', '0');
-			parent::$templator->setVariable('produto.op', '0');
-			parent::$templator->setVariable('produto.saldo', '0');
-			
-			parent::$templator->addBlock('row'); 
-		} 
+            //Pegando associação com alguma categoria aqui:
+            $categoria = new Categoria();
+            $categoria->get($produto->categoriaId);
+
+            parent::$templator->setVariable('produto.categoria', ((!$categoria->ativo) ? "<i style='color:red'>Categoria Deletada</i>" : $categoria->nomeCategoria));
+            parent::$templator->setVariable('produto.preco_venda', $produto->precoVenda);
+            parent::$templator->setVariable('produto.estoque', '0');
+            parent::$templator->setVariable('produto.reserva', '0');
+            parent::$templator->setVariable('produto.oc', '0');
+            parent::$templator->setVariable('produto.op', '0');
+            parent::$templator->setVariable('produto.saldo', '0');
+
+            parent::$templator->addBlock('row');
+        }
 
 
-		$categoria = new Categoria(); 
-		$categoria->where('empresa_id = '. $_SESSION['empresaId']. ' and ativo = 1')->find(); 
+        $categoria = new Categoria();
+        $categoria->where('empresa_id = ' . $_SESSION['empresaId'] . ' and ativo = 1')->find();
 
-		while($categoria->fetch()){
-			parent::$templator->setVariable('categoria.id', $categoria->id);
-			parent::$templator->setVariable('categoria.nome_categoria', $categoria->nomeCategoria);
-			
-			parent::$templator->addBlock('categoria'); 
-		}
+        while ($categoria->fetch()) {
+            parent::$templator->setVariable('categoria.id', $categoria->id);
+            parent::$templator->setVariable('categoria.nome_categoria', $categoria->nomeCategoria);
 
-		parent::show(); 
-	}
+            parent::$templator->addBlock('categoria');
+        }
+
+        parent::show();
+    }
 }

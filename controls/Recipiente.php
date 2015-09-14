@@ -22,50 +22,45 @@ require_once 'C:/wamp/www/Gestor/lumine-conf.php';
 
 Lumine::load('Form_White');
 
-$cfg = new Lumine_Configuration( $lumineConfig );
+$cfg = new Lumine_Configuration($lumineConfig);
 $cfg->import('Recipiente');
 register_shutdown_function(array($cfg->getConnection(), 'close'));
 
 $obj = new Recipiente;
 
-$form = new Lumine_Form_White( $obj );
+$form = new Lumine_Form_White($obj);
 
-if( !empty($_REQUEST['_lumineAction']))
-{
-	switch($_REQUEST['_lumineAction'])
-	{
-		case 'insert':
-		case 'save':
-			$result = $form->handleAction($_REQUEST['_lumineAction'], $_POST);
-			if($result === true)
-			{
-				header("Location: ".$_SERVER['PHP_SELF'].'?msg=ok');
-				exit;
-			}
-		break;
+if (!empty($_REQUEST['_lumineAction'])) {
+    switch ($_REQUEST['_lumineAction']) {
+        case 'insert':
+        case 'save':
+            $result = $form->handleAction($_REQUEST['_lumineAction'], $_POST);
+            if ($result === true) {
+                header("Location: " . $_SERVER['PHP_SELF'] . '?msg=ok');
+                exit;
+            }
+            break;
 
-		case 'delete':
-			$result = $form->handleAction($_REQUEST['_lumineAction'], $_GET);
-			if($result === true)
-			{
-				header("Location: ".$_SERVER['PHP_SELF'].'?msg=ok');
-				exit;
-			}
-		break;
-		
-		case 'edit':
-			$form->handleAction($_REQUEST['_lumineAction'], $_GET);
-			$editing = 1;
-		break;
-	}
+        case 'delete':
+            $result = $form->handleAction($_REQUEST['_lumineAction'], $_GET);
+            if ($result === true) {
+                header("Location: " . $_SERVER['PHP_SELF'] . '?msg=ok');
+                exit;
+            }
+            break;
+
+        case 'edit':
+            $form->handleAction($_REQUEST['_lumineAction'], $_GET);
+            $editing = 1;
+            break;
+    }
 }
 
 $limit = empty($_GET['limit']) ? 0 : (int)$_GET['limit'];
 $offset = empty($_GET['offset']) ? 0 : (int)$_GET['offset'];
 
-if($limit <= 0)
-{
-	$limit = 20;
+if ($limit <= 0) {
+    $limit = 20;
 }
 
 

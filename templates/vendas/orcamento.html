@@ -1,67 +1,93 @@
-	<!-- container main --> 
-	<div class="row">
-		<!--linha 1 --> 
-		<div class="row">
-			<div class="medium-4 columns">
-				<p class="grande" >Dados do cliente: </p>
-				<p class="grande" >Razão Social: <small class="pequeno">${razao_social}</small></p>
-				<p class="grande" >Nome Fantasia: <small class="pequeno">${nome_fantasia}</small></p>
-				<p class="grande" >Cnpj: <small class="pequeno">${cnpj_cpf}</small></p>
-				<p class="grande" >inscri. Estadual: <small class="pequeno">${inscri_estadual}</small></p>
-				<p class="grande" >Telefone(s): <small class="pequeno">${telefone}</small></p>
-				<p class="grande" >E-mail(s): <small class="pequeno">${e_mail}</small></p>
-			</div>
+<!-- container main -->
+<div class="row">
+    <!--linha 1 -->
+    <div class="row">
+        <div class="medium-4 columns">
+            <p class="grande">Dados do cliente: </p>
 
-			<div class="medium-4 columns">
-				<p class="grande" >Endereço: </br> <small class="pequeno">${endereco}</small></p>
-				</div>
+            <p class="grande">Razão Social:
+                <small class="pequeno">${razao_social}</small>
+            </p>
+            <p class="grande">Nome Fantasia:
+                <small class="pequeno">${nome_fantasia}</small>
+            </p>
+            <p class="grande">Cnpj:
+                <small class="pequeno">${cnpj_cpf}</small>
+            </p>
+            <p class="grande">inscri. Estadual:
+                <small class="pequeno">${inscri_estadual}</small>
+            </p>
+            <p class="grande">Telefone(s):
+                <small class="pequeno">${telefone}</small>
+            </p>
+            <p class="grande">E-mail(s):
+                <small class="pequeno">${e_mail}</small>
+            </p>
+        </div>
 
-				<div class="medium-4 columns">
-					<p class="grande" >Dados do pedido: </p>
-					<p class="grande" >Situação:<small class="pequeno">${situacao}</small></p>
-					<p class="grande" >Vendendor: <small class="pequeno">${vendedor}</small></p>
-					<p class="grande" >Data criação: <small class="pequeno">${data_criacao}</small></p>
-				</div>
-			</div>
+        <div class="medium-4 columns">
+            <p class="grande">Endereço: </br>
+                <small class="pequeno">${endereco}</small>
+            </p>
+        </div>
 
-			<!-- linha 2 --> 
-			<div class="row">
-				<div class="medium-12 columns">
-					<table>
-						<thead>
-							<tr>
-								<th width="200">CATEGORIA</th>
-								<th>CODIGO</th>
-								<th width="150">PRODUTO</th>
-								<th width="150">$ UNIT</th>
-								<th>QUANTIDADE</th>
-								<th width="150">$ TOTAL</th>
+        <div class="medium-4 columns">
+            <p class="grande">Dados do pedido: </p>
 
-							</tr>
-						</thead>
-						<tbody>
-							<!--$BeginBlock row -->
-							<tr>
-								<td>${categoria}</td>
-								<td>${codigo}</td>
-								<td>${produto}</td>
-								<td>${preco_unit}</td>
-								<td>${quantidade}</td>
-								<td>${total}</td>
-							</tr>
-							<!--$EndBlock row -->
-						</tbody>
-					</table>
-				</div>
-			</div>
+            <p class="grande">Situação:
+                <small class="pequeno">${situacao}</small>
+            </p>
+            <p class="grande">Vendendor:
+                <small class="pequeno">${vendedor}</small>
+            </p>
+            <p class="grande">Data criação:
+                <small class="pequeno">${data_criacao}</small>
+            </p>
+        </div>
+    </div>
 
-			<!-- linha 2 --> 
-			<div class="row">
-				<div class="medium-4 columns">
-					<p class="grande" >Forma de pagamento: <small class="pequeno">${forma_pagamento}</small></p>
-					<p class="grande" >Total: <small class="pequeno">${label_total}</small></p>
+    <!-- linha 2 -->
+    <div class="row">
+        <div class="medium-12 columns">
+            <table>
+                <thead>
+                <tr>
+                    <th width="200">CATEGORIA</th>
+                    <th>CODIGO</th>
+                    <th width="150">PRODUTO</th>
+                    <th width="150">$ UNIT</th>
+                    <th>QUANTIDADE</th>
+                    <th width="150">$ TOTAL</th>
 
-				</div>
-			</div>
+                </tr>
+                </thead>
+                <tbody>
+                <!--$BeginBlock row -->
+                <tr>
+                    <td>${categoria}</td>
+                    <td>${codigo}</td>
+                    <td>${produto}</td>
+                    <td>${preco_unit}</td>
+                    <td>${quantidade}</td>
+                    <td>${total}</td>
+                </tr>
+                <!--$EndBlock row -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-		</div>	
+    <!-- linha 2 -->
+    <div class="row">
+        <div class="medium-4 columns">
+            <p class="grande">Forma de pagamento:
+                <small class="pequeno">${forma_pagamento}</small>
+            </p>
+            <p class="grande">Total:
+                <small class="pequeno">${label_total}</small>
+            </p>
+
+        </div>
+    </div>
+
+</div>

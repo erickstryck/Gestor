@@ -2,14 +2,14 @@ if (typeof(window.dhx4) == "undefined") {
     window.dhx4 = {
         version: "4.4",
         skin: null,
-        skinDetect: function(a) {
+        skinDetect: function (a) {
             return {
-                10: "dhx_skyblue",
-                20: "dhx_web",
-                30: "dhx_terrace"
-            }[this.readFromCss(a + "_skin_detect")] || null
+                    10: "dhx_skyblue",
+                    20: "dhx_web",
+                    30: "dhx_terrace"
+                }[this.readFromCss(a + "_skin_detect")] || null
         },
-        readFromCss: function(c, d) {
+        readFromCss: function (c, d) {
             var b = document.createElement("DIV");
             b.className = c;
             if (document.body.firstChild != null) {
@@ -23,40 +23,40 @@ if (typeof(window.dhx4) == "undefined") {
             return a
         },
         lastId: 1,
-        newId: function() {
+        newId: function () {
             return this.lastId++
         },
         zim: {
             data: {},
             step: 5,
-            first: function() {
+            first: function () {
                 return 100
             },
-            last: function() {
+            last: function () {
                 var c = this.first();
                 for (var b in this.data) {
                     c = Math.max(c, this.data[b])
                 }
                 return c
             },
-            reserve: function(a) {
+            reserve: function (a) {
                 this.data[a] = this.last() + this.step;
                 return this.data[a]
             },
-            clear: function(a) {
+            clear: function (a) {
                 if (this.data[a] != null) {
                     this.data[a] = null;
                     delete this.data[a]
                 }
             }
         },
-        s2b: function(a) {
+        s2b: function (a) {
             if (typeof(a) == "string") {
                 a = a.toLowerCase()
             }
             return (a == true || a == 1 || a == "true" || a == "1" || a == "yes" || a == "y" || a == "on")
         },
-        s2j: function(s) {
+        s2j: function (s) {
             var obj = null;
             dhx4.temp = null;
             try {
@@ -68,19 +68,19 @@ if (typeof(window.dhx4) == "undefined") {
             dhx4.temp = null;
             return obj
         },
-        absLeft: function(a) {
+        absLeft: function (a) {
             if (typeof(a) == "string") {
                 a = document.getElementById(a)
             }
             return this.getOffset(a).left
         },
-        absTop: function(a) {
+        absTop: function (a) {
             if (typeof(a) == "string") {
                 a = document.getElementById(a)
             }
             return this.getOffset(a).top
         },
-        _aOfs: function(a) {
+        _aOfs: function (a) {
             var c = 0,
                 b = 0;
             while (a) {
@@ -93,7 +93,7 @@ if (typeof(window.dhx4) == "undefined") {
                 left: b
             }
         },
-        _aOfsRect: function(d) {
+        _aOfsRect: function (d) {
             var g = d.getBoundingClientRect();
             var h = document.body;
             var b = document.documentElement;
@@ -108,17 +108,17 @@ if (typeof(window.dhx4) == "undefined") {
                 left: Math.round(c)
             }
         },
-        getOffset: function(a) {
+        getOffset: function (a) {
             if (a.getBoundingClientRect) {
                 return this._aOfsRect(a)
             } else {
                 return this._aOfs(a)
             }
         },
-        _isObj: function(a) {
+        _isObj: function (a) {
             return (a != null && typeof(a) == "object" && typeof(a.length) == "undefined")
         },
-        _copyObj: function(d) {
+        _copyObj: function (d) {
             if (this._isObj(d)) {
                 var c = {};
                 for (var b in d) {
@@ -140,7 +140,7 @@ if (typeof(window.dhx4) == "undefined") {
             }
             return c
         },
-        screenDim: function() {
+        screenDim: function () {
             var a = (navigator.userAgent.indexOf("MSIE") >= 0);
             var b = {};
             b.left = document.body.scrollLeft;
@@ -149,7 +149,7 @@ if (typeof(window.dhx4) == "undefined") {
             b.bottom = b.top + (a ? Math.max(document.documentElement.clientHeight || 0, document.documentElement.offsetHeight || 0) : window.innerHeight);
             return b
         },
-        selectTextRange: function(d, g, b) {
+        selectTextRange: function (d, g, b) {
             d = (typeof(d) == "string" ? document.getElementById(d) : d);
             var a = d.value.length;
             g = Math.max(Math.min(g, a), 0);
@@ -157,7 +157,8 @@ if (typeof(window.dhx4) == "undefined") {
             if (d.setSelectionRange) {
                 try {
                     d.setSelectionRange(g, b)
-                } catch (f) {}
+                } catch (f) {
+                }
             } else {
                 if (d.createTextRange) {
                     var c = d.createTextRange();
@@ -165,12 +166,13 @@ if (typeof(window.dhx4) == "undefined") {
                     c.moveEnd("character", b - a);
                     try {
                         c.select()
-                    } catch (f) {}
+                    } catch (f) {
+                    }
                 }
             }
         },
         transData: null,
-        transDetect: function() {
+        transDetect: function () {
             if (this.transData == null) {
                 this.transData = {
                     transProp: false,
@@ -193,7 +195,7 @@ if (typeof(window.dhx4) == "undefined") {
             }
             return this.transData
         },
-        _xmlNodeValue: function(a) {
+        _xmlNodeValue: function (a) {
             var c = "";
             for (var b = 0; b < a.childNodes.length; b++) {
                 c += (a.childNodes[b].nodeValue != null ? a.childNodes[b].nodeValue.toString().replace(/^[\n\r\s]{0,}/, "").replace(/[\n\r\s]{0,}$/, "") : "")
@@ -217,17 +219,17 @@ if (typeof(window.dhx4) == "undefined") {
     window.dhx4.dnd = {
         evs: {},
         p_en: ((window.dhx4.isIE || window.dhx4.isEdge) && (window.navigator.pointerEnabled || window.navigator.msPointerEnabled)),
-        _mTouch: function(a) {
+        _mTouch: function (a) {
             return (window.dhx4.isIE10 && a.pointerType == a.MSPOINTER_TYPE_MOUSE || window.dhx4.isIE11 && a.pointerType == "mouse" || window.dhx4.isEdge && a.pointerType == "mouse")
         },
-        _touchOn: function(a) {
+        _touchOn: function (a) {
             if (a == null) {
                 a = document.body
             }
             a.style.touchAction = a.style.msTouchAction = "";
             a = null
         },
-        _touchOff: function(a) {
+        _touchOff: function (a) {
             if (a == null) {
                 a = document.body
             }
@@ -260,11 +262,11 @@ if (typeof(window.dhx4) == "undefined") {
     }
 }
 if (typeof(window.dhx4.template) == "undefined") {
-    window.dhx4.trim = function(a) {
+    window.dhx4.trim = function (a) {
         return String(a).replace(/^\s{1,}/, "").replace(/\s{1,}$/, "")
     };
-    window.dhx4.template = function(b, c, a) {
-        return b.replace(/#([a-z0-9_-]{1,})(\|([^#]*))?#/gi, function() {
+    window.dhx4.template = function (b, c, a) {
+        return b.replace(/#([a-z0-9_-]{1,})(\|([^#]*))?#/gi, function () {
             var g = arguments[1];
             var f = window.dhx4.trim(arguments[3]);
             var h = null;
@@ -296,7 +298,7 @@ if (typeof(window.dhx4.template) == "undefined") {
             return ""
         })
     };
-    window.dhx4.template.date = function(a, b) {
+    window.dhx4.template.date = function (a, b) {
         if (a != null) {
             if (a instanceof Date) {
                 return window.dhx4.date2str(a, b)
@@ -310,29 +312,29 @@ if (typeof(window.dhx4.template) == "undefined") {
         }
         return ""
     };
-    window.dhx4.template.maxlength = function(b, a) {
+    window.dhx4.template.maxlength = function (b, a) {
         return String(b).substr(0, a)
     };
-    window.dhx4.template.number_format = function(d, e, c, a) {
+    window.dhx4.template.number_format = function (d, e, c, a) {
         var b = window.dhx4.template._parseFmt(e, c, a);
         if (b == false) {
             return d
         }
         return window.dhx4.template._getFmtValue(d, b)
     };
-    window.dhx4.template.lowercase = function(a) {
+    window.dhx4.template.lowercase = function (a) {
         if (typeof(a) == "undefined" || a == null) {
             a = ""
         }
         return String(a).toLowerCase()
     };
-    window.dhx4.template.uppercase = function(a) {
+    window.dhx4.template.uppercase = function (a) {
         if (typeof(a) == "undefined" || a == null) {
             a = ""
         }
         return String(a).toUpperCase()
     };
-    window.dhx4.template._parseFmt = function(h, c, a) {
+    window.dhx4.template._parseFmt = function (h, c, a) {
         var d = h.match(/^([^\.\,0-9]*)([0\.\,]*)([^\.\,0-9]*)/);
         if (d == null || d.length != 4) {
             return false
@@ -355,7 +357,7 @@ if (typeof(window.dhx4.template) == "undefined") {
         }
         return b
     };
-    window.dhx4.template._getFmtValue = function(value, fmt) {
+    window.dhx4.template._getFmtValue = function (value, fmt) {
         var r = String(value).match(/^(-)?([0-9]{1,})(\.([0-9]{1,}))?$/);
         if (r != null && r.length == 5) {
             var v0 = "";
@@ -376,7 +378,8 @@ if (typeof(window.dhx4.template) == "undefined") {
                 v0 += v1
             } else {
                 v0 += r[2]
-            } if (fmt.d_len !== false) {
+            }
+            if (fmt.d_len !== false) {
                 if (r[4] == null) {
                     r[4] = ""
                 }
@@ -409,7 +412,7 @@ if (typeof(window.dhx4.dateLang) == "undefined") {
     window.dhx4.dateFormat = {
         en: "%Y-%m-%d"
     };
-    window.dhx4.date2str = function(f, d, a) {
+    window.dhx4.date2str = function (f, d, a) {
         if (d == null || typeof(d) == "undefnied") {
             d = window.dhx4.dateFormat[window.dhx4.dateLang]
         }
@@ -417,10 +420,10 @@ if (typeof(window.dhx4.dateLang) == "undefined") {
             a = window.dhx4.dateStrings[window.dhx4.dateLang]
         }
         if (f instanceof Date) {
-            var e = function(g) {
+            var e = function (g) {
                 return (String(g).length == 1 ? "0" + String(g) : g)
             };
-            var b = function(i) {
+            var b = function (i) {
                 switch (i) {
                     case "%d":
                         return e(f.getDate());
@@ -478,7 +481,7 @@ if (typeof(window.dhx4.dateLang) == "undefined") {
         }
         return (c || String(f))
     };
-    window.dhx4.str2date = function(g, s, x) {
+    window.dhx4.str2date = function (g, s, x) {
         if (s == null || typeof(s) == "undefnied") {
             s = window.dhx4.dateFormat[window.dhx4.dateLang]
         }
@@ -488,7 +491,7 @@ if (typeof(window.dhx4.dateLang) == "undefined") {
         s = s.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\\:|]/g, "\\$&");
         var u = [];
         var j = [];
-        s = s.replace(/%[a-z]/gi, function(e) {
+        s = s.replace(/%[a-z]/gi, function (e) {
             switch (e) {
                 case "%d":
                 case "%m":
@@ -586,7 +589,7 @@ if (typeof(window.dhx4.dateLang) == "undefined") {
         a.setMinutes(0);
         a.setSeconds(0);
         a.setMilliseconds(0);
-        var n = function(k, e) {
+        var n = function (k, e) {
             for (var f = 0; f < e.length; f++) {
                 if (e[f].toLowerCase() == k) {
                     return f
@@ -660,7 +663,7 @@ if (typeof(window.dhx4.ajax) == "undefined") {
     window.dhx4.ajax = {
         cache: false,
         method: "get",
-        parse: function(a) {
+        parse: function (a) {
             if (typeof a !== "string") {
                 return a
             }
@@ -676,7 +679,7 @@ if (typeof(window.dhx4.ajax) == "undefined") {
             }
             return b
         },
-        xmltop: function(a, d, c) {
+        xmltop: function (a, d, c) {
             if (typeof d.status == "undefined" || d.status < 400) {
                 xml = (!d.responseXML) ? dhx4.ajax.parse(d.responseText || d) : (d.responseXML || d);
                 if (xml && xml.documentElement !== null) {
@@ -684,7 +687,8 @@ if (typeof(window.dhx4.ajax) == "undefined") {
                         if (!xml.getElementsByTagName("parsererror").length) {
                             return xml.getElementsByTagName(a)[0]
                         }
-                    } catch (b) {}
+                    } catch (b) {
+                    }
                 }
             }
             if (c !== -1) {
@@ -692,7 +696,7 @@ if (typeof(window.dhx4.ajax) == "undefined") {
             }
             return document.createElement("DIV")
         },
-        xpath: function(c, a) {
+        xpath: function (c, a) {
             if (!a.nodeName) {
                 a = a.responseXML || a
             }
@@ -712,22 +716,22 @@ if (typeof(window.dhx4.ajax) == "undefined") {
                 return d
             }
         },
-        query: function(a) {
+        query: function (a) {
             dhx4.ajax._call((a.method || "GET"), a.url, a.data || "", (a.async || true), a.callback, null, a.headers)
         },
-        get: function(a, b) {
+        get: function (a, b) {
             return this._call("GET", a, null, true, b)
         },
-        getSync: function(a) {
+        getSync: function (a) {
             return this._call("GET", a, null, false)
         },
-        put: function(b, a, c) {
+        put: function (b, a, c) {
             return this._call("PUT", b, a, true, c)
         },
-        del: function(b, a, c) {
+        del: function (b, a, c) {
             return this._call("DELETE", b, a, true, c)
         },
-        post: function(b, a, c) {
+        post: function (b, a, c) {
             if (arguments.length == 1) {
                 a = ""
             } else {
@@ -740,16 +744,16 @@ if (typeof(window.dhx4.ajax) == "undefined") {
             }
             return this._call("POST", b, a, true, c)
         },
-        postSync: function(b, a) {
+        postSync: function (b, a) {
             a = (a == null ? "" : String(a));
             return this._call("POST", b, a, false)
         },
-        getLong: function(a, b) {
+        getLong: function (a, b) {
             this._call("GET", a, null, true, b, {
                 url: a
             })
         },
-        postLong: function(b, a, c) {
+        postLong: function (b, a, c) {
             if (arguments.length == 2 && (typeof(a) == "function" || typeof(window[a]))) {
                 c = a;
                 a = ""
@@ -759,22 +763,22 @@ if (typeof(window.dhx4.ajax) == "undefined") {
                 postData: a
             })
         },
-        _call: function(a, b, c, e, g, j, d) {
+        _call: function (a, b, c, e, g, j, d) {
             var i = (window.XMLHttpRequest && !dhx4.isIE ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP"));
             var f = (navigator.userAgent.match(/AppleWebKit/) != null && navigator.userAgent.match(/Qt/) != null && navigator.userAgent.match(/Safari/) != null);
             if (e == true) {
-                i.onreadystatechange = function() {
+                i.onreadystatechange = function () {
                     if ((i.readyState == 4) || (f == true && i.readyState == 3)) {
                         if (i.status != 200 || i.responseText == "") {
                             if (!dhx4.callEvent("onAjaxError", [{
-                                xmlDoc: i,
-                                filePath: b,
-                                async: e
-                            }])) {
+                                    xmlDoc: i,
+                                    filePath: b,
+                                    async: e
+                                }])) {
                                 return
                             }
                         }
-                        window.setTimeout(function() {
+                        window.setTimeout(function () {
                             if (typeof(g) == "function") {
                                 g.apply(window, [{
                                     xmlDoc: i,
@@ -823,7 +827,7 @@ if (typeof(window.dhx4.ajax) == "undefined") {
     }
 }
 if (typeof(window.dhx4._enableDataLoading) == "undefined") {
-    window.dhx4._enableDataLoading = function(g, c, f, e, h) {
+    window.dhx4._enableDataLoading = function (g, c, f, e, h) {
         if (h == "clear") {
             for (var b in g._dhxdataload) {
                 g._dhxdataload[b] = null;
@@ -842,7 +846,7 @@ if (typeof(window.dhx4._enableDataLoading) == "undefined") {
             xmlRootTag: e,
             onBeforeXLS: null
         };
-        g._loadData = function(n, o, p) {
+        g._loadData = function (n, o, p) {
             if (arguments.length == 2) {
                 p = o;
                 o = null
@@ -880,13 +884,14 @@ if (typeof(window.dhx4._enableDataLoading) == "undefined") {
                         }
                     }
                     var r = this;
-                    var i = function(a) {
+                    var i = function (a) {
                         var k = null;
                         if ((a.xmlDoc.getResponseHeader("Content-Type") || "").search(/xml/gi) >= 0 || (a.xmlDoc.responseText.replace(/^\s{1,}/, "")).match(/^</) != null) {
                             k = r[r._dhxdataload.xmlToJson].apply(r, [a.xmlDoc.responseXML])
                         } else {
                             k = dhx4.s2j(a.xmlDoc.responseText)
-                        } if (k != null) {
+                        }
+                        if (k != null) {
                             r[r._dhxdataload.initObj].apply(r, [k, n])
                         }
                         r.callEvent("onXLE", []);
@@ -918,7 +923,8 @@ if (typeof(window.dhx4._enableDataLoading) == "undefined") {
                 } else {
                     m = window.dhx4._copyObj(n)
                 }
-            } if (m != null) {
+            }
+            if (m != null) {
                 this[this._dhxdataload.initObj].apply(this, [m])
             }
             if (p != null) {
@@ -939,7 +945,7 @@ if (typeof(window.dhx4._enableDataLoading) == "undefined") {
             };
             for (var b in h) {
                 if (h[b] == true) {
-                    g[d[b]] = function() {
+                    g[d[b]] = function () {
                         return this._loadData.apply(this, arguments)
                     }
                 }
@@ -949,7 +955,7 @@ if (typeof(window.dhx4._enableDataLoading) == "undefined") {
     }
 }
 if (typeof(window.dhx4._eventable) == "undefined") {
-    window.dhx4._eventable = function(a, b) {
+    window.dhx4._eventable = function (a, b) {
         if (b == "clear") {
             a.detachAllEvents();
             a.dhxevs = null;
@@ -964,7 +970,7 @@ if (typeof(window.dhx4._eventable) == "undefined") {
         a.dhxevs = {
             data: {}
         };
-        a.attachEvent = function(c, e) {
+        a.attachEvent = function (c, e) {
             c = String(c).toLowerCase();
             if (!this.dhxevs.data[c]) {
                 this.dhxevs.data[c] = {}
@@ -973,7 +979,7 @@ if (typeof(window.dhx4._eventable) == "undefined") {
             this.dhxevs.data[c][d] = e;
             return d
         };
-        a.detachEvent = function(f) {
+        a.detachEvent = function (f) {
             for (var d in this.dhxevs.data) {
                 var e = 0;
                 for (var c in this.dhxevs.data[d]) {
@@ -990,11 +996,11 @@ if (typeof(window.dhx4._eventable) == "undefined") {
                 }
             }
         };
-        a.checkEvent = function(c) {
+        a.checkEvent = function (c) {
             c = String(c).toLowerCase();
             return (this.dhxevs.data[c] != null)
         };
-        a.callEvent = function(d, f) {
+        a.callEvent = function (d, f) {
             d = String(d).toLowerCase();
             if (this.dhxevs.data[d] == null) {
                 return true
@@ -1005,7 +1011,7 @@ if (typeof(window.dhx4._eventable) == "undefined") {
             }
             return e
         };
-        a.detachAllEvents = function() {
+        a.detachAllEvents = function () {
             for (var d in this.dhxevs.data) {
                 for (var c in this.dhxevs.data[d]) {
                     this.dhxevs.data[d][c] = null;
@@ -1020,52 +1026,53 @@ if (typeof(window.dhx4._eventable) == "undefined") {
     dhx4._eventable(dhx4)
 }
 if (!window.dhtmlxValidation) {
-    dhtmlxValidation = function() {};
+    dhtmlxValidation = function () {
+    };
     dhtmlxValidation.prototype = {
-        isEmpty: function(a) {
+        isEmpty: function (a) {
             return a == ""
         },
-        isNotEmpty: function(a) {
+        isNotEmpty: function (a) {
             return (a instanceof Array ? a.length > 0 : !a == "")
         },
-        isValidBoolean: function(a) {
+        isValidBoolean: function (a) {
             return !!a.toString().match(/^(0|1|true|false)$/)
         },
-        isValidEmail: function(a) {
+        isValidEmail: function (a) {
             return !!a.toString().match(/(^[a-z0-9]([0-9a-z\-_\.]*)@([0-9a-z_\-\.]*)([.][a-z]{3})$)|(^[a-z]([0-9a-z_\.\-]*)@([0-9a-z_\-\.]*)(\.[a-z]{2,4})$)/i)
         },
-        isValidInteger: function(a) {
+        isValidInteger: function (a) {
             return !!a.toString().match(/(^-?\d+$)/)
         },
-        isValidNumeric: function(a) {
+        isValidNumeric: function (a) {
             return !!a.toString().match(/(^-?\d\d*[\.|,]\d*$)|(^-?\d\d*$)|(^-?[\.|,]\d\d*$)/)
         },
-        isValidAplhaNumeric: function(a) {
+        isValidAplhaNumeric: function (a) {
             return !!a.toString().match(/^[_\-a-z0-9]+$/gi)
         },
-        isValidDatetime: function(b) {
+        isValidDatetime: function (b) {
             var a = b.toString().match(/^(\d{4})-(\d{2})-(\d{2})\s(\d{2}):(\d{2}):(\d{2})$/);
-            return a && !! (a[1] <= 9999 && a[2] <= 12 && a[3] <= 31 && a[4] <= 59 && a[5] <= 59 && a[6] <= 59) || false
+            return a && !!(a[1] <= 9999 && a[2] <= 12 && a[3] <= 31 && a[4] <= 59 && a[5] <= 59 && a[6] <= 59) || false
         },
-        isValidDate: function(a) {
+        isValidDate: function (a) {
             var b = a.toString().match(/^(\d{4})-(\d{2})-(\d{2})$/);
-            return b && !! (b[1] <= 9999 && b[2] <= 12 && b[3] <= 31) || false
+            return b && !!(b[1] <= 9999 && b[2] <= 12 && b[3] <= 31) || false
         },
-        isValidTime: function(b) {
+        isValidTime: function (b) {
             var a = b.toString().match(/^(\d{1,2}):(\d{1,2}):(\d{1,2})$/);
-            return a && !! (a[1] <= 24 && a[2] <= 59 && a[3] <= 59) || false
+            return a && !!(a[1] <= 24 && a[2] <= 59 && a[3] <= 59) || false
         },
-        isValidIPv4: function(a) {
+        isValidIPv4: function (a) {
             var b = a.toString().match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
-            return b && !! (b[1] <= 255 && b[2] <= 255 && b[3] <= 255 && b[4] <= 255) || false
+            return b && !!(b[1] <= 255 && b[2] <= 255 && b[3] <= 255 && b[4] <= 255) || false
         },
-        isValidCurrency: function(a) {
+        isValidCurrency: function (a) {
             return a.toString().match(/^\$?\s?\d+?([\.,\,]?\d+)?\s?\$?$/) && true || false
         },
-        isValidSSN: function(a) {
+        isValidSSN: function (a) {
             return a.toString().match(/^\d{3}\-?\d{2}\-?\d{4}$/) && true || false
         },
-        isValidSIN: function(a) {
+        isValidSIN: function (a) {
             return a.toString().match(/^\d{9}$/) && true || false
         }
     };
@@ -1073,7 +1080,7 @@ if (!window.dhtmlxValidation) {
 }
 if (typeof(window.dhtmlx) == "undefined") {
     window.dhtmlx = {
-        extend: function(d, c) {
+        extend: function (d, c) {
             for (var e in c) {
                 if (!d[e]) {
                     d[e] = c[e]
@@ -1081,12 +1088,12 @@ if (typeof(window.dhtmlx) == "undefined") {
             }
             return d
         },
-        extend_api: function(a, d, c) {
+        extend_api: function (a, d, c) {
             var b = window[a];
             if (!b) {
                 return
             }
-            window[a] = function(g) {
+            window[a] = function (g) {
                 if (g && typeof g == "object" && !g.tagName) {
                     var f = b.apply(this, (d._init ? d._init(g) : arguments));
                     for (var e in dhtmlx) {
@@ -1105,7 +1112,8 @@ if (typeof(window.dhtmlx) == "undefined") {
                     }
                 } else {
                     var f = b.apply(this, arguments)
-                } if (d._patch) {
+                }
+                if (d._patch) {
                     d._patch(this)
                 }
                 return f || this
@@ -1115,7 +1123,7 @@ if (typeof(window.dhtmlx) == "undefined") {
                 dhtmlx.extend(window[a].prototype, c)
             }
         },
-        url: function(a) {
+        url: function (a) {
             if (a.indexOf("?") != -1) {
                 return "&"
             } else {
@@ -1139,20 +1147,20 @@ function dhtmlDragAndDropObject() {
     window.dhtmlDragAndDrop = this;
     return this
 }
-dhtmlDragAndDropObject.prototype.removeDraggableItem = function(a) {
+dhtmlDragAndDropObject.prototype.removeDraggableItem = function (a) {
     a.onmousedown = null;
     a.dragStarter = null;
     a.dragLanding = null
 };
-dhtmlDragAndDropObject.prototype.addDraggableItem = function(a, b) {
+dhtmlDragAndDropObject.prototype.addDraggableItem = function (a, b) {
     a.onmousedown = this.preCreateDragCopy;
     a.dragStarter = b;
     this.addDragLanding(a, b)
 };
-dhtmlDragAndDropObject.prototype.addDragLanding = function(a, b) {
+dhtmlDragAndDropObject.prototype.addDragLanding = function (a, b) {
     a.dragLanding = b
 };
-dhtmlDragAndDropObject.prototype.preCreateDragCopy = function(a) {
+dhtmlDragAndDropObject.prototype.preCreateDragCopy = function (a) {
     if ((a || window.event) && (a || event).button == 2) {
         return
     }
@@ -1179,7 +1187,7 @@ dhtmlDragAndDropObject.prototype.preCreateDragCopy = function(a) {
     }
     return false
 };
-dhtmlDragAndDropObject.prototype.callDrag = function(c) {
+dhtmlDragAndDropObject.prototype.callDrag = function (c) {
     if (!c) {
         c = window.event
     }
@@ -1193,7 +1201,7 @@ dhtmlDragAndDropObject.prototype.callDrag = function(c) {
             if (!dragger.dragNode) {
                 return dragger.stopDrag()
             }
-            dragger.dragNode.onselectstart = function() {
+            dragger.dragNode.onselectstart = function () {
                 return false
             };
             dragger.gldragNode = dragger.dragNode;
@@ -1237,7 +1245,7 @@ dhtmlDragAndDropObject.prototype.callDrag = function(c) {
     }
     dragger.checkLanding(d, c)
 };
-dhtmlDragAndDropObject.prototype.calculateFramePosition = function(e) {
+dhtmlDragAndDropObject.prototype.calculateFramePosition = function (e) {
     if (window.name) {
         var c = parent.frames[window.name].frameElement.offsetParent;
         var d = 0;
@@ -1261,7 +1269,7 @@ dhtmlDragAndDropObject.prototype.calculateFramePosition = function(e) {
     }
     return "0_0"
 };
-dhtmlDragAndDropObject.prototype.checkLanding = function(b, a) {
+dhtmlDragAndDropObject.prototype.checkLanding = function (b, a) {
     if ((b) && (b.dragLanding)) {
         if (this.lastLanding) {
             this.lastLanding.dragLanding._dragOut(this.lastLanding)
@@ -1283,7 +1291,7 @@ dhtmlDragAndDropObject.prototype.checkLanding = function(b, a) {
         }
     }
 };
-dhtmlDragAndDropObject.prototype.stopDrag = function(b, c) {
+dhtmlDragAndDropObject.prototype.stopDrag = function (b, c) {
     dragger = window.dhtmlDragAndDrop;
     if (!c) {
         dragger.stopFrameRoute();
@@ -1309,7 +1317,7 @@ dhtmlDragAndDropObject.prototype.stopDrag = function(b, c) {
     dragger.tempDOMM = null;
     dragger.waitDrag = 0
 };
-dhtmlDragAndDropObject.prototype.stopFrameRoute = function(c) {
+dhtmlDragAndDropObject.prototype.stopFrameRoute = function (c) {
     if (c) {
         window.dhtmlDragAndDrop.stopDrag(1, 1)
     }
@@ -1318,15 +1326,17 @@ dhtmlDragAndDropObject.prototype.stopFrameRoute = function(c) {
             if ((window.frames[a] != c) && (window.frames[a].dhtmlDragAndDrop)) {
                 window.frames[a].dhtmlDragAndDrop.stopFrameRoute(window)
             }
-        } catch (b) {}
+        } catch (b) {
+        }
     }
     try {
         if ((parent.dhtmlDragAndDrop) && (parent != window) && (parent != c)) {
             parent.dhtmlDragAndDrop.stopFrameRoute(window)
         }
-    } catch (b) {}
+    } catch (b) {
+    }
 };
-dhtmlDragAndDropObject.prototype.initFrameRoute = function(c, d) {
+dhtmlDragAndDropObject.prototype.initFrameRoute = function (c, d) {
     if (c) {
         window.dhtmlDragAndDrop.preCreateDragCopy();
         window.dhtmlDragAndDrop.dragStartNode = c.dhtmlDragAndDrop.dragStartNode;
@@ -1343,13 +1353,15 @@ dhtmlDragAndDropObject.prototype.initFrameRoute = function(c, d) {
         if ((parent.dhtmlDragAndDrop) && (parent != window) && (parent != c)) {
             parent.dhtmlDragAndDrop.initFrameRoute(window)
         }
-    } catch (b) {}
+    } catch (b) {
+    }
     for (var a = 0; a < window.frames.length; a++) {
         try {
             if ((window.frames[a] != c) && (window.frames[a].dhtmlDragAndDrop)) {
                 window.frames[a].dhtmlDragAndDrop.initFrameRoute(window, ((!c || d) ? 1 : 0))
             }
-        } catch (b) {}
+        } catch (b) {
+        }
     }
 };
 _isFF = false;
@@ -1394,7 +1406,8 @@ if ((navigator.userAgent.indexOf("Safari") != -1) || (navigator.userAgent.indexO
             }
         }
     }
-} if (typeof(window.dhtmlxEvent) == "undefined") {
+}
+if (typeof(window.dhtmlxEvent) == "undefined") {
     function dhtmlxEvent(b, c, a) {
         if (b.addEventListener) {
             b.addEventListener(c, a, false)
@@ -1409,11 +1422,11 @@ if (dhtmlxEvent.touchDelay == null) {
     dhtmlxEvent.touchDelay = 2000
 }
 if (typeof(dhtmlxEvent.initTouch) == "undefined") {
-    dhtmlxEvent.initTouch = function() {
+    dhtmlxEvent.initTouch = function () {
         var d;
         var e;
         var b, a;
-        dhtmlxEvent(document.body, "touchstart", function(f) {
+        dhtmlxEvent(document.body, "touchstart", function (f) {
             e = f.touches[0].target;
             b = f.touches[0].clientX;
             a = f.touches[0].clientY;
@@ -1428,7 +1441,8 @@ if (typeof(dhtmlxEvent.initTouch) == "undefined") {
                 d = e = null
             }
         }
-        dhtmlxEvent(document.body, "touchmove", function(f) {
+
+        dhtmlxEvent(document.body, "touchmove", function (f) {
             if (d) {
                 if (Math.abs(f.touches[0].clientX - b) > 50 || Math.abs(f.touches[0].clientY - a) > 50) {
                     window.clearTimeout(d);
@@ -1436,13 +1450,14 @@ if (typeof(dhtmlxEvent.initTouch) == "undefined") {
                 }
             }
         });
-        dhtmlxEvent(document.body, "touchend", function(f) {
+        dhtmlxEvent(document.body, "touchend", function (f) {
             if (d) {
                 window.clearTimeout(d);
                 d = e = false
             }
         });
-        dhtmlxEvent.initTouch = function() {}
+        dhtmlxEvent.initTouch = function () {
+        }
     }
 }
 
@@ -1453,7 +1468,8 @@ function dhtmlXCalendarObject(f, k) {
         var d = document.getElementById(f)
     } else {
         var d = f
-    } if (d && typeof(d) == "object" && d.tagName && String(d.tagName).toLowerCase() != "input") {
+    }
+    if (d && typeof(d) == "object" && d.tagName && String(d.tagName).toLowerCase() != "input") {
         c = d
     }
     d = null;
@@ -1487,7 +1503,7 @@ function dhtmlXCalendarObject(f, k) {
         touch: !window.dhx4.isIE,
         ws_first: true
     };
-    this.setSkin = function(l, a) {
+    this.setSkin = function (l, a) {
         if (this.conf.skin == l && !a) {
             return
         }
@@ -1505,7 +1521,7 @@ function dhtmlXCalendarObject(f, k) {
     } else {
         document.body.appendChild(this.base)
     }
-    this.setParent = function(a) {
+    this.setParent = function (a) {
         if (this._hasParent) {
             if (typeof(a) == "object") {
                 a.appendChild(this.base)
@@ -1517,20 +1533,20 @@ function dhtmlXCalendarObject(f, k) {
         }
     };
     this.setSkin(this.conf.skin, true);
-    this.base.onclick = function(a) {
+    this.base.onclick = function (a) {
         a = a || event;
         if (a.preventDefault) {
             a.preventDefault()
         }
         a.cancelBubble = true
     };
-    this.base.onmousedown = function() {
+    this.base.onmousedown = function () {
         return false
     };
     if (this.conf.touch) {
         this.base.ontouchstart = this.base.onclick
     }
-    this.loadUserLanguage = function(n) {
+    this.loadUserLanguage = function (n) {
         if (!this.langData[n]) {
             return
         }
@@ -1548,7 +1564,7 @@ function dhtmlXCalendarObject(f, k) {
     };
     this.contMonth = document.createElement("DIV");
     this.contMonth.className = "dhtmlxcalendar_month_cont";
-    this.contMonth.onselectstart = function(a) {
+    this.contMonth.onselectstart = function (a) {
         a = a || event;
         a.cancelBubble = true;
         if (a.preventDefault) {
@@ -1567,7 +1583,7 @@ function dhtmlXCalendarObject(f, k) {
     j.innerHTML = "<div class='dhtmlxcalendar_month_arrow dhtmlxcalendar_month_arrow_left' onmouseover='this.className=\"dhtmlxcalendar_month_arrow dhtmlxcalendar_month_arrow_left_hover\";' onmouseout='this.className=\"dhtmlxcalendar_month_arrow dhtmlxcalendar_month_arrow_left\";'></div><span></span><div class='dhtmlxcalendar_month_arrow dhtmlxcalendar_month_arrow_right' onmouseover='this.className=\"dhtmlxcalendar_month_arrow dhtmlxcalendar_month_arrow_right_hover\";' onmouseout='this.className=\"dhtmlxcalendar_month_arrow dhtmlxcalendar_month_arrow_right\";'></div>";
     g.appendChild(j);
     var e = this;
-    j.onclick = function(n) {
+    j.onclick = function (n) {
         n = n || event;
         if (n.type == "touchstart" && n.preventDefault != null) {
             n.preventDefault()
@@ -1599,14 +1615,14 @@ function dhtmlXCalendarObject(f, k) {
     this.contDays = document.createElement("DIV");
     this.contDays.className = "dhtmlxcalendar_days_cont";
     this.base.firstChild.appendChild(this.contDays);
-    this.setWeekStartDay = function(a) {
+    this.setWeekStartDay = function (a) {
         if (a == 0) {
             a = 7
         }
         this._wStart = Math.min(Math.max((isNaN(a) ? 1 : a), 1), 7);
         this._drawDaysOfWeek()
     };
-    this._drawDaysOfWeek = function() {
+    this._drawDaysOfWeek = function () {
         if (this.contDays.childNodes.length == 0) {
             var n = document.createElement("UL");
             n.className = "dhtmlxcalendar_line";
@@ -1623,7 +1639,8 @@ function dhtmlXCalendarObject(f, k) {
                 n.appendChild(a)
             } else {
                 var a = n.childNodes[o]
-            } if (o == 0) {
+            }
+            if (o == 0) {
                 a.className = "dhtmlxcalendar_cell_wn";
                 a.innerHTML = "<div class='dhtmlxcalendar_label'>" + (this.langData[this.lang].weekname || "w") + "</div>"
             } else {
@@ -1643,7 +1660,7 @@ function dhtmlXCalendarObject(f, k) {
     this.contDates = document.createElement("DIV");
     this.contDates.className = "dhtmlxcalendar_dates_cont";
     this.base.firstChild.appendChild(this.contDates);
-    this.contDates.onclick = function(p) {
+    this.contDates.onclick = function (p) {
         p = p || event;
         if (p.type == "touchstart" && p.preventDefault != null) {
             p.preventDefault()
@@ -1680,7 +1697,7 @@ function dhtmlXCalendarObject(f, k) {
             }
             if (!e._hasParent) {
                 if (p.type == "touchstart") {
-                    window.setTimeout(function() {
+                    window.setTimeout(function () {
                         e._hide()
                     }, 400)
                 } else {
@@ -1693,7 +1710,7 @@ function dhtmlXCalendarObject(f, k) {
     if (this.conf.touch == true) {
         this.contDates.ontouchstart = this.contDates.onclick
     }
-    this.contDates.onmouseover = function(l) {
+    this.contDates.onmouseover = function (l) {
         l = l || event;
         var a = (l.target || l.srcElement);
         if (a.parentNode != null && a.parentNode._date != null) {
@@ -1710,11 +1727,11 @@ function dhtmlXCalendarObject(f, k) {
             a = null
         }
     };
-    this.contDates.onmouseout = function(a) {
+    this.contDates.onmouseout = function (a) {
         e._clearDayHover(a || event)
     };
     this._lastHover = null;
-    this._clearDayHover = function(a) {
+    this._clearDayHover = function (a) {
         if (!this._lastHover) {
             return
         }
@@ -1740,11 +1757,11 @@ function dhtmlXCalendarObject(f, k) {
     this.contTime = document.createElement("DIV");
     this.contTime.className = "dhtmlxcalendar_time_cont";
     this.base.firstChild.appendChild(this.contTime);
-    this.showTime = function() {
+    this.showTime = function () {
         this.contTime.style.display = "";
         this._ifrSize()
     };
-    this.hideTime = function() {
+    this.hideTime = function () {
         this.contTime.style.display = "none";
         this._ifrSize()
     };
@@ -1755,7 +1772,7 @@ function dhtmlXCalendarObject(f, k) {
     j.className = "dhtmlxcalendar_cell dhtmlxcalendar_time_hdr";
     j.innerHTML = "<div class='dhtmlxcalendar_time_img'></div><span class='dhtmlxcalendar_label_hours'></span><span class='dhtmlxcalendar_label_colon'> : </span><span class='dhtmlxcalendar_label_minutes'></span>";
     g.appendChild(j);
-    j.onclick = function(m) {
+    j.onclick = function (m) {
         m = m || event;
         if (m.type == "touchstart" && m.preventDefault != null) {
             m.preventDefault()
@@ -1790,7 +1807,7 @@ function dhtmlXCalendarObject(f, k) {
     this._activeMonth = null;
     this._activeDate = new Date();
     this._activeDateCell = null;
-    this.setDate = function(l) {
+    this.setDate = function (l) {
         window.dhx4.temp_calendar = {
             tz: null
         };
@@ -1816,7 +1833,7 @@ function dhtmlXCalendarObject(f, k) {
         this._updateVisibleHours();
         this._updateVisibleMinutes()
     };
-    this.getDate = function(m) {
+    this.getDate = function (m) {
         if (this._nullDate) {
             return null
         }
@@ -1831,7 +1848,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         return a
     };
-    this._drawMonth = function(u) {
+    this._drawMonth = function (u) {
         if (!(u instanceof Date)) {
             return
         }
@@ -1877,7 +1894,8 @@ function dhtmlXCalendarObject(f, k) {
                             this._initTooltipPopup()
                         } else {
                             this.contDates.childNodes[l].childNodes[A].setAttribute("title", this._tipData[n].text)
-                        } if (this._tipData[n].showIcon) {
+                        }
+                        if (this._tipData[n].showIcon) {
                             v += " dhtmlxcalendar_label_title"
                         }
                     } else {
@@ -1905,7 +1923,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         this.contMonth.firstChild.firstChild.childNodes[1].innerHTML = this._buildMonthHdr(u)
     };
-    this._updateCellStyle = function(n, a) {
+    this._updateCellStyle = function (n, a) {
         var m = this.contDates.childNodes[n].childNodes[a];
         var l = "dhtmlxcalendar_cell dhtmlxcalendar_cell";
         l += (m._css_month ? "_month" : "");
@@ -1918,7 +1936,7 @@ function dhtmlXCalendarObject(f, k) {
         m = null
     };
     this._minutesInterval = 5;
-    this._initSelector = function(s, n) {
+    this._initSelector = function (s, n) {
         if (!this._selCover) {
             this._selCover = document.createElement("DIV");
             this._selCover.className = "dhtmlxcalendar_selector_cover";
@@ -1943,19 +1961,19 @@ function dhtmlXCalendarObject(f, k) {
             this._sel.firstChild.firstChild.firstChild.childNodes[2].className = "dhtmlxcalendar_selector_cell_right";
             this._sel.firstChild.firstChild.firstChild.childNodes[0].innerHTML = "&nbsp;";
             this._sel.firstChild.firstChild.firstChild.childNodes[2].innerHTML = "&nbsp;";
-            this._sel.firstChild.firstChild.firstChild.childNodes[0].onmouseover = function() {
+            this._sel.firstChild.firstChild.firstChild.childNodes[0].onmouseover = function () {
                 this.className = "dhtmlxcalendar_selector_cell_left dhtmlxcalendar_selector_cell_left_hover"
             };
-            this._sel.firstChild.firstChild.firstChild.childNodes[0].onmouseout = function() {
+            this._sel.firstChild.firstChild.firstChild.childNodes[0].onmouseout = function () {
                 this.className = "dhtmlxcalendar_selector_cell_left"
             };
-            this._sel.firstChild.firstChild.firstChild.childNodes[2].onmouseover = function() {
+            this._sel.firstChild.firstChild.firstChild.childNodes[2].onmouseover = function () {
                 this.className = "dhtmlxcalendar_selector_cell_right dhtmlxcalendar_selector_cell_right_hover"
             };
-            this._sel.firstChild.firstChild.firstChild.childNodes[2].onmouseout = function() {
+            this._sel.firstChild.firstChild.firstChild.childNodes[2].onmouseout = function () {
                 this.className = "dhtmlxcalendar_selector_cell_right"
             };
-            this._sel.onmouseover = function(v) {
+            this._sel.onmouseover = function (v) {
                 v = v || event;
                 var q = (v.target || v.srcElement);
                 if (q._cell === true) {
@@ -1968,10 +1986,10 @@ function dhtmlXCalendarObject(f, k) {
                     }
                 }
             };
-            this._sel.onmouseout = function() {
+            this._sel.onmouseout = function () {
                 e._clearSelHover()
             };
-            this._sel.firstChild.firstChild.firstChild.childNodes[0].onclick = function(q) {
+            this._sel.firstChild.firstChild.firstChild.childNodes[0].onclick = function (q) {
                 q = q || event;
                 if (q.type == "touchstart" && q.preventDefault != null) {
                     q.preventDefault()
@@ -1979,7 +1997,7 @@ function dhtmlXCalendarObject(f, k) {
                 q.cancelBubble = true;
                 e._scrollYears(-1)
             };
-            this._sel.firstChild.firstChild.firstChild.childNodes[2].onclick = function(q) {
+            this._sel.firstChild.firstChild.firstChild.childNodes[2].onclick = function (q) {
                 q = q || event;
                 if (q.type == "touchstart" && q.preventDefault != null) {
                     q.preventDefault()
@@ -2019,7 +2037,7 @@ function dhtmlXCalendarObject(f, k) {
                     this._msCells[l++] = u
                 }
             }
-            this.msCont.onclick = function(v) {
+            this.msCont.onclick = function (v) {
                 v = v || event;
                 if (v.type == "touchstart" && v.preventDefault != null) {
                     v.preventDefault()
@@ -2053,7 +2071,7 @@ function dhtmlXCalendarObject(f, k) {
                     r.appendChild(u)
                 }
             }
-            this.ysCont.onclick = function(v) {
+            this.ysCont.onclick = function (v) {
                 v = v || event;
                 if (v.type == "touchstart" && v.preventDefault != null) {
                     v.preventDefault()
@@ -2090,7 +2108,7 @@ function dhtmlXCalendarObject(f, k) {
                     this._hsCells[l++] = u
                 }
             }
-            this.hsCont.onclick = function(v) {
+            this.hsCont.onclick = function (v) {
                 v = v || event;
                 if (v.type == "touchstart" && v.preventDefault != null) {
                     v.preventDefault()
@@ -2154,7 +2172,7 @@ function dhtmlXCalendarObject(f, k) {
                     l += this._minutesInterval
                 }
             }
-            this.rsCont.onclick = function(w) {
+            this.rsCont.onclick = function (w) {
                 w = w || event;
                 if (w.type == "touchstart" && w.preventDefault != null) {
                     w.preventDefault()
@@ -2197,7 +2215,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         this._sel._ta[s] = true
     };
-    this._showSelector = function(o, l, p, n, a) {
+    this._showSelector = function (o, l, p, n, a) {
         if (a === true && this._sel != null && this._isSelectorVisible() && o == this._sel._t) {
             this._hideSelector();
             return
@@ -2236,7 +2254,7 @@ function dhtmlXCalendarObject(f, k) {
         this._sel.style.visibility = "visible";
         this._doOnSelectorShow(o)
     };
-    this._doOnSelectorShow = function(a) {
+    this._doOnSelectorShow = function (a) {
         if (a == "month") {
             this._updateActiveMonth()
         }
@@ -2250,7 +2268,7 @@ function dhtmlXCalendarObject(f, k) {
             this._updateActiveMinutes()
         }
     };
-    this._hideSelector = function(a) {
+    this._hideSelector = function (a) {
         if (!this._sel) {
             return
         }
@@ -2262,23 +2280,23 @@ function dhtmlXCalendarObject(f, k) {
             this._unloadSelector("minutes")
         }
     };
-    this._isSelectorVisible = function() {
+    this._isSelectorVisible = function () {
         if (!this._sel) {
             return false
         }
         return (this._sel.style.display != "none")
     };
-    this._doOnSelectorChange = function(a) {
+    this._doOnSelectorChange = function (a) {
         this.callEvent("onChange", [new Date(this._activeMonth.getFullYear(), this._activeMonth.getMonth(), this._activeDate.getDate(), this._activeDate.getHours(), this._activeDate.getMinutes(), this._activeDate.getSeconds()), a === true])
     };
-    this._clearSelHover = function() {
+    this._clearSelHover = function () {
         if (!this._selHover) {
             return
         }
         this._selHover.className = String(this._selHover.className.replace(/dhtmlxcalendar_selector_cell_hover/gi, ""));
         this._selHover = null
     };
-    this._unloadSelector = function(m) {
+    this._unloadSelector = function (m) {
         if (!this._sel) {
             return
         }
@@ -2350,27 +2368,27 @@ function dhtmlXCalendarObject(f, k) {
         }
         this._sel._ta[m] = null
     };
-    this.setMinutesInterval = function(a) {
+    this.setMinutesInterval = function (a) {
         if (!(a == 1 || a == 5 || a == 10 || a == 15)) {
             return
         }
         this._minutesInterval = a;
         this._unloadSelector("minutes")
     };
-    this._updateActiveMonth = function() {
+    this._updateActiveMonth = function () {
         if (typeof(this._msActive) != "undefined" && typeof(this._msCells[this._msActive]) != "undefined") {
             this._msCells[this._msActive].className = "dhtmlxcalendar_selector_cell"
         }
         this._msActive = this._activeMonth.getMonth();
         this._msCells[this._msActive].className = "dhtmlxcalendar_selector_cell dhtmlxcalendar_selector_cell_active"
     };
-    this._updateActiveYear = function() {
+    this._updateActiveYear = function () {
         var a = this._activeMonth.getFullYear();
         if (this._ysCells[a]) {
             this._ysCells[a].className = "dhtmlxcalendar_selector_cell dhtmlxcalendar_selector_cell_active"
         }
     };
-    this._updateYearsList = function(p) {
+    this._updateYearsList = function (p) {
         for (var m in this._ysCells) {
             this._ysCells[m] = null;
             delete this._ysCells[m]
@@ -2386,22 +2404,22 @@ function dhtmlXCalendarObject(f, k) {
         }
         this._updateActiveYear()
     };
-    this._scrollYears = function(a) {
+    this._scrollYears = function (a) {
         var m = (a < 0 ? this.ysCont.firstChild.firstChild._year : this.ysCont.lastChild.lastChild._year) + a;
         var l = new Date(m, this._activeMonth.getMonth(), 1, 0, 0, 0, 0);
         this._updateYearsList(l)
     };
-    this._updateActiveHours = function() {
+    this._updateActiveHours = function () {
         if (typeof(this._hsActive) != "undefined" && typeof(this._hsCells[this._hsActive]) != "undefined") {
             this._hsCells[this._hsActive].className = "dhtmlxcalendar_selector_cell"
         }
         this._hsActive = this._activeDate.getHours();
         this._hsCells[this._hsActive].className = "dhtmlxcalendar_selector_cell dhtmlxcalendar_selector_cell_active"
     };
-    this._updateVisibleHours = function() {
+    this._updateVisibleHours = function () {
         this.contTime.firstChild.firstChild.childNodes[1].innerHTML = this._fixLength(this._activeDate.getHours(), 2)
     };
-    this._updateActiveMinutes = function() {
+    this._updateActiveMinutes = function () {
         if (this._rsActive != null && typeof(this._rsActive) != "undefined" && typeof(this._rsCells[this._rsActive]) != "undefined") {
             this._rsCells[this._rsActive].className = "dhtmlxcalendar_selector_cell"
         }
@@ -2409,11 +2427,12 @@ function dhtmlXCalendarObject(f, k) {
             this._rsActive = (this.getFormatedDate("%i").toString()).charAt(this._selectorMode == 1 ? 0 : 1)
         } else {
             this._rsActive = this._activeDate.getMinutes()
-        } if (typeof(this._rsCells[this._rsActive]) != "undefined") {
+        }
+        if (typeof(this._rsCells[this._rsActive]) != "undefined") {
             this._rsCells[this._rsActive].className = "dhtmlxcalendar_selector_cell dhtmlxcalendar_selector_cell_active"
         }
     };
-    this._updateVisibleMinutes = function(l) {
+    this._updateVisibleMinutes = function (l) {
         var a = this._fixLength(this._activeDate.getMinutes(), 2).toString();
         if (l == true) {
             a = a.charAt(0) + "<span class='dhtmlxcalendar_selected_date'>" + a.charAt(1) + "</span>"
@@ -2423,7 +2442,7 @@ function dhtmlXCalendarObject(f, k) {
             this.contTime.firstChild.firstChild.childNodes[3].lastChild._par = true
         }
     };
-    this._fixLength = function(a, l) {
+    this._fixLength = function (a, l) {
         while (String(a).length < l) {
             a = "0" + String(a)
         }
@@ -2431,7 +2450,7 @@ function dhtmlXCalendarObject(f, k) {
     };
     this._dateFormat = "";
     this._dateFormatRE = null;
-    this.setDateFormat = function(o) {
+    this.setDateFormat = function (o) {
         var n = {};
         if (this._strToDate != null) {
             for (var l in this.i) {
@@ -2444,7 +2463,7 @@ function dhtmlXCalendarObject(f, k) {
             }
         }
         this._dateFormat = o;
-        var m = String(this._dateFormat).replace(/%[a-zA-Z]+/g, function(a) {
+        var m = String(this._dateFormat).replace(/%[a-zA-Z]+/g, function (a) {
             var q = a.replace(/%/, "");
             switch (q) {
                 case "n":
@@ -2485,7 +2504,7 @@ function dhtmlXCalendarObject(f, k) {
         n = null
     };
     this.setDateFormat(this.langData[this.lang].dateformat || "%Y-%m-%d");
-    this._updateDateStr = function(l) {
+    this._updateDateStr = function (l) {
         if (!this._dateFormatRE || !l.match(this._dateFormatRE)) {
             return
         }
@@ -2514,7 +2533,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         this._doOnSelectorChange(true)
     };
-    this.showMonth = function(a) {
+    this.showMonth = function (a) {
         if (typeof(a) == "string") {
             a = this._strToDate(a)
         }
@@ -2523,14 +2542,14 @@ function dhtmlXCalendarObject(f, k) {
         }
         this._drawMonth(a)
     };
-    this.setFormatedDate = function(o, p, l, n) {
+    this.setFormatedDate = function (o, p, l, n) {
         var m = this._strToDate(p, o);
         if (n) {
             return m
         }
         this.setDate(m)
     };
-    this.getFormatedDate = function(l, a) {
+    this.getFormatedDate = function (l, a) {
         if (!(a && a instanceof Date)) {
             if (this._nullDate) {
                 return ""
@@ -2539,7 +2558,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         return this._dateToStr(a, l)
     };
-    this.getWeekNumber = function(p) {
+    this.getWeekNumber = function (p) {
         if (typeof(p) == "string") {
             p = this._strToDate(p)
         }
@@ -2562,7 +2581,8 @@ function dhtmlXCalendarObject(f, k) {
             n += 7
         }
         var s = 0;
-        if (n >= v && n <= u) {} else {
+        if (n >= v && n <= u) {
+        } else {
             s = 1
         }
         var r = n - v;
@@ -2581,13 +2601,13 @@ function dhtmlXCalendarObject(f, k) {
         }
         return w
     };
-    this.showWeekNumbers = function() {
+    this.showWeekNumbers = function () {
         this.base.firstChild.className = "dhtmlxcalendar_wn"
     };
-    this.hideWeekNumbers = function() {
+    this.hideWeekNumbers = function () {
         this.base.firstChild.className = ""
     };
-    this.show = function(m) {
+    this.show = function (m) {
         if (!m && this._hasParent) {
             this._show();
             return
@@ -2608,17 +2628,17 @@ function dhtmlXCalendarObject(f, k) {
         }
         this._show(m)
     };
-    this.hide = function() {
+    this.hide = function () {
         if (this._isVisible()) {
             this._hide()
         }
     };
-    this.isVisible = function() {
+    this.isVisible = function () {
         return this._isVisible()
     };
     this._activeInp = null;
     this.pos = "bottom";
-    this.setPosition = function(a, l) {
+    this.setPosition = function (a, l) {
         this._px = null;
         this._py = null;
         if (a == "right" || a == "bottom") {
@@ -2636,7 +2656,7 @@ function dhtmlXCalendarObject(f, k) {
             this._ifrSize()
         }
     };
-    this._show = function(r, a) {
+    this._show = function (r, a) {
         if (a === true && this._activeInp == r && this._isVisible()) {
             this._hide();
             return
@@ -2690,7 +2710,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         this.callEvent("onShow", [])
     };
-    this._hide = function() {
+    this._hide = function () {
         this._hideSelector();
         this.base.style.display = "none";
         window.dhx4.zim.clear(this.conf.zi);
@@ -2703,16 +2723,16 @@ function dhtmlXCalendarObject(f, k) {
         }
         this.callEvent("onHide", [])
     };
-    this._isVisible = function() {
+    this._isVisible = function () {
         return (this.base.style.display != "none")
     };
-    this._getLeft = function(a) {
+    this._getLeft = function (a) {
         return this._posGetOffset(a).left
     };
-    this._getTop = function(a) {
+    this._getTop = function (a) {
         return this._posGetOffset(a).top
     };
-    this._posGetOffsetSum = function(a) {
+    this._posGetOffsetSum = function (a) {
         var m = 0,
             l = 0;
         while (a) {
@@ -2725,7 +2745,7 @@ function dhtmlXCalendarObject(f, k) {
             left: l
         }
     };
-    this._posGetOffsetRect = function(n) {
+    this._posGetOffsetRect = function (n) {
         var q = n.getBoundingClientRect();
         var r = document.body;
         var l = document.documentElement;
@@ -2740,26 +2760,26 @@ function dhtmlXCalendarObject(f, k) {
             left: Math.round(m)
         }
     };
-    this._posGetOffset = function(a) {
+    this._posGetOffset = function (a) {
         return this[a.getBoundingClientRect ? "_posGetOffsetRect" : "_posGetOffsetSum"](a)
     };
     this._rangeActive = false;
     this._rangeFrom = null;
     this._rangeTo = null;
     this._rangeSet = {};
-    this.setInsensitiveDays = function(m) {
+    this.setInsensitiveDays = function (m) {
         var a = this._extractDates(m);
         for (var l = 0; l < a.length; l++) {
             this._rangeSet[new Date(a[l].getFullYear(), a[l].getMonth(), a[l].getDate(), 0, 0, 0, 0).getTime()] = true
         }
         this._drawMonth(this._activeMonth)
     };
-    this.clearInsensitiveDays = function() {
+    this.clearInsensitiveDays = function () {
         this._clearRangeSet();
         this._drawMonth(this._activeMonth)
     };
     this._holidays = {};
-    this.setHolidays = function(l) {
+    this.setHolidays = function (l) {
         if (l == null) {
             this._clearHolidays()
         } else {
@@ -2772,7 +2792,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         this._drawMonth(this._activeMonth)
     };
-    this._extractDates = function(m) {
+    this._extractDates = function (m) {
         if (typeof(m) == "string" || m instanceof Date) {
             m = [m]
         }
@@ -2791,25 +2811,25 @@ function dhtmlXCalendarObject(f, k) {
         }
         return l
     };
-    this._clearRange = function() {
+    this._clearRange = function () {
         this._rangeActive = false;
         this._rangeType = null;
         this._rangeFrom = null;
         this._rangeTo = null
     };
-    this._clearRangeSet = function() {
+    this._clearRangeSet = function () {
         for (var l in this._rangeSet) {
             this._rangeSet[l] = null;
             delete this._rangeSet[l]
         }
     };
-    this._clearHolidays = function() {
+    this._clearHolidays = function () {
         for (var l in this._holidays) {
             this._holidays[l] = null;
             delete this._holidays[l]
         }
     };
-    this._isOutOfRange = function(l) {
+    this._isOutOfRange = function (l) {
         if (this._rangeSet[l] == true) {
             return true
         }
@@ -2845,11 +2865,11 @@ function dhtmlXCalendarObject(f, k) {
         }
         return false
     };
-    this.clearSensitiveRange = function() {
+    this.clearSensitiveRange = function () {
         this._clearRange();
         this._drawMonth(this._activeMonth)
     };
-    this.setSensitiveRange = function(n, m, a) {
+    this.setSensitiveRange = function (n, m, a) {
         var l = false;
         if (n != null && m != null) {
             if (!(n instanceof Date)) {
@@ -2897,7 +2917,7 @@ function dhtmlXCalendarObject(f, k) {
             this._drawMonth(this._activeMonth)
         }
     };
-    this.setInsensitiveRange = function(l, a) {
+    this.setInsensitiveRange = function (l, a) {
         if (l != null && a != null) {
             if (!(l instanceof Date)) {
                 l = this._strToDate(l)
@@ -2924,7 +2944,7 @@ function dhtmlXCalendarObject(f, k) {
             return
         }
     };
-    this.disableDays = function(p, o) {
+    this.disableDays = function (p, o) {
         if (p == "week") {
             if (typeof(o) != "object" && typeof(o.length) == "undefined") {
                 o = [o]
@@ -2976,7 +2996,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         this._drawMonth(this._activeMonth)
     };
-    this.enableDays = function(a) {
+    this.enableDays = function (a) {
         if (a == "week") {
             this._rangeWeek = false
         }
@@ -2995,7 +3015,7 @@ function dhtmlXCalendarObject(f, k) {
     this._tipPopup = null;
     this._tipCellDate = null;
     this._tipCellDim = null;
-    this.setTooltip = function(m, p, r, a) {
+    this.setTooltip = function (m, p, r, a) {
         var n = this._extractDates(m);
         for (var o = 0; o < n.length; o++) {
             var l = new Date(n[o].getFullYear(), n[o].getMonth(), n[o].getDate(), 0, 0, 0, 0).getTime();
@@ -3007,7 +3027,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         this._drawMonth(this._activeMonth)
     };
-    this.clearTooltip = function(l) {
+    this.clearTooltip = function (l) {
         var m = this._extractDates(l);
         for (var n = 0; n < m.length; n++) {
             var a = new Date(m[n].getFullYear(), m[n].getMonth(), m[n].getDate(), 0, 0, 0, 0).getTime();
@@ -3016,11 +3036,11 @@ function dhtmlXCalendarObject(f, k) {
         }
         this._drawMonth(this._activeMonth)
     };
-    this._initTooltipPopup = function() {
+    this._initTooltipPopup = function () {
         if (this._tipEvs) {
             return
         }
-        this.attachEvent("onMouseOver", function(l) {
+        this.attachEvent("onMouseOver", function (l) {
             var a = new Date(l.getFullYear(), l.getMonth(), l.getDate(), 0, 0, 0, 0).getTime();
             if (this._tipData[a] != null) {
                 if (this._tipTM) {
@@ -3035,7 +3055,7 @@ function dhtmlXCalendarObject(f, k) {
         this.attachEvent("onMouseOut", this._hideTooltipPopup);
         this._tipEvs = true
     };
-    this._showTooltipPopup = function(n, a, o, l, m) {
+    this._showTooltipPopup = function (n, a, o, l, m) {
         if (!e._tipPopup) {
             e._tipPopup = new dhtmlXPopup({
                 mode: "top"
@@ -3045,7 +3065,7 @@ function dhtmlXCalendarObject(f, k) {
         e._tipPopup.show(e._tipCellDim.x, e._tipCellDim.y, e._tipCellDim.w, e._tipCellDim.h);
         e.callEvent("onPopupShow", [e._tipCellDate])
     };
-    this._hideTooltipPopup = function() {
+    this._hideTooltipPopup = function () {
         if (this._tipTM) {
             window.clearTimeout(this._tipTM)
         }
@@ -3054,10 +3074,10 @@ function dhtmlXCalendarObject(f, k) {
             this.callEvent("onPopupHide", [this._tipCellDate])
         }
     };
-    this.getPopup = function() {
+    this.getPopup = function () {
         return this._tipPopup
     };
-    this.getCellDimension = function(m) {
+    this.getCellDimension = function (m) {
         if (typeof(m) == "string") {
             m = this._strToDate(m)
         }
@@ -3082,7 +3102,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         return l
     };
-    this._updateFromInput = function(a) {
+    this._updateFromInput = function (a) {
         if (this._nullInInput && ((a.value).replace(/\s/g, "")).length == 0) {
             if (this.checkEvent("onBeforeChange")) {
                 if (!this.callEvent("onBeforeChange", [null])) {
@@ -3098,7 +3118,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         a = null
     };
-    this._doOnClick = function(l) {
+    this._doOnClick = function (l) {
         l = l || event;
         var a = (l.target || l.srcElement);
         if (a._dhtmlxcalendar_uid && a._dhtmlxcalendar_uid != e._activeInp && e._isVisible() && e._activeInp) {
@@ -3115,7 +3135,7 @@ function dhtmlXCalendarObject(f, k) {
             }
         }
     };
-    this._doOnKeyDown = function(a) {
+    this._doOnKeyDown = function (a) {
         a = a || event;
         if (a.keyCode == 27 || a.keyCode == 13) {
             if (e._isSelectorVisible()) {
@@ -3127,7 +3147,7 @@ function dhtmlXCalendarObject(f, k) {
             }
         }
     };
-    this._doOnInpClick = function(l) {
+    this._doOnInpClick = function (l) {
         l = l || event;
         if (l.type == "touchstart" && l.preventDefault != null) {
             l.preventDefault()
@@ -3141,7 +3161,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         e._show(a._dhtmlxcalendar_uid, true)
     };
-    this._doOnInpKeyUp = function(l) {
+    this._doOnInpKeyUp = function (l) {
         l = l || event;
         var a = (l.target || l.srcElement);
         if (l.keyCode == 13 || !a._dhtmlxcalendar_uid) {
@@ -3151,7 +3171,7 @@ function dhtmlXCalendarObject(f, k) {
             e._updateFromInput(a)
         }
     };
-    this._doOnBtnClick = function(l) {
+    this._doOnBtnClick = function (l) {
         l = l || event;
         if (l.type == "touchstart" && l.preventDefault != null) {
             l.preventDefault()
@@ -3165,7 +3185,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         e._show(a._dhtmlxcalendar_uid, true)
     };
-    this._doOnUnload = function() {
+    this._doOnUnload = function () {
         if (e && e.unload) {
             e.unload()
         }
@@ -3182,7 +3202,7 @@ function dhtmlXCalendarObject(f, k) {
         document.body.attachEvent("onkeydown", e._doOnKeyDown);
         window.attachEvent("onunload", e._doOnUnload)
     }
-    this.attachObj = function(m) {
+    this.attachObj = function (m) {
         var l = window.dhx4.newId();
         if (typeof(m) == "string") {
             this.i[l] = {
@@ -3208,7 +3228,7 @@ function dhtmlXCalendarObject(f, k) {
         this._attachEventsToObject(l);
         return l
     };
-    this.detachObj = function(n) {
+    this.detachObj = function (n) {
         var m = null;
         if (this.i[n] != null) {
             m = n
@@ -3230,7 +3250,8 @@ function dhtmlXCalendarObject(f, k) {
                     }
                 }
             }
-        } if (m != null && this.i[m] != null) {
+        }
+        if (m != null && this.i[m] != null) {
             this._detachEventsFromObject(m);
             for (var l in this.i[l]) {
                 this.i[m][l]._dhtmlxcalendar_uid = null;
@@ -3243,7 +3264,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         return false
     };
-    this._attachEventsToObject = function(l) {
+    this._attachEventsToObject = function (l) {
         if (this.i[l].button != null) {
             this.i[l].button._dhtmlxcalendar_uid = l;
             if (typeof(window.addEventListener) == "function") {
@@ -3270,7 +3291,7 @@ function dhtmlXCalendarObject(f, k) {
             }
         }
     };
-    this._detachEventsFromObject = function(l) {
+    this._detachEventsFromObject = function (l) {
         if (this.i[l].button != null) {
             if (typeof(window.addEventListener) == "function") {
                 this.i[l].button.removeEventListener("click", e._doOnBtnClick, false);
@@ -3295,7 +3316,7 @@ function dhtmlXCalendarObject(f, k) {
             }
         }
     };
-    this.enableListener = function(a) {
+    this.enableListener = function (a) {
         if (!a) {
             return
         }
@@ -3308,7 +3329,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         a = null
     };
-    this.disableListener = function(a) {
+    this.disableListener = function (a) {
         if (!a) {
             return
         }
@@ -3325,7 +3346,7 @@ function dhtmlXCalendarObject(f, k) {
         }
         a = null
     };
-    this._startListener = function(a) {
+    this._startListener = function (a) {
         if (this._tmListener) {
             window.clearTimeout(this._tmListener)
         }
@@ -3337,19 +3358,19 @@ function dhtmlXCalendarObject(f, k) {
             a._v1 = a.value
         }
         if (a._f0) {
-            this._tmListener = window.setTimeout(function() {
+            this._tmListener = window.setTimeout(function () {
                 e._startListener(a)
             }, 100)
         }
     };
-    this._listenerEvFocus = function(l) {
+    this._listenerEvFocus = function (l) {
         l = l || event;
         var a = l.target || l.srcElement;
         a._f0 = true;
         e._startListener(a);
         a = null
     };
-    this._listenerEvBlur = function(l) {
+    this._listenerEvBlur = function (l) {
         l = l || event;
         var a = l.target || l.srcElement;
         a._f0 = false;
@@ -3359,19 +3380,19 @@ function dhtmlXCalendarObject(f, k) {
         this._attachEventsToObject(h)
     }
     window.dhx4._eventable(this);
-    this._evOnArrowClick = function(a) {
+    this._evOnArrowClick = function (a) {
         return this.callEvent("onArrowClick", a)
     };
-    this._evOnClick = function(a) {
+    this._evOnClick = function (a) {
         return this.callEvent("onClick", a)
     };
-    this._evOnMouseOut = function(a) {
+    this._evOnMouseOut = function (a) {
         return this.callEvent("onMouseOut", a)
     };
-    this._evOnMouseOver = function(a) {
+    this._evOnMouseOver = function (a) {
         return this.callEvent("onMouseOver", a)
     };
-    this.unload = function() {
+    this.unload = function () {
         this._activeDate = null;
         this._activeDateCell = null;
         this._activeInp = null;
@@ -3558,15 +3579,15 @@ dhtmlXCalendarObject.prototype.langData = {
         weekname: "w"
     }
 };
-dhtmlXCalendarObject.prototype._buildMonthHdr = function(e) {
+dhtmlXCalendarObject.prototype._buildMonthHdr = function (e) {
     var b = this;
-    var d = function(f) {
+    var d = function (f) {
         return (String(f).length == 1 ? "0" + String(f) : f)
     };
-    var a = function(f, g) {
+    var a = function (f, g) {
         return "<span class='dhtmlxcalendar_month_label_" + f + "'>" + g + "</span>"
     };
-    var c = String(this.langData[this.lang].hdrformat || ("%F %Y")).replace(/%[a-z]/gi, function(f) {
+    var c = String(this.langData[this.lang].hdrformat || ("%F %Y")).replace(/%[a-z]/gi, function (f) {
         switch (f) {
             case "%m":
                 return a("month", d(e.getMonth() + 1));
@@ -3589,7 +3610,7 @@ dhtmlXCalendarObject.prototype._buildMonthHdr = function(e) {
     b = d = a = null;
     return c
 };
-dhtmlXCalendarObject.prototype.enableIframe = function(a) {
+dhtmlXCalendarObject.prototype.enableIframe = function (a) {
     if (a == true) {
         if (!this._ifr) {
             this._ifr = document.createElement("IFRAME");
@@ -3597,7 +3618,7 @@ dhtmlXCalendarObject.prototype.enableIframe = function(a) {
             this._ifr.border = 0;
             this._ifr.setAttribute("src", "javascript:false;");
             this._ifr.className = "dhtmlxcalendar_ifr";
-            this._ifr.onload = function() {
+            this._ifr.onload = function () {
                 this.onload = null;
                 this.contentWindow.document.open("text/html", "replace");
                 this.contentWindow.document.write("<html><head><style>html,body{width:100%;height:100%;overflow:hidden;margin:0px;}</style></head><body</body></html>")
@@ -3612,7 +3633,7 @@ dhtmlXCalendarObject.prototype.enableIframe = function(a) {
         }
     }
 };
-dhtmlXCalendarObject.prototype._ifrSize = function() {
+dhtmlXCalendarObject.prototype._ifrSize = function () {
     if (this._ifr) {
         this._ifr.style.left = this.base.style.left;
         this._ifr.style.top = this.base.style.top;
@@ -3621,7 +3642,7 @@ dhtmlXCalendarObject.prototype._ifrSize = function() {
     }
 };
 dhtmlxCalendarObject = dhtmlXCalendarObject;
-dhtmlXCalendarObject.prototype._dateStrings = function() {
+dhtmlXCalendarObject.prototype._dateStrings = function () {
     var a = this.langData[this.lang];
     return {
         monthFullName: a.monthesFNames,
@@ -3630,46 +3651,46 @@ dhtmlXCalendarObject.prototype._dateStrings = function() {
         dayShortName: a.daysSNames
     }
 };
-dhtmlXCalendarObject.prototype._strToDate = function(b, a) {
+dhtmlXCalendarObject.prototype._strToDate = function (b, a) {
     return window.dhx4.str2date(b, a || this._dateFormat, this._dateStrings())
 };
-dhtmlXCalendarObject.prototype._dateToStr = function(b, a) {
+dhtmlXCalendarObject.prototype._dateToStr = function (b, a) {
     return window.dhx4.date2str(b, a || this._dateFormat, this._dateStrings())
 };
-window.dhtmlxDblCalendarObject = window.dhtmlXDoubleCalendarObject = window.dhtmlXDoubleCalendar = function(b) {
+window.dhtmlxDblCalendarObject = window.dhtmlXDoubleCalendarObject = window.dhtmlXDoubleCalendar = function (b) {
     var a = this;
     this.leftCalendar = new dhtmlXCalendarObject(b);
     this.leftCalendar.hideTime();
     this.rightCalendar = new dhtmlXCalendarObject(b);
     this.rightCalendar.hideTime();
-    this.leftCalendar.attachEvent("onClick", function(c) {
+    this.leftCalendar.attachEvent("onClick", function (c) {
         a._updateRange("rightCalendar", c, null);
         a._evOnClick(["left", c])
     });
-    this.rightCalendar.attachEvent("onClick", function(c) {
+    this.rightCalendar.attachEvent("onClick", function (c) {
         a._updateRange("leftCalendar", null, c);
         a._evOnClick(["right", c])
     });
-    this.leftCalendar.attachEvent("onBeforeChange", function(c) {
+    this.leftCalendar.attachEvent("onBeforeChange", function (c) {
         return a._evOnBeforeChange(["left", c])
     });
-    this.rightCalendar.attachEvent("onBeforeChange", function(c) {
+    this.rightCalendar.attachEvent("onBeforeChange", function (c) {
         return a._evOnBeforeChange(["right", c])
     });
-    this.show = function() {
+    this.show = function () {
         this.leftCalendar.show();
         this.rightCalendar.base.style.marginLeft = this.leftCalendar.base.offsetWidth - 1 + "px";
         this.rightCalendar.show()
     };
-    this.hide = function() {
+    this.hide = function () {
         this.leftCalendar.hide();
         this.rightCalendar.hide()
     };
-    this.setDateFormat = function(c) {
+    this.setDateFormat = function (c) {
         this.leftCalendar.setDateFormat(c);
         this.rightCalendar.setDateFormat(c)
     };
-    this.setDates = function(d, c) {
+    this.setDates = function (d, c) {
         if (d != null) {
             this.leftCalendar.setDate(d)
         }
@@ -3678,7 +3699,7 @@ window.dhtmlxDblCalendarObject = window.dhtmlXDoubleCalendarObject = window.dhtm
         }
         this._updateRange()
     };
-    this._updateRange = function(c, e, d) {
+    this._updateRange = function (c, e, d) {
         if (arguments.length == 3) {
             (c == "leftCalendar" ? this.leftCalendar : this.rightCalendar).setSensitiveRange(e, d)
         } else {
@@ -3686,10 +3707,10 @@ window.dhtmlxDblCalendarObject = window.dhtmlXDoubleCalendarObject = window.dhtm
             this.rightCalendar.setSensitiveRange(this.leftCalendar.getDate(), null)
         }
     };
-    this.getFormatedDate = function() {
+    this.getFormatedDate = function () {
         return this.leftCalendar.getFormatedDate.apply(this.leftCalendar, arguments)
     };
-    this.unload = function() {
+    this.unload = function () {
         window.dhx4._eventable(this, "clear");
         this.leftCalendar.unload();
         this.rightCalendar.unload();
@@ -3705,10 +3726,10 @@ window.dhtmlxDblCalendarObject = window.dhtmlXDoubleCalendarObject = window.dhtm
         this.unload = null;
         a = null
     };
-    this._evOnClick = function(c) {
+    this._evOnClick = function (c) {
         return this.callEvent("onClick", c)
     };
-    this._evOnBeforeChange = function(c) {
+    this._evOnBeforeChange = function (c) {
         return this.callEvent("onBeforeChange", c)
     };
     window.dhx4._eventable(this);

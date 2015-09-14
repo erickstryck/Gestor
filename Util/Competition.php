@@ -1,27 +1,32 @@
-<?php 
+<?php
 
-class Competition {
-	private $isLock; 
-	private static $instance; 
+class Competition
+{
+    private static $instance;
+    private $isLock;
 
-	function __construct(){
-		$this->isLock = false; 
-	}
+    function __construct()
+    {
+        $this->isLock = false;
+    }
 
-	public function lock(){	
-		if($this->isLock) var_dump($this->isLock); 	
-		return $this->isLock; 
-	}
+    public static function getInstance()
+    {
+        if (self::$instance == null)
+            self::$instance = new Competition();
 
-	public function defineLock($arg){
-		$this->isLock = (boolean) $arg; 
-	}
+        return self::$instance;
+    }
 
-	public static function getInstance(){
-		if(self::$instance == null )
-			self::$instance = new Competition(); 
-		
-		return self::$instance; 
-	}
+    public function lock()
+    {
+        if ($this->isLock) var_dump($this->isLock);
+        return $this->isLock;
+    }
+
+    public function defineLock($arg)
+    {
+        $this->isLock = (boolean)$arg;
+    }
 
 }

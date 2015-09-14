@@ -1,110 +1,116 @@
 <?php
-require_once(PATH.'Controller'.DS.'GenericController.php'); 
-require_once(PATH.'View'.DS.'CustomViews'.DS.'UsuariosView.php'); 
+require_once(PATH . 'Controller' . DS . 'GenericController.php');
+require_once(PATH . 'View' . DS . 'CustomViews' . DS . 'UsuariosView.php');
 
-class Usuarios extends GenericController {
-	private $usuariosView; 
+class Usuarios extends GenericController
+{
+    private $usuariosView;
 
-	public function __construct() {
-		$this->usuariosView = new UsuariosView(); 
-	}
+    public function __construct()
+    {
+        $this->usuariosView = new UsuariosView();
+    }
 
-	/**
+    /**
      * @Permissao({"administrador"})
      */
-	public function novoUsuarioView(){
-		$this->usuariosView->novoUsuarioView(); 
-	}
+    public function novoUsuarioView()
+    {
+        $this->usuariosView->novoUsuarioView();
+    }
 
-	/**
+    /**
      * @Permissao({"administrador"})
      */
-	public function cadastro($arg){
-		//Roteiro: 
-		//Validar os dados que estão vindo da visão ( fazer isso depois )
-		//Armazenar os dados no banco
-		//Enviar confirmação de sucesso ou falha via JSON.
-		
-		if(strcmp($arg['senha'], $arg['senhaConfirmacao']) != 0 )
-			$this->usuariosView->sendAjax(array('status' => false) );
+    public function cadastro($arg)
+    {
+        //Roteiro:
+        //Validar os dados que estão vindo da visão ( fazer isso depois )
+        //Armazenar os dados no banco
+        //Enviar confirmação de sucesso ou falha via JSON.
 
-		Lumine::import("Usuario"); 
-		$usuario = new Usuario(); 
+        if (strcmp($arg['senha'], $arg['senhaConfirmacao']) != 0)
+            $this->usuariosView->sendAjax(array('status' => false));
 
-		if( ($usuario->get('email', $arg['email']) > 0) )
-			$this->usuariosView->sendAjax(array('status' => false, 'msg' => 'E-mail já cadastrado') );
+        Lumine::import("Usuario");
+        $usuario = new Usuario();
 
-		$usuario = new Usuario(); 
-		if( ($usuario->get('login', $arg['login']) > 0) )
-			$this->usuariosView->sendAjax(array('status' => false, 'msg' => 'Login já cadastrado') );
+        if (($usuario->get('email', $arg['email']) > 0))
+            $this->usuariosView->sendAjax(array('status' => false, 'msg' => 'E-mail já cadastrado'));
 
-		Lumine::import("UsuarioHasEmpresa"); 
+        $usuario = new Usuario();
+        if (($usuario->get('login', $arg['login']) > 0))
+            $this->usuariosView->sendAjax(array('status' => false, 'msg' => 'Login já cadastrado'));
 
-		$usuario = new Usuario(); 
-		$associativa = new UsuarioHasEmpresa(); 
-		//Se a confirmação da senha não for igual a senha, retorne false
+        Lumine::import("UsuarioHasEmpresa");
 
-		$usuario->login = $arg['login']; 
-		$usuario->senha = $arg['senha']; 
-		$usuario->nomeCompleto = $arg['nomeCompleto'];
-		$usuario->email = $arg['email']; 
-		$usuario->palavraChave = $arg['palavraChave'];
+        $usuario = new Usuario();
+        $associativa = new UsuarioHasEmpresa();
+        //Se a confirmação da senha não for igual a senha, retorne false
 
-		$usuario->insert(); 
-		//Associando usuário a uma empresa com os seus devidos privilégios: 
-		
-		$associativa->isTecnico        = ((empty($arg['isTecnico']))) ? false : true;
-		$associativa->isVendedor       = ((empty($arg['isVendedor']))) ? false : true;
-		$associativa->temAcesso        = ((empty($arg['temAcesso']))) ? false : true;
-		$associativa->comissaoProduto  = $arg['comissaoProduto'];
-		$associativa->comissaoVendedor = $arg['comissaoVendedor']; 
-		$associativa->empresaId        = $_SESSION['empresaId']; 
-		$associativa->usuarioId        = $usuario->id;  
+        $usuario->login = $arg['login'];
+        $usuario->senha = $arg['senha'];
+        $usuario->nomeCompleto = $arg['nomeCompleto'];
+        $usuario->email = $arg['email'];
+        $usuario->palavraChave = $arg['palavraChave'];
 
-		$associativa->insert(); 
+        $usuario->insert();
+        //Associando usuário a uma empresa com os seus devidos privilégios:
 
-		$this->usuariosView->sendAjax(array('status' => true) );
-	}
+        $associativa->isTecnico = ((empty($arg['isTecnico']))) ? false : true;
+        $associativa->isVendedor = ((empty($arg['isVendedor']))) ? false : true;
+        $associativa->temAcesso = ((empty($arg['temAcesso']))) ? false : true;
+        $associativa->comissaoProduto = $arg['comissaoProduto'];
+        $associativa->comissaoVendedor = $arg['comissaoVendedor'];
+        $associativa->empresaId = $_SESSION['empresaId'];
+        $associativa->usuarioId = $usuario->id;
 
-	/**
+        $associativa->insert();
+
+        $this->usuariosView->sendAjax(array('status' => true));
+    }
+
+    /**
      * @Permissao({"administrador"})
      */
-	public function delete($arg){
-		Lumine::import("Usuario"); 
-		Lumine::import("UsuarioHasEmpresa"); 
-		$usuario = new Usuario(); 
-		$associativa = new UsuarioHasEmpresa();
+    public function delete($arg)
+    {
+        Lumine::import("Usuario");
+        Lumine::import("UsuarioHasEmpresa");
+        $usuario = new Usuario();
+        $associativa = new UsuarioHasEmpresa();
 
-		$usuario->join($associativa)->where('id = '. (int) $arg['id'] )->find(); 
-		$usuario->fetch(true); 
+        $usuario->join($associativa)->where('id = ' . (int)$arg['id'])->find();
+        $usuario->fetch(true);
 
-		if($usuario->isAdmin)
-			$this->usuariosView->sendAjax(array('status' => false, 'msg' => 'O adminstrador não pode ser deletado.')); 
+        if ($usuario->isAdmin)
+            $this->usuariosView->sendAjax(array('status' => false, 'msg' => 'O adminstrador não pode ser deletado.'));
 
-		//Testando se o usuário é um adminstrador: 
-		
-		//Desativando o registro no banco. 
-		$usuario->ativo = 0;  
-		$usuario->update(); 
+        //Testando se o usuário é um adminstrador:
 
-		$this->usuariosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
-	}
+        //Desativando o registro no banco.
+        $usuario->ativo = 0;
+        $usuario->update();
 
-	/**
+        $this->usuariosView->sendAjax(array('status' => true, 'msg' => $arg['id']));
+    }
+
+    /**
      * @Permissao({"administrador"})
      */
-	 public function getObject($arg){
-	 	$id = (int) $arg['id']; 
-	 	Lumine::import("Usuario"); 
-		Lumine::import("UsuarioHasEmpresa"); 
-		$usuario = new Usuario(); 
-		$associativa = new UsuarioHasEmpresa();
+    public function getObject($arg)
+    {
+        $id = (int)$arg['id'];
+        Lumine::import("Usuario");
+        Lumine::import("UsuarioHasEmpresa");
+        $usuario = new Usuario();
+        $associativa = new UsuarioHasEmpresa();
 
-		$usuario->join($associativa)->where('id = '. (int) $arg['id'].' and empresa_id = '. $_SESSION['empresaId'] )->find(); 
-		$usuario->fetch(true); 
+        $usuario->join($associativa)->where('id = ' . (int)$arg['id'] . ' and empresa_id = ' . $_SESSION['empresaId'])->find();
+        $usuario->fetch(true);
 
 
-	 	$this->usuariosView->sendAjax($usuario->toArray()); 
-	 }
+        $this->usuariosView->sendAjax($usuario->toArray());
+    }
 
 }

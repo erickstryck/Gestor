@@ -1,44 +1,47 @@
 <?php
-require_once(PATH.'View'.DS.'GenericView.php'); 
-require_once(PATH.'Util'.DS.'Convert.php'); 
+require_once(PATH . 'View' . DS . 'GenericView.php');
+require_once(PATH . 'Util' . DS . 'Convert.php');
 
-class UsuariosView extends GenericView{
-	
-	public function __construct(){
-		parent::__construct($this); 
-	}
+class UsuariosView extends GenericView
+{
 
-	public function novoUsuarioView(){
-		parent::getTemplateByAction('novoUsuario');
+    public function __construct()
+    {
+        parent::__construct($this);
+    }
 
-		Lumine::import("Usuario"); 
-		Lumine::import("UsuarioHasEmpresa");
+    public function novoUsuarioView()
+    {
+        parent::getTemplateByAction('novoUsuario');
 
-		$associativa = new UsuarioHasEmpresa(); 
-		
+        Lumine::import("Usuario");
+        Lumine::import("UsuarioHasEmpresa");
 
-		$associativa->where("empresa_id = ". $_SESSION['empresaId'])->find(); 
+        $associativa = new UsuarioHasEmpresa();
 
-		
-		while($associativa->fetch()){
 
-			$usuario = new Usuario(); 
+        $associativa->where("empresa_id = " . $_SESSION['empresaId'])->find();
 
-			$usuario->where('id = '. $associativa->usuarioId." and ativo = 1")->find();
 
-			while( $usuario->fetch()){
-				parent::$templator->setVariable('usuario.id', Convert::zeroEsquerda($usuario->id));
-				parent::$templator->setVariable('usuario.nome_completo', $usuario->nomeCompleto); 
-				parent::$templator->setVariable('usuario.email', $usuario->email); 
-				parent::$templator->setVariable('usuario.login', $usuario->login); 
-				parent::$templator->setVariable('usuario.acesso', ( $associativa->temAcesso ) ? "Sim" : "<i style='color:red'>Não</i>");
-				parent::$templator->setVariable('usuario.vendedor', ( $associativa->isVendedor ) ? "Sim" : "<i style='color:red'>Não</i>");
-				parent::$templator->setVariable('usuario.tecnico', ( $associativa->isTecnico ) ? "Sim" : "<i style='color:red'>Não</i>");
-				parent::$templator->setVariable('usuario.permissoes', ( $associativa->isAdmin ) ? "Adminstrador" : "Uso restrito");
+        while ($associativa->fetch()) {
 
-				parent::$templator->addBlock('row'); 
-			} 
-		} 
-		parent::show(); 
-	}
+            $usuario = new Usuario();
+
+            $usuario->where('id = ' . $associativa->usuarioId . " and ativo = 1")->find();
+
+            while ($usuario->fetch()) {
+                parent::$templator->setVariable('usuario.id', Convert::zeroEsquerda($usuario->id));
+                parent::$templator->setVariable('usuario.nome_completo', $usuario->nomeCompleto);
+                parent::$templator->setVariable('usuario.email', $usuario->email);
+                parent::$templator->setVariable('usuario.login', $usuario->login);
+                parent::$templator->setVariable('usuario.acesso', ($associativa->temAcesso) ? "Sim" : "<i style='color:red'>Não</i>");
+                parent::$templator->setVariable('usuario.vendedor', ($associativa->isVendedor) ? "Sim" : "<i style='color:red'>Não</i>");
+                parent::$templator->setVariable('usuario.tecnico', ($associativa->isTecnico) ? "Sim" : "<i style='color:red'>Não</i>");
+                parent::$templator->setVariable('usuario.permissoes', ($associativa->isAdmin) ? "Adminstrador" : "Uso restrito");
+
+                parent::$templator->addBlock('row');
+            }
+        }
+        parent::show();
+    }
 }

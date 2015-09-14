@@ -18,53 +18,53 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>
 ################################################################################
 /**
- * Model generada para a tabela "{classname}"
- * in {date}
- * @author Hugo Ferreira da Silva
- * @link http://www.hufersil.com.br/lumine
- * @package Lumine
- *
- */
+* Model generada para a tabela "{classname}"
+* in {date}
+* @author Hugo Ferreira da Silva
+* @link http://www.hufersil.com.br/lumine
+* @package Lumine
+*
+*/
 class {modelname} extends Lumine_Model {
-	
-	/**
-	 * 
-	 * @var {modelname}
-	 */
-	private static $instance;
-	
-	/**
-	 * Construtor
-	 * 
-	 * @author Hugo Ferreira da Silva
-	 * @link http://www.hufersil.com.br/lumine
-	 */
-	function __construct(){
-		if(!$this->obj){
-			$this->obj = new {classname};
-		}
-		parent::__construct();
-	}
-	
-	/**
-	 * Retorna uma instancia da model
-	 * 
-	 * @author Hugo Ferreira da Silva
-	 * @link http://www.hufersil.com.br/lumine
-	 * @return {modelname}
-	 */
-	public static function getInstance(){
-		if(!self::$instance){
-			self::$instance = new {modelname}();
-		}
-		
-		return self::$instance;
-	}
-	
-	//////////////////////////////////////////////////////////////////
-	// Coloque seus metodos personalizados abaixo de END AUTOCODE
-	//////////////////////////////////////////////////////////////////
-	### END AUTOCODE
 
-	
+/**
+*
+* @var {modelname}
+*/
+private static $instance;
+
+/**
+* Construtor
+*
+* @author Hugo Ferreira da Silva
+* @link http://www.hufersil.com.br/lumine
+*/
+function __construct(){
+if(!$this->obj){
+$this->obj = new {classname};
+}
+parent::__construct();
+}
+
+/**
+* Retorna uma instancia da model
+*
+* @author Hugo Ferreira da Silva
+* @link http://www.hufersil.com.br/lumine
+* @return {modelname}
+*/
+public static function getInstance(){
+if(!self::$instance){
+self::$instance = new {modelname}();
+}
+
+return self::$instance;
+}
+
+//////////////////////////////////////////////////////////////////
+// Coloque seus metodos personalizados abaixo de END AUTOCODE
+//////////////////////////////////////////////////////////////////
+### END AUTOCODE
+
+
 }
