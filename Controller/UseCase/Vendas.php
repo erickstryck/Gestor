@@ -115,7 +115,7 @@ class Vendas extends GenericController {
 			
 			//PEGAR O VALOR DA TABELA ASSOCIATIVA !NÃO ESQUECER DE FAZER ISSO!
 			$temp->custoInternoAntigo = 0;  
-			$temp->isCaixaInterno     = ($p->destino == 1); 
+			// $temp->isCaixaInterno     = ($p->destino == 1); 
 			$temp->paga               = true; 
 			$temp->tipoDocumentoId    = $p->documento; 
 			$temp->formaPagamentoId   = $formaPagamento->id; 
@@ -135,7 +135,7 @@ class Vendas extends GenericController {
 			$temp->palavraChave       = $p->palavra_chave; 
 			//PEGAR O VALOR DA TABELA ASSOCIATIVA !NÃO ESQUECER DE FAZER ISSO!
 			$temp->custoInternoAntigo = 0;  
-			$temp->isCaixaInterno     = ($p->destino == 1); 
+			// $temp->isCaixaInterno     = ($p->destino == 1); 
 			$temp->paga               = false; 
 			$temp->tipoDocumentoId    = (($p->documento === '' ) ? null : $p->documento) ; 
 			$temp->formaPagamentoId   = $formaPagamento->id; 

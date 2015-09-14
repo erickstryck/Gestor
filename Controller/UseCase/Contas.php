@@ -102,7 +102,7 @@ class Contas extends GenericController {
 	 	$conta->dataLancamento  	= $arg['dataLancamento'];
 	 	$conta->dataVencimento  	= $arg['dataVencimento'];
 	 	$conta->valor  				= $arg['valor'];
-	 	$conta->isCaixaInterno  	= ( (strcmp($arg['isCaixaInterno'],'1') == 0) ? 1 : 0 );
+	 	// $conta->isCaixaInterno  	= ( (strcmp($arg['isCaixaInterno'],'1') == 0) ? 1 : 0 );
 	 	$conta->numeroDocumento  	= $arg['numeroDocumento'];
 	 	$conta->apenasPrevisao  	= !empty($arg['apenasPrevisao']);
 	 	$conta->pagarAgora  		= !empty($arg['pagarAgora']);
