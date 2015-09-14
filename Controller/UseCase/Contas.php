@@ -43,7 +43,7 @@ class Contas extends GenericController {
 	 }
 
 	 /**
-     * @Permissao({"administrador"})
+     * @Permissao({"tecnico"})
      */
 	 public function alteraPagamento($arg){
 	 	//Depois tratar a entrada de dados aqui.
@@ -118,12 +118,15 @@ class Contas extends GenericController {
 	 }
 
 
+	 /**
+     * @Permissao({"administrador"})
+     */
 	 private function cadastra($conta , $arg){
 	 	$conta->descricao  			= $arg['descricao']; 
 	 	$conta->dataLancamento  	= $arg['dataLancamento'];
 	 	$conta->dataVencimento  	= $arg['dataVencimento'];
 	 	$conta->valor  				= $arg['valor'];
-	 	// $conta->isCaixaInterno  	= ( (strcmp($arg['isCaixaInterno'],'1') == 0) ? 1 : 0 );
+	 	$conta->recipienteId        = (int) $arg['recipienteId']; 
 	 	$conta->numeroDocumento  	= $arg['numeroDocumento'];
 	 	$conta->apenasPrevisao  	= !empty($arg['apenasPrevisao']);
 	 	$conta->pagarAgora  		= !empty($arg['pagarAgora']);
@@ -144,6 +147,9 @@ class Contas extends GenericController {
 	 }
 
 
+	 /**
+     * @Permissao({"administrador"})
+     */
 	 public function getObject($arg){
 	 	$id = (int) $arg['id']; 
 	 	Lumine::import("Conta"); 

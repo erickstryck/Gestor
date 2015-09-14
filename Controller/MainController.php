@@ -63,7 +63,10 @@ class MainController {
 		
 		$reflection = new ReflectionMethod ( $controller->sayMyName (), $realNameMethod );
 		if(!Firewall::defender($controller,$realNameMethod)){
-			die("Permissão negada pelo firewall!");
+			if(strcmp($_SERVER['REQUEST_METHOD'],'POST') ==  0 )
+				die( json_encode(array('status' => false, 'msg' => 'Acesso negado.') ) ); 
+			else
+				die('Acesso negado'); //Futoramente redirecionar para uma tela; 
 		}
 		return $reflection->invoke( $controller, self::preparingArray( $_REQUEST ));
 	}

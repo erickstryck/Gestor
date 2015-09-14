@@ -57,7 +57,13 @@ class ContasView extends GenericView{
 		}
 
 		$recipiente = new Recipiente(); 
-		$recipiente->where("empresa_id = ". $_SESSION['empresaId']);
+		$recipiente->where("empresa_id = ". $_SESSION['empresaId'] ." and ativo = 1")->find();
+
+		while($recipiente->fetch()){
+			parent::$templator->setVariable('recipiente.id', $recipiente->id); 
+			parent::$templator->setVariable('recipiente.des', $recipiente->des); 
+			parent::$templator->addblock('recipiente'); 
+		}
 
 		parent::show(); 
 	}
@@ -69,7 +75,8 @@ class ContasView extends GenericView{
 		//anexando elementos a tabela: 
 		Lumine::import("Conta"); 
 		Lumine::import("Contato"); 
-		Lumine::import("PlanoConta"); 
+		Lumine::import("PlanoConta");
+		Lumine::import("Recipiente");   
 		Lumine::import("TipoDocumento"); 
 
 		$conta = new Conta();
@@ -106,6 +113,15 @@ class ContasView extends GenericView{
 			parent::$templator->setVariable('plano_conta.des',Convert::toUTF_8(( ($plano->label)? '--'.$plano->des.'--' : $plano->des ) ));
 			parent::$templator->setVariable('disabled', (($plano->label)? 'disabled' : '' ) ); 
 			parent::$templator->addBlock('plano_conta'); 
+		}
+
+		$recipiente = new Recipiente(); 
+		$recipiente->where("empresa_id = ". $_SESSION['empresaId'] ." and ativo = 1")->find();
+
+		while($recipiente->fetch()){
+			parent::$templator->setVariable('recipiente.id', $recipiente->id); 
+			parent::$templator->setVariable('recipiente.des', $recipiente->des); 
+			parent::$templator->addblock('recipiente'); 
 		}
 
 		parent::show(); 
