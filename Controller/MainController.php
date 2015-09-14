@@ -12,11 +12,12 @@ require_once(PATH.'Controller'.DS.'UseCase'.DS.'OrdemServico.php');
 require_once(PATH.'Controller'.DS.'UseCase'.DS.'Contas.php');
 require_once(PATH.'Controller'.DS.'UseCase'.DS.'Tarefas.php');
 require_once(PATH.'Controller'.DS.'UseCase'.DS.'Recibos.php');
+require_once(PATH.'Security'.DS.'Firewall.php');
 
 class MainController {
 	private $controllersArray;
 	public function __construct() {
-		// incluir todos os controllers espec�ficos aqui;       
+		// incluir todos os controllers espec�ficos aqui;       
 		$this->controllersArray = array (
 				'contas'       => new Contas(), 
 				'clientes'     => new Clientes(), 
@@ -36,21 +37,17 @@ class MainController {
 	
 	public function findMyController() {
 		// Passos:	
-		// 1 O useCase est� nas lista de ControllersArray?
+		// 1 O useCase est� nas lista de ControllersArray?
 		// 2 A action existe no controlador?
-		// 3 Invocar m�todo;
+		// 3 Invocar método;
 		// 4 Gerar output.
-		//limpar sqlinjection
-	
 		$useCase = $_REQUEST ['uc'];
 		$action  = $_REQUEST ['a'];
-
+		
 		// if( $this->$controllersArray[$useCase] == null ) return;
 		$controller = $this->controllersArray [$useCase];
 		$realNameMethod = '';
-
-		//if( $this->$controllersArray[$useCase] == null ) return;//404
-
+		
 		$arrayMethods = $controller->sayMyActions();
 		
 		foreach ( $arrayMethods as $a ) {
@@ -61,13 +58,13 @@ class MainController {
 		}
 		
 		if (strlen ( $realNameMethod ) == 0) {
-			die('404');
+			die('Não há ação para ser executada');
 		}
 		
-		//firewall; 
-		//Firewall::permissao($controller,$realNameMethod )//return true or false
-		
 		$reflection = new ReflectionMethod ( $controller->sayMyName (), $realNameMethod );
+		if(!Firewall::defender($controller,$realNameMethod)){
+			die("Permissão negada pelo firewall!");
+		}
 		return $reflection->invoke( $controller, self::preparingArray( $_REQUEST ));
 	}
 

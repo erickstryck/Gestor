@@ -1,6 +1,6 @@
 <?php
-
-abstract class GenericController {
+require_once(PATH.'Controller'.DS.'Anotacao.php');
+class GenericController {
 	public function sayMyName() {
 		$var = new ReflectionClass ( $this );
 		return $var->getName ();

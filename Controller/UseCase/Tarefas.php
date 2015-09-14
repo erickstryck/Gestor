@@ -17,6 +17,9 @@ class Tarefas extends GenericController{
     {
         $this->tarefasView=new TarefasView();
     }
+    /**
+     * @Permissao({"administrador"})
+     */
     function tarefasView(){
         $this->tarefasView->tarefaView();
     }

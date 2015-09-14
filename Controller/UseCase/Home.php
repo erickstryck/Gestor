@@ -9,6 +9,9 @@ class Home extends GenericController {
 		$this->homeView = new HomeView(); 
 	}
 
+	/**
+	 * @Permissao({"administrador"})
+	 */
 	public function indexView(){
 		$this->homeView->indexView(); 
 	}
