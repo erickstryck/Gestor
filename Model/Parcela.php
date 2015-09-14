@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "parcela"
- * in 2015-09-10
+ * in 2015-09-14
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -18,10 +18,10 @@ class Parcela extends Lumine_Base {
     public $numeroDocumento;
     public $palavraChave;
     public $custoInternoAntigo;
-    public $isCaixaInterno;
     public $paga;
     public $formaPagamentoId;
     public $tipoDocumentoId;
+    public $recipienteId;
     
     
     
@@ -43,10 +43,10 @@ class Parcela extends Lumine_Base {
         $this->metadata()->addField('numeroDocumento', 'numero_documento', 'varchar', 45, array());
         $this->metadata()->addField('palavraChave', 'palavra_chave', 'varchar', 45, array());
         $this->metadata()->addField('custoInternoAntigo', 'custo_interno_antigo', 'double', null, array());
-        $this->metadata()->addField('isCaixaInterno', 'is_caixa_interno', 'boolean', 1, array());
         $this->metadata()->addField('paga', 'paga', 'boolean', 1, array());
         $this->metadata()->addField('formaPagamentoId', 'forma_pagamento_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'FormaPagamento'));
         $this->metadata()->addField('tipoDocumentoId', 'tipo_documento_id', 'int', 11, array('foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'TipoDocumento'));
+        $this->metadata()->addField('recipienteId', 'recipiente_id', 'int', 11, array('foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Recipiente'));
 
         
     }

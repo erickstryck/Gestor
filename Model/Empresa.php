@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "empresa"
- * in 2015-09-10
+ * in 2015-09-14
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -20,6 +20,7 @@ class Empresa extends Lumine_Base {
     public $contatos = array();
     public $produtos = array();
     public $recibos = array();
+    public $recipientes = array();
     public $servicos = array();
     public $tarefas = array();
     public $tipodocumentohasempresas = array();
@@ -49,6 +50,7 @@ class Empresa extends Lumine_Base {
         $this->metadata()->addRelation('contatos', Lumine_Metadata::ONE_TO_MANY, 'Contato', 'empresaId', null, null, null);
         $this->metadata()->addRelation('produtos', Lumine_Metadata::ONE_TO_MANY, 'Produto', 'empresaId', null, null, null);
         $this->metadata()->addRelation('recibos', Lumine_Metadata::ONE_TO_MANY, 'Recibo', 'empresaId', null, null, null);
+        $this->metadata()->addRelation('recipientes', Lumine_Metadata::ONE_TO_MANY, 'Recipiente', 'empresaId', null, null, null);
         $this->metadata()->addRelation('servicos', Lumine_Metadata::ONE_TO_MANY, 'Servico', 'empresaId', null, null, null);
         $this->metadata()->addRelation('tarefas', Lumine_Metadata::ONE_TO_MANY, 'Tarefa', 'empresaId', null, null, null);
         $this->metadata()->addRelation('tipodocumentohasempresas', Lumine_Metadata::ONE_TO_MANY, 'TipoDocumentoHasEmpresa', 'empresaId', null, null, null);

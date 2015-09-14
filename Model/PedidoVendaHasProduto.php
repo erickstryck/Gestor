@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "pedido_venda_has_produto"
- * in 2015-09-10
+ * in 2015-09-14
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -14,6 +14,7 @@ class PedidoVendaHasProduto extends Lumine_Base {
     
     public $quantidade;
     public $precoUnitario;
+    public $lucro;
     public $obsAdicionais;
     public $pedidoVendaId;
     public $produtoId;
@@ -34,6 +35,7 @@ class PedidoVendaHasProduto extends Lumine_Base {
         
         $this->metadata()->addField('quantidade', 'quantidade', 'int', 11, array());
         $this->metadata()->addField('precoUnitario', 'preco_unitario', 'double', null, array());
+        $this->metadata()->addField('lucro', 'lucro', 'double', null, array());
         $this->metadata()->addField('obsAdicionais', 'obs_adicionais', 'varchar', 45, array());
         $this->metadata()->addField('pedidoVendaId', 'pedido_venda_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'PedidoVenda'));
         $this->metadata()->addField('produtoId', 'produto_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Produto'));
