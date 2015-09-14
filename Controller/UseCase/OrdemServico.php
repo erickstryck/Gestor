@@ -8,11 +8,16 @@ class OrdemServico extends GenericController{
 		$this->ordemServicoView = new OrdemServicoView(); 
 	}	
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function cadastro($arg){
 		var_dump($arg); 
 	}
 
-
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function novaOrdemView(){
 		$this->ordemServicoView->novaOrdemView(); 
 	}

@@ -15,10 +15,16 @@ class Recibos extends GenericController {
 		$this->recibosView = new RecibosView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function novoReciboView(){
 		$this->recibosView->novoReciboView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function cadastro($arg){
 		Lumine::import("Recibo"); 
 
@@ -51,6 +57,9 @@ class Recibos extends GenericController {
 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function gerarRecibo($arg){	
 		Lumine::import("Recibo"); 
 		$recibo = new Recibo(); 
@@ -88,6 +97,7 @@ class Recibos extends GenericController {
 		$dom->stream("recibo".Convert::zeroEsquerda($recibo->id).".pdf"); 
 	}
 
+	
 	private function viaCliente($recibo,$template){
 		Lumine::import("Empresa"); 
 		$empresa = new Empresa(); 

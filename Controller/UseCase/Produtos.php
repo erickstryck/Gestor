@@ -9,11 +9,17 @@ class Produtos extends GenericController {
 		$this->produtosView = new ProdutosView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function novoProdutoView(){
 		$this->produtosView->novoProdutoView(); 
 	}
 
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function cadastro( $arg){
 		Lumine::import("Produto"); 
 
@@ -48,6 +54,9 @@ class Produtos extends GenericController {
 		$this->produtosView->sendAjax(array('status' => true) ); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function delete($arg){
 		Lumine::import("Produto"); 
 		$produto = new Produto(); 
@@ -60,6 +69,9 @@ class Produtos extends GenericController {
 		$this->produtosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function getObject($arg){
 		$id = (int) $arg['id']; 
 		Lumine::import("Produto"); 

@@ -9,10 +9,16 @@ class Categorias extends GenericController {
 		$this->categoriasView = new CategoriasView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function novaCategoriaView(){
 		$this->categoriasView->novaCategoriaView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function cadastro($arg){
 		//Roteiro:
 		//Validar os dados que estão vindo da visão ( fazer isso depois )
@@ -33,6 +39,9 @@ class Categorias extends GenericController {
 		$this->categoriasView->sendAjax(array('status' => true) );
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function alterar($arg){
 		//Roteiro:
 		//Validar os dados que estão vindo da visão ( fazer isso depois )
@@ -56,6 +65,9 @@ class Categorias extends GenericController {
 		$this->categoriasView->sendAjax(array('status' => true) );
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function getObject($arg){
 		$id = (int) $arg['id']; 
 		Lumine::import("Categoria"); 
@@ -66,6 +78,9 @@ class Categorias extends GenericController {
 		$this->categoriasView->sendAjax($categoria->toArray()); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function delete($arg){
 		Lumine::import("Categoria"); 
 		$categoria = new Categoria(); 

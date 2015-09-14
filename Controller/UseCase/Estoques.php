@@ -9,10 +9,17 @@ class Estoques extends GenericController {
 		$this->estoquesView = new EstoquesView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function novoAjusteView(){
 		$this->estoquesView->novoAjusteView(); 
 	}
 
+
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function cadastro($arg){
 		//Roteiro: 
 		//Validar os dados que estão vindo da visão ( fazer isso depois )

@@ -10,15 +10,24 @@ class Vendas extends GenericController {
 		$this->vendasView = new VendasView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function novaVendaView(){
 		$this->vendasView->novaVendaView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function orcamentoView($arg){
 		$idVenda = (int) $arg['id']; 
 		$this->vendasView->orcamentoView($idVenda); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function cadastro($arg){ 
 		//Roteiro: 
 		//Validar os dados que estão vindo da visão ( fazer isso depois )

@@ -10,16 +10,24 @@ class Contas extends GenericController {
 	}
 
 	// Isso aqui é uma fachada
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function novoPagamentoView(){
 		$this->contasView->novoPagamentoView(); 
 	}
 
 	// Isso aqui é uma fachada
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function novoRecebimentoView(){
 		$this->contasView->novoRecebimentoView(); 
 	}
 
-
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function cadastroPagamento($arg){
 	 	//Depois tratar a entrada de dados aqui.
 		Lumine::import("Conta"); 
@@ -34,6 +42,9 @@ class Contas extends GenericController {
 	 	$this->contasView->sendAjax(array('status' => true) ); 
 	 }
 
+	 /**
+     * @Permissao({"administrador"})
+     */
 	 public function alteraPagamento($arg){
 	 	//Depois tratar a entrada de dados aqui.
 	 	Lumine::import("Conta"); 
@@ -51,6 +62,9 @@ class Contas extends GenericController {
 	 	$this->contasView->sendAjax(array('status' => true) ); 
 	 }
 
+	 /**
+     * @Permissao({"administrador"})
+     */
 	 public function cadastroRecebimento($arg){
 	 	//Depois tratar a entrada de dados aqui.
 	 	Lumine::import("Conta"); 
@@ -65,6 +79,9 @@ class Contas extends GenericController {
 	 	$this->contasView->sendAjax(array('status' => true) ); 
 	 }
 
+	 /**
+     * @Permissao({"administrador"})
+     */
 	 public function alteraRecebimento($arg){
 	 	//Depois tratar a entrada de dados aqui.
 	 	Lumine::import("Conta"); 
@@ -82,6 +99,9 @@ class Contas extends GenericController {
 	 	$this->contasView->sendAjax(array('status' => true) ); 
 	 }
 
+	 /**
+     * @Permissao({"administrador"})
+     */
 	 public function delete ($arg){
 	 	$id = (int) $arg['id']; 
 	 	Lumine::import("Conta"); 
@@ -96,6 +116,7 @@ class Contas extends GenericController {
 	 	$this->contasView->sendAjax(array('status' => true) ); 
 
 	 }
+
 
 	 private function cadastra($conta , $arg){
 	 	$conta->descricao  			= $arg['descricao']; 

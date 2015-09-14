@@ -9,7 +9,11 @@ class AjaxServices extends GenericController{
 	}
 
 	//Essa função recebe a chave primária de um estado
-	//E retorna as cidades do mesmo. 
+	//E retorna as cidades do mesmo.
+	
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function getCities( $arg ){ 
 	 	Lumine::import('Cidade');
 	 	$cidade = new Cidade(); 
@@ -20,6 +24,9 @@ class AjaxServices extends GenericController{
 	 	die(json_encode($array)); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function getcategoryProfit($arg){
 		Lumine::import('Categoria'); 
 		$categoria = new Categoria(); 
@@ -34,6 +41,9 @@ class AjaxServices extends GenericController{
 	}
 
 	//Testar esse método contra Sql injection
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function getProducts($arg){
 		Lumine::import("Produto"); 
 		Lumine::import("CategoriaHasProduto");
@@ -68,6 +78,9 @@ class AjaxServices extends GenericController{
 		die(json_encode($array)); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	function getProductPrince($arg){
 		$id = (int) $arg['produto_id']; 
 		Lumine::import('Produto'); 

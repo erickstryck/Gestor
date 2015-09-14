@@ -9,10 +9,16 @@ class Clientes extends GenericController {
 		$this->clientesView = new ClientesView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function novoContatoView(){
 		$this->clientesView->novoContatoView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function cadastro($arg){
 	
 		//roteiro:

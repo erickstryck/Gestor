@@ -9,10 +9,16 @@ class Usuarios extends GenericController {
 		$this->usuariosView = new UsuariosView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function novoUsuarioView(){
 		$this->usuariosView->novoUsuarioView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function cadastro($arg){
 		//Roteiro: 
 		//Validar os dados que estão vindo da visão ( fazer isso depois )
@@ -60,6 +66,9 @@ class Usuarios extends GenericController {
 		$this->usuariosView->sendAjax(array('status' => true) );
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function delete($arg){
 		Lumine::import("Usuario"); 
 		Lumine::import("UsuarioHasEmpresa"); 
@@ -81,6 +90,9 @@ class Usuarios extends GenericController {
 		$this->usuariosView->sendAjax(array('status' => true, 'msg' => $arg['id'])); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	 public function getObject($arg){
 	 	$id = (int) $arg['id']; 
 	 	Lumine::import("Usuario"); 

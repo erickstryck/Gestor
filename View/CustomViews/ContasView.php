@@ -15,7 +15,8 @@ class ContasView extends GenericView{
 		//anexando elementos a tabela: 
 		Lumine::import("Conta"); 
 		Lumine::import("Contato");
-		Lumine::import("PlanoConta");  
+		Lumine::import("PlanoConta"); 
+		Lumine::import("Recipiente");  
 		Lumine::import("TipoDocumento"); 
 
 		$conta = new Conta();
@@ -44,6 +45,7 @@ class ContasView extends GenericView{
 			parent::$templator->addBlock('row'); 
 		} 
 
+		//Adicionando plano de contas  para contas a pagar. 
 		$plano = new PlanoConta(); 
 		$plano->where('id <= 38')->find(); 
 
@@ -53,6 +55,9 @@ class ContasView extends GenericView{
 			parent::$templator->setVariable('disabled', (($plano->label)? 'disabled' : '' ) ); 
 			parent::$templator->addBlock('plano_conta'); 
 		}
+
+		$recipiente = new Recipiente(); 
+		$recipiente->where("empresa_id = ". $_SESSION['empresaId']);
 
 		parent::show(); 
 	}

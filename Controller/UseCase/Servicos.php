@@ -13,6 +13,9 @@ class Servicos extends GenericController {
 		$this->servicosView->novoServicoView(); 
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function cadastro($arg){
 		Lumine::import("Servico"); 
 		$servico = new Servico();
@@ -24,6 +27,9 @@ class Servicos extends GenericController {
 		$this->servicosView->sendAjax(array('status' => true) );
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function getObject($arg){
 		Lumine::import("Servico");
 		$servico = new Servico();
@@ -32,6 +38,9 @@ class Servicos extends GenericController {
 		$this->servicosView->sendAjax($servico->toArray());
 	}
 
+	/**
+     * @Permissao({"administrador"})
+     */
 	public function alterar($arg){
 		Lumine::import("Servico");
 		$servico = new Servico();
@@ -45,7 +54,10 @@ class Servicos extends GenericController {
 		$this->servicosView->sendAjax(array('status' => true) );
 	}
 
-	function delete($arg){
+	/**
+     * @Permissao({"administrador"})
+     */
+	public function delete($arg){
 		Lumine::import("Servico");
 		$servico=new Servico();
 		$servico->where("empresa_id = ".$_SESSION["empresaId"]." and id=".(int)$arg["id"])->find();
