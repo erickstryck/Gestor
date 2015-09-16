@@ -13,8 +13,9 @@ require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Contas.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Tarefas.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Recibos.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Autenticar.php');
+require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Eventos.php');
 require_once(PATH . 'Security' . DS . 'Firewall.php');
-require_once(PATH . 'Security' . DS . 'Eventos.php');
+require_once(PATH . 'Security' . DS . 'EventLog.php');
 class MainController
 {
     private $controllersArray;

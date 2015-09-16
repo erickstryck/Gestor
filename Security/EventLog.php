@@ -14,6 +14,11 @@ class EventLog
         $log = new Log();
         $requisicao= self::getArray();
         $log->ocorrencia=$data.' '.$msg;
+        $temp='';
+        foreach($_SESSION['Permissao'] as $valor){
+            $temp=$temp.' '.$valor;
+        }
+        $log->permissao=$temp;
         $log->usercase=$requisicao['uc'];
         $log->action=$requisicao['a'];
         $log->usuarioId=$_SESSION["id"];
