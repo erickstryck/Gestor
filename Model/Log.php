@@ -18,7 +18,6 @@ class Log extends Lumine_Base {
     public $ocorrencia;
     public $empresaId;
     public $usuarioId;
-    public $permissao;
     
     
     
@@ -37,10 +36,9 @@ class Log extends Lumine_Base {
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->metadata()->addField('usercase', 'userCase', 'varchar', 45, array('notnull' => true));
         $this->metadata()->addField('action', 'action', 'varchar', 45, array('notnull' => true));
-        $this->metadata()->addField('ocorrencia', 'ocorrencia', 'varchar', 120, array('notnull' => true));
+        $this->metadata()->addField('ocorrencia', 'ocorrencia', 'varchar', 45, array('notnull' => true));
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
         $this->metadata()->addField('usuarioId', 'usuario_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Usuario'));
-        $this->metadata()->addField('permissao', 'permissao', 'varchar', 120, array('notnull' => true));
 
         
     }
