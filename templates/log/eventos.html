@@ -1,0 +1,94 @@
+<!doctype html>
+<html class="no-js" lang="pt">
+<head>
+    <!-- init script and css -->
+    <!-- $Include templates/lib/html/scripthead.html -->
+    <!--init script and css end-->
+    <title>Tela Principal</title>
+    <style type="text/css">
+        .separator {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        input.fix {
+            margin: 0;
+            padding: 0;
+        }
+
+        select.fix {
+            margin: 0;
+            padding: 0;
+        }
+
+        td.fix {
+            padding-top: 2px !important;
+            padding-bottom: 2px !important;
+        }
+    </style>
+
+</head>
+<body>
+<!--top bar bagin -->
+<!-- $Include templates/lib/html/header.html -->
+<!--top bar end-->
+
+<!-- body section-->
+<!-- title -->
+<div class="row full-width">
+    <div class="medium-12 columns panel">
+        <h3>LOG DE EVENTOS</h3>
+    </div>
+</div>
+<!-- alerta -->
+
+
+<!-- container main -->
+<div class="row full-width">
+    <div class="medium-12 columns">
+        <!-- formulário -->
+        <form id="myform" data-abide="ajax">
+            <table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
+                <thead>
+                <tr>
+                    <th>Serviço</th>
+                    <th>Ação</th>
+                    <th>Evento</th>
+                    <th>Empresa</th>
+                    <th>Usuario</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- $BeginBlock log -->
+                <tr>
+                    <td>${servico}</td>
+                    <td>${acao}</td>
+                    <td>${ocorrencia}</td>
+                    <td>${empresa}</td>
+                    <td>${usuario}</td>
+                </tr>
+                <!-- $EndBlock log -->
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>Serviço</th>
+                    <th>Ação</th>
+                    <th>Evento</th>
+                    <th>Empresa</th>
+                    <th>Usuario</th>
+                </tr>
+                </tfoot>
+            </table>
+        </form>
+        <!-- fim formulário -->
+    </div>
+</div>
+</div>
+<!--footer begin -->
+<!-- $Include templates/lib/html/footer.html -->
+<!--footer end-->
+</body>
+<!--footer bagin -->
+<!-- $Include templates/lib/html/footertag.html -->
+<!--footer end-->
+</html>

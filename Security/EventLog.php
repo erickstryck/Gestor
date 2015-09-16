@@ -6,14 +6,14 @@
  * Date: 15/09/15
  * Time: 12:00
  */
-class Eventos
+class EventLog
 {
-    public function monitoramento(){
+    public function monitoramento($msg){
         Lumine::import("Log");
         $data=strftime('%A, %d de %B de %Y', strtotime('today')).' as '.Date('H:i:s');
         $log = new Log();
         $requisicao= self::getArray();
-        $log->ocorrencia=$data;
+        $log->ocorrencia=$data.' '.$msg;
         $log->usercase=$requisicao['uc'];
         $log->action=$requisicao['a'];
         $log->usuarioId=$_SESSION["id"];

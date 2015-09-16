@@ -36,10 +36,9 @@ class MainController
             'ordemServico' => new OrdemServico(),
             'tarefas' => new Tarefas(),
             'recibos' => new Recibos(), 
-            'autenticar' => new Autenticar()
+            'autenticar' => new Autenticar(),
+            'eventos' => new Eventos()
         );
-        $ev=new Eventos();
-        $ev->monitoramento();
     }
 
     public function findMyController()
@@ -49,10 +48,11 @@ class MainController
         // 2 A action existe no controlador?
         // 3 Invocar método;
         // 4 Gerar output.
+        $ev=new EventLog();
         $useCase = $_REQUEST ['uc'];
         $action = $_REQUEST ['a'];
 
-        // if( $this->$controllersArray[$useCase] == null ) return;
+       // if( $this->$controllersArray[$useCase] == null ) return;
         $controller = $this->controllersArray [$useCase];
         $realNameMethod = '';
 
@@ -71,11 +71,14 @@ class MainController
 
         $reflection = new ReflectionMethod ($controller->sayMyName(), $realNameMethod);
         if (!Firewall::defender($controller, $realNameMethod)) {
-            if (strcmp($_SERVER['REQUEST_METHOD'], 'POST') == 0)
+            if (strcmp($_SERVER['REQUEST_METHOD'], 'POST') == 0) {
+                $ev->monitoramento('Acesso negado.');
                 die(json_encode(array('status' => false, 'msg' => 'Acesso negado.')));
-            else
+            } else {
+                $ev->monitoramento('Acesso negado.');
                 die('Acesso negado'); //Futoramente redirecionar para uma tela;
-        }
+            }
+        }else $ev->monitoramento('Status OK.');
         return $reflection->invoke($controller, self::preparingArray($_REQUEST));
     }
 
