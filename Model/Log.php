@@ -1,7 +1,7 @@
 <?php
 #### START AUTOCODE
 /**
- * Classe generada para a tabela "servico"
+ * Classe generada para a tabela "log"
  * in 2015-09-15
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
@@ -9,15 +9,15 @@
  *
  */
 
-class Servico extends Lumine_Base {
+class Log extends Lumine_Base {
 
     
     public $id;
-    public $nomeServico;
-    public $preco;
-    public $palavraChave;
+    public $usercase;
+    public $action;
+    public $ocorrencia;
     public $empresaId;
-    public $ativo;
+    public $usuarioId;
     
     
     
@@ -28,17 +28,17 @@ class Servico extends Lumine_Base {
      */
     protected function _initialize()
     {
-        $this->metadata()->setTablename('servico');
+        $this->metadata()->setTablename('log');
         $this->metadata()->setPackage('Model');
         
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
         
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
-        $this->metadata()->addField('nomeServico', 'nome_servico', 'varchar', 200, array());
-        $this->metadata()->addField('preco', 'preco', 'double', null, array());
-        $this->metadata()->addField('palavraChave', 'palavra_chave', 'varchar', 60, array());
+        $this->metadata()->addField('usercase', 'userCase', 'varchar', 45, array('notnull' => true));
+        $this->metadata()->addField('action', 'action', 'varchar', 45, array('notnull' => true));
+        $this->metadata()->addField('ocorrencia', 'ocorrencia', 'varchar', 45, array('notnull' => true));
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
-        $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
+        $this->metadata()->addField('usuarioId', 'usuario_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Usuario'));
 
         
     }

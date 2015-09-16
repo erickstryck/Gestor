@@ -1,5 +1,6 @@
 <?php
 //Configurando a data e hora do servidor: 
+setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 
 //Criar um arquivo para definições mais tarde. 
@@ -30,7 +31,9 @@ if (empty($_REQUEST['uc']) || empty($_REQUEST['a'])) {
     $_REQUEST['a'] = 'indexView';
 }
 
+
 $_SESSION['Permissao'] = array('administrador');
+$_SESSION['id']=1;
 (new MainController())->findMyController();
 
 //Ainda em digivolvimento

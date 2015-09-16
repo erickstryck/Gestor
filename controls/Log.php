@@ -23,10 +23,10 @@ require_once '/var/www/html/Gestor/lumine-conf.php';
 Lumine::load('Form_White');
 
 $cfg = new Lumine_Configuration( $lumineConfig );
-$cfg->import('Produto');
+$cfg->import('Log');
 register_shutdown_function(array($cfg->getConnection(), 'close'));
 
-$obj = new Produto;
+$obj = new Log;
 
 $form = new Lumine_Form_White( $obj );
 

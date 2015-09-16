@@ -19,7 +19,7 @@
 ################################################################################
 /**
  * Created by Lumine_Reverse
- * in 2015-09-14
+ * in 2015-09-15
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  *
@@ -27,52 +27,53 @@
  */
 
 $lumineConfig = array(
-    'dialect' => 'MySQLi',
-    'database' => 'mydb',
-    'user' => 'root',
-    'password' => '',
-    'port' => '3306',
-    'host' => 'localhost',
-    'class_path' => 'C:/wamp/www/Gestor',
-    'package' => 'Model',
-    'addons_path' => '',
-    'acao' => 'gerar',
+    'dialect' => 'MySQLi', 
+    'database' => 'mydb', 
+    'user' => 'root', 
+    'password' => '', 
+    'port' => '3306', 
+    'host' => 'localhost', 
+    'class_path' => '/var/www/html/Gestor', 
+    'package' => 'Model', 
+    'addons_path' => '', 
+    'acao' => 'gerar', 
 
-
+	
     'options' => array(
-        'configID' => '',
-        'tipo_geracao' => '1',
-        'classMapping' => 'default',
-        'cache' => 'APC',
-        'remove_prefix' => '',
-        'remove_count_chars_start' => '0',
-        'remove_count_chars_end' => '0',
-        'format_classname' => '%s',
-        'schema_name' => '',
-        'many_to_many_style' => '%s_%s',
-        'plural' => '',
-        'create_controls' => 'White',
-        'class_sufix' => '',
-        'keep_foreign_column_name' => '1',
-        'camel_case' => '1',
-        'usar_dicionario' => '1',
-        'create_paths' => '1',
-        'dto_format' => '%sDTO',
+        'configID' => '', 
+        'tipo_geracao' => '1', 
+        'classMapping' => 'default', 
+        'cache' => 'APC', 
+        'remove_prefix' => '', 
+        'remove_count_chars_start' => '0', 
+        'remove_count_chars_end' => '0', 
+        'format_classname' => '%s', 
+        'schema_name' => '', 
+        'many_to_many_style' => '%s_%s', 
+        'plural' => '', 
+        'create_controls' => 'White', 
+        'class_sufix' => '', 
+        'keep_foreign_column_name' => '1', 
+        'camel_case' => '1', 
+        'usar_dicionario' => '1', 
+        'create_paths' => '1', 
+        'dto_format' => '%sDTO', 
         'dto_package' => array(
             '0' => 'entidades',
-        ),
-        'model_path' => '',
-        'model_format' => '%sModel',
-        'model_context_path' => '',
-        'classDescriptor' => '',
-        'overwrite' => '0',
-        'create_dtos' => '',
-        'generateAccessors' => '',
-        'create_entities_for_many_to_many' => '',
-        'generate_files' => '1',
+        ), 
+        'model_path' => '', 
+        'model_format' => '%sModel', 
+        'model_context_path' => '', 
+        'classDescriptor' => '', 
+        'overwrite' => '0', 
+        'create_dtos' => '', 
+        'generateAccessors' => '', 
+        'create_entities_for_many_to_many' => '', 
+        'generate_files' => '1', 
         'generate_zip' => '0'
     )
 );
+
 
 
 ?>
