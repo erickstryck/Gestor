@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt">
+<html class="no-js" lang="pt">
 <head>
     <!-- init script and css -->
     <!-- $Include templates/lib/html/scripthead.html -->
@@ -37,12 +37,14 @@
 <!-- title -->
 <div class="row full-width">
     <div class="medium-12 columns panel">
-        <h3>LOG DE EVENTOS</h3>
+        <h3>Log de acesso</h3>
     </div>
 </div>
 <!-- alerta -->
 
+<!-- botões -->
 
+<!-- container main -->
 <!-- container main -->
 <div class="row full-width">
     <div class="medium-12 columns">
@@ -86,14 +88,22 @@
         <!-- fim formulário -->
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $(document).foundation();
-    });
-</script>
 <!--footer begin -->
 <!-- $Include templates/lib/html/footer.html -->
 <!--footer end-->
+
+<script>
+    $(document).foundation();
+
+    $(document).ready(function () {
+        var myCalendar = new dhtmlXCalendarObject(["calendar"]);
+        myCalendar.loadUserLanguage("pt");
+        $(document).Conf();
+        $(document).Crud('tarefas', '#nova_tarefa', function (data) {
+            alertify.log(data);
+        });
+    });
+</script>
 </body>
 <!--footer bagin -->
 <!-- $Include templates/lib/html/footertag.html -->
