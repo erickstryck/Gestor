@@ -6,7 +6,6 @@
  * Time: 08:30
  */
 require_once(PATH . 'Util' . DS . 'annotations.php');
-
 class Firewall extends Annotation
 {
     public static function filtro()

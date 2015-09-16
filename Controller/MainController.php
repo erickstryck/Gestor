@@ -13,7 +13,7 @@ require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Contas.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Tarefas.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Recibos.php');
 require_once(PATH . 'Security' . DS . 'Firewall.php');
-
+require_once(PATH . 'Security' . DS . 'Eventos.php');
 class MainController
 {
     private $controllersArray;
@@ -36,6 +36,8 @@ class MainController
             'tarefas' => new Tarefas(),
             'recibos' => new Recibos()
         );
+        $ev=new Eventos();
+        $ev->monitoramento();
     }
 
     public function findMyController()

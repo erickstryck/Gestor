@@ -6,25 +6,23 @@
  * Date: 15/09/15
  * Time: 12:00
  */
-class Log
+class Eventos
 {
-    public static function log(){
+    public function monitoramento(){
         Lumine::import("Log");
-        Lumine::import("Usuario");
-        $user=new Usuario();
         $data=strftime('%A, %d de %B de %Y', strtotime('today')).' as '.Date('H:i:s');
         $log = new Log();
         $requisicao= self::getArray();
-        $user->fetch(true);
         $log->ocorrencia=$data;
         $log->usercase=$requisicao['uc'];
         $log->action=$requisicao['a'];
         $log->usuarioId=$_SESSION["id"];
         $log->empresaId=$_SESSION["empresaId"];
+        $log->insert();
     }
 
-    private static function getArray(){
-        if(strcmp($_SERVER['REQUEST_METHOD'],'POST')){
+    private function getArray(){
+        if(strcmp($_SERVER['REQUEST_METHOD'],'POST')==0){
             $post=$_POST;
             return $post;
         }else{
