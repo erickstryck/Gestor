@@ -28,7 +28,7 @@ class Firewall extends Annotation
     {
         $ok = false;
         $acesso = new ReflectionAnnotatedMethod($uc, $meth);
-        if (!$acesso->hasAnnotation('Permissao')) return false;
+        if (!$acesso->hasAnnotation('Permissao')) return true;
         $annotation = $acesso->getAnnotation('Permissao')->value;
         if (array_key_exists('Permissao', $_SESSION) && $annotation != null)
             foreach ($_SESSION['Permissao'] as $value) if (in_array($value, $annotation)) $ok = true;

@@ -15,7 +15,6 @@ class Log
         $data=strftime('%A, %d de %B de %Y', strtotime('today')).' as '.Date('H:i:s');
         $log = new Log();
         $requisicao= self::getArray();
-        $user->where("empresa_id = " . $_SESSION["empresaId"] . " and id=" . $_SESSION["id"])->find();
         $user->fetch(true);
         $log->ocorrencia=$data;
         $log->usercase=$requisicao['uc'];
