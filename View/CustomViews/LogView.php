@@ -36,6 +36,7 @@ require_once(PATH . 'Util' . DS . 'Convert.php');
                 parent::$templator->setVariable('ocorrencia', $log->ocorrencia);
                 parent::$templator->setVariable('empresa', $emp->nomeFantasia);
                 parent::$templator->setVariable('usuario', $user->nomeCompleto);
+                parent::$templator->setVariable('perm',$log->permissao);
                 parent::$templator->addBlock('log');
             }
             parent::show();
