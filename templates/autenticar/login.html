@@ -1,21 +1,25 @@
 <!doctype html>
 <html class="no-js" lang="pt">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- init script and css -->
+	<!-- $Include templates/lib/html/scripthead.html -->
+	<!--init script and css end-->
 	<title>Login</title>
-	<link rel="stylesheet" href="css/foundation.css" />
-	<script src="js/vendor/modernizr.js"></script>
+	
 	<style>
 		body{
 			
-			background-color:rgb(0,0,0);
+			background-image: url("templates/lib/img/bg.png") !important;
+            background-repeat: repeat;
 		}
 
 		.box{
-			background-color:rgba(255,255,255,0.4);
+			background-color:rgba(255,255,255,1);
+            border-width: 1px; 
+            border-style: solid; 
+            border-color: #C1B6B6;
 		}
-
+/**/
 		video#bgvid { 
 			position: fixed;
 			top: 50%;
@@ -31,89 +35,91 @@
 			background-size: cover; 
 		}
 
-		video { display: block; }
+		video { display: block; }*/
 	</style>
 </head>
+<body>
 
 <!-- <video autoplay loop poster="polina.jpg" id="bgvid">
     <source src="http://razza.com.br/workplace/Midia/3.mp4">
- </video> -->
+    </video> -->
 
- <video autoplay loop poster="polina.jpg" id="bgvid">
-    <source src="http://thenewcode.com/assets/videos/polina.mp4">
- </video>
-
-
-<!-- main -->
-<div class="row">
-	<div class="medium-4 medium-centered columns box" style="margin-top:12%;border-radius:2px;">
-		<!-- linha 1 -->
-		<div class="row" >
-			<div class="medium-7 medium-centered columns">
-				<img src="https://desktop.telegram.org/img/td_logo.png" style="margin-top:20px;" >
-			</div>		
-		</div>
-
-		<!-- linha 1 -->
-		<div class="row">
-			<div class="medium-12 medium-centered columns">
-				<label>Login <input type="text" placeholder="exemplo: Maria23"/>	</label>
-			</div>		
-		</div>
-
-		<!-- linha 1 -->
-		<div class="row">
-			<div class="medium-12 medium-centered columns">
-				<label>Senha <input type="password"/>	</label>
-			</div>		
-		</div>
-
-		<!-- linha 1 -->
-		<div class="row">
-			<div class="medium-12 medium-centered columns">
-				<button class="button tiny" style="width:100%;">Login</button>
-			</div>		
-		</div>
-
-		<!-- linha 1 -->
-		<div class="row">
-			<div class="medium-12 medium-centered columns">
-				<button class="button tiny success" style="width:100%;">Cadastre sua empresa</button>
-			</div>		
-		</div>
-
-		<!-- linha 1 -->
-		<div class="row">
-			<div class="medium-12 medium-centered columns">
-				<!-- recuperar senha -->
-				<div class="row">
-					<div class="medium-6 columns">
-						<button class="button tiny secondary" style="width:100%;">Recuperar senha</button>
-					</div>
+   <!--  <video autoplay loop poster="polina.jpg" id="bgvid">
+    	<source src="http://thenewcode.com/assets/videos/polina.mp4">
+    	</video> -->
 
 
-					<!--Cadastrar-->
+    	<!-- main -->
+    	<div class="row">
+    		<div class="medium-4 medium-centered columns box" style="margin-top:12%;border-radius:2px;">
+    			<!-- linha 1 -->
+    			<div class="row" >
+    				<div class="medium-7 medium-centered columns">
+    					<img src="https://desktop.telegram.org/img/td_logo.png" style="margin-top:20px;" >
+    				</div>		
+    			</div>
 
-					<div class="medium-6 columns">
-						<button class="button tiny secondary" style="width:100%;">Sobre o Gestor</button>
-					</div>
-				</div>
-			</div>		
-		</div>
+    			<!-- linha 1 -->
+    			<div class="row">
+    				<div class="medium-12 medium-centered columns">
+    					<label>Login <input type="text" placeholder="exemplo: Maria23"/>	</label>
+    				</div>		
+    			</div>
 
-		<!-- linha 1 -->
-		<div class="row">
-			<div class="medium-5 medium-centered columns" style="height:60px;top:10px">
-				<a href="http://bizado.biz/"> <img src="Midia\empresa.png"> </a>
-			</div>		
-		</div>
-	</div>
-</div>
-<body>
-	<script src="js/vendor/jquery.js"></script>
-	<script src="js/foundation.min.js"></script>
-	<script>
-		$(document).foundation();
-	</script>
-</body>
-</html>
+    			<!-- linha 1 -->
+    			<div class="row">
+    				<div class="medium-12 medium-centered columns">
+    					<label>Senha <input type="password"/>	</label>
+    				</div>		
+    			</div>
+
+    			<!-- linha 1 -->
+    			<div class="row">
+    				<div class="medium-12 medium-centered columns">
+    					<button class="button tiny" style="width:100%;">Login</button>
+    				</div>		
+    			</div>
+
+    			<!-- linha 1 -->
+    			<div class="row">
+    				<div class="medium-12 medium-centered columns">
+    					<button class="button tiny success" style="width:100%;">Cadastre sua empresa</button>
+    				</div>		
+    			</div>
+
+    			<!-- linha 1 -->
+    			<div class="row">
+    				<div class="medium-12 medium-centered columns">
+    					<!-- recuperar senha -->
+    					<div class="row">
+    						<div class="medium-6 columns">
+    							<button class="button tiny secondary" style="width:100%;">Recuperar senha</button>
+    						</div>
+
+
+    						<!--Cadastrar-->
+
+    						<div class="medium-6 columns">
+    							<a hrf='Blog/' class="button tiny secondary" style="width:100%;">Sobre o Gestor</a>
+    						</div>
+    					</div>
+    				</div>		
+    			</div>
+
+    			<!-- linha 1 -->
+    			<div class="row">
+    				<div class="medium-5 medium-centered columns" style="height:60px;top:10px">
+    					<a href="http://bizado.biz/"> <img src="Midia\empresa.png"> </a>
+    				</div>		
+    			</div>
+    		</div>
+    	</div>
+    	
+    		<!--footer begin -->
+    		<!-- $Include templates/lib/html/footer.html -->
+    		<!--footer end-->
+    		<script>
+    			$(document).foundation();
+    		</script>
+    	</body>
+    	</html>
