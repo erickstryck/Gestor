@@ -12,6 +12,7 @@ require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'OrdemServico.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Contas.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Tarefas.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Recibos.php');
+require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Autenticar.php');
 require_once(PATH . 'Security' . DS . 'Firewall.php');
 require_once(PATH . 'Security' . DS . 'Eventos.php');
 class MainController
@@ -34,7 +35,8 @@ class MainController
             'vendas' => new Vendas(),
             'ordemServico' => new OrdemServico(),
             'tarefas' => new Tarefas(),
-            'recibos' => new Recibos()
+            'recibos' => new Recibos(), 
+            'autenticar' => new Autenticar()
         );
         $ev=new Eventos();
         $ev->monitoramento();

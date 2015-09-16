@@ -1,7 +1,5 @@
 <?php
-namespace Controller\UseCase;
 
-use Controller\GenericController;
 
 class Autenticar extends GenericController
 {
@@ -19,8 +17,8 @@ class Autenticar extends GenericController
 
     public function login($arg)
     {
-        $daoUsuario = new DAOUsuario();
-        $daoEgresso = new DAOEgresso();
+        $daoUsuario   = new DAOUsuario();
+        $daoEgresso   = new DAOEgresso();
         $daoProfessor = new DAOProfessor();
 
         $usuario = $daoUsuario->selectByCpfPassword($arg['cpf'], $arg['password']);
