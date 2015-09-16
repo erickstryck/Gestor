@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "estado"
- * in 2015-09-15
+ * in 2015-09-16
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -16,6 +16,7 @@ class Estado extends Lumine_Base {
     public $des;
     public $paisId;
     public $cidades = array();
+    public $empresas = array();
     
     
     
@@ -37,6 +38,7 @@ class Estado extends Lumine_Base {
 
         
         $this->metadata()->addRelation('cidades', Lumine_Metadata::ONE_TO_MANY, 'Cidade', 'estadoId', null, null, null);
+        $this->metadata()->addRelation('empresas', Lumine_Metadata::ONE_TO_MANY, 'Empresa', 'estadoId', null, null, null);
     }
 
     #### END AUTOCODE

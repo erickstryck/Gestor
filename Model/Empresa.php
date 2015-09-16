@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "empresa"
- * in 2015-09-15
+ * in 2015-09-16
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -13,8 +13,12 @@ class Empresa extends Lumine_Base {
 
     
     public $id;
-    public $nomeFantasia;
+    public $nome;
     public $ativo;
+    public $telFixo;
+    public $telCelular;
+    public $emailPrincipal;
+    public $estadoId;
     public $categorias = array();
     public $contas = array();
     public $contatos = array();
@@ -42,8 +46,12 @@ class Empresa extends Lumine_Base {
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
         
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
-        $this->metadata()->addField('nomeFantasia', 'nome_fantasia', 'varchar', 45, array());
+        $this->metadata()->addField('nome', 'nome', 'varchar', 45, array());
         $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
+        $this->metadata()->addField('telFixo', 'tel_fixo', 'varchar', 45, array());
+        $this->metadata()->addField('telCelular', 'tel_celular', 'varchar', 45, array());
+        $this->metadata()->addField('emailPrincipal', 'email_principal', 'varchar', 45, array());
+        $this->metadata()->addField('estadoId', 'estado_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Estado'));
 
         
         $this->metadata()->addRelation('categorias', Lumine_Metadata::ONE_TO_MANY, 'Categoria', 'empresaId', null, null, null);
