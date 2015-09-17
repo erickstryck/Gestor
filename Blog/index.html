@@ -11,17 +11,39 @@
    <meta name="description" content="content description">
    <meta name="author" content="Coralix Themes">
 
-	<!-- Responsive Metatag -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- Responsive Metatag -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!-- Favicon  -->
-	<link rel="shortcut icon" href="favicon.png">
+   <!-- Favicon  -->
+   <link rel="shortcut icon" href="favicon.png">
 
     <!-- Stylesheet
     ===================================================================================================  -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/media-queries.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media-queries.css">
+
+    <style type="text/css">
+
+        .landspace{
+         background-color:black!important;
+         height: 100%;
+         left: 0;
+         opacity: 0.5 !important;
+         position: absolute;
+         top: 0;
+         width: 100%;
+         z-index: 0;
+         margin: 0;
+
+     }
+
+     .acess{
+        color:white!important;background-color:blue;
+     }
+
+
+ </style>
 
 </head>
 
@@ -31,768 +53,949 @@
     <!--header-->
     <header class="navbar navbar-default navbar-fixed-top">
         <nav class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <figure class="">
-                        <a class="navbar-brand" href="#"><img src="../Midia/empresa.png"  width="50%" height="50%" alt="//"></a>
-                    </figure>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a class="nav-button" data-src="slider" href="#slider">home</a></li>
-                        <li><a class="nav-button" data-src="features"  href="#features">Funcionalidades</a></li>
-                        <li><a class="nav-button" data-src="classes" href="#classes">classes</a></li>
-                        <li><a class="nav-button" data-src="teachers" href="#teachers">Empresas</a></li>
-                        <li><a class="nav-button" data-src="prices" href="#prices">Preços</a></li>
-                        <li><a class="nav-button" data-src="information" href="#information">Info</a></li>
-                        <li><a class="nav-button" data-toggle="modal" data-target="#contactmodal" href="#">Contato</a></li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <figure class="">
+                    <a class="navbar-brand" href="#"><img src="../Midia/empresa.png"  width="50%" height="50%" alt="//"></a>
+                </figure>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="nav-button" data-src="slider" href="#slider">home</a></li>
+                    <li><a class="nav-button" data-src="features"  href="#features">Funcionalidades</a></li>
+                    <li><a class="nav-button" data-src="classes" href="#classes">classes</a></li>
+                    <li><a class="nav-button" data-src="teachers" href="#teachers">Empresas</a></li>
+                    <li><a class="nav-button" data-src="prices" href="#prices">Preços</a></li>
+                    <li><a class="nav-button" data-src="information" href="#information">Info</a></li>
+                    <li><a class="nav-button acess" data-src="/index.php?uc=autenticar&a=loginView" href="/index.php?uc=autenticar&a=loginView">Acessar Gestor</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
         </nav><!-- /.container -->
     </header>
     <!--header-->
 
 
     <!-- Notified -->
-    <section id="slider" class="slider">
-        <figure></figure>
-        <div class="container center text-center">
-            <h1 style='color:white'>Gestor online para a sua empresa</h1>
+    <section id="slider" class="slider" >
+        <figure class="landspace col-sm-12 ">
+
+        </figure>
+      <!--   <div class="container center text-center">
+            <h1 style='color:white!important;'>Gestor online para a sua empresa</h1>
             <div class="col-sm-12 col-lg-6 col-lg-offset-3">
-                <p>
+                <p style="color:white !important;" >
                     Cuide do seu negócio e deixe a parte mais difícil com a gente. 
                 </p>
                 
             </div>
             <figure class="content_img col-sm-12 ">
-                <img src="img/chrome.png" alt="//">
+                
             </figure>
-        </div>
-    </section>
-    <!-- end Notified -->
+        </div> -->
 
-
-    <!-- Features -->
-    <section id="features" class="features generic">
-        <div class="container text-center">
+        <div class="container">
             <div class="row">
-                <h1 style='color:rgb(106,146,179);'>As ferramentas que você precisa</h1>
-                <article class="item col-sm-3 opacity_init">
-                    <a class="icon" href="#"><img class="icon-monitor" src="img/features-01.png" alt="//"></a>
-                    <h2><a href="#">online classes</a></h2>
-                    <p>Alias, porro, consequatur quas nostrum sed iure quos quia excepturi rerum libero odit maxime explicabo ducimus?</p>
-                </article>
-                <article class="item col-sm-3 opacity_init">
-                    <a class="icon" href="#"><img class="icon-users" src="img/features-02.png" alt="//"></a>
-                    <h2><a href="#">online classes</a></h2>
-                    <p> rerum amet deserunt obcaecati ea accusamus veniam facere nisi et eaque praesentium nemo rem!</p>
-                </article>
-                <article class="item col-sm-3 opacity_init">
-                    <a class="icon" href="#"><img class="icon-book-open" src="img/features-03.png" alt="//"></a>
-                    <h2><a href="#">online classes</a></h2>
-                    <p>luptatibus officia recusandae veritatis! Earum, architecto aliquam impedit laudantium provident rem accusantium odio at?</p>
-                </article>
-                <article class="item col-sm-3 opacity_init">
-                    <a class="icon" href="#"><img class="icon-graduation-cap" src="img/features-04.png" alt="//"></a>
-                    <h2><a href="#">online classes</a></h2>
-                    <p>laudantium quisquam inventore? Facilis, ipsum, velit amet sed nulla harum aut veniam iste.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-    <!-- end Features -->
-    <!--svg-->
-    <svg preserveAspectRatio="none" viewBox="0 0 100 100" height="100" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" id="curveUpColor">
-        <path d="M0 100 C 20 0 50 0 100 100 Z"/>
-    </svg>
-    <!--svg-->
 
+                <form class="form-horizontal">
+                  <div class="col-md-3">
+                    <h1 style="text-align: left; color:white;">Dados da Empresa</h1>
 
-    <!-- Classes -->
-    <section id="classes" class="classes generic">
-        <div class="container text-center">
-            <div class="row">
-                <h1 style='color:white;'>All the Classes</h1>
-                <p class="sub-title opacity_init">Morbi dignissim non dolor non placerat. Ut sit amet lectus at neque quis vel imperdiet </p>
+                    <fieldset>
 
-                <article class="col-lg-3 col-sm-6 grid clearfix opacity_init">
-                    <a href="#" data-toggle="modal" data-target="#class01"
-                       data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-                        <figure>
-                            <img src="img/classes/class01.jpg" alt="//">
-                            <svg viewBox="0 0 180 320" preserveAspectRatio="none">
-                                <path d="M0,0C0,0,0,171.14385,0,171.14385C24.580441,186.61523,55.897012,195.90157,90,195.90157C124.10299,195.90157,155.41956,186.61523,180,171.14385C180,171.14385,180,0,180,0C180,0,0,0,0,0C0,0,0,0,0,0"></path>
-                                <desc>Created with Snap</desc>
-                                <defs></defs>
-                            </svg>
-                            <figcaption>
-                                <h2>mathematics</h2>
-                                <p>Morbi dignissim non dolor non placerat.
-                                    Ut sit amet lectus at neque quis vel
-                                    imperdiet ullamcorper auctor.
-                                </p>
-                                <h4 class="btn btn-primary btn-lg">
-                                    Read More
-                                </h4>
-                            </figcaption>
-                        </figure>
-                    </a>
-                </article>
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+                          <div class="col-md-12">
+                            <input id="textinput" name="textinput" type="text" placeholder="Nome ou Razão social" class="form-control input-md">
 
-                <article class="col-lg-3 col-sm-6 grid clearfix opacity_init">
-                    <a href="#" data-toggle="modal" data-target="#class02"
-                       data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-                        <figure>
-                            <img src="img/classes/class02.jpg" alt="//">
-                            <svg viewBox="0 0 180 320" preserveAspectRatio="none">
-                                <path d="M0,0C0,0,0,171.14385,0,171.14385C24.580441,186.61523,55.897012,195.90157,90,195.90157C124.10299,195.90157,155.41956,186.61523,180,171.14385C180,171.14385,180,0,180,0C180,0,0,0,0,0C0,0,0,0,0,0"></path>
-                                <desc>Created with Snap</desc>
-                                <defs></defs>
-                            </svg>
-                            <figcaption>
-                                <h2>marketing & sales</h2>
-                                <p>Morbi dignissim non dolor non placerat.
-                                    Ut sit amet lectus at neque quis vel
-                                    imperdiet ullamcorper auctor.
-                                </p>
-                                <h4 class="btn btn-primary btn-lg">
-                                    Read More
-                                </h4>
-                            </figcaption>
-                        </figure>
-                    </a>
-                </article>
-
-                <article class="col-lg-3 col-sm-6 grid clearfix opacity_init">
-                    <a href="#" data-toggle="modal" data-target="#class03"
-                       data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-                        <figure>
-                            <img src="img/classes/class03.jpg" alt="//">
-                            <svg viewBox="0 0 180 320" preserveAspectRatio="none">
-                                <path d="M0,0C0,0,0,171.14385,0,171.14385C24.580441,186.61523,55.897012,195.90157,90,195.90157C124.10299,195.90157,155.41956,186.61523,180,171.14385C180,171.14385,180,0,180,0C180,0,0,0,0,0C0,0,0,0,0,0"></path>
-                                <desc>Created with Snap</desc>
-                                <defs></defs>
-                            </svg>
-                            <figcaption>
-                                <h2>Web & ui design</h2>
-                                <p>Morbi dignissim non dolor non placerat.
-                                    Ut sit amet lectus at neque quis vel
-                                    imperdiet ullamcorper auctor.
-                                </p>
-                                <h4 class="btn btn-primary btn-lg">
-                                    Read More
-                                </h4>
-                            </figcaption>
-                        </figure>
-                    </a>
-                </article>
-
-                <article class="col-lg-3 col-sm-6 grid clearfix opacity_init">
-                    <a href="#" data-toggle="modal" data-target="#class04"
-                       data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
-                        <figure>
-                            <img src="img/classes/class04.jpg" alt="//">
-                            <svg viewBox="0 0 180 320" preserveAspectRatio="none">
-                                <path d="M0,0C0,0,0,171.14385,0,171.14385C24.580441,186.61523,55.897012,195.90157,90,195.90157C124.10299,195.90157,155.41956,186.61523,180,171.14385C180,171.14385,180,0,180,0C180,0,0,0,0,0C0,0,0,0,0,0"></path>
-                                <desc>Created with Snap</desc>
-                                <defs></defs>
-                            </svg>
-                            <figcaption>
-                                <h2>Science Research</h2>
-                                <p>Morbi dignissim non dolor non placerat.
-                                    Ut sit amet lectus at neque quis vel
-                                    imperdiet ullamcorper auctor.
-                                </p>
-                                <h4 class="btn btn-primary btn-lg">
-                                    Read More
-                                </h4>
-                            </figcaption>
-                        </figure>
-                    </a>
-                </article>
-
-            </div>
-        </div>
-    </section>
-    <!-- end Classes -->
-
-
-
-    <!-- Video -->
-    <section id="video" class="video generic">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-sm-12 col-lg-6 col-lg-offset-3">
-                    <h1 style='color:rgb(106,146,179);'>Veja alguns vídeos sobre o Gestor</h1>
-                    <p>Dynado is a unique product which not only provides all the tools you need to run your business, but integrates them in unprecedented ways.</p>
-
-                    <div data-ride="carousel" class="carousel slide" id="carousel-example-generic">
-                        <ol class="carousel-indicators">
-                            <li class="" data-slide-to="0" data-target="#carousel-example-generic"></li>
-                            <li data-slide-to="1" data-target="#carousel-example-generic" class=""></li>
-                            <li data-slide-to="2" data-target="#carousel-example-generic" class="active"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="item">
-                                <div class="vendor">
-                                    <iframe src="http://player.vimeo.com/video/67741947?title=0&amp;byline=0&amp;portrait=0" width="570" height="350"></iframe>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="vendor">
-                                    <iframe src="http://player.vimeo.com/video/86152286?title=0&amp;byline=0&amp;portrait=0" width="570" height="350" ></iframe>
-                                </div>
-                            </div>
-                            <div class="item active">
-                                <div class="vendor">
-                                    <iframe src="http://player.vimeo.com/video/81795476?title=0&amp;byline=0&amp;portrait=0" width="570" height="350" ></iframe>
-                                </div>
-                            </div>
                         </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+                      <div class="col-md-12">
+                        <input id="textinput" name="textinput" type="text" placeholder="Telefone" class="form-control input-md">
+
                     </div>
                 </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                   <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+                   <div class="col-md-12">
+                    <input id="textinput" name="textinput" type="text" placeholder="Celular" class="form-control input-md">
+                    
+                </div>
             </div>
-        </div>
-    </section>
-    <!-- end Video -->
-    <!--svg-->
-    <svg preserveAspectRatio="none" viewBox="0 0 100 100" height="100" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" id="bigHalfCircle">
-        <path d="M0 100 C40 0 60 0 100 100 Z"/>
-    </svg>
-    <!--svg-->
 
-
-    <!-- Teachers -->
-    <section id="teachers" class="teachers generic">
-        <div class="container text-center">
-            <div class="row">
-                <h1 style='color:rgb(106,146,179);'>Empresas</h1>
-                <p class="sub-title opacity_init">Veja as empresas que usam o Gestor</p>
-
-                <article class="col-lg-3 col-sm-6 opacity_init">
-                    <div class="item">
-                        <div class="zoom">
-                            <!-- Button to trigger modal -->
-                            <a href="#" class="box" data-toggle="modal" data-target="#teacher01">
-                                <i class="icon-plus-circle"></i>
-                            </a>
-                            <!-- Button to trigger modal -->
-                        </div>
-                        <img src="http://www.musicosparaeventos.com.br/musica-ao-vivo/wp-content/uploads/2015/01/neogrid-logo-150x150.jpg" alt="test">
-                    </div>
-                    <div class="info">
-                        <h2><a href="#" data-toggle="modal" data-target="#teacher01">Peter Smithson</a></h2>
-                        <p>Lorem ipsum dolor sit amet, modi eveniet fugiat quis minus.</p>
-                    </div>
-                </article>
-
-                <article class="col-lg-3 col-sm-6 opacity_init">
-                    <div class="item">
-                        <div class="zoom">
-                            <!-- Button to trigger modal -->
-                            <a href="#" class="box" data-toggle="modal" data-target="#teacher02">
-                                <i class="icon-plus-circle"></i>
-                            </a>
-                            <!-- Button to trigger modal -->
-                        </div>
-                        <img src="http://vooemv.com.br/wp-content/uploads/2014/02/Logo_VeV2-150x150.jpg" alt="test">
-                    </div>
-                    <div class="info">
-                        <h2><a href="#" data-toggle="modal" data-target="#teacher02">Barbara Brown</a></h2>
-                        <p>Lorem ipsum dolor sit amet, modi eveniet fugiat quis minus.</p>
-                    </div>
-                </article>
-
-                <article class="col-lg-3 col-sm-6 opacity_init">
-                    <div class="item">
-                        <div class="zoom">
-                            <!-- Button to trigger modal -->
-                            <a href="#" class="box" data-toggle="modal" data-target="#teacher03">
-                                <i class="icon-plus-circle"></i>
-                            </a>
-                            <!-- Button to trigger modal -->
-                        </div>
-                        <img src="http://cristalvet.com.br/wp-content/uploads/2013/03/Logo-Ourofino_v_Sa%C3%BAde-Animal_vertical-150x150.jpg" alt="test">
-                    </div>
-                    <div class="info">
-                        <h2><a href="#" data-toggle="modal" data-target="#teacher03">Edward Moore</a></h2>
-                        <p>Lorem ipsum dolor sit amet, modi eveniet fugiat quis minus.</p>
-                    </div>
-                </article>
-
-                <article class="col-lg-3 col-sm-6 opacity_init">
-                    <div class="item">
-                        <div class="zoom">
-                            <!-- Button to trigger modal -->
-                            <a href="#" class="box" data-toggle="modal" data-target="#teacher04">
-                                <i class="icon-plus-circle"></i>
-                            </a>
-                            <!-- Button to trigger modal -->
-                        </div>
-                        <img src="http://junger.com.br/wp-content/uploads/2014/08/Logo-ALianza-Pequena150x150-150x150.png" alt="test">
-                    </div>
-                    <div class="info">
-                        <h2><a href="#" data-toggle="modal" data-target="#teacher04">Janna Jackson</a></h2>
-                        <p>Lorem ipsum dolor sit amet, modi eveniet fugiat quis minus.</p>
-                    </div>
-                </article>
+            <!-- Text input-->
+            <div class="form-group">
+               <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+               <div class="col-md-12">
+                <input id="" name="textinput" type="text" placeholder="E-mail da Empresa" class="form-control input-md">
 
             </div>
         </div>
-    </section>
-    <!-- end Teachers -->
 
+        <!-- Text input-->
+        <div class="form-group">
+            <!--   <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+            <div class="col-md-12">
+                <select class="form-control input-md" required="">
+                    <option value=""> - Selecione o seu Estado -</option>
 
-    <!-- Prices -->
-    <section id="prices" class="prices generic">
-        <div class="container text-center">
-            <div class="row">
-                <h1 style='color:rgb(106,146,179);'>Veja os planos de uso</h1>
-                <p class="sub-title opacity_init">Morbi dignissim non dolor non placerat.
-                   Ut sit amet lectus at neque quis vel imperdiet ullamcorper auctor.
-                </p>
+                    <option value="1">ACRE</option>
 
-                <article class="col-lg-3 col-sm-6 opacity_init">
-                    <div class="item">
-                        <div class="header">
-                            <h2>Básico</h2>
-                        </div>
-                        <h4 class="price"><span>Grátis</span></h4>
-                        <ul class="list-unstyled">
-                            <li>Provident accusantium </li>
-                            <li>Excepturi rerum libero </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Provident accusantium </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li class="last"><a href="#" class="btn btn-large"><i class="icon-basket"></i> Ordenar</a></li>
-                        </ul>
-                    </div>
-                </article>
+                    <option value="2">ALAGOAS</option>
 
-                <article class="col-lg-3 col-sm-6 opacity_init">
-                    <div class="item">
-                        <div class="header">
-                            <h2>Bronze</h2>
-                        </div>
-                        <h4 class="price"><span>$</span>29,<sup>00</sup></h4>
-                        <ul class="list-unstyled">
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Excepturi rerum libero</li>
-                            <li>Provident accusantium  </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Provident accusantium </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li class="last"><a href="#" class="btn btn-large"><i class="icon-basket"></i> Ordenar</a></li>
-                        </ul>
-                    </div>
-                </article>
+                    <option value="3">AMAZONAS</option>
 
-                <article class="col-lg-3 col-sm-6 opacity_init">
-                    <div class="item">
-                        <div class="header">
-                            <h2>Prata</h2>
-                        </div>
-                        <h4 class="price"><span>$</span>39,<sup>00</sup></h4>
-                        <ul class="list-unstyled">
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Provident accusantium </li>
-                            <li>Excepturi rerum libero </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Excepturi rerum libero </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Provident accusantium </li>
-                            <li class="last"><a href="#" class="btn btn-large"><i class="icon-basket"></i> Ordenar</a></li>
-                        </ul>
-                    </div>
-                </article>
+                    <option value="4">AMAPÃ¡</option>
 
-                <article class="col-lg-3 col-sm-6 opacity_init">
-                    <div class="item">
-                        <div class="header">
-                            <h2>Ouro</h2>
-                        </div>
-                        <h4 class="price"><span>$</span>69,<sup>00</sup></h4>
-                        <ul class="list-unstyled">
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li>Lorem ipsum dolor sit </li>
-                            <li class="last"><a href="#" class="btn btn-large"><i class="icon-basket"></i> Ordenar</a></li>
-                        </ul>
-                    </div>
-                </article>
+                    <option value="5">BAHIA</option>
+
+                    <option value="6">CEARÃ¡</option>
+
+                    <option value="7">DISTRITO FEDERAL</option>
+
+                    <option value="8">ESPÃ­RITO SANTO</option>
+
+                    <option value="9">GOIÃ¡S</option>
+
+                    <option value="10">MARANHÃ£O</option>
+
+                    <option value="11">MINAS GERAIS</option>
+
+                    <option value="12">MATO GROSSO DO SUL</option>
+
+                    <option value="13">MATO GROSSO</option>
+
+                    <option value="14">PARÃ¡</option>
+
+                    <option value="15">PARAÃ­BA</option>
+
+                    <option value="16">PERNAMBUCO</option>
+
+                    <option value="17">PIAUÃ­</option>
+
+                    <option value="18">PARANÃ¡</option>
+
+                    <option value="19">RIO DE JANEIRO</option>
+
+                    <option value="20">RIO GRANDE DO NORTE</option>
+
+                    <option value="21">RONDÃ´NIA</option>
+
+                    <option value="22">RORAIMA</option>
+
+                    <option value="23">RIO GRANDE DO SUL</option>
+
+                    <option value="24">SANTA CATARINA</option>
+
+                    <option value="25">SERGIPE</option>
+
+                    <option value="26">SÃ£O PAULO</option>
+
+                    <option value="27">TOCANTINS</option>
+
+                </select>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+<!-- Seção 2 -->
+<div class="col-md-3">
+        <h1 style="text-align: left; color:white;">Seus dados</h1>
+
+        <fieldset>
+            <!-- Text input-->
+            <div class="form-group">
+              <!-- <label class="col-md-4 control-label" for="textinput">Text Input</label> -->  
+              <div class="col-md-12">
+                <input id="textinput" name="textinput" type="text" placeholder="Seu nome completo" class="form-control input-md">
 
             </div>
         </div>
-    </section>
-    <!-- end Prices -->
 
+        <!-- Text input-->
+        <div class="form-group">
+          <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+          <div class="col-md-12">
+            <input id="textinput" name="textinput" type="text" placeholder="nome de usuário (login)" class="form-control input-md">
 
-    <!-- Twitter -->
-    <section id="twitter" class="twitter generic">
-        <figure></figure>
-            <div class="container text-center">
-            <div class="row">
-                <h2 class="special_font opacity_init">Follow us on Twitter</h2>
-                <i class="icon-twitter-1"></i>
-                <article class="item col-sm-12 opacity_init">
-                    <h3 class="username" ></h3>
-                    <p class="tweet twitterfeed"></p>   
-                </article>
-            </div>
         </div>
-    </section>
-    <!-- end Twitter -->
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+      <div class="col-md-12">
+        <input id="textinput" name="textinput" type="password" placeholder="Sua senha" class="form-control input-md">
+
+    </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+       <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+       <div class="col-md-12">
+        <input id="textinput" name="textinput" type="text" placeholder="Repita a sua senha" class="form-control input-md">
+
+    </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+       <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+       <div class="col-md-12">
+        <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md" required="">
+
+    </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+       <!--  <label class="col-md-12 control-label" for="singlebutton">Single Button</label> -->
+       <div class="col-md-12">
+        <button  type="button" class="btn btn-success">Cadastrar e Usar</button>
+    </div>
+    </div>
+
+    </fieldset>
+    </form>
+
+</div>  
+</div>
+</div>
+</section>
+<!-- end Notified -->
 
 
-    <!-- Information -->
-    <section id="information" class="information generic">
-        <div class="container text-center">
-            <div class="row">
-                <h1 style='color:rgb(106,146,179);'>Important information</h1>
-                <p class="sub-title opacity_init">
-                    Morbi dignissim non dolor non placerat. Ut sit amet lectus at neque quis vel imperdiet.
-                </p>
+<!-- Features -->
+<section id="features" class="features generic">
+    <div class="container text-center">
+        <div class="row">
+            <h1 style='color:rgb(106,146,179);'>As ferramentas que você precisa</h1>
+            <article class="item col-sm-3 opacity_init">
+                <a class="icon" href="#"><img class="icon-monitor" src="img/features-01.png" alt="//"></a>
+                <h2><a href="#">online classes</a></h2>
+                <p>Alias, porro, consequatur quas nostrum sed iure quos quia excepturi rerum libero odit maxime explicabo ducimus?</p>
+            </article>
+            <article class="item col-sm-3 opacity_init">
+                <a class="icon" href="#"><img class="icon-users" src="img/features-02.png" alt="//"></a>
+                <h2><a href="#">online classes</a></h2>
+                <p> rerum amet deserunt obcaecati ea accusamus veniam facere nisi et eaque praesentium nemo rem!</p>
+            </article>
+            <article class="item col-sm-3 opacity_init">
+                <a class="icon" href="#"><img class="icon-book-open" src="img/features-03.png" alt="//"></a>
+                <h2><a href="#">online classes</a></h2>
+                <p>luptatibus officia recusandae veritatis! Earum, architecto aliquam impedit laudantium provident rem accusantium odio at?</p>
+            </article>
+            <article class="item col-sm-3 opacity_init">
+                <a class="icon" href="#"><img class="icon-graduation-cap" src="img/features-04.png" alt="//"></a>
+                <h2><a href="#">online classes</a></h2>
+                <p>laudantium quisquam inventore? Facilis, ipsum, velit amet sed nulla harum aut veniam iste.</p>
+            </article>
+        </div>
+    </div>
+</section>
+<!-- end Features -->
+<!--svg-->
+<svg preserveAspectRatio="none" viewBox="0 0 100 100" height="100" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" id="curveUpColor">
+    <path d="M0 100 C 20 0 50 0 100 100 Z"/>
+</svg>
+<!--svg-->
 
-                <article class="item col-xs-12 col-sm-6 col-lg-12 opacity_init">
-                    <a class="icon col-sm-12 col-lg-5" href="#"><img class="icon-monitor" src="img/homepage-collaborate.png" alt="//"></a>
-                    <div class="col-sm-12 col-lg-7 info_text">
-                        <h2>Collaborate with Your Team & Clients</h2>
-                        <h3>Eliminates email hell and puts everything in one place</h3>
-                        <p>
-                            Using Teamwork.com, your team will know what they have to do, when it must be done and who needs to do it.
-                            They'll know exactly where to look to find and store everything they need. And so will your clients.
-                            Whether it's the head office or your latest lead, your clients can keep up to date with what's
-                            going on without having to bug you; something you'll both feel better about. And it's not just stuck
-                            in your computer either : using our beautiful Android, iPhone and iPad apps, your team can do the work where
-                            they need to be, doesn't matter if that's in a workshop, a meeting room or sitting at their desk. Once you try
-                            Teamwork.com, you won't know how you ever managed without it.
+
+<!-- Classes -->
+<section id="classes" class="classes generic">
+    <div class="container text-center">
+        <div class="row">
+            <h1 style='color:white;'>All the Classes</h1>
+            <p class="sub-title opacity_init">Morbi dignissim non dolor non placerat. Ut sit amet lectus at neque quis vel imperdiet </p>
+
+            <article class="col-lg-3 col-sm-6 grid clearfix opacity_init">
+                <a href="#" data-toggle="modal" data-target="#class01"
+                data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+                <figure>
+                    <img src="img/classes/class01.jpg" alt="//">
+                    <svg viewBox="0 0 180 320" preserveAspectRatio="none">
+                        <path d="M0,0C0,0,0,171.14385,0,171.14385C24.580441,186.61523,55.897012,195.90157,90,195.90157C124.10299,195.90157,155.41956,186.61523,180,171.14385C180,171.14385,180,0,180,0C180,0,0,0,0,0C0,0,0,0,0,0"></path>
+                        <desc>Created with Snap</desc>
+                        <defs></defs>
+                    </svg>
+                    <figcaption>
+                        <h2>mathematics</h2>
+                        <p>Morbi dignissim non dolor non placerat.
+                            Ut sit amet lectus at neque quis vel
+                            imperdiet ullamcorper auctor.
                         </p>
-                        <button class="btn btn-large" type="button">Read More</button>
-                    </div>
-                </article>
+                        <h4 class="btn btn-primary btn-lg">
+                            Read More
+                        </h4>
+                    </figcaption>
+                </figure>
+            </a>
+        </article>
 
-                <article class="item col-xs-12 col-sm-6 col-lg-12 opacity_init">
-                    <a class="icon col-sm-12 col-lg-5" href="#"><img class="icon-monitor" src="img/homepage-getorganized.png" alt="//"></a>
-                    <div class="col-sm-12 col-lg-7 info_text">
-                        <h2>Collaborate with Your Team & Clients</h2>
-                        <h3>Eliminates email hell and puts everything in one place</h3>
-                        <p>
-                            Using Teamwork.com, your team will know what they have to do, when it must be done and who needs to do it.
-                            They'll know exactly where to look to find and store everything they need. And so will your clients.
-                            Whether it's the head office or your latest lead, your clients can keep up to date with what's
-                            going on without having to bug you; something you'll both feel better about. And it's not just stuck
-                            in your computer either : using our beautiful Android, iPhone and iPad apps, your team can do the work where
-                            they need to be, doesn't matter if that's in a workshop, a meeting room or sitting at their desk. Once you try
-                            Teamwork.com, you won't know how you ever managed without it.
-                        </p>
-                        <button class="btn btn-large" type="button">Read More</button>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </section>
-    <!-- end Information -->
-
-
-    <!--Footer-->
-    <footer>
-
-        <div class="container widget">
-            <div class="row">
-                <div class="about col-sm-6 col-lg-3">
-                    <h3 class="footer-title">About us</h3>
-                    <p>
-                        Morbi dignissim non dolor non placerat. Ut sit amet lectus at neque quis vel imperdiet ullamc orpe. <a href="#">Read more...</a>
+        <article class="col-lg-3 col-sm-6 grid clearfix opacity_init">
+            <a href="#" data-toggle="modal" data-target="#class02"
+            data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+            <figure>
+                <img src="img/classes/class02.jpg" alt="//">
+                <svg viewBox="0 0 180 320" preserveAspectRatio="none">
+                    <path d="M0,0C0,0,0,171.14385,0,171.14385C24.580441,186.61523,55.897012,195.90157,90,195.90157C124.10299,195.90157,155.41956,186.61523,180,171.14385C180,171.14385,180,0,180,0C180,0,0,0,0,0C0,0,0,0,0,0"></path>
+                    <desc>Created with Snap</desc>
+                    <defs></defs>
+                </svg>
+                <figcaption>
+                    <h2>marketing & sales</h2>
+                    <p>Morbi dignissim non dolor non placerat.
+                        Ut sit amet lectus at neque quis vel
+                        imperdiet ullamcorper auctor.
                     </p>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <h3 class="footer-title">important links</h3>
-                    <ul class="list-unstyled contact-info">
-                        <li><i class="icon-ok-circled2"></i><a href="http://themeforest.net/user/CoralixThemes"> Purchase this template</a>  </li>
-                        <li><i class="icon-ok-circled2"></i> <a href="#">A product for your every  student</a> </li>
-                        <li><i class="icon-ok-circled2"></i> <a href="#">Adjusted to your needs6</a> </li>
-                        <li><i class="icon-ok-circled2"></i> <a href="#">All your classe data in one place</a> </li>
-                    </ul>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <h3 class="footer-title">Contact information</h3>
-                    <p>Tel: 9892-62156 int 6126</p>
-                    <p>Address: Company City Country</p>
-                    <p>Mail: demo@company.com</p>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <h3 class="footer-title">payments</h3>
-                    <p>Make sure you dont miss interesting happenings by joining our newsletter program.</p>
-                    <ul class="pay list-unstyled">
-                        <li><a href="#"><img src="img/visa.png" alt="//"/></a></li>
-                        <li><a href="#"><img src="img/discov.png" alt="//"/></a></li>
-                        <li><a href="#"><img src="img/master.png" alt="//"/></a></li>
-                        <li><a href="#"><img src="img/paypal.png" alt="//"/></a></li>
-                        <li><a href="#"><img src="img/amazon.png" alt="//"/></a></li>
-                    </ul>
+                    <h4 class="btn btn-primary btn-lg">
+                        Read More
+                    </h4>
+                </figcaption>
+            </figure>
+        </a>
+    </article>
+
+    <article class="col-lg-3 col-sm-6 grid clearfix opacity_init">
+        <a href="#" data-toggle="modal" data-target="#class03"
+        data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+        <figure>
+            <img src="img/classes/class03.jpg" alt="//">
+            <svg viewBox="0 0 180 320" preserveAspectRatio="none">
+                <path d="M0,0C0,0,0,171.14385,0,171.14385C24.580441,186.61523,55.897012,195.90157,90,195.90157C124.10299,195.90157,155.41956,186.61523,180,171.14385C180,171.14385,180,0,180,0C180,0,0,0,0,0C0,0,0,0,0,0"></path>
+                <desc>Created with Snap</desc>
+                <defs></defs>
+            </svg>
+            <figcaption>
+                <h2>Web & ui design</h2>
+                <p>Morbi dignissim non dolor non placerat.
+                    Ut sit amet lectus at neque quis vel
+                    imperdiet ullamcorper auctor.
+                </p>
+                <h4 class="btn btn-primary btn-lg">
+                    Read More
+                </h4>
+            </figcaption>
+        </figure>
+    </a>
+</article>
+
+<article class="col-lg-3 col-sm-6 grid clearfix opacity_init">
+    <a href="#" data-toggle="modal" data-target="#class04"
+    data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+    <figure>
+        <img src="img/classes/class04.jpg" alt="//">
+        <svg viewBox="0 0 180 320" preserveAspectRatio="none">
+            <path d="M0,0C0,0,0,171.14385,0,171.14385C24.580441,186.61523,55.897012,195.90157,90,195.90157C124.10299,195.90157,155.41956,186.61523,180,171.14385C180,171.14385,180,0,180,0C180,0,0,0,0,0C0,0,0,0,0,0"></path>
+            <desc>Created with Snap</desc>
+            <defs></defs>
+        </svg>
+        <figcaption>
+            <h2>Science Research</h2>
+            <p>Morbi dignissim non dolor non placerat.
+                Ut sit amet lectus at neque quis vel
+                imperdiet ullamcorper auctor.
+            </p>
+            <h4 class="btn btn-primary btn-lg">
+                Read More
+            </h4>
+        </figcaption>
+    </figure>
+</a>
+</article>
+
+</div>
+</div>
+</section>
+<!-- end Classes -->
+
+
+
+<!-- Video -->
+<section id="video" class="video generic">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 col-lg-offset-3">
+                <h1 style='color:rgb(106,146,179);'>Veja alguns vídeos sobre o Gestor</h1>
+                <p>Dynado is a unique product which not only provides all the tools you need to run your business, but integrates them in unprecedented ways.</p>
+
+                <div data-ride="carousel" class="carousel slide" id="carousel-example-generic">
+                    <ol class="carousel-indicators">
+                        <li class="" data-slide-to="0" data-target="#carousel-example-generic"></li>
+                        <li data-slide-to="1" data-target="#carousel-example-generic" class=""></li>
+                        <li data-slide-to="2" data-target="#carousel-example-generic" class="active"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item">
+                            <div class="vendor">
+                                <iframe src="http://player.vimeo.com/video/67741947?title=0&amp;byline=0&amp;portrait=0" width="570" height="350"></iframe>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="vendor">
+                                <iframe src="http://player.vimeo.com/video/86152286?title=0&amp;byline=0&amp;portrait=0" width="570" height="350" ></iframe>
+                            </div>
+                        </div>
+                        <div class="item active">
+                            <div class="vendor">
+                                <iframe src="http://player.vimeo.com/video/81795476?title=0&amp;byline=0&amp;portrait=0" width="570" height="350" ></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
+<!-- end Video -->
+<!--svg-->
+<svg preserveAspectRatio="none" viewBox="0 0 100 100" height="100" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" id="bigHalfCircle">
+    <path d="M0 100 C40 0 60 0 100 100 Z"/>
+</svg>
+<!--svg-->
 
-        <div class="copyright text-center">
-            <div class="container">
-                <h6 class="col-xs-12 col-lg-6">© 2014 Teacher Landing Template. All rights reserved.</h6>
-                <ul class="list-unstyled col-xs-12 col-lg-6 social">
-                    <li class="tooltip_hover" title="vimeo" data-placement="top"  data-toggle="tooltip"><a href="#"><i class="icon-vimeo"></i></a></li>
-                    <li class="tooltip_hover" title="twitter" data-placement="top"  data-toggle="tooltip"><a href="#"><i class="icon-twitter"></i></a></li>
-                    <li class="tooltip_hover" title="gplus" data-placement="top"  data-toggle="tooltip"><a  href="#" ><i class="icon-gplus"></i></a></li>
-                    <li class="tooltip_hover" title="in" data-placement="top"  data-toggle="tooltip"><a href="#"><i class="icon-linkedin"></i></a></li>
-                    <li class="tooltip_hover" title="play" data-placement="top"  data-toggle="tooltip"><a href="#"><i class="icon-next"></i></a></li>
-                    <li class="tooltip_hover" title="pinterest" data-placement="top"  data-toggle="tooltip"><a href="#"><i class="icon-pinterest"></i></a></li>
+
+<!-- Teachers -->
+<section id="teachers" class="teachers generic">
+    <div class="container text-center">
+        <div class="row">
+            <h1 style='color:rgb(106,146,179);'>Empresas</h1>
+            <p class="sub-title opacity_init">Veja as empresas que usam o Gestor</p>
+
+            <article class="col-lg-3 col-sm-6 opacity_init">
+                <div class="item">
+                    <div class="zoom">
+                        <!-- Button to trigger modal -->
+                        <a href="#" class="box" data-toggle="modal" data-target="#teacher01">
+                            <i class="icon-plus-circle"></i>
+                        </a>
+                        <!-- Button to trigger modal -->
+                    </div>
+                    <img src="http://www.musicosparaeventos.com.br/musica-ao-vivo/wp-content/uploads/2015/01/neogrid-logo-150x150.jpg" alt="test">
+                </div>
+                <div class="info">
+                    <h2><a href="#" data-toggle="modal" data-target="#teacher01">Peter Smithson</a></h2>
+                    <p>Lorem ipsum dolor sit amet, modi eveniet fugiat quis minus.</p>
+                </div>
+            </article>
+
+            <article class="col-lg-3 col-sm-6 opacity_init">
+                <div class="item">
+                    <div class="zoom">
+                        <!-- Button to trigger modal -->
+                        <a href="#" class="box" data-toggle="modal" data-target="#teacher02">
+                            <i class="icon-plus-circle"></i>
+                        </a>
+                        <!-- Button to trigger modal -->
+                    </div>
+                    <img src="http://vooemv.com.br/wp-content/uploads/2014/02/Logo_VeV2-150x150.jpg" alt="test">
+                </div>
+                <div class="info">
+                    <h2><a href="#" data-toggle="modal" data-target="#teacher02">Barbara Brown</a></h2>
+                    <p>Lorem ipsum dolor sit amet, modi eveniet fugiat quis minus.</p>
+                </div>
+            </article>
+
+            <article class="col-lg-3 col-sm-6 opacity_init">
+                <div class="item">
+                    <div class="zoom">
+                        <!-- Button to trigger modal -->
+                        <a href="#" class="box" data-toggle="modal" data-target="#teacher03">
+                            <i class="icon-plus-circle"></i>
+                        </a>
+                        <!-- Button to trigger modal -->
+                    </div>
+                    <img src="http://cristalvet.com.br/wp-content/uploads/2013/03/Logo-Ourofino_v_Sa%C3%BAde-Animal_vertical-150x150.jpg" alt="test">
+                </div>
+                <div class="info">
+                    <h2><a href="#" data-toggle="modal" data-target="#teacher03">Edward Moore</a></h2>
+                    <p>Lorem ipsum dolor sit amet, modi eveniet fugiat quis minus.</p>
+                </div>
+            </article>
+
+            <article class="col-lg-3 col-sm-6 opacity_init">
+                <div class="item">
+                    <div class="zoom">
+                        <!-- Button to trigger modal -->
+                        <a href="#" class="box" data-toggle="modal" data-target="#teacher04">
+                            <i class="icon-plus-circle"></i>
+                        </a>
+                        <!-- Button to trigger modal -->
+                    </div>
+                    <img src="http://junger.com.br/wp-content/uploads/2014/08/Logo-ALianza-Pequena150x150-150x150.png" alt="test">
+                </div>
+                <div class="info">
+                    <h2><a href="#" data-toggle="modal" data-target="#teacher04">Janna Jackson</a></h2>
+                    <p>Lorem ipsum dolor sit amet, modi eveniet fugiat quis minus.</p>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+<!-- end Teachers -->
+
+
+<!-- Prices -->
+<section id="prices" class="prices generic">
+    <div class="container text-center">
+        <div class="row">
+            <h1 style='color:rgb(106,146,179);'>Veja os planos de uso</h1>
+            <p class="sub-title opacity_init">Morbi dignissim non dolor non placerat.
+               Ut sit amet lectus at neque quis vel imperdiet ullamcorper auctor.
+           </p>
+
+           <article class="col-lg-3 col-sm-6 opacity_init">
+            <div class="item">
+                <div class="header">
+                    <h2>Básico</h2>
+                </div>
+                <h4 class="price"><span>Grátis</span></h4>
+                <ul class="list-unstyled">
+                    <li>Provident accusantium </li>
+                    <li>Excepturi rerum libero </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Provident accusantium </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li class="last"><a href="#" class="btn btn-large"><i class="icon-basket"></i> Ordenar</a></li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="col-lg-3 col-sm-6 opacity_init">
+            <div class="item">
+                <div class="header">
+                    <h2>Bronze</h2>
+                </div>
+                <h4 class="price"><span>$</span>29,<sup>00</sup></h4>
+                <ul class="list-unstyled">
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Excepturi rerum libero</li>
+                    <li>Provident accusantium  </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Provident accusantium </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li class="last"><a href="#" class="btn btn-large"><i class="icon-basket"></i> Ordenar</a></li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="col-lg-3 col-sm-6 opacity_init">
+            <div class="item">
+                <div class="header">
+                    <h2>Prata</h2>
+                </div>
+                <h4 class="price"><span>$</span>39,<sup>00</sup></h4>
+                <ul class="list-unstyled">
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Provident accusantium </li>
+                    <li>Excepturi rerum libero </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Excepturi rerum libero </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Provident accusantium </li>
+                    <li class="last"><a href="#" class="btn btn-large"><i class="icon-basket"></i> Ordenar</a></li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="col-lg-3 col-sm-6 opacity_init">
+            <div class="item">
+                <div class="header">
+                    <h2>Ouro</h2>
+                </div>
+                <h4 class="price"><span>$</span>69,<sup>00</sup></h4>
+                <ul class="list-unstyled">
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li>Lorem ipsum dolor sit </li>
+                    <li class="last"><a href="#" class="btn btn-large"><i class="icon-basket"></i> Ordenar</a></li>
+                </ul>
+            </div>
+        </article>
+
+    </div>
+</div>
+</section>
+<!-- end Prices -->
+
+
+<!-- Twitter -->
+<section id="twitter" class="twitter generic">
+    <figure></figure>
+    <div class="container text-center">
+        <div class="row">
+            <h2 class="special_font opacity_init">Follow us on Twitter</h2>
+            <i class="icon-twitter-1"></i>
+            <article class="item col-sm-12 opacity_init">
+                <h3 class="username" ></h3>
+                <p class="tweet twitterfeed"></p>   
+            </article>
+        </div>
+    </div>
+</section>
+<!-- end Twitter -->
+
+
+<!-- Information -->
+<section id="information" class="information generic">
+    <div class="container text-center">
+        <div class="row">
+            <h1 style='color:rgb(106,146,179);'>Important information</h1>
+            <p class="sub-title opacity_init">
+                Morbi dignissim non dolor non placerat. Ut sit amet lectus at neque quis vel imperdiet.
+            </p>
+
+            <article class="item col-xs-12 col-sm-6 col-lg-12 opacity_init">
+                <a class="icon col-sm-12 col-lg-5" href="#"><img class="icon-monitor" src="img/homepage-collaborate.png" alt="//"></a>
+                <div class="col-sm-12 col-lg-7 info_text">
+                    <h2>Collaborate with Your Team & Clients</h2>
+                    <h3>Eliminates email hell and puts everything in one place</h3>
+                    <p>
+                        Using Teamwork.com, your team will know what they have to do, when it must be done and who needs to do it.
+                        They'll know exactly where to look to find and store everything they need. And so will your clients.
+                        Whether it's the head office or your latest lead, your clients can keep up to date with what's
+                        going on without having to bug you; something you'll both feel better about. And it's not just stuck
+                        in your computer either : using our beautiful Android, iPhone and iPad apps, your team can do the work where
+                        they need to be, doesn't matter if that's in a workshop, a meeting room or sitting at their desk. Once you try
+                        Teamwork.com, you won't know how you ever managed without it.
+                    </p>
+                    <button class="btn btn-large" type="button">Read More</button>
+                </div>
+            </article>
+
+            <article class="item col-xs-12 col-sm-6 col-lg-12 opacity_init">
+                <a class="icon col-sm-12 col-lg-5" href="#"><img class="icon-monitor" src="img/homepage-getorganized.png" alt="//"></a>
+                <div class="col-sm-12 col-lg-7 info_text">
+                    <h2>Collaborate with Your Team & Clients</h2>
+                    <h3>Eliminates email hell and puts everything in one place</h3>
+                    <p>
+                        Using Teamwork.com, your team will know what they have to do, when it must be done and who needs to do it.
+                        They'll know exactly where to look to find and store everything they need. And so will your clients.
+                        Whether it's the head office or your latest lead, your clients can keep up to date with what's
+                        going on without having to bug you; something you'll both feel better about. And it's not just stuck
+                        in your computer either : using our beautiful Android, iPhone and iPad apps, your team can do the work where
+                        they need to be, doesn't matter if that's in a workshop, a meeting room or sitting at their desk. Once you try
+                        Teamwork.com, you won't know how you ever managed without it.
+                    </p>
+                    <button class="btn btn-large" type="button">Read More</button>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+<!-- end Information -->
+
+
+<!--Footer-->
+<footer>
+
+    <div class="container widget">
+        <div class="row">
+            <div class="about col-sm-6 col-lg-3">
+                <h3 class="footer-title">About us</h3>
+                <p>
+                    Morbi dignissim non dolor non placerat. Ut sit amet lectus at neque quis vel imperdiet ullamc orpe. <a href="#">Read more...</a>
+                </p>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <h3 class="footer-title">important links</h3>
+                <ul class="list-unstyled contact-info">
+                    <li><i class="icon-ok-circled2"></i><a href="http://themeforest.net/user/CoralixThemes"> Purchase this template</a>  </li>
+                    <li><i class="icon-ok-circled2"></i> <a href="#">A product for your every  student</a> </li>
+                    <li><i class="icon-ok-circled2"></i> <a href="#">Adjusted to your needs6</a> </li>
+                    <li><i class="icon-ok-circled2"></i> <a href="#">All your classe data in one place</a> </li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <h3 class="footer-title">Contact information</h3>
+                <p>Tel: 9892-62156 int 6126</p>
+                <p>Address: Company City Country</p>
+                <p>Mail: demo@company.com</p>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <h3 class="footer-title">payments</h3>
+                <p>Make sure you dont miss interesting happenings by joining our newsletter program.</p>
+                <ul class="pay list-unstyled">
+                    <li><a href="#"><img src="img/visa.png" alt="//"/></a></li>
+                    <li><a href="#"><img src="img/discov.png" alt="//"/></a></li>
+                    <li><a href="#"><img src="img/master.png" alt="//"/></a></li>
+                    <li><a href="#"><img src="img/paypal.png" alt="//"/></a></li>
+                    <li><a href="#"><img src="img/amazon.png" alt="//"/></a></li>
                 </ul>
             </div>
         </div>
+    </div>
 
-    </footer>
-    <!--Footer-->
+    <div class="copyright text-center">
+        <div class="container">
+            <h6 class="col-xs-12 col-lg-6">© 2014 Teacher Landing Template. All rights reserved.</h6>
+            <ul class="list-unstyled col-xs-12 col-lg-6 social">
+                <li class="tooltip_hover" title="vimeo" data-placement="top"  data-toggle="tooltip"><a href="#"><i class="icon-vimeo"></i></a></li>
+                <li class="tooltip_hover" title="twitter" data-placement="top"  data-toggle="tooltip"><a href="#"><i class="icon-twitter"></i></a></li>
+                <li class="tooltip_hover" title="gplus" data-placement="top"  data-toggle="tooltip"><a  href="#" ><i class="icon-gplus"></i></a></li>
+                <li class="tooltip_hover" title="in" data-placement="top"  data-toggle="tooltip"><a href="#"><i class="icon-linkedin"></i></a></li>
+                <li class="tooltip_hover" title="play" data-placement="top"  data-toggle="tooltip"><a href="#"><i class="icon-next"></i></a></li>
+                <li class="tooltip_hover" title="pinterest" data-placement="top"  data-toggle="tooltip"><a href="#"><i class="icon-pinterest"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+</footer>
+<!--Footer-->
 
 
-    <!--scroll up -->
-    <a href="#" id="scroll_up"><i class="icon-up-open"></i></a>
+<!--scroll up -->
+<a href="#" id="scroll_up"><i class="icon-up-open"></i></a>
 
 
 
-    <!-- Modal Classes 01 -->
-    <div class="modal fade" id="class01" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Mathematics</h4>
-                </div>
-                <div class="modal-body">
+<!-- Modal Classes 01 -->
+<div class="modal fade" id="class01" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Mathematics</h4>
+            </div>
+            <div class="modal-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, voluptas, aliquam laudantium inventore numquam a quam ea distinctio blanditiis minus unde quos magnam cupiditate! Perspiciatis, nesciunt quae ratione in ipsa!</p>
-                </div>
             </div>
         </div>
     </div>
-    <!-- end Modal Classes 01 -->	
+</div>
+<!-- end Modal Classes 01 -->	
 
-    <!-- Modal Classes 02 -->
-    <div class="modal fade" id="class02" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Marketing & Sales</h4>
-                </div>
-                <div class="modal-body">
+<!-- Modal Classes 02 -->
+<div class="modal fade" id="class02" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Marketing & Sales</h4>
+            </div>
+            <div class="modal-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, voluptas, aliquam laudantium inventore numquam a quam ea distinctio blanditiis minus unde quos magnam cupiditate! Perspiciatis, nesciunt quae ratione in ipsa!</p>
-                </div>
             </div>
         </div>
     </div>
-    <!-- end Modal Classes 02 -->   
+</div>
+<!-- end Modal Classes 02 -->   
 
-    <!-- Modal Classes 03 -->
-    <div class="modal fade" id="class03" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Web & UI Design</h4>
-                </div>
-                <div class="modal-body">
+<!-- Modal Classes 03 -->
+<div class="modal fade" id="class03" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Web & UI Design</h4>
+            </div>
+            <div class="modal-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, voluptas, aliquam laudantium inventore numquam a quam ea distinctio blanditiis minus unde quos magnam cupiditate! Perspiciatis, nesciunt quae ratione in ipsa!</p>
-                </div>
             </div>
         </div>
     </div>
-    <!-- end Modal Classes 03 -->  
+</div>
+<!-- end Modal Classes 03 -->  
 
-    <!-- Modal Classes 04 -->
-    <div class="modal fade" id="class04" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Science Research</h4>
-                </div>
-                <div class="modal-body">
+<!-- Modal Classes 04 -->
+<div class="modal fade" id="class04" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Science Research</h4>
+            </div>
+            <div class="modal-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, voluptas, aliquam laudantium inventore numquam a quam ea distinctio blanditiis minus unde quos magnam cupiditate! Perspiciatis, nesciunt quae ratione in ipsa!</p>
-                </div>
             </div>
         </div>
     </div>
-    <!-- end Modal Classes 04 -->   
+</div>
+<!-- end Modal Classes 04 -->   
 
-    <!-- Modal Teacher 01 -->
-    <div class="modal fade" id="teacher01" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Peter Smithson</h4>
-                </div>
-                <div class="modal-body">
+<!-- Modal Teacher 01 -->
+<div class="modal fade" id="teacher01" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Peter Smithson</h4>
+            </div>
+            <div class="modal-body">
                 <figure>
                     <img src="img/teachers/teacher-01.jpg" alt="teacher image">
                 </figure>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, voluptas, aliquam laudantium inventore numquam a quam ea distinctio blanditiis minus unde quos magnam cupiditate! Perspiciatis, nesciunt quae ratione in ipsa!</p>
                 <p>Follow me on: 
-                <a href="#"><i class="icon-twitter"></i></a>
-                <a href="#"><i class="icon-linkedin"></i></a>
-                <a href="#"><i class="icon-pinterest"></i></a>
+                    <a href="#"><i class="icon-twitter"></i></a>
+                    <a href="#"><i class="icon-linkedin"></i></a>
+                    <a href="#"><i class="icon-pinterest"></i></a>
                 </p>
-                </div>
             </div>
         </div>
     </div>
-    <!-- end Modal Teacher 01 -->   
+</div>
+<!-- end Modal Teacher 01 -->   
 
-    <!-- Modal Teacher 02 -->
-    <div class="modal fade" id="teacher02" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Barbara Brown</h4>
-                </div>
-                <div class="modal-body">
+<!-- Modal Teacher 02 -->
+<div class="modal fade" id="teacher02" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Barbara Brown</h4>
+            </div>
+            <div class="modal-body">
                 <figure>
                     <img src="img/teachers/teacher-02.jpg" alt="teacher image">
                 </figure>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, voluptas, aliquam laudantium inventore numquam a quam ea distinctio blanditiis minus unde quos magnam cupiditate! Perspiciatis, nesciunt quae ratione in ipsa!</p>
                 <p>Follow me on: 
-                <a href="#"><i class="icon-twitter"></i></a>
-                <a href="#"><i class="icon-linkedin"></i></a>
-                <a href="#"><i class="icon-pinterest"></i></a>
+                    <a href="#"><i class="icon-twitter"></i></a>
+                    <a href="#"><i class="icon-linkedin"></i></a>
+                    <a href="#"><i class="icon-pinterest"></i></a>
                 </p>
-                </div>
             </div>
         </div>
     </div>
-    <!-- end Modal Teacher 02 --> 
+</div>
+<!-- end Modal Teacher 02 --> 
 
-    <!-- Modal Teacher 03 -->
-    <div class="modal fade" id="teacher03" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Edward Moore</h4>
-                </div>
-                <div class="modal-body">
+<!-- Modal Teacher 03 -->
+<div class="modal fade" id="teacher03" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edward Moore</h4>
+            </div>
+            <div class="modal-body">
                 <figure>
                     <img src="img/teachers/teacher-03.jpg" alt="teacher image">
                 </figure>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, voluptas, aliquam laudantium inventore numquam a quam ea distinctio blanditiis minus unde quos magnam cupiditate! Perspiciatis, nesciunt quae ratione in ipsa!</p>
                 <p>Follow me on: 
-                <a href="#"><i class="icon-twitter"></i></a>
-                <a href="#"><i class="icon-linkedin"></i></a>
-                <a href="#"><i class="icon-pinterest"></i></a>
+                    <a href="#"><i class="icon-twitter"></i></a>
+                    <a href="#"><i class="icon-linkedin"></i></a>
+                    <a href="#"><i class="icon-pinterest"></i></a>
                 </p>
-                </div>
             </div>
         </div>
     </div>
-    <!-- end Modal Teacher 03 --> 
+</div>
+<!-- end Modal Teacher 03 --> 
 
-    <!-- Modal Teacher 04 -->
-    <div class="modal fade" id="teacher04" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Janna Jackson</h4>
-                </div>
-                <div class="modal-body">
+<!-- Modal Teacher 04 -->
+<div class="modal fade" id="teacher04" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Janna Jackson</h4>
+            </div>
+            <div class="modal-body">
                 <figure>
                     <img src="img/teachers/teacher-04.jpg" alt="teacher image">
                 </figure>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, voluptas, aliquam laudantium inventore numquam a quam ea distinctio blanditiis minus unde quos magnam cupiditate! Perspiciatis, nesciunt quae ratione in ipsa!</p>
                 <p>Follow me on: 
-                <a href="#"><i class="icon-twitter"></i></a>
-                <a href="#"><i class="icon-linkedin"></i></a>
-                <a href="#"><i class="icon-pinterest"></i></a>
+                    <a href="#"><i class="icon-twitter"></i></a>
+                    <a href="#"><i class="icon-linkedin"></i></a>
+                    <a href="#"><i class="icon-pinterest"></i></a>
                 </p>
-                </div>
             </div>
         </div>
     </div>
-    <!-- end Modal Teacher 04 --> 
+</div>
+<!-- end Modal Teacher 04 --> 
 
-    <!-- Modal Contact -->
-    <div class="modal fade" id="contactmodal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Contact Us</h4>
-                </div>
-                <div class="modal-body">
-					<form role="form" id="request" action="request-form.php" method="post" accept-charset="utf-8">
-						<div class="form-group">
-						  <label class="no">Name</label>
-						  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" name="name"/>
-						</div>
-						<div class="form-group">
-						  <label class="no">Email</label>
-						  <input type="email" class="form-control" placeholder="Email" name="email"/>
-						</div>
-						<div class="form-group">
-						  <label class="no">Subject</label>
-						  <input type="text" class="form-control" placeholder="Subject" name="subject">
-						</div>
-						<div class="form-group">
-						<textarea class="form-control" rows="3" placeholder="Add your text here" name="textmessage"></textarea>
-						</div>
-						<button type="submit" class="btn btn-default">Send it</button>
-					</form>
-                </div>
+<!-- Modal Contact -->
+<div class="modal fade" id="contactmodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Contact Us</h4>
             </div>
-        </div>
-    </div>
-    <!-- end Modal Contact --> 
+            <div class="modal-body">
+             <form role="form" id="request" action="request-form.php" method="post" accept-charset="utf-8">
+              <div class="form-group">
+                <label class="no">Name</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" name="name"/>
+            </div>
+            <div class="form-group">
+                <label class="no">Email</label>
+                <input type="email" class="form-control" placeholder="Email" name="email"/>
+            </div>
+            <div class="form-group">
+                <label class="no">Subject</label>
+                <input type="text" class="form-control" placeholder="Subject" name="subject">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" rows="3" placeholder="Add your text here" name="textmessage"></textarea>
+          </div>
+          <button type="submit" class="btn btn-default">Send it</button>
+      </form>
+  </div>
+</div>
+</div>
+</div>
+<!-- end Modal Contact --> 
 
 
-    <!-- ======================= JQuery libs =========================== -->
-    	<!-- Jquery -->
-	    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<!-- ======================= JQuery libs =========================== -->
+<!-- Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-	    <!-- Bootstrap -->
-	    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-	    
-	    <!--snap-->
-	    <script src="js/snap/snap.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
 
-	    <!-- Video Responsive-->
-	    <script src="js/fitvids/jquery.fitvids.js"></script>
+<!--snap-->
+<script src="js/snap/snap.js"></script>
 
-        <!-- Scroll nav -->
-        <script src="js/nav/jquery.scrollTo.js"></script> 
-        <script src="js/nav/jquery.nav.js"></script> 
+<!-- Video Responsive-->
+<script src="js/fitvids/jquery.fitvids.js"></script>
 
-	    <!--WayPoint-->
-	    <script src="js/waypoint/waypoints.js"></script>
+<!-- Scroll nav -->
+<script src="js/nav/jquery.scrollTo.js"></script> 
+<script src="js/nav/jquery.nav.js"></script> 
 
-        <!-- Twitter -->
-        <script src="twitter/jquery.tweet.min.js"></script>
+<!--WayPoint-->
+<script src="js/waypoint/waypoints.js"></script>
 
-	    <!-- Custom -->
-	    <script type="text/javascript" src="js/jquery-func.js"></script>
+<!-- Twitter -->
+<script src="twitter/jquery.tweet.min.js"></script>
 
-    <!-- ======================= JQuery libs =========================== -->
+<!-- Custom -->
+<script type="text/javascript" src="js/jquery-func.js"></script>
+
+<!-- ======================= JQuery libs =========================== -->
+
+</script>
 
 </body>
 </html>

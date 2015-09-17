@@ -161,18 +161,18 @@ label.no {
 }
 
 .btn {
-    background: #cbcbcb;
+    /*background: #cbcbcb;
     border-radius: 2px;
     color: #fff;
     border: none;
     font-size: 1.3em;
     margin-top: 20px;
-    padding: 10px 22px;
+    padding: 10px 22px;*/
 }
 
 .btn:hover {
-    background: #18488f;
-    color: #fff;
+   /* background: #18488f;
+    color: #fff;*/
 }
 
 .btn-default:focus, .btn-default:active, .btn-default.active {
