@@ -33,15 +33,38 @@
 <!-- $Include templates/lib/html/header.html -->
 <!--top bar end-->
 
+
 <!-- body section-->
 <!-- title -->
 <div class="row full-width">
-    <div class="medium-12 columns panel">
+    <div class="medium-12 columns">
         <h3>Log de acesso</h3>
     </div>
 </div>
-<!-- alerta -->
-
+<!-- explicativo -->
+<div class="row full-width">
+    <div class="medium-12 columns">
+        <p>Será mostrado apenas 500 registros, use os campos abaixo para uma busca mais objetiva.</p>
+    </div>
+</div>
+<!-- botao -->
+<div class="row full-width">
+    <form id="form" data-abide="ajax">
+    <div class="medium-2 columns">
+        <label>De <input type="text" id="de" name="de" required></label>
+            <small class="error">Não pode estar vazio!</small>
+    </div>
+    <div class="medium-2 columns">
+        <label>Até <input type="text" id="para" name="para" required></label>
+        <small class="error">Não pode estar vazio!</small>
+    </div>
+    <div class="medium-1 columns end">
+        <button class="button success tiny" onchange="envio(this)" style="margin-top: 21px; border-left-width: 0px; margin-left: -9px;"><i class="fa fa-search"></i></button>
+    </div>
+        <input type="hidden" name="uc" value="eventos">
+        <input type="hidden" name="a" value="logViewBusca">
+    </form>
+</div>
 <!-- botões -->
 
 <!-- container main -->
@@ -91,17 +114,28 @@
 <!--footer begin -->
 <!-- $Include templates/lib/html/footer.html -->
 <!--footer end-->
-
+<script src="templates/lib/js/ajax.js"></script>
 <script>
     $(document).foundation();
 
     $(document).ready(function () {
-        var myCalendar = new dhtmlXCalendarObject(["calendar"]);
+        var myCalendar = new dhtmlXCalendarObject(["de","para"]);
         myCalendar.loadUserLanguage("pt");
-        $(document).Conf();
-        $(document).Crud('tarefas', '#nova_tarefa', function (data) {
-            alertify.log(data);
-        });
+        $("#form").on('valid.fndtn.abide', function () {
+            var data = $(this).serializeArray();
+            sendAjax('index.php?uc=eventos&a=logViewBusca','POST',data,function(data){
+                try {
+                    var data = jQuery.parseJSON(data);
+                    if(!data.status){
+                        alertify.error("você foi para o futuro?");
+                    }
+                }catch(e){
+                    document.open();
+                    document.write(data);
+                    document.close();
+                }
+            });
+            });
     });
 </script>
 </body>

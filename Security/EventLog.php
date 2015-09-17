@@ -18,6 +18,7 @@ class EventLog
         foreach($_SESSION['Permissao'] as $valor){
             $temp=$temp.' '.$valor;
         }
+        $log->data=date("d.m.Y", strtotime('today'));
         $log->permissao=$temp;
         $log->usercase=$requisicao['uc'];
         $log->action=$requisicao['a'];

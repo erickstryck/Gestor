@@ -18,8 +18,8 @@ class Eventos extends GenericController
     /**
      * @Permissao({"administrador"})
      */
-    function logView()
+    function logView($arg)
     {
-        $this->logView->showView();
+        $this->logView->showView($arg);
     }
 }
