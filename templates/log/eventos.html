@@ -50,17 +50,17 @@
 <!-- botao -->
 <div class="row full-width">
     <form id="form" data-abide="ajax">
-    <div class="medium-2 columns">
-        <label>De <input type="text" id="de" name="de" required></label>
-            <small class="error">Não pode estar vazio!</small>
-    </div>
-    <div class="medium-2 columns">
-        <label>Até <input type="text" id="para" name="para" required></label>
-        <small class="error">Não pode estar vazio!</small>
-    </div>
-    <div class="medium-1 columns end">
-        <button class="button success tiny" onchange="envio(this)" style="margin-top: 21px; border-left-width: 0px; margin-left: -9px;"><i class="fa fa-search"></i></button>
-    </div>
+        <div class="medium-2 columns">
+            <label>De <input type="text" id="de" name="de"  onclick="setSens('para','max')" readonly="true"></label>
+        </div>
+        <div class="medium-2 columns">
+            <label>Até <input type="text" id="para" name="para" onclick="setSens('de','min')" readonly="true"></label>
+        </div>
+        <div class="medium-1 columns end">
+            <button class="button success tiny" onchange="envio(this)"
+                    style="margin-top: 21px; border-left-width: 0px; margin-left: -9px;"><i class="fa fa-search"></i>
+            </button>
+        </div>
         <input type="hidden" name="busca">
     </form>
 </div>
@@ -115,27 +115,57 @@
 <!--footer end-->
 <script src="templates/lib/js/ajax.js"></script>
 <script>
+    var myCalendar;
     $(document).foundation();
-
     $(document).ready(function () {
-        var myCalendar = new dhtmlXCalendarObject(["de","para"]);
+        myCalendar = new dhtmlXCalendarObject(["de","para"]);
+        dt=new Date();
+        var date=dt.getDate()+"-"+(dt.getMonth()+1)+"-"+dt.getFullYear();
+        myCalendar.setDate(usCalendar(date));
         myCalendar.loadUserLanguage("pt");
+        // init values
+        var t = new Date();
+        byId("de").value = date;
+        byId("para").value = date;
+        //
         $("#form").on('valid.fndtn.abide', function () {
             var data = $(this).serializeArray();
-            sendAjax('index.php?uc=eventos&a=logView','POST',data,function(data){
+            sendAjax('index.php?uc=eventos&a=logView', 'POST', data, function (data) {
                 try {
                     var data = jQuery.parseJSON(data);
-                    if(!data.status){
+                    if (!data.status) {
                         alertify.error("você foi para o futuro?");
                     }
-                }catch(e){
+                } catch (e) {
                     document.open();
                     document.write(data);
                     document.close();
                 }
             });
-            });
+        });
     });
+    function usCalendar(date){
+        var dt=date.split("-");
+        var data=new Date(parseInt(dt[2]),(--dt[1]),(dt[0]++));
+        return data;
+    }
+    function setSens(id, k) {
+        // update range
+        if (k == "min") {
+            var dt=byId(id).value;
+            myCalendar.setSensitiveRange(usCalendar(dt), null);
+            var d=myCalendar.getDate();
+            alert(d.getHours()+":"+ d.getMinutes()+":"+ d.getSeconds());
+        } else {
+            var dt=byId(id).value;
+            myCalendar.setSensitiveRange(null,usCalendar(dt));
+            var d=myCalendar.getDate();
+            alert(d.getTime());
+        }
+    }
+    function byId(id) {
+        return document.getElementById(id);
+    }
 </script>
 </body>
 <!--footer bagin -->

@@ -3736,7 +3736,7 @@ window.dhtmlxDblCalendarObject = window.dhtmlXDoubleCalendarObject = window.dhtm
     return this
 };
 dhtmlXCalendarObject.prototype.langData["pt"] = {
-    dateformat: "%d.%m.%Y",
+    dateformat: "%d-%m-%Y",
     monthesFNames: [
         "Janeiro", "Fevereiro", "Março", "Abril", "Mail", "Junho", "Julho",
         "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
