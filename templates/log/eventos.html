@@ -157,12 +157,14 @@
             var dt=byId(id).value;
             myCalendar.setSensitiveRange(usCalendar(dt), null);
             var d=myCalendar.getDate();
-            byId(id+"Time").val(d.getHours()+":"+ d.getMinutes()+":"+ d.getSeconds());
+            idH=id+"Time";
+            byId(idH).val(d.getHours()+":"+ d.getMinutes()+":"+ d.getSeconds());
         } else {
             var dt=byId(id).value;
             myCalendar.setSensitiveRange(null,usCalendar(dt));
             var d=myCalendar.getDate();
-            byId(id+"Time").val(d.getHours()+":"+ d.getMinutes()+":"+ d.getSeconds());
+            idH=id+"Time";
+            byId(idH).val(d.getHours()+":"+ d.getMinutes()+":"+ d.getSeconds());
         }
     }
     function byId(id) {
