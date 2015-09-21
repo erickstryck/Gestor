@@ -12,88 +12,85 @@
  * @link http://www.hufersil.com.br
  * @package Lumine
  */
-class Lumine_Factory extends Lumine_Base
-{
+class Lumine_Factory extends Lumine_Base {
 
-    /**
-     * Construtor da classe
-     *
-     * @author Hugo Ferreira da Silva
-     * @link http://www.hufersil.com.br
-     * @param string $package Nome do pacote
-     * @param string $tablename nome da tabela que ela representa
-     * @return Lumine_Factory
-     */
-    function __construct($package, $tablename)
-    {
+	/**
+	 * Construtor da classe
+	 *
+	 * @author Hugo Ferreira da Silva
+	 * @link http://www.hufersil.com.br
+	 * @param string $package Nome do pacote
+	 * @param string $tablename nome da tabela que ela representa
+	 * @return Lumine_Factory
+	 */
+	function __construct($package, $tablename){
+            
+                $this->_metadata = new Lumine_Metadata($this);
+		$this->metadata()->setPackage( $package );
+		$this->metadata()->setTablename( $tablename );
+                
+		parent::__construct();
+	}
 
-        $this->_metadata = new Lumine_Metadata($this);
-        $this->metadata()->setPackage($package);
-        $this->metadata()->setTablename($tablename);
+	/**
+	 * retona a classe criada
+	 *
+	 * @author Hugo Ferreira da Silva
+	 * @link http://www.hufersil.com.br
+	 * @param string $tablename
+	 * @param Lumine_Configuration $cfg
+	 * @return Lumine_Factory
+	 */
+	public static function create($tablename, Lumine_Configuration $cfg){
+		$pkg = $cfg->getProperty('package');
 
-        parent::__construct();
-    }
+		Lumine_Log::debug('Recuperando campos da tabela '.$tablename);
 
-    /**
-     * retona a classe criada
-     *
-     * @author Hugo Ferreira da Silva
-     * @link http://www.hufersil.com.br
-     * @param string $tablename
-     * @param Lumine_Configuration $cfg
-     * @return Lumine_Factory
-     */
-    public static function create($tablename, Lumine_Configuration $cfg)
-    {
-        $pkg = $cfg->getProperty('package');
+		$fields = $cfg->getConnection()->describe($tablename);
 
-        Lumine_Log::debug('Recuperando campos da tabela ' . $tablename);
+		$obj = new Lumine_Factory($pkg,$tablename);
 
-        $fields = $cfg->getConnection()->describe($tablename);
+		foreach($fields as $item){
+			list(
+				$name,
+				$type_native,
+				$type,
+				$length,
+				$primary,
+				$notnull,
+				$default,
+				$autoincrement
+			) = $item;
 
-        $obj = new Lumine_Factory($pkg, $tablename);
+			$options = array(
+				'primary' => $primary,
+				'notnull' => $notnull,
+				'autoincrement' => $autoincrement,
+			);
 
-        foreach ($fields as $item) {
-            list(
-                $name,
-                $type_native,
-                $type,
-                $length,
-                $primary,
-                $notnull,
-                $default,
-                $autoincrement
-                ) = $item;
+			// para o pg, ainda tem o nome da sequence
+			if(!empty($item[8]['sequence'])){
+				$options['sequence'] = $item[8]['sequence'];
+			}
 
-            $options = array(
-                'primary' => $primary,
-                'notnull' => $notnull,
-                'autoincrement' => $autoincrement,
-            );
+			// se tiver um valor padrao
+			if(!empty($default)){
+				$options['default'] = $default;
+			}
 
-            // para o pg, ainda tem o nome da sequence
-            if (!empty($item[8]['sequence'])) {
-                $options['sequence'] = $item[8]['sequence'];
-            }
+			// nome do membro
+			$memberName = $name;
 
-            // se tiver um valor padrao
-            if (!empty($default)) {
-                $options['default'] = $default;
-            }
+			// se for para usar camel case
+			if( $cfg->getOption('camel_case') == true ){
+				$memberName = Lumine_Util::camelCase($memberName);
+			}
 
-            // nome do membro
-            $memberName = $name;
+			$obj->metadata()->addField($memberName,$name,$type,$length,$options);
+		}
 
-            // se for para usar camel case
-            if ($cfg->getOption('camel_case') == true) {
-                $memberName = Lumine_Util::camelCase($memberName);
-            }
+		return $obj;
 
-            $obj->metadata()->addField($memberName, $name, $type, $length, $options);
-        }
-
-        return $obj;
-
-    }
+	}
 }
 

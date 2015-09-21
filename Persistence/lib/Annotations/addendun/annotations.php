@@ -5,28 +5,29 @@
  * http://code.google.com/p/addendum/
  *
  * Copyright (C) 2006-2009 Jan "johno Suchal <johno@jsmf.net>
+
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
+
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
+
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  * */
 require_once(dirname(__FILE__) . '/annotation_parser.php');
 
-class Annotation
-{
+class Annotation {
 
-    private static $creationStack = array();
     public $value;
+    private static $creationStack = array();
 
-    public final function __construct($data = array(), $target = false)
-    {
+    public final function __construct($data = array(), $target = false) {
         $reflection = new ReflectionClass($this);
         $class = $reflection->getName();
         if (isset(self::$creationStack[$class])) {
@@ -46,8 +47,7 @@ class Annotation
         unset(self::$creationStack[$class]);
     }
 
-    private function checkTargetConstraints($target)
-    {
+    private function checkTargetConstraints($target) {
         $reflection = new ReflectionAnnotatedClass($this);
         if ($reflection->hasAnnotation('Target')) {
             $value = $reflection->getAnnotation('Target')->value;
@@ -70,8 +70,7 @@ class Annotation
         }
     }
 
-    private function createName($target)
-    {
+    private function createName($target) {
         if ($target instanceof ReflectionMethod) {
             return $target->getDeclaringClass()->getName() . '::' . $target->getName();
         } elseif ($target instanceof ReflectionProperty) {
@@ -81,37 +80,31 @@ class Annotation
         }
     }
 
-    protected function checkConstraints($target)
-    {
-
+    protected function checkConstraints($target) {
+        
     }
 
 }
 
-class AnnotationsCollection
-{
+class AnnotationsCollection {
 
     private $annotations;
 
-    public function __construct($annotations)
-    {
+    public function __construct($annotations) {
         $this->annotations = $annotations;
     }
 
-    public function hasAnnotation($class)
-    {
+    public function hasAnnotation($class) {
         $class = Addendum::resolveClassName($class);
         return isset($this->annotations[$class]);
     }
 
-    public function getAnnotation($class)
-    {
+    public function getAnnotation($class) {
         $class = Addendum::resolveClassName($class);
         return isset($this->annotations[$class]) ? end($this->annotations[$class]) : false;
     }
 
-    public function getAnnotations()
-    {
+    public function getAnnotations() {
         $result = array();
         foreach ($this->annotations as $instances) {
             $result[] = end($instances);
@@ -119,8 +112,7 @@ class AnnotationsCollection
         return $result;
     }
 
-    public function getAllAnnotations($restriction = false)
-    {
+    public function getAllAnnotations($restriction = false) {
         $restriction = Addendum::resolveClassName($restriction);
         $result = array();
         foreach ($this->annotations as $class => $instances) {
@@ -133,23 +125,15 @@ class AnnotationsCollection
 
 }
 
-class Annotation_Target extends Annotation
-{
-
+class Annotation_Target extends Annotation {
+    
 }
 
-class AnnotationsBuilder
-{
+class AnnotationsBuilder {
 
     private static $cache = array();
 
-    public static function clearCache()
-    {
-        self::$cache = array();
-    }
-
-    public function build($targetReflection)
-    {
+    public function build($targetReflection) {
         $data = $this->parse($targetReflection);
         $annotations = array();
         foreach ($data as $class => $parameters) {
@@ -163,8 +147,16 @@ class AnnotationsBuilder
         return new AnnotationsCollection($annotations);
     }
 
-    private function parse($reflection)
-    {
+    public function instantiateAnnotation($class, $parameters, $targetReflection = false) {
+        $class = Addendum::resolveClassName($class);
+        if (is_subclass_of($class, 'Annotation') && !Addendum::ignores($class) || $class == 'Annotation') {
+            $annotationReflection = new ReflectionClass($class);
+            return $annotationReflection->newInstance($parameters, $targetReflection);
+        }
+        return false;
+    }
+
+    private function parse($reflection) {
         $key = $this->createName($reflection);
         if (!isset(self::$cache[$key])) {
             $parser = new AnnotationsMatcher;
@@ -174,8 +166,7 @@ class AnnotationsBuilder
         return self::$cache[$key];
     }
 
-    private function createName($target)
-    {
+    private function createName($target) {
         if ($target instanceof ReflectionMethod) {
             return $target->getDeclaringClass()->getName() . '::' . $target->getName();
         } elseif ($target instanceof ReflectionProperty) {
@@ -185,76 +176,50 @@ class AnnotationsBuilder
         }
     }
 
-    protected function getDocComment($reflection)
-    {
+    protected function getDocComment($reflection) {
         return Addendum::getDocComment($reflection);
     }
 
-    public function instantiateAnnotation($class, $parameters, $targetReflection = false)
-    {
-        $class = Addendum::resolveClassName($class);
-        if (is_subclass_of($class, 'Annotation') && !Addendum::ignores($class) || $class == 'Annotation') {
-            $annotationReflection = new ReflectionClass($class);
-            return $annotationReflection->newInstance($parameters, $targetReflection);
-        }
-        return false;
+    public static function clearCache() {
+        self::$cache = array();
     }
 
 }
 
-class ReflectionAnnotatedClass extends ReflectionClass
-{
+class ReflectionAnnotatedClass extends ReflectionClass {
 
     private $annotations;
 
-    public function __construct($class)
-    {
+    public function __construct($class) {
         parent::__construct($class);
         $this->annotations = $this->createAnnotationBuilder()->build($this);
     }
 
-    protected function createAnnotationBuilder()
-    {
-        return new AnnotationsBuilder();
-    }
-
-    public function hasAnnotation($class)
-    {
+    public function hasAnnotation($class) {
         return $this->annotations->hasAnnotation($class);
     }
 
-    public function getAnnotation($annotation)
-    {
+    public function getAnnotation($annotation) {
         return $this->annotations->getAnnotation($annotation);
     }
 
-    public function getAnnotations()
-    {
+    public function getAnnotations() {
         return $this->annotations->getAnnotations();
     }
 
-    public function getAllAnnotations($restriction = false)
-    {
+    public function getAllAnnotations($restriction = false) {
         return $this->annotations->getAllAnnotations($restriction);
     }
 
-    public function getConstructor()
-    {
+    public function getConstructor() {
         return $this->createReflectionAnnotatedMethod(parent::getConstructor());
     }
 
-    private function createReflectionAnnotatedMethod($method)
-    {
-        return ($method !== null) ? new ReflectionAnnotatedMethod($this->getName(), $method->getName()) : null;
-    }
-
-    public function getMethod($name)
-    {
+    public function getMethod($name) {
         return $this->createReflectionAnnotatedMethod(parent::getMethod($name));
     }
 
-    public function getMethods($filter = -1)
-    {
+    public function getMethods($filter = -1) {
         $result = array();
         foreach (parent::getMethods($filter) as $method) {
             $result[] = $this->createReflectionAnnotatedMethod($method);
@@ -262,18 +227,11 @@ class ReflectionAnnotatedClass extends ReflectionClass
         return $result;
     }
 
-    public function getProperty($name)
-    {
+    public function getProperty($name) {
         return $this->createReflectionAnnotatedProperty(parent::getProperty($name));
     }
 
-    private function createReflectionAnnotatedProperty($property)
-    {
-        return ($property !== null) ? new ReflectionAnnotatedProperty($this->getName(), $property->getName()) : null;
-    }
-
-    public function getProperties($filter = -1)
-    {
+    public function getProperties($filter = -1) {
         $result = array();
         foreach (parent::getProperties($filter) as $property) {
             $result[] = $this->createReflectionAnnotatedProperty($property);
@@ -281,8 +239,7 @@ class ReflectionAnnotatedClass extends ReflectionClass
         return $result;
     }
 
-    public function getInterfaces()
-    {
+    public function getInterfaces() {
         $result = array();
         foreach (parent::getInterfaces() as $interface) {
             $result[] = $this->createReflectionAnnotatedClass($interface);
@@ -290,117 +247,109 @@ class ReflectionAnnotatedClass extends ReflectionClass
         return $result;
     }
 
-    private function createReflectionAnnotatedClass($class)
-    {
-        return ($class !== false) ? new ReflectionAnnotatedClass($class->getName()) : false;
-    }
-
-    public function getParentClass()
-    {
+    public function getParentClass() {
         $class = parent::getParentClass();
         return $this->createReflectionAnnotatedClass($class);
     }
 
+    protected function createAnnotationBuilder() {
+        return new AnnotationsBuilder();
+    }
+
+    private function createReflectionAnnotatedClass($class) {
+        return ($class !== false) ? new ReflectionAnnotatedClass($class->getName()) : false;
+    }
+
+    private function createReflectionAnnotatedMethod($method) {
+        return ($method !== null) ? new ReflectionAnnotatedMethod($this->getName(), $method->getName()) : null;
+    }
+
+    private function createReflectionAnnotatedProperty($property) {
+        return ($property !== null) ? new ReflectionAnnotatedProperty($this->getName(), $property->getName()) : null;
+    }
+
 }
 
-class ReflectionAnnotatedMethod extends ReflectionMethod
-{
+class ReflectionAnnotatedMethod extends ReflectionMethod {
 
     private $annotations;
 
-    public function __construct($class, $name)
-    {
+    public function __construct($class, $name) {
         parent::__construct($class, $name);
         $this->annotations = $this->createAnnotationBuilder()->build($this);
     }
 
-    protected function createAnnotationBuilder()
-    {
-        return new AnnotationsBuilder();
-    }
-
-    public function hasAnnotation($class)
-    {
+    public function hasAnnotation($class) {
         return $this->annotations->hasAnnotation($class);
     }
 
-    public function getAnnotation($annotation)
-    {
+    public function getAnnotation($annotation) {
         return $this->annotations->getAnnotation($annotation);
     }
 
-    public function getAnnotations()
-    {
+    public function getAnnotations() {
         return $this->annotations->getAnnotations();
     }
 
-    public function getAllAnnotations($restriction = false)
-    {
+    public function getAllAnnotations($restriction = false) {
         return $this->annotations->getAllAnnotations($restriction);
     }
 
-    public function getDeclaringClass()
-    {
+    public function getDeclaringClass() {
         $class = parent::getDeclaringClass();
         return new ReflectionAnnotatedClass($class->getName());
     }
 
+    protected function createAnnotationBuilder() {
+        return new AnnotationsBuilder();
+    }
+
 }
 
-class ReflectionAnnotatedProperty extends ReflectionProperty
-{
+class ReflectionAnnotatedProperty extends ReflectionProperty {
 
     private $annotations;
 
-    public function __construct($class, $name)
-    {
+    public function __construct($class, $name) {
         parent::__construct($class, $name);
         $this->annotations = $this->createAnnotationBuilder()->build($this);
     }
 
-    protected function createAnnotationBuilder()
-    {
-        return new AnnotationsBuilder();
-    }
-
-    public function hasAnnotation($class)
-    {
+    public function hasAnnotation($class) {
         return $this->annotations->hasAnnotation($class);
     }
 
-    public function getAnnotation($annotation)
-    {
+    public function getAnnotation($annotation) {
         return $this->annotations->getAnnotation($annotation);
     }
 
-    public function getAnnotations()
-    {
+    public function getAnnotations() {
         return $this->annotations->getAnnotations();
     }
 
-    public function getAllAnnotations($restriction = false)
-    {
+    public function getAllAnnotations($restriction = false) {
         return $this->annotations->getAllAnnotations($restriction);
     }
 
-    public function getDeclaringClass()
-    {
+    public function getDeclaringClass() {
         $class = parent::getDeclaringClass();
         return new ReflectionAnnotatedClass($class->getName());
     }
 
+    protected function createAnnotationBuilder() {
+        return new AnnotationsBuilder();
+    }
+
 }
 
-class Addendum
-{
+class Addendum {
 
     private static $rawMode;
     private static $ignore;
     private static $classnames = array();
     private static $annotations = false;
 
-    public static function getDocComment($reflection)
-    {
+    public static function getDocComment($reflection) {
         if (self::checkRawDocCommentParsingNeeded()) {
             $docComment = new DocComment();
             return $docComment->get($reflection);
@@ -410,8 +359,7 @@ class Addendum
     }
 
     /** Raw mode test */
-    private static function checkRawDocCommentParsingNeeded()
-    {
+    private static function checkRawDocCommentParsingNeeded() {
         if (self::$rawMode === null) {
             $reflection = new ReflectionClass('Addendum');
             $method = $reflection->getMethod('checkRawDocCommentParsingNeeded');
@@ -420,33 +368,28 @@ class Addendum
         return self::$rawMode;
     }
 
-    public static function setRawMode($enabled = true)
-    {
+    public static function setRawMode($enabled = true) {
         if ($enabled) {
             require_once(dirname(__FILE__) . '/annotations/doc_comment.php');
         }
         self::$rawMode = $enabled;
     }
 
-    public static function resetIgnoredAnnotations()
-    {
+    public static function resetIgnoredAnnotations() {
         self::$ignore = array();
     }
 
-    public static function ignores($class)
-    {
+    public static function ignores($class) {
         return isset(self::$ignore[$class]);
     }
 
-    public static function ignore()
-    {
+    public static function ignore() {
         foreach (func_get_args() as $class) {
             self::$ignore[$class] = true;
         }
     }
 
-    public static function resolveClassName($class)
-    {
+    public static function resolveClassName($class) {
         if (isset(self::$classnames[$class]))
             return self::$classnames[$class];
         $matching = array();
@@ -462,21 +405,17 @@ class Addendum
         }
         $result = null;
         switch (count($matching)) {
-            case 0:
-                $result = $class;
+            case 0: $result = $class;
                 break;
-            case 1:
-                $result = $matching[0];
+            case 1: $result = $matching[0];
                 break;
-            default:
-                trigger_error("Cannot resolve class name for '$class'. Possible matches: " . join(', ', $matching), E_USER_ERROR);
+            default: trigger_error("Cannot resolve class name for '$class'. Possible matches: " . join(', ', $matching), E_USER_ERROR);
         }
         self::$classnames[$class] = $result;
         return $result;
     }
 
-    private static function getDeclaredAnnotations()
-    {
+    private static function getDeclaredAnnotations() {
         if (!self::$annotations) {
             self::$annotations = array();
             foreach (get_declared_classes() as $class) {

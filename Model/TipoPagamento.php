@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "tipo_pagamento"
- * in 2015-09-18
+ * in 2015-09-21
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model

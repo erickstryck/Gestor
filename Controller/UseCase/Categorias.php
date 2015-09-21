@@ -61,7 +61,7 @@ class Categorias extends GenericController
         $categoria->fetch(true);
 
         $categoria->nomeCategoria = $arg['nomeCategoria'];
-        $categoria->margemLucro = (float)$arg['margemLucro'];
+        $categoria->margemLucro = (int)$arg['margemLucro'];
         $categoria->empresaId = $_SESSION['empresaId'];
 
         $categoria->update();

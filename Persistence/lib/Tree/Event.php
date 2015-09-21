@@ -18,72 +18,68 @@
 ################################################################################
 /**
  * Classe que representa uma arvore de dados
- *
+ * 
  * @author Hugo Ferreira da Silva
  * @package Lumine_Tree
  * @link http://www.hufersil.com.br/lumine
  *
  */
-class Lumine_Tree_Event extends Lumine_Event
-{
-
-    const PRE_NODE_ADD = 'preNodeAdd';
-    const PRE_NODE_REMOVE = 'preNodeRemove';
-    const PRE_NODE_DELETE = 'preNodeDelete';
-    const PRE_NODE_SAVE = 'preNodeSave';
-    const POS_NODE_ADD = 'posNodeAdd';
-    const POS_NODE_REMOVE = 'posNodeRemove';
-    const POS_NODE_DELETE = 'posNodeDelete';
-    const POS_NODE_SAVE = 'posNodeSave';
-
-    /**
-     * Node enviado no evento
-     * @var Lumine_Tree_Node
-     */
-    private $node;
-
-    /**
-     * Tree enviada no evento
-     * @var Lumine_Tree
-     */
-    private $tree;
-
-    /**
-     * Construtor
-     *
-     * @author Hugo Ferreira da Silva
-     * @param string $type
-     * @param Lumine_Tree_Node $node
-     * @param Lumine_Tree $tree
-     * @return Lumine_Tree_Event
-     */
-    public function __construct($type, $node = null, $tree = null)
-    {
-        parent::__construct($type);
-        $this->node = $node;
-        $this->tree = $tree;
-    }
-
-    /**
-     * Recupera a arvore usada no evento
-     *
-     * @author Hugo Ferreira da Silva
-     * @return Lumine_Tree
-     */
-    public function getTree()
-    {
-        return $this->tree;
-    }
-
-    /**
-     * Recupera o node usado no evento
-     *
-     * @author Hugo Ferreira da Silva
-     * @return Lumine_Tree_Node
-     */
-    public function getNode()
-    {
-        return $this->node;
-    }
-
+class Lumine_Tree_Event extends Lumine_Event {
+	
+	const PRE_NODE_ADD    = 'preNodeAdd';
+	const PRE_NODE_REMOVE = 'preNodeRemove';
+	const PRE_NODE_DELETE = 'preNodeDelete';
+	const PRE_NODE_SAVE   = 'preNodeSave';
+	const POS_NODE_ADD    = 'posNodeAdd';
+	const POS_NODE_REMOVE = 'posNodeRemove';
+	const POS_NODE_DELETE = 'posNodeDelete';
+	const POS_NODE_SAVE   = 'posNodeSave';
+	
+	/**
+	 * Node enviado no evento
+	 * @var Lumine_Tree_Node
+	 */
+	private $node;
+	
+	/**
+	 * Tree enviada no evento
+	 * @var Lumine_Tree
+	 */
+	private $tree;
+	
+	/**
+	 * Construtor
+	 * 
+	 * @author Hugo Ferreira da Silva
+	 * @param string $type
+	 * @param Lumine_Tree_Node $node
+	 * @param Lumine_Tree $tree
+	 * @return Lumine_Tree_Event
+	 */
+	public function __construct($type, $node = null, $tree = null){
+		parent::__construct($type);
+		$this->node = $node;
+		$this->tree = $tree;
+	}
+	
+	/**
+	 * Recupera a arvore usada no evento
+	 * 
+	 * @author Hugo Ferreira da Silva
+	 * @return Lumine_Tree
+	 */
+	public function getTree(){
+		return $this->tree;
+	}
+	
+	/**
+	 * Recupera o node usado no evento
+	 * 
+	 * @author Hugo Ferreira da Silva
+	 * @return Lumine_Tree_Node
+	 */
+	public function getNode(){
+		return $this->node;
+	}
+	
 }

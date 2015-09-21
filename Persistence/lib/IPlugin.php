@@ -18,26 +18,25 @@
 ################################################################################
 /**
  * Interface para implementacao de plugins
- *
+ * 
  * @author Hugo Ferreira da silva
  * @link http://www.hufersil.com.br
  *
  */
-interface ILumine_Plugin
-{
-
-    /**
-     * Retorna os metodos da classe
-     *
-     * <p>Este metodo deve retornar os nomes dos metodos
-     * que poderao ser usados dentro do Lumine_Base,
-     * assim o usuario pode indicar quais metodos poderao
-     * ser escondidos do usuario no plugin.</p>
-     *
-     * @author Hugo Ferreira da silva
-     * @link http://www.hufersil.com.br
-     * @return array nomes dos metodos da classe
-     */
-    public function getMethodList();
-
+interface ILumine_Plugin   {
+	
+	/**
+	 * Retorna os metodos da classe
+	 * 
+	 * <p>Este metodo deve retornar os nomes dos metodos
+	 * que poderao ser usados dentro do Lumine_Base,
+	 * assim o usuario pode indicar quais metodos poderao
+	 * ser escondidos do usuario no plugin.</p>
+	 * 
+	 * @author Hugo Ferreira da silva
+	 * @link http://www.hufersil.com.br
+	 * @return array nomes dos metodos da classe
+	 */
+	public function getMethodList();
+	
 }
