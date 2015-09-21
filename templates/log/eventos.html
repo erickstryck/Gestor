@@ -61,7 +61,9 @@
                     style="margin-top: 21px; border-left-width: 0px; margin-left: -9px;"><i class="fa fa-search"></i>
             </button>
         </div>
-        <input type="hidden" name="busca">
+        <input type="hidden" name="busca" />
+        <input type="hidden" name="deTime" />
+        <input type="hidden" name="paraTime" />
     </form>
 </div>
 <!-- botões -->
@@ -155,12 +157,12 @@
             var dt=byId(id).value;
             myCalendar.setSensitiveRange(usCalendar(dt), null);
             var d=myCalendar.getDate();
-            alert(d.getHours()+":"+ d.getMinutes()+":"+ d.getSeconds());
+            byId(id+"Time").val(d.getHours()+":"+ d.getMinutes()+":"+ d.getSeconds());
         } else {
             var dt=byId(id).value;
             myCalendar.setSensitiveRange(null,usCalendar(dt));
             var d=myCalendar.getDate();
-            alert(d.getTime());
+            byId(id+"Time").val(d.getHours()+":"+ d.getMinutes()+":"+ d.getSeconds());
         }
     }
     function byId(id) {
