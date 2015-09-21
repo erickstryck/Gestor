@@ -41,6 +41,9 @@
      .acess{
         color:white!important;background-color:blue;
      }
+     .acess:hover{
+        color:white!important;background-color:#D6D6F9!important;
+     }
 
 
  </style>
@@ -74,7 +77,7 @@
                     <li><a class="nav-button" data-src="teachers" href="#teachers">Empresas</a></li>
                     <li><a class="nav-button" data-src="prices" href="#prices">Preços</a></li>
                     <li><a class="nav-button" data-src="information" href="#information">Info</a></li>
-                    <li><a class="nav-button acess" data-src="/index.php?uc=autenticar&a=loginView" href="/index.php?uc=autenticar&a=loginView">Acessar Gestor</a></li>
+                    <li><a id="redirect" class="nav-button acess"  href="../index.php?uc=autenticar&a=loginView">Acessar Gestor</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav><!-- /.container -->
@@ -113,7 +116,7 @@
                         <div class="form-group">
                           <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
                           <div class="col-md-12">
-                            <input id="textinput" name="textinput" type="text" placeholder="Nome ou Razão social" class="form-control input-md">
+                            <input id="textinput" name="nome" type="text" placeholder="Nome ou Razão social" class="form-control input-md">
 
                         </div>
                     </div>
@@ -122,7 +125,7 @@
                     <div class="form-group">
                       <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
                       <div class="col-md-12">
-                        <input id="textinput" name="textinput" type="text" placeholder="Telefone" class="form-control input-md">
+                        <input id="textinput" name="telFixo" type="text" placeholder="Telefone" class="form-control input-md">
 
                     </div>
                 </div>
@@ -131,7 +134,7 @@
                 <div class="form-group">
                    <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
                    <div class="col-md-12">
-                    <input id="textinput" name="textinput" type="text" placeholder="Celular" class="form-control input-md">
+                    <input id="textinput" name="telCelular" type="text" placeholder="Celular" class="form-control input-md">
                     
                 </div>
             </div>
@@ -140,7 +143,7 @@
             <div class="form-group">
                <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
                <div class="col-md-12">
-                <input id="" name="textinput" type="text" placeholder="E-mail da Empresa" class="form-control input-md">
+                <input id="" name="emailPrincipal" type="email" placeholder="E-mail da Empresa" class="form-control input-md">
 
             </div>
         </div>
@@ -149,7 +152,7 @@
         <div class="form-group">
             <!--   <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
             <div class="col-md-12">
-                <select class="form-control input-md" required="">
+                <select class="form-control input-md" name="estadoId" required="">
                     <option value=""> - Selecione o seu Estado -</option>
 
                     <option value="1">ACRE</option>
@@ -221,7 +224,7 @@
             <div class="form-group">
               <!-- <label class="col-md-4 control-label" for="textinput">Text Input</label> -->  
               <div class="col-md-12">
-                <input id="textinput" name="textinput" type="text" placeholder="Seu nome completo" class="form-control input-md">
+                <input id="textinput" name="nomeCompleto" type="text" placeholder="Seu nome completo" class="form-control input-md">
 
             </div>
         </div>
@@ -230,7 +233,7 @@
         <div class="form-group">
           <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
           <div class="col-md-12">
-            <input id="textinput" name="textinput" type="text" placeholder="nome de usuário (login)" class="form-control input-md">
+            <input id="textinput" name="login" type="text" placeholder="nome de usuário (login)" class="form-control input-md">
 
         </div>
     </div>
@@ -239,7 +242,16 @@
     <div class="form-group">
       <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
       <div class="col-md-12">
-        <input id="textinput" name="textinput" type="password" placeholder="Sua senha" class="form-control input-md">
+        <input id="textinput" name="senha" type="password" placeholder="Sua senha" class="form-control input-md">
+
+    </div>
+    </div>
+
+     <!-- Text input-->
+    <div class="form-group">
+      <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+      <div class="col-md-12">
+        <input id="textinput" name="email" type="email" placeholder="Sua senha" class="form-control input-md">
 
     </div>
     </div>
@@ -248,16 +260,7 @@
     <div class="form-group">
        <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
        <div class="col-md-12">
-        <input id="textinput" name="textinput" type="text" placeholder="Repita a sua senha" class="form-control input-md">
-
-    </div>
-    </div>
-
-    <!-- Text input-->
-    <div class="form-group">
-       <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
-       <div class="col-md-12">
-        <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md" required="">
+        <input id="textinput" name="senhaConfirmacao" type="text" placeholder="Repita a sua senha" class="form-control input-md">
 
     </div>
     </div>
@@ -266,7 +269,7 @@
     <div class="form-group">
        <!--  <label class="col-md-12 control-label" for="singlebutton">Single Button</label> -->
        <div class="col-md-12">
-        <button  type="button" class="btn btn-success">Cadastrar e Usar</button>
+        <button  type="button" class="btn btn-success" style="width:100%;">Cadastrar e Usar</button>
     </div>
     </div>
 
@@ -995,6 +998,10 @@
 
 <!-- ======================= JQuery libs =========================== -->
 
+<script type="text/javascript">
+    $('#redirect').click(function(){
+        $(this).click(); 
+    }); 
 </script>
 
 </body>
