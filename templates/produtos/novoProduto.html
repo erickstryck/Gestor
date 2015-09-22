@@ -23,14 +23,14 @@
 <!-- body section-->
 
 <!-- title -->
-<div class="row">
+<div class="row full-width">
     <div class="medium-12 columns ">
         <h3>CADASTRO DE NOVOS PRODUTOS</h3>
     </div>
 </div>
 
 <!-- botões -->
-<div class="row">
+<div class="row full-width">
     <div class="medium-12 columns">
         <button class="button success small cadastrar"><i class="fa fa-plus fa-lg"></i> Novo Produto</button>
         <button class="button alert small"><i class="fa fa-times fa-lg"></i> Remover Produto</button>
@@ -40,7 +40,7 @@
 </div>
 
 <!-- container main -->
-<div class="row">
+<div class="row full-width">
     <div class="medium-12 columns">
         <!-- tabela -->
         <table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
@@ -115,7 +115,7 @@
 
         <hr class="separator"/>
 
-        <div class="row">
+        <div class="row full-width">
             <div class="medium-4 columns">
                 <input id="checkbox1" type="checkbox" name="naoControlarEstoque"><label for="checkbox1">Não controlar
                 estoque</label>
@@ -128,11 +128,11 @@
 
         <hr class="separator"/>
 
-        <div class="row">
+        <div class="row full-width">
 
             <div class="medium-12 columns">
                 <!-- primeira seção -->
-                <div class="row">
+                <div class="row full-width">
                     <div class="medium-4 columns">
                         <label>Nome
                             <small style="color:red">Obrigatório</small>
@@ -157,7 +157,7 @@
                 </div>
 
                 <!-- segundo seção -->
-                <div class="row">
+                <div class="row full-width">
                     <div class="medium-4 columns">
                         <label>Unidade tributada
                             <select name="unidade_tributaria">
@@ -176,7 +176,7 @@
                 </div>
 
                 <!-- terceiro seção -->
-                <div class="row">
+                <div class="row full-width">
                     <div class="medium-4 columns">
                         <label>Preço de venda <input type="number" id="preco_venda" name="precoVenda"/> </label>
                     </div>
@@ -191,7 +191,7 @@
                 </div>
 
                 <!-- quarta seção -->
-                <div class="row">
+                <div class="row full-width">
                     <div class="medium-4 columns">
                         <label>Exceção tabela IPI <input type="text" name="excecaoIpi"/> </label>
                     </div>
@@ -206,7 +206,7 @@
                 </div>
 
                 <!-- quinta seção -->
-                <div class="row">
+                <div class="row full-width">
                     <div class="medium-4 columns">
                         <label>NCM <a target="_blank"
                                       href="http://www4.receita.fazenda.gov.br/simulador/PesquisarNCM.jsp">(Encontre
@@ -215,14 +215,14 @@
                 </div>
 
                 <!-- sexta seção -->
-                <div class="row">
+                <div class="row full-width">
                     <div class="medium-12 columns">
                         <label>Anotações internas<textarea name="anotacoesInternas"></textarea></label>
                     </div>
                 </div>
 
                 <!-- botões -->
-                <div class="row">
+                <div class="row full-width">
                     <div class="medium-12 columns">
                         <div class="panel clearfix">
                             <button type="submit" class="button small secondary right">Salvar</button>
@@ -278,7 +278,7 @@
         //Código para a deleção:
         $(document).Conf();
         $(document).Crud('produtos', '#novo_produto', function (data) {
-            alertify.log(data);
+            //alertify.log(data);
         });
     });
 

@@ -7,6 +7,19 @@
     //O array de configuração tem que estar neste formato:
     //data = {delete: 'info', alterar : 'info', cadastro : 'info'};
     //data = {alterar : 'info'};
+    
+
+    function parse(data){
+        try{
+            data = jQuery.parseJSON(data);
+            data.status = true; 
+        }
+        catch(e){
+            data.status = false;
+        }
+
+        return data;    
+    }
 
     $.fn.Conf = function (conf) {
         if (typeof conf == 'undefined') {
@@ -37,9 +50,9 @@
 
         function onDelete(id) {
             sendAjax('index.php?uc=' + useCase + '&a=' + DELETE, 'POST', {'id': id}, function (data) {
-                data = JSON.parse(data);
+                data = parse(data);
 
-                if (data['status']) {
+                if (data.status) {
                     alertify.success("Registro deletado com sucesso.");
                     interval = setInterval(function () {
                         window.location.reload();
@@ -47,7 +60,7 @@
                     }, DELAY);
                 }
                 else
-                    alertify.error(data['msg']);
+                    alertify.error(data.msg);
             });
         }
     }
@@ -67,7 +80,12 @@
             callback(data);
             //casos triviais:
             //select, input, checbox;
-            data = JSON.parse(data);
+            data = parse(data);
+
+            if(!data.status){
+                alertify.error("Error ao tentar reestabelecer o formulário."); 
+                return; 
+            }
 
             console.log("inputs > ");
             form.find('input[type=hidden] ,input[type=text] ,input[type=number] ,input[type=email],input[type=date]').each(function () {
@@ -193,8 +211,8 @@
 
         function onCadastro(data) {
             sendAjax('index.php?uc=' + useCase + '&a=' + CADASTRO, 'POST', data, function (data) {
-                var data = JSON.parse(data);
-                if (data['status']) {
+                var data = parse(data);
+                if (data.status) {
                     alertify.success("O registro foi cadastrado com sucesso");
                     interval = setInterval(function () {
                         window.location.reload();
@@ -207,8 +225,8 @@
 
         function onAlterar(data) {
             sendAjax('index.php?uc=' + useCase + '&a=' + ALTERAR, 'POST', data, function (data) {
-                var data = JSON.parse(data);
-                if (data['status']) {
+                var data = parse(data);
+                if (data.status) {
                     alertify.success("Registro alterado com sucesso.");
                     interval = setInterval(function () {
                         window.location.reload();

@@ -35,7 +35,7 @@ class Categoria extends Lumine_Base {
         
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->metadata()->addField('nomeCategoria', 'nome_categoria', 'varchar', 150, array('notnull' => true));
-        $this->metadata()->addField('margemLucro', 'margem_lucro', 'float', null, array('notnull' => true));
+        $this->metadata()->addField('margemLucro', 'margem_lucro', 'double', null, array('notnull' => true));
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
         $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
 
