@@ -1,5 +1,6 @@
 <?php
 require_once(PATH . 'Controller' . DS . 'GenericController.php');
+require_once(PATH . 'Util'. DS . 'Convert.php'); 
 
 
 //VER A PROBABILIDADE DESSA CLASSE SER VULNERÁVEL A SQL INJECTION. 
@@ -51,12 +52,11 @@ class AjaxServices extends GenericController
     public function getProducts($arg)
     {
         Lumine::import("Produto");
-        Lumine::import("CategoriaHasProduto");
         Lumine::import("Categoria");
 
-        $associativa = new CategoriaHasProduto();
-        $associativa->alias("chp");
+     
         $produto = new Produto();
+        $categoria = new Categoria(); 
 
         $clausura = "";
 
@@ -71,13 +71,14 @@ class AjaxServices extends GenericController
 
         if (empty($clausura)) return;
 
-        $produto->join($associativa)->where("empresa_id = " . $_SESSION['empresaId'] . " and nao_controlar_estoque = 0" . $clausura)->find();
+
+        $produto->join($categoria)->where("produto.empresa_id = " . $_SESSION['empresaId'] . " and nao_controlar_estoque = 0 and produto.ativo = 1 " . $clausura)->find();
 
         $array = array();
         while ($produto->fetch()) {
             $categoria = new Categoria();
             $categoria->get("id", $produto->categoriaId);
-            array_push($array, array('id' => $produto->id, 'produto' => $produto->nome, 'codigo_personalizado' => $produto->codigoPersonalizado, 'estoque_atual' => $produto->estoqueAtual, 'categoria' => $categoria->nomeCategoria));
+            array_push($array, array('id' => Convert::zeroEsquerda($produto->id) , 'produto' => $produto->nome, 'codigo_personalizado' => $produto->codigoPersonalizado, 'estoque_atual' => $produto->estoqueAtual, 'categoria' => $categoria->nomeCategoria));
         }
 
         die(json_encode($array));
