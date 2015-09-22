@@ -26,7 +26,11 @@
             padding-bottom: 2px !important;
         }
     </style>
-
+    <script>
+        function getCalendarTime(id){
+            byId(id.concat("Time")).value=myCalendar.getHours()+myCalendar.getMinutes();
+        }
+    </script>
 </head>
 <body>
 <!--top bar bagin -->
@@ -51,10 +55,10 @@
 <div class="row full-width">
     <form id="form" data-abide="ajax">
         <div class="medium-2 columns">
-            <label>De <input type="text" id="de" name="de"  onclick="setSens('para','max')" readonly="true"></label>
+            <label>De <input type="text" id="de" name="de"  onchange="getCalendarTime(this)" onclick="setSens('para','max')" readonly="true"></label>
         </div>
         <div class="medium-2 columns">
-            <label>Até <input type="text" id="para" name="para" onclick="setSens('de','min')" readonly="true"></label>
+            <label>Até <input type="text" id="para" name="para" onchange="getCalendarTime(this)" onclick="setSens('de','min')" readonly="true"></label>
         </div>
         <div class="medium-1 columns end">
             <button class="button success tiny" onchange="envio(this)"
@@ -62,8 +66,8 @@
             </button>
         </div>
         <input type="hidden" name="busca" />
-        <input type="hidden" name="deTime" />
-        <input type="hidden" name="paraTime" />
+        <input type="hidden" id="deTime" name="deTime" />
+        <input type="hidden" id="paraTime" name="paraTime" />
     </form>
 </div>
 <!-- botões -->
@@ -157,14 +161,10 @@
             var dt=byId(id).value;
             myCalendar.setSensitiveRange(usCalendar(dt), null);
             var d=myCalendar.getDate();
-            idH=id+"Time";
-            byId(idH).val(d.getHours()+":"+ d.getMinutes()+":"+ d.getSeconds());
         } else {
             var dt=byId(id).value;
             myCalendar.setSensitiveRange(null,usCalendar(dt));
             var d=myCalendar.getDate();
-            idH=id+"Time";
-            byId(idH).val(d.getHours()+":"+ d.getMinutes()+":"+ d.getSeconds());
         }
     }
     function byId(id) {

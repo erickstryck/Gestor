@@ -277,7 +277,8 @@ class Lumine_Parser {
 		
 			case 'float':
 			case 'double':
-				$val = sprintf('%f', $val);
+				$val = (string)(double)$val;
+				$val=str_replace(",",".",$val);
 				break;
 			
 			case 'date':
