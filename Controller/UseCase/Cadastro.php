@@ -17,8 +17,11 @@ class Cadastro extends GenericController{
     	$empresa = new Empresa(); 
     	$total = $empresa->get('nome', $arg['nome']); 
 
+        if( empty($arg['nome']) || empty($arg['telFixo']) || empty($arg['telCelular']) || empty($arg['emailPrincipal']) || empty($arg['estadoId']) || empty($arg['nomeCompleto']) || empty($arg['email']) || empty($arg['login']) || empty($arg['senha']))
+            die(json_encode(array('status' => false, 'msg' => 'Alguns dos campos requeridos estão vazios.'))); 
+
     	if($total > 0) 
-    		die(json_encode(array('status' => false, 'msg' => 'O nome da sua empresa já existe.')));
+    		die(json_encode(array('status' => false, 'msg' => 'O nome da empresa já existe.')));
 
     	$empresa = new Empresa();
     	$total = $empresa->get('emailPrincipal', $arg['emailPrincipal']); 

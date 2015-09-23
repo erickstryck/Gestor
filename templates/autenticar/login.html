@@ -10,33 +10,33 @@
 		body{
 			
 			background-image: url("templates/lib/img/bg.png") !important;
-            background-repeat: repeat;
-        }
+      background-repeat: repeat;
+    }
 
-        .box{
-           background-color:rgba(255,255,255,1);
-           border-width: 1px; 
-           border-style: solid; 
-           border-color: #C1B6B6;
-       }
-       /**/
-       video#bgvid { 
-           position: fixed;
-           top: 50%;
-           left: 50%;
-           min-width: 100%;
-           min-height: 100%;
-           width: auto;
-           height: auto;
-           z-index: -100;
-           -webkit-transform: translateX(-50%) translateY(-50%);
-           transform: translateX(-50%) translateY(-50%);
-           background: url(polina.jpg) no-repeat;
-           background-size: cover; 
-       }
+    .box{
+     background-color:rgba(255,255,255,1);
+     border-width: 1px; 
+     border-style: solid; 
+     border-color: #C1B6B6;
+   }
+   /**/
+   video#bgvid { 
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     min-width: 100%;
+     min-height: 100%;
+     width: auto;
+     height: auto;
+     z-index: -100;
+     -webkit-transform: translateX(-50%) translateY(-50%);
+     transform: translateX(-50%) translateY(-50%);
+     background: url(polina.jpg) no-repeat;
+     background-size: cover; 
+   }
 
-       video { display: block; }*/
-   </style>
+   video { display: block; }*/
+ </style>
 </head>
 <body>
 
@@ -59,78 +59,88 @@
     				</div>		
     			</div>
 
-                <form id="form" data-abide='ajax'>
-                    <!-- linha 1 -->
-                    <div class="row">
-                        <div class="medium-12 medium-centered columns">
-                            <label>Login 
-                                <input type="text" placeholder="exemplo: Maria23" required/>    
-                            </label> <small class="error">Preencha com o seu nome de login.</small>
-                        </div>      
-                    </div>
+          <form id="form" data-abide='ajax'>
+            <!-- linha 1 -->
+            <div class="row">
+              <div class="medium-12 medium-centered columns">
+                <label>Login 
+                  <input type="text" placeholder="exemplo: Maria23" required/>    
+                </label> <small class="error">Preencha com o seu nome de login.</small>
+              </div>      
+            </div>
 
-                    <!-- linha 1 -->
-                    <div class="row">
-                        <div class="medium-12 medium-centered columns">
-                            <label>Senha 
-                                <input type="password" required/>   
-                            </label> <small class="error">Preencha com a sua senha</small>
-                        </div>      
-                    </div>
+            <!-- linha 1 -->
+            <div class="row">
+              <div class="medium-12 medium-centered columns">
+                <label>Senha 
+                  <input type="password" required/>   
+                </label> <small class="error">Preencha com a sua senha</small>
+              </div>      
+            </div>
 
-                    <!-- linha 1 -->
-                    <div class="row">
-                        <div class="medium-12 medium-centered columns">
-                            <button class="button tiny" style="width:100%;">Login</button>
-                        </div>      
-                    </div>
+            <!-- linha 1 -->
+            <div class="row">
+              <div class="medium-12 medium-centered columns">
+                <button class="button tiny" style="width:100%;">Login</button>
+              </div>      
+            </div>
 
-                    <!-- linha 1 -->
-                    <div class="row">
-                        <div class="medium-12 medium-centered columns">
-                            <button class="button tiny success" style="width:100%;">Cadastre sua empresa</button>
-                        </div>      
-                    </div>
+            <!-- linha 1 -->
+            <div class="row">
+              <div class="medium-12 medium-centered columns">
+                <button class="button tiny success" style="width:100%;">Cadastre sua empresa</button>
+              </div>      
+            </div>
 
-                    <!-- linha 1 -->
-                    <div class="row">
-                        <div class="medium-12 medium-centered columns">
-                            <!-- recuperar senha -->
-                            <div class="row">
-                                <div class="medium-6 columns">
-                                    <button class="button tiny secondary" style="width:100%;">Recuperar senha</button>
-                                </div>
-
-
-                                <!--Cadastrar-->
-
-                                <div class="medium-6 columns">
-                                    <a href='blog\' class="button tiny secondary" style="width:100%;">Sobre o Gestor</a>
-                                </div>
-                            </div>
-                        </div>      
-                    </div>
-
-                </form>
-
-                <!-- linha 1 -->
+            <!-- linha 1 -->
+            <div class="row">
+              <div class="medium-12 medium-centered columns">
+                <!-- recuperar senha -->
                 <div class="row">
-                    <div class="medium-5 medium-centered columns" style="height:60px;top:10px">
-                       <a href="http://bizado.biz/"> <img src="Midia\empresa.png"> </a>
-                   </div>		
-               </div>
-           </div>
+                  <div class="medium-6 columns">
+                    <button class="button tiny secondary" style="width:100%;">Recuperar senha</button>
+                  </div>
+
+
+                  <!--Cadastrar-->
+
+                  <div class="medium-6 columns">
+                    <a href='blog\' class="button tiny secondary" style="width:100%;">Sobre o Gestor</a>
+                  </div>
+                </div>
+              </div>      
+            </div>
+
+          </form>
+
+          <!-- linha 1 -->
+          <div class="row">
+            <div class="medium-5 medium-centered columns" style="height:60px;top:10px">
+             <a href="http://bizado.biz/"> <img src="Midia\empresa.png"> </a>
+           </div>		
+         </div>
        </div>
+     </div>
 
-       <!--footer begin -->
-       <!-- $Include templates/lib/html/footer.html -->
-       <!--footer end-->
-       <script>
-           $(document).foundation();
+     <!-- notificação -->
+     <div class="row ${is_hide}">
+     <div class="medium-4 medium-centered columns" style="padding:0;margin-top:10px;">
+        <div data-alert class="alert-box success radius" >
+           ${msg}
+          <a href="#" class="close">&times;</a>
+        </div>
+      </div>
+    </div>
 
-           $('#form').on('valid.fndtn.abide', function () {
-            alertify.error("Login ainda não está funcionando.","",0); 
-        });
-       </script>
-   </body>
-   </html>
+    <!--footer begin -->
+    <!-- $Include templates/lib/html/footer.html -->
+    <!--footer end-->
+    <script>
+     $(document).foundation();
+
+     $('#form').on('valid.fndtn.abide', function () {
+      alertify.error("Login ainda não está funcionando.","",0); 
+    });
+   </script>
+ </body>
+ </html>

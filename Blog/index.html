@@ -127,7 +127,7 @@
                         <div class="form-group">
                             <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->
                             <div class="col-md-12">
-                                <input id="textinput" name="nome" type="text" placeholder="Nome ou Razão social"
+                                <input name="nome" type="text" required placeholder="Nome ou Razão social"
                                        class="form-control input-md">
 
                             </div>
@@ -137,7 +137,7 @@
                         <div class="form-group">
                             <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->
                             <div class="col-md-12">
-                                <input id="textinput" name="telFixo" type="text" placeholder="Telefone"
+                                <input name="telFixo" type="text" required placeholder="Telefone"
                                        class="form-control input-md">
 
                             </div>
@@ -147,7 +147,7 @@
                         <div class="form-group">
                             <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->
                             <div class="col-md-12">
-                                <input id="textinput" name="telCelular" type="text" placeholder="Celular"
+                                <input name="telCelular" type="text" required placeholder="Celular"
                                        class="form-control input-md">
 
                             </div>
@@ -157,7 +157,7 @@
                         <div class="form-group">
                             <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->
                             <div class="col-md-12">
-                                <input id="" name="emailPrincipal" type="email" placeholder="E-mail da Empresa"
+                                <input id="" name="emailPrincipal" type="email" required placeholder="E-mail da Empresa"
                                        class="form-control input-md">
 
                             </div>
@@ -239,7 +239,17 @@
                         <div class="form-group">
                             <!-- <label class="col-md-4 control-label" for="textinput">Text Input</label> -->
                             <div class="col-md-12">
-                                <input id="textinput" name="nomeCompleto" type="text" placeholder="Seu nome completo"
+                                <input name="nomeCompleto" type="text" required placeholder="Seu nome completo"
+                                       class="form-control input-md">
+
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <!-- <label class="col-md-4 control-label" for="textinput">Text Input</label> -->
+                            <div class="col-md-12">
+                                <input name="email" type="email" required placeholder="Seu email pessoal"
                                        class="form-control input-md">
 
                             </div>
@@ -249,7 +259,7 @@
                         <div class="form-group">
                             <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->
                             <div class="col-md-12">
-                                <input id="textinput" name="login" type="text" placeholder="nome de usuário (login)"
+                                <input name="login" type="text" required placeholder="Nome de usuário (login)"
                                        class="form-control input-md">
 
                             </div>
@@ -259,7 +269,7 @@
                         <div class="form-group">
                             <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->
                             <div class="col-md-12">
-                                <input id="textinput" name="senha" type="password" placeholder="Sua senha"
+                                <input name="senha" type="password" required placeholder="Sua senha"
                                        class="form-control input-md">
 
                             </div>
@@ -269,7 +279,7 @@
                         <div class="form-group">
                             <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->
                             <div class="col-md-12">
-                                <input id="textinput" name="senhaConfirmacao" type="text"
+                                <input name="senhaConfirmacao" type="password"
                                        placeholder="Repita a sua senha" class="form-control input-md">
 
                             </div>
@@ -283,6 +293,15 @@
                                 </button>
                             </div>
                         </div>
+
+                         <!-- Notification -->
+                        <div class="form-group">
+                            <!--  <label class="col-md-12 control-label" for="singlebutton">Single Button</label> -->
+                            <div class="col-md-12">
+                                <div id="msg" class="alert alert-danger" style="display:none" role="alert">...</div>
+                            </div>
+                        </div>
+
                     </fieldset>
                 </div>
             </form>
@@ -1107,8 +1126,16 @@
 
         $.post('../index.php', data
         ).done(function (data) {
-                    console.log(data);
-                });
+            data = JSON.parse(data); 
+
+            if(!data['status']){
+                $('#msg').css('display','block'); 
+                $('#msg').text(data['msg']); 
+                $('#msg').fadeIn(500);
+            }else{
+                $(window.document.location).attr('href','../index.php?uc=autenticar&a=loginView&done=1');   
+            }
+        });
     });
 </script>
 

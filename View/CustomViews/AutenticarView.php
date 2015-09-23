@@ -10,9 +10,14 @@ class AutenticarView extends GenericView
         parent::__construct($this);
     }
 
-    public function loginView()
-    {
+    public function loginView($arg){
         parent::getTemplateByAction('login');
+        if(!empty($arg['done'])){
+        	parent::$templator->setVariable('is_hide',''); 
+        	parent::$templator->setVariable('msg','Seu cadastro foi feito com sucesso. Efetue o login com o seu nome de usuário e senha.'); 
+        }else{
+        	parent::$templator->setVariable('is_hide','hide'); 
+        }
         parent::show();
     }
 }

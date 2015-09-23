@@ -9,8 +9,8 @@ class Autenticar extends GenericController{
         $this->autenticarView = new AutenticarView();
     }
 
-    public function loginView(){
-        $this->autenticarView->loginView();
+    public function loginView($arg){
+        $this->autenticarView->loginView($arg);
     }
 
     public function login($arg){
