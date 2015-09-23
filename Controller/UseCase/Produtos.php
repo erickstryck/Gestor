@@ -58,6 +58,43 @@ class Produtos extends GenericController
         $this->produtosView->sendAjax(array('status' => true));
     }
 
+    public function alterar ($arg){
+        Lumine::import("Produto"); 
+
+        $produto = new Produto(); 
+
+        $produto->where("empresa_id = " . $_SESSION['empresaId'] . " and id = " . (int)$arg['id'])->find(); 
+        $produto->fetch(true); 
+
+         $produto->naoControlarEstoque = !empty($arg['naoControlarEstoque']);
+        $produto->arquivar = !empty($arg['arquivar']);
+
+        $produto->precoCusto = $arg['precoCusto'];
+        $produto->precoVenda = $arg['precoVenda'];
+        $produto->eanGtin = $arg['eanGtin'];
+        $produto->excecaoIpi = $arg['excecaoIpi'];
+        $produto->estoqueMinimo = $arg['estoqueMinimo'];
+        $produto->palavraChave = $arg['palavraChave'];
+        $produto->ncm = $arg['ncm'];
+        $produto->anotacoesInternas = $arg['anotacoesInternas'];
+        $produto->nome = $arg['nome'];
+        $produto->codigoPersonalizado = $arg['codigoPersonalizado'];
+        $produto->margemLucro = $arg['margemLucro'];
+        $produto->inforNfe = $arg['inforNfe'];
+        $produto->categoriaId = $arg['categoriaId'];
+
+        //Apenas iniciando o estoque atual com zero.
+        $produto->estoqueAtual = 0;
+
+        //associando produto a empresa corrente da sessão.
+        $produto->empresaId = $_SESSION['empresaId'];
+        $produto->update();
+
+
+        //Em formato JSON, envie se a execução da inserção foi bem sucedida.
+        $this->produtosView->sendAjax(array('status' => true));
+    }
+
     /**
      * @Permissao({"administrador"})
      */
