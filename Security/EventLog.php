@@ -23,7 +23,7 @@ class EventLog
         $log->permissao=$temp;
         $log->usercase=$requisicao['uc'];
         $log->action=$requisicao['a'];
-        $log->usuarioId=$_SESSION["id"];
+        $log->usuarioId=$_SESSION["usuarioId"];
         $log->empresaId=$_SESSION["empresaId"];
         $log->insert();
     }

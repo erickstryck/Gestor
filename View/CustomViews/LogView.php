@@ -24,11 +24,20 @@ require_once(PATH . 'Util' . DS . 'Convert.php');
             if(array_key_exists("busca",$arg)){
                 $atual=date("d.m.Y");
                 $timestamp_dt_atual = strtotime($atual);
-                $intervaloMax=strtotime($arg['para']);
-                if ($timestamp_dt_atual < $intervaloMax){
+                $datade=$this->getDataDe($arg['intervalo']);
+                $horade=$this->getHoraDe($arg['intervalo']).":00";
+                $datapara=$this->getDataPara($arg['intervalo']);
+                $horapara=$this->getHoraPara($arg['intervalo']).":00";
+                $intervaloMax=strtotime($datapara);
+                $horaAtual=strtotime(date('H:i:s', gmdate('U')));
+                $horaBusca=strtotime($horapara);
+                if ($timestamp_dt_atual < $intervaloMax || $horaAtual<$horaBusca){
                     $this->sendAjax(array('status' => false));
                 }
-                $log->where('empresa_id=' . $_SESSION['empresaId']." and data>='".$arg['de']."' and data<='".$arg['para']."''")->find();
+                if($timestamp_dt_atual == $intervaloMax && $horaAtual<strtotime($horade)){
+                    $this->sendAjax(array('status' => false));
+                }
+                $log->where('empresa_id=' . $_SESSION['empresaId']." and data>='".$datade."' and data<='".$datapara."' and time>=CAST('".$horade."' AS time) and time<=CAST('".$horapara."' AS time) ")->find();
                 $log->limit(500);
             }else{
                 $log->where('empresa_id=' . $_SESSION['empresaId'])->find();
@@ -52,4 +61,21 @@ require_once(PATH . 'Util' . DS . 'Convert.php');
             }
             parent::show();
         }
+        private function getDataDe($data){
+            $temp=explode('||',$data);
+            return substr($temp[0],0,10);
+        }
+        private function getHoraDe($data){
+            $temp=explode('||',$data);
+            return substr($temp[0],11,5);
+        }
+        private function getDataPara($data){
+            $temp=explode('||',$data);
+            return substr($temp[1],1,10);
+        }
+        private function getHoraPara($data){
+            $temp=explode('||',$data);
+            return substr($temp[1],12,13);
+        }
+
     }
