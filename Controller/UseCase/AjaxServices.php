@@ -71,8 +71,10 @@ class AjaxServices extends GenericController
 
         if (empty($clausura)) return;
 
+        //Pegar: 
+        // codigo_personalizado, produto.id, nome, nome_categoria
 
-        $produto->join($categoria)->where("produto.empresa_id = " . $_SESSION['empresaId'] . " and nao_controlar_estoque = 0 and produto.ativo = 1 " . $clausura)->find();
+        $produto->select('codigo_personalizado,nome,nome_categoria, produto.id as id')->join($categoria)->where("produto.empresa_id = " . $_SESSION['empresaId'] . " and nao_controlar_estoque = 0 and produto.ativo = 1 " . $clausura)->find();
 
         $array = array();
         while ($produto->fetch()) {

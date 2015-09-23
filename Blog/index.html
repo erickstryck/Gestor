@@ -7,15 +7,15 @@
 	<!-- Page Title -->
 	<title>Gestor</title>
 
-   <!-- Page Description and Author -->
-   <meta name="description" content="content description">
-   <meta name="author" content="Coralix Themes">
+ <!-- Page Description and Author -->
+ <meta name="description" content="content description">
+ <meta name="author" content="Coralix Themes">
 
-   <!-- Responsive Metatag -->
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!-- Responsive Metatag -->
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-   <!-- Favicon  -->
-   <link rel="shortcut icon" href="favicon.png">
+ <!-- Favicon  -->
+ <link rel="shortcut icon" href="favicon.png">
 
     <!-- Stylesheet
     ===================================================================================================  -->
@@ -26,27 +26,27 @@
     <style type="text/css">
 
         .landspace{
-         background-color:black!important;
-         height: 100%;
-         left: 0;
-         opacity: 0.5 !important;
-         position: absolute;
-         top: 0;
-         width: 100%;
-         z-index: 0;
-         margin: 0;
+           background-color:black!important;
+           height: 100%;
+           left: 0;
+           opacity: 0.5 !important;
+           position: absolute;
+           top: 0;
+           width: 100%;
+           z-index: 0;
+           margin: 0;
 
-     }
+       }
 
-     .acess{
+       .acess{
         color:white!important;background-color:blue;
-     }
-     .acess:hover{
+    }
+    .acess:hover{
         color:white!important;background-color:#D6D6F9!important;
-     }
+    }
 
 
- </style>
+</style>
 
 </head>
 
@@ -106,7 +106,11 @@
         <div class="container">
             <div class="row">
 
-                <form class="form-horizontal">
+                <form id="cadastro" class="form-horizontal">
+
+                  <input type='hidden' value='cadastro' name='uc' />
+                  <input type='hidden' value='cadastrar' name='a'  /> 
+
                   <div class="col-md-3">
                     <h1 style="text-align: left; color:white;">Dados da Empresa</h1>
 
@@ -132,8 +136,8 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                   <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
-                   <div class="col-md-12">
+                 <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+                 <div class="col-md-12">
                     <input id="textinput" name="telCelular" type="text" placeholder="Celular" class="form-control input-md">
                     
                 </div>
@@ -141,8 +145,8 @@
 
             <!-- Text input-->
             <div class="form-group">
-               <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
-               <div class="col-md-12">
+             <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+             <div class="col-md-12">
                 <input id="" name="emailPrincipal" type="email" placeholder="E-mail da Empresa" class="form-control input-md">
 
             </div>
@@ -217,23 +221,14 @@
 
 <!-- Seção 2 -->
 <div class="col-md-3">
-        <h1 style="text-align: left; color:white;">Seus dados</h1>
+    <h1 style="text-align: left; color:white;">Seus dados</h1>
 
-        <fieldset>
-            <!-- Text input-->
-            <div class="form-group">
-              <!-- <label class="col-md-4 control-label" for="textinput">Text Input</label> -->  
-              <div class="col-md-12">
-                <input id="textinput" name="nomeCompleto" type="text" placeholder="Seu nome completo" class="form-control input-md">
-
-            </div>
-        </div>
-
+    <fieldset>
         <!-- Text input-->
         <div class="form-group">
-          <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+          <!-- <label class="col-md-4 control-label" for="textinput">Text Input</label> -->  
           <div class="col-md-12">
-            <input id="textinput" name="login" type="text" placeholder="nome de usuário (login)" class="form-control input-md">
+            <input id="textinput" name="nomeCompleto" type="text" placeholder="Seu nome completo" class="form-control input-md">
 
         </div>
     </div>
@@ -242,39 +237,39 @@
     <div class="form-group">
       <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
       <div class="col-md-12">
-        <input id="textinput" name="senha" type="password" placeholder="Sua senha" class="form-control input-md">
+        <input id="textinput" name="login" type="text" placeholder="nome de usuário (login)" class="form-control input-md">
 
     </div>
-    </div>
+</div>
 
-     <!-- Text input-->
-    <div class="form-group">
-      <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
-      <div class="col-md-12">
-        <input id="textinput" name="email" type="email" placeholder="Sua senha" class="form-control input-md">
+<!-- Text input-->
+<div class="form-group">
+  <!-- <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+  <div class="col-md-12">
+    <input id="textinput" name="senha" type="password" placeholder="Sua senha" class="form-control input-md">
 
-    </div>
-    </div>
+</div>
+</div>
 
-    <!-- Text input-->
-    <div class="form-group">
-       <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
-       <div class="col-md-12">
-        <input id="textinput" name="senhaConfirmacao" type="text" placeholder="Repita a sua senha" class="form-control input-md">
+<!-- Text input-->
+<div class="form-group">
+ <!--  <label class="col-md-12 control-label" for="textinput">Text Input</label> -->  
+ <div class="col-md-12">
+    <input id="textinput" name="senhaConfirmacao" type="text" placeholder="Repita a sua senha" class="form-control input-md">
 
-    </div>
-    </div>
+</div>
+</div>
 
-    <!-- Button -->
-    <div class="form-group">
-       <!--  <label class="col-md-12 control-label" for="singlebutton">Single Button</label> -->
-       <div class="col-md-12">
-        <button  type="button" class="btn btn-success" style="width:100%;">Cadastrar e Usar</button>
-    </div>
-    </div>
+<!-- Button -->
+<div class="form-group">
+ <!--  <label class="col-md-12 control-label" for="singlebutton">Single Button</label> -->
+ <div class="col-md-12">
+    <button  type="submit" class="btn btn-success" style="width:100%;">Cadastrar e Usar</button>
+</div>
+</div>
 
-    </fieldset>
-    </form>
+</fieldset>
+</form>
 
 </div>  
 </div>
@@ -560,10 +555,10 @@
         <div class="row">
             <h1 style='color:rgb(106,146,179);'>Veja os planos de uso</h1>
             <p class="sub-title opacity_init">Morbi dignissim non dolor non placerat.
-               Ut sit amet lectus at neque quis vel imperdiet ullamcorper auctor.
-           </p>
+             Ut sit amet lectus at neque quis vel imperdiet ullamcorper auctor.
+         </p>
 
-           <article class="col-lg-3 col-sm-6 opacity_init">
+         <article class="col-lg-3 col-sm-6 opacity_init">
             <div class="item">
                 <div class="header">
                     <h2>Básico</h2>
@@ -945,26 +940,26 @@
                 <h4 class="modal-title">Contact Us</h4>
             </div>
             <div class="modal-body">
-             <form role="form" id="request" action="request-form.php" method="post" accept-charset="utf-8">
-              <div class="form-group">
-                <label class="no">Name</label>
-                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" name="name"/>
-            </div>
-            <div class="form-group">
-                <label class="no">Email</label>
-                <input type="email" class="form-control" placeholder="Email" name="email"/>
-            </div>
-            <div class="form-group">
-                <label class="no">Subject</label>
-                <input type="text" class="form-control" placeholder="Subject" name="subject">
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" rows="3" placeholder="Add your text here" name="textmessage"></textarea>
-          </div>
-          <button type="submit" class="btn btn-default">Send it</button>
-      </form>
+               <form role="form" id="request" action="request-form.php" method="post" accept-charset="utf-8">
+                  <div class="form-group">
+                    <label class="no">Name</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" name="name"/>
+                </div>
+                <div class="form-group">
+                    <label class="no">Email</label>
+                    <input type="email" class="form-control" placeholder="Email" name="email"/>
+                </div>
+                <div class="form-group">
+                    <label class="no">Subject</label>
+                    <input type="text" class="form-control" placeholder="Subject" name="subject">
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" placeholder="Add your text here" name="textmessage"></textarea>
+              </div>
+              <button type="submit" class="btn btn-default">Send it</button>
+          </form>
+      </div>
   </div>
-</div>
 </div>
 </div>
 <!-- end Modal Contact --> 
@@ -995,6 +990,8 @@
 
 <!-- Custom -->
 <script type="text/javascript" src="js/jquery-func.js"></script>
+<!-- Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <!-- ======================= JQuery libs =========================== -->
 
@@ -1002,6 +999,17 @@
     $('#redirect').click(function(){
         $(this).click(); 
     }); 
+
+
+    $('#cadastro').on('submit',function(event){
+        event.preventDefault();
+        var data = $('#cadastro').serializeArray(); 
+
+        $.post('../index.php', data
+        ).done(function(data){
+            console.log(data); 
+        }); 
+   }); 
 </script>
 
 </body>

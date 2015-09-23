@@ -6,7 +6,7 @@ class Cadastro extends GenericController{
     public function __construct(){
     }
 
-    public function cadastro($arg){
+    public function cadastrar($arg){
     	Lumine::import("Empresa"); 
     	Lumine::import("Usuario"); 
     	Lumine::import("UsuarioHasEmpresa"); 
