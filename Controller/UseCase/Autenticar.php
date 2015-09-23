@@ -13,8 +13,12 @@ class Autenticar extends GenericController{
         $this->autenticarView->loginView($arg);
     }
 
-    public function login($arg){
-        
+    public function login($arg){        
+    }
+
+    public function empresaView(){
+
+    	$this->autenticarView->loginEmpresaView(); 
     }
 
 }

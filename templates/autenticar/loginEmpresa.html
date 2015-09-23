@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js" lang="pt">
+<head>
+	<!-- init script and css -->
+	<!-- $Include templates/lib/html/scripthead.html -->
+	<!--init script and css end-->
+	<title>Login</title>
+	
+	<style>
+		body{
+			
+			background-image: url("templates/lib/img/bg.png") !important;
+      background-repeat: repeat;
+    }
+
+    .box{
+     background-color:rgba(255,255,255,1);
+     border-width: 1px; 
+     border-style: solid; 
+     border-color: #C1B6B6;
+   }
+   /**/
+   video#bgvid { 
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     min-width: 100%;
+     min-height: 100%;
+     width: auto;
+     height: auto;
+     z-index: -100;
+     -webkit-transform: translateX(-50%) translateY(-50%);
+     transform: translateX(-50%) translateY(-50%);
+     background: url(polina.jpg) no-repeat;
+     background-size: cover; 
+   }
+
+   video { display: block; }*/
+ </style>
+</head>
+<body>
+
+<!-- <video autoplay loop poster="polina.jpg" id="bgvid">
+    <source src="http://razza.com.br/workplace/Midia/3.mp4">
+    </video> -->
+
+   <!--  <video autoplay loop poster="polina.jpg" id="bgvid">
+    	<source src="http://thenewcode.com/assets/videos/polina.mp4">
+    	</video> -->
+
+
+    	<!-- main -->
+    	<div class="row">
+    		<div class="medium-8 medium-centered columns box" style="margin-top:12%;border-radius:2px; height:400px;">
+          <div class="row">
+            <div class="medium-12 medium-centered columns label info" style="margin-bottom:20px;">
+              <h6 class="text-center">Selecione uma Empresa</h6 >
+              </div>      
+            </div>
+
+            <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+
+              <!-- $BeginBlock row -->
+              <li>
+                <a class="th" href="https://placehold.it/350x150">
+                  <img src="https://placehold.it/350x150"> <br>
+                </a>
+                <small class="medium-text-center">${nome}</small>
+              </li>
+              <!-- $EndBlock row -->
+
+            </ul>
+          </div>
+
+          <!--footer begin -->
+          <!-- $Include templates/lib/html/footer.html -->
+          <!--footer end-->
+          <script>
+           $(document).foundation();
+
+           $('#form').on('valid.fndtn.abide', function () {
+            alertify.error("Login ainda não está funcionando.","",0); 
+          });
+         </script>
+       </body>
+       </html>

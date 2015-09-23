@@ -20,4 +20,21 @@ class AutenticarView extends GenericView
         }
         parent::show();
     }
+
+    public function loginEmpresaView(){
+    	parent::getTemplateByAction('loginEmpresa'); 
+    	Lumine::import("UsuarioHasEmpresa"); 
+    	Lumine::import("Empresa");
+
+    	$associativa = new UsuarioHasEmpresa(); 
+
+    	$associativa->where("usuario_id = ". $_SESSION['usuarioId'])->find(); 
+
+    	while($associativa->fetch()){
+    		parent::$templator->setVariable('nome',$associativa->nome); 
+    		parent::$templator->addBlock('row'); 
+    	}
+
+    	parent::show(); 
+    }
 }
