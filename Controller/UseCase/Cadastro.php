@@ -80,12 +80,6 @@ class Cadastro extends GenericController{
     	//Se tudo ocorreu bem, mandar a mensagem de que tudo ocorreu bemm :v 
     	
     	die(json_encode(array('status' => true, 'msg' => 'cadastro feito com sucesso'))); 
-
-
-     
-
-    	var_dump($arg); 
-    	die; 
     }
 
     

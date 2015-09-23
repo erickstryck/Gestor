@@ -31,7 +31,11 @@ class AutenticarView extends GenericView
     	$associativa->where("usuario_id = ". $_SESSION['usuarioId'])->find(); 
 
     	while($associativa->fetch()){
-    		parent::$templator->setVariable('nome',$associativa->nome); 
+    		$empresa = new Empresa(); 
+    		$empresa->get($associativa->usuarioId); 
+
+    		parent::$templator->setVariable('nome',$empresa->nome); 
+    		parent::$templator->setVariable('id',$empresa->id); 
     		parent::$templator->addBlock('row'); 
     	}
 
