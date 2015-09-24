@@ -51,7 +51,7 @@
 <div class="row full-width">
     <form id="form" data-abide="ajax">
         <div class="medium-3 columns">
-            <label>Intervalo  <input name="intervalo" type="text" id="date" value="" size="60"></label>
+            <label>Intervalo  <input name="intervalo" type="text" id="date" value="" size="60" onkeydown="limpar(this)"></label>
         </div>
         <div class="medium-1 columns end">
             <button class="button success tiny" onchange="envio(this)"
@@ -114,13 +114,17 @@
 <script>
     $(document).foundation();
     $(document).ready(function () {
+        $("#date").on( 'keydown', function( e ){
+            e.preventDefault();
+        });
         $("#form").on('valid.fndtn.abide', function () {
             var data = $(this).serializeArray();
             sendAjax('index.php?uc=eventos&a=logView', 'POST', data, function (data) {
                 try {
                     var data = jQuery.parseJSON(data);
                     if (!data.status) {
-                        alertify.error("você foi para o futuro?");
+                        alertify.error("A hora ou a Data inserida excede a hora e a data corrente! " +
+                                "Você não pode ver resgistros do futuro!");
                     }
                 } catch (e) {
                     document.open();

@@ -15,16 +15,24 @@ class EventLog
         $requisicao= $_REQUEST;
         $log->ocorrencia=$data.' '.$msg;
         $temp='';
-        foreach($_SESSION['Permissao'] as $valor){
+        foreach($_SESSION['Permissao'] as $valor)
             $temp=$temp.' '.$valor;
-        }
-        $log->time=date('H:i:s', gmdate('U'));
-        $log->data=date("d.m.Y", strtotime('today'));
+        $data=$this->date();
+        $time=$this->time();
+        $log->datatime=date("Y-m-d H:i:s",mktime($time[0],$time[1],$time[2],$data[1],$data[0],$data[2]));
         $log->permissao=$temp;
         $log->usercase=$requisicao['uc'];
         $log->action=$requisicao['a'];
         $log->usuarioId=$_SESSION["usuarioId"];
         $log->empresaId=$_SESSION["empresaId"];
         $log->insert();
+    }
+    private function time(){
+        $tempo=date("H:i:s",gmdate('U'));
+        return explode(":",$tempo);
+    }
+    private function date(){
+        $data=date("d-m-Y",strtotime('today'));
+        return explode("-",$data);
     }
 }
