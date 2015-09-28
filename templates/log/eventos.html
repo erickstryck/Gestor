@@ -58,7 +58,7 @@
                     style="margin-top: 21px; border-left-width: 0px; margin-left: -9px;"><i class="fa fa-search"></i>
             </button>
         </div>
-        <input type="hidden" name="busca" />
+        <input type="hidden" id="check" name="check" value="1" />
     </form>
 </div>
 <!-- botões -->
@@ -117,20 +117,20 @@
         $("#date").on( 'keydown', function( e ){
             e.preventDefault();
         });
+        $("#date").bind('paste', function(e) {
+            e.preventDefault();
+        });
         $("#form").on('valid.fndtn.abide', function () {
             var data = $(this).serializeArray();
             sendAjax('index.php?uc=eventos&a=logView', 'POST', data, function (data) {
-                try {
-                    var data = jQuery.parseJSON(data);
-                    if (!data.status) {
+                    var data = json.parse(data);
+                    if (!data["status"]) {
                         alertify.error("A hora ou a Data inserida excede a hora e a data corrente! " +
                                 "Você não pode ver resgistros do futuro!");
+                    }else{
+                        $("#check").val("");
+                        $("#form").submit();
                     }
-                } catch (e) {
-                    document.open();
-                    document.write(data);
-                    document.close();
-                }
             });
         });
         $('#date').dateRangePicker(

@@ -21,34 +21,38 @@ require_once(PATH . 'Util' . DS . 'Convert.php');
             Lumine::import('Empresa');
             Lumine::import("UsuarioHasEmpresa");
             $log=new Log();
-            if(array_key_exists("busca",$arg) && !empty($arg['intervalo'])){
-                $atual=date("d.m.Y");
+            if(array_key_exists("check",$arg) && ($arg["check"]==='1') && !empty($arg['intervalo'])) {
+                $atual = date("d.m.Y");
                 $timestamp_dt_atual = strtotime($atual);
-                $datade=$this->getData($arg['intervalo'],false,"de");
-                $horade=$this->getHora($arg['intervalo'],false,"de");
-                $datapara=$this->getData($arg['intervalo'],false,"para");
-                $horapara=$this->getHora($arg['intervalo'],false,"para");
-                $intervaloMax=strtotime($datapara);
-                $intervaloMin=strtotime($datade);
-                $horaAtual=strtotime(date('H:i:s', gmdate('U')));
-                $horaBusca=strtotime($horapara);
-                if ($timestamp_dt_atual < $intervaloMax || $horaAtual<$horaBusca){
+                $datade = $this->getData($arg['intervalo'], false, "de");
+                $horade = $this->getHora($arg['intervalo'], false, "de");
+                $datapara = $this->getData($arg['intervalo'], false, "para");
+                $horapara = $this->getHora($arg['intervalo'], false, "para");
+                $intervaloMax = strtotime($datapara);
+                $intervaloMin = strtotime($datade);
+                $horaAtual = strtotime(date('H:i:s', gmdate('U')));
+                $horaBusca = strtotime($horapara);
+                if ($timestamp_dt_atual < $intervaloMax || $horaAtual < $horaBusca) {
                     $this->sendAjax(array('status' => false));
                 }
-                if($timestamp_dt_atual == $intervaloMin && ($horaAtual<strtotime($horade) || $horaAtual<strtotime($horapara))){
+                if ($timestamp_dt_atual == $intervaloMin && ($horaAtual < strtotime($horade) || $horaAtual < strtotime($horapara))) {
                     $this->sendAjax(array('status' => false));
                 }
-                $hora=$this->getHora($arg['intervalo'],true,"de");
-                $data=$this->getData($arg['intervalo'],true,"de");
-                $dataMinBusca=date("Y-m-d H:i:s",mktime($hora[0],$hora[1],"00",$data[1],$data[0],$data[2]));
-                $horaM=$this->getHora($arg['intervalo'],true,"para");
-                $dataM=$this->getData($arg['intervalo'],true,"para");
-                $dataMaxBusca=date("Y-m-d H:i:s",mktime($horaM[0],$horaM[1],"00",$dataM[1],$dataM[0],$dataM[2]));
-                $log->where('empresa_id=' . $_SESSION['empresaId']." and dataTime>='".$dataMinBusca."' and dataTime<='".$dataMaxBusca."'")->find();
-                $log->limit(500);
+                $this->sendAjax(array('status' => true));
             }else{
-                $log->where('empresa_id=' . $_SESSION['empresaId'])->find();
-                $log->limit(500);
+                if(array_key_exists("check",$arg) && !($arg["check"]==='1') && !empty($arg['intervalo'])){
+                    $hora=$this->getHora($arg['intervalo'],true,"de");
+                    $data=$this->getData($arg['intervalo'],true,"de");
+                    $dataMinBusca=date("Y-m-d H:i:s",mktime($hora[0],$hora[1],"00",$data[1],$data[0],$data[2]));
+                    $horaM=$this->getHora($arg['intervalo'],true,"para");
+                    $dataM=$this->getData($arg['intervalo'],true,"para");
+                    $dataMaxBusca=date("Y-m-d H:i:s",mktime($horaM[0],$horaM[1],"00",$dataM[1],$dataM[0],$dataM[2]));
+                    $log->where('empresa_id=' . $_SESSION['empresaId']." and dataTime>='".$dataMinBusca."' and dataTime<='".$dataMaxBusca."'")->find();
+                    $log->limit(50);
+                }else{
+                    $log->where('empresa_id=' . $_SESSION['empresaId'])->find();
+                    $log->limit(50);
+                }
             }
             $emp=new Empresa();
             $emp->where('id='.$_SESSION['empresaId'])->find();
