@@ -19,4 +19,20 @@ class Home extends GenericController
         $this->homeView->indexView();
     }
 
+    public function feed($arg){
+        $data = $arg['data']; 
+        //Verificar: 
+        //Contas (Pagar/Receber)
+        //Tarefas; 
+        
+        $array = array(); 
+
+        Lumine::import('Conta'); 
+        Lumine::import('Tarefa'); 
+
+        $contas = new Conta(); 
+        $contas->where(" FORMAT(data_vencimento, 'YYYY-MM') = FORMAT($data, 'YYYY-MM') ")->find(); 
+
+        var_dump($contas->allToArray()); 
+    }
 }

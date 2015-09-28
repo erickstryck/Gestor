@@ -1,5 +1,6 @@
 <?php
 require_once(PATH . 'Controller' . DS . 'GenericController.php');
+require_once(PATH . 'Util' . DS . 'DataIntervalo.php');
 require_once(PATH . 'View' . DS . 'CustomViews' . DS . 'ContasView.php');
 
 class Contas extends GenericController
@@ -34,7 +35,45 @@ class Contas extends GenericController
      */
     public function cadastroPagamento($arg)
     {
-        //Depois tratar a entrada de dados aqui.
+        $vezes = $arg['cadastrarVezesId'];
+        $intervaloId = $arg['intervaloId']; 
+
+        Lumine::import('Intervalo'); 
+        $intervalo = new Intervalo(); 
+        $intervalo->get($intervaloId); 
+
+
+
+        for( $a = 0 ; $a <= $vezes; $a++){
+
+           switch ($intervalo->des) {
+            case 'Dias':
+            $arg['dataVencimento'] = DataIntervalo::dias($arg['dataVencimento']); 
+            break;
+            case 'Semanas':
+            $arg['dataVencimento'] = DataIntervalo::semanas($arg['dataVencimento']); 
+            break;
+            case 'Quinzenas':
+            $arg['dataVencimento'] = DataIntervalo::quinzenas($arg['dataVencimento']); 
+            break;
+            case 'Meses':
+            $arg['dataVencimento'] = DataIntervalo::meses($arg['dataVencimento']); 
+            break;
+            case 'Bimestres':
+            $arg['dataVencimento'] = DataIntervalo::bimestres($arg['dataVencimento']); 
+            break;
+            case 'Trimestres':
+            $arg['dataVencimento'] = DataIntervalo::trimestres($arg['dataVencimento']); 
+            break;
+            case 'Semestres':
+            $arg['dataVencimento'] = DataIntervalo::semestres($arg['dataVencimento']); 
+            break;
+            case 'Anos':
+            $arg['dataVencimento'] = DataIntervalo::anos($arg['dataVencimento']); 
+            break;
+            default:
+        }
+            //Depois tratar a entrada de dados aqui.
         Lumine::import("Conta");
         $conta = new Conta();
         $conta = self::cadastra($conta, $arg);
@@ -43,9 +82,10 @@ class Contas extends GenericController
         $conta->paga = (!empty($arg['paga'])) ? 1 : 0;
         $conta->receber = 0;// Essa conta não é para receber, então adiciona-se 0 sinalizando que é para pagamento.
         $conta->insert();
-
-        $this->contasView->sendAjax(array('status' => true));
     }
+
+    $this->contasView->sendAjax(array('status' => true));
+}
 
     /**
      * @Permissao({"administrador"})

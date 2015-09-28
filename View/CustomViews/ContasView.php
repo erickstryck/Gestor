@@ -24,7 +24,7 @@ class ContasView extends GenericView
 
         $conta = new Conta();
 
-        $conta->where("empresa_id = " . $_SESSION['empresaId'] . " and receber = 0 and ativo = 1")->limit(500)->find();
+        $conta->where("empresa_id = " . $_SESSION['empresaId'] . " and receber = 0 and ativo = 1")->order('data_vencimento DESC')->limit(200)->find();
         while ($conta->fetch()) {
             parent::$templator->setVariable('conta.id', Convert::zeroEsquerda($conta->id));
             parent::$templator->setVariable('conta.descricao', $conta->descricao);
