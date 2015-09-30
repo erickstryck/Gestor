@@ -23,12 +23,12 @@
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  *
- * Arquivo de configuração para "mydb"
+ * Arquivo de configuração para "gestor"
  */
 
 $lumineConfig = array(
     'dialect' => 'MySQLi', 
-    'database' => 'mydb', 
+    'database' => 'gestor', 
     'user' => 'root', 
     'password' => '', 
     'port' => '3306', 
