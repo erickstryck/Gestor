@@ -1,0 +1,154 @@
+    <!-- $Include templates/lib/html/scripthead.html -->
+<!doctype html>
+<html class="no-js" lang="pt-br">
+<head>
+    <!-- init script and css -->
+    <!-- $Include templates/lib/html/scripthead.html -->
+    <!--init script and css end-->
+    <title>Contas Disponíveis</title>
+
+
+    <style type="text/css">
+        .separator {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+    </style>
+
+</head>
+<body>
+<!--top bar bagin -->
+<!-- $Include templates/lib/html/header.html -->
+<!--top bar end-->
+
+<!-- body section-->
+
+<!-- title -->
+<div class="row full-width">
+    <div class="medium-12 columns ">
+        <h3>CONTAS DISPONÍVEL</h3>
+    </div>
+</div>
+
+<!-- botões -->
+<div class="row full-width">
+    <div class="medium-12 columns">
+        <button class="button success small cadastrar"><i class="fa fa-plus fa-lg"></i> Nova Conta</button>
+        <button class="button alert small" id="teste"><i class="fa fa-times fa-lg"></i> Remover Conta</button>
+        <button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas
+        </button>
+    </div>
+</div>
+
+<!-- container main -->
+<div class="row full-width">
+    <div class="medium-12 columns">
+        <!-- tabela -->
+        <table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
+            <thead>
+            <tr>
+                <th>COD</th>
+                <th>NOME</th>
+                <th>MARGEM DE LUCRO (%)</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- $BeginBlock row -->
+            <tr>
+                <td>${categoria.id}</td>
+                <td>${categoria.nome_categoria}</td>
+                <td>${categoria.margem_lucro}</td>
+                <td>
+                    <button class="alterar fix" value="${categoria.id}"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="fix del" value="${categoria.id}"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+            <!-- $EndBlock row -->
+            </tbody>
+
+            <tfoot>
+            <tr>
+                <th>COD</th>
+                <th>NOME</th>
+                <th>MARGEM DE LUCRO (%)</th>
+                <th></th>
+            </tr>
+            </tfoot>
+        </table>
+        <!-- fim tabela -->
+    </div>
+</div>
+<!-- end body section-->
+
+
+<!-- modal sections -->
+
+<!-- nova categoria -->
+<div id="novo_recipiente" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+     role="dialog">
+    <h2 id="modalTitle">Nova Conta</h2>
+
+    <p class="lead">Insira os dados abaixo</p>
+    <!-- formulário -->
+    <form id="form_categoria" data-abide="ajax">
+
+        <div class="row">
+            <div class="medium-12 columns">
+                <label>Nome Curto
+                    <small style="color:red">Obrigatório:</small>
+                    <input type="text" name="apelido" required placeholder="exemplo: Caixa interno"/>
+                </label>
+                <small class="error">Preencha este campo</small>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="medium-12 columns">
+                <label>Nome ou descrição da conta
+                    <small style="color:red">Obrigatório</small>
+                    <input type="text" name="des" required/>
+                </label>
+                <small class="error">Preencha este campo</small>
+            </div>
+        </div>
+
+        <!-- botões -->
+        <div class="row">
+            <div class="medium-12 columns">
+                <div class="panel clearfix">
+                    <button type="submit" class="button small secondary right">Salvar</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <!-- fim formulário -->
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+
+<!-- end modal sections -->
+
+<!--footer begin -->
+<!-- $Include templates/lib/html/footer.html -->
+<!--footer end-->
+
+<script>
+    $(document).foundation();
+
+    $(document).ready(function () {
+        $(document).Conf();
+        $(document).Crud('recipiente', '#novo_recipiente', function (data) {
+            alertify.log(data);
+        });
+
+    });
+
+</script>
+</body>
+<!--footer bagin -->
+<!-- $Include templates/lib/html/footertag.html -->
+<!--footer end-->
+</html>

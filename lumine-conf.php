@@ -19,21 +19,21 @@
 ################################################################################
 /**
  * Created by Lumine_Reverse
- * in 2015-09-24
+ * in 2015-10-01
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  *
- * Arquivo de configuração para "mydb"
+ * Arquivo de configuração para "gestor"
  */
 
 $lumineConfig = array(
     'dialect' => 'MySQLi', 
-    'database' => 'mydb', 
+    'database' => 'gestor', 
     'user' => 'root', 
     'password' => '', 
     'port' => '3306', 
     'host' => 'localhost', 
-    'class_path' => '/var/www/html/Gestor', 
+    'class_path' => 'C:/wamp/www/Gestor', 
     'package' => 'Model', 
     'addons_path' => '', 
     'acao' => 'gerar', 

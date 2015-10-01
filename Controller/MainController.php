@@ -15,6 +15,7 @@ require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Recibos.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Autenticar.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Eventos.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Cadastro.php');
+require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Recipiente.php');
 require_once(PATH . 'Security' . DS . 'Firewall.php');
 require_once(PATH . 'Security' . DS . 'EventLog.php');
 class MainController
@@ -40,7 +41,8 @@ class MainController
             'recibos' => new Recibos(), 
             'autenticar' => new Autenticar(),
             'eventos' => new Eventos(), 
-            'cadastro' => new Cadastro()
+            'cadastro' => new Cadastro(), 
+            'recipiente' => new Recipiente()
         );
     }
 

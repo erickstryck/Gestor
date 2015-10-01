@@ -2,7 +2,7 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "recipiente"
- * in 2015-09-24
+ * in 2015-10-01
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
@@ -16,6 +16,7 @@ class Recipiente extends Lumine_Base {
     public $des;
     public $empresaId;
     public $ativo;
+    public $apelido;
     public $contas = array();
     public $parcelas = array();
     
@@ -37,6 +38,7 @@ class Recipiente extends Lumine_Base {
         $this->metadata()->addField('des', 'des', 'varchar', 150, array());
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
         $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
+        $this->metadata()->addField('apelido', 'apelido', 'varchar', 45, array());
 
         
         $this->metadata()->addRelation('contas', Lumine_Metadata::ONE_TO_MANY, 'Conta', 'recipienteId', null, null, null);
