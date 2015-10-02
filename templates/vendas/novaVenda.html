@@ -457,6 +457,19 @@
     $(document).foundation();
 
     $(document).ready(function () {
+        //calendar
+        var x = 1;
+        while (x < 3) {
+            $('.calendar' + x).dateRangePicker(
+                    {
+                        startOfWeek: 'monday',
+                        format: 'YYYY-MM-DD',
+                        autoClose: true,
+                        singleDate: true,
+                        showShortcuts: false
+                    });
+            x++;
+        }
         var total = 0;
         var valorFrete = 0;
         var valorSeguro = 0;
@@ -464,24 +477,6 @@
 
         var pedido = new Array();
         var parcelas = new Array();
-
-        //calendar
-        $('.calendar1').dateRangePicker(
-                {
-                    startOfWeek: 'monday',
-                    format: 'YYYY-MM-DD',
-                    autoClose: true,
-                    singleDate: true,
-                    showShortcuts: false
-                });
-        $('.calendar2').dateRangePicker(
-                {
-                    startOfWeek: 'monday',
-                    format: 'YYYY-MM-DD',
-                    autoClose: true,
-                    singleDate: true,
-                    showShortcuts: false
-                });
 
         //Manipulando eventos do formulário 'forma de pagamento'
         $('#pg').change(function () {
