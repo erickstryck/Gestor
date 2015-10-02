@@ -180,16 +180,22 @@
     $(document).foundation();
 
     $(document).ready(function () {
-        var myCalendar = new dhtmlXCalendarObject(["calendar"]);
-        myCalendar.loadUserLanguage("pt");
         $(document).Conf();
         $(document).Crud('tarefas', '#nova_tarefa', function (data) {
             alertify.log(data);
         });
+        $('#calendar').dateRangePicker(
+                {
+                    startOfWeek: 'monday',
+                    format: 'DD.MM.YYYY',
+                    autoClose: true,
+                    singleDate: true,
+                    showShortcuts: false
+                });
     });
 </script>
 </body>
-<!--footer bagin -->
+<!--footer begin -->
 <!-- $Include templates/lib/html/footertag.html -->
 <!--footer end-->
 </html>
