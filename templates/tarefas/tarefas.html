@@ -130,7 +130,7 @@
                 </label>
             </div>
             <div class="medium-2 columns">
-                <label>Data<input id="calendar" type="text" name="data" value="${data}"></label>
+                <label>Data<input class="calendar" type="text" name="data" value="${data}"></label>
             </div>
             <div class="medium-2 columns">
                 <label>Prioridade
@@ -184,7 +184,7 @@
         $(document).Crud('tarefas', '#nova_tarefa', function (data) {
             alertify.log(data);
         });
-        $('#calendar').dateRangePicker(
+        $('.calendar').dateRangePicker(
                 {
                     startOfWeek: 'monday',
                     format: 'DD.MM.YYYY',
