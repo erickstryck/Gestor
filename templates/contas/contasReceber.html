@@ -145,13 +145,14 @@
                     </div>
 
                     <div class="medium-4 columns">
-                        <label>Data do lançamento<input value="${date_now}" type="date" name="dataLancamento"/> </label>
+                        <label>Data do lançamento<input value="${date_now}" type="text" class="calendar1"
+                                                        name="dataLancamento"/> </label>
                     </div>
 
                     <div class="medium-4 columns">
                         <label>Data de vencimento
                             <small style="color:red;">Obrigatório</small>
-                            <input type="date" name="dataVencimento" required/>
+                            <input type="text" class="calendar2" name="dataVencimento" required/>
                         </label>
                         <small class="error">Você precisa preencer este campo.</small>
                     </div>
@@ -265,7 +266,8 @@
                     </div>
 
                     <div class="medium-4 columns">
-                        <label>Data pagamento <input type="date" value="${date_now}" name="dataPagamento"
+                        <label>Data pagamento <input type="text" class="calendar3" value="${date_now}"
+                                                     name="dataPagamento"
                                                      id="data_pagamento"/> </label>
                     </div>
                 </div>
@@ -312,6 +314,19 @@
     $(document).foundation();
 
     $(document).ready(function () {
+        //calendar
+        var x = 1;
+        while (x < 4) {
+            $('.calendar' + x).dateRangePicker(
+                    {
+                        startOfWeek: 'monday',
+                        format: 'YYYY-MM-DD',
+                        autoClose: true,
+                        singleDate: true,
+                        showShortcuts: false
+                    });
+            x++;
+        }
         //Trancando os campos para não edição:
         desabilitarCampos($('#paga'));
 
