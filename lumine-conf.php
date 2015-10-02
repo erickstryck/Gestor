@@ -19,7 +19,7 @@
 ################################################################################
 /**
  * Created by Lumine_Reverse
- * in 2015-10-01
+ * in 2015-10-02
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  *
@@ -32,8 +32,8 @@ $lumineConfig = array(
     'user' => 'root', 
     'password' => '', 
     'port' => '3306', 
-    'host' => 'localhost', 
-    'class_path' => 'C:/wamp/www/Gestor', 
+    'host' => 'localhost',
+    'class_path' => 'D:/Desenvolvimento/Wamp/wamp/www/Gestor', 
     'package' => 'Model', 
     'addons_path' => '', 
     'acao' => 'gerar', 
