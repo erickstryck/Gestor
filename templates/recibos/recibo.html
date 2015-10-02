@@ -160,7 +160,8 @@
             <!-- terceira linha -->
             <div class="row">
                 <div class="medium-4 columns">
-                    <label>Data recibo <input type="date" value="${data_now}" name="dataRecibo"/> </label>
+                    <label>Data recibo <input type="text" class="calendar" value="${data_now}" name="dataRecibo"/>
+                    </label>
                 </div>
 
                 <div class="medium-8 columns">
@@ -189,7 +190,15 @@
         $(document).foundation();
 
         $(document).ready(function () {
-
+            //calendar
+            $('.calendar').dateRangePicker(
+                    {
+                        startOfWeek: 'monday',
+                        format: 'YYYY-MM-DD',
+                        autoClose: true,
+                        singleDate: true,
+                        showShortcuts: false
+                    });
             $(document).Conf();
             $(document).Crud('recibos', '#novo_recibo', function (data) {
                 alertify.log(data);
