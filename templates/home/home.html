@@ -82,7 +82,7 @@
 
         function getFeed(data){
             sendAjax('index.php?uc=home&a=feed','POST',{'data': data}, function(data){
-                var temp = jQuery.parseJSON(data);
+                var temp = JSON.parse(data);
                 $('#calendar').fullCalendar('removeEvents');
                 $('#calendar').fullCalendar('addEventSource', temp);
                 $('#calendar').fullCalendar('renderEvents');
