@@ -41,8 +41,6 @@ class Home extends GenericController
         Lumine::import("Usuario");
         Lumine::import("UsuarioHasEmpresa");
         Lumine::import("Tarefa");
-        Lumine::import("Prioridade");
-        Lumine::import("Situacao");
         //pegar user da empresa
         $user = new Usuario();
         $has = new UsuarioHasEmpresa();
