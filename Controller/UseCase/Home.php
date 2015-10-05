@@ -20,7 +20,7 @@ class Home extends GenericController
     }
 
     public function feed($arg){
-        $data = $arg['data']; 
+//        $data = $arg['data'];
         //Verificar: 
         //Contas (Pagar/Receber)
         //Tarefas; 
