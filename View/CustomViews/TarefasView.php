@@ -42,7 +42,9 @@ class TarefasView extends GenericView
             $prioridade->get($tar->prioridadeId);
             $situacao->get($tar->situacaoId);
             parent::$templator->setVariable("id", Convert::zeroEsquerda($tar->id));
-            parent::$templator->setVariable("date", $tar->data);
+            $data = explode(" ", $tar->data);
+            $dataF = new DateTime($data[0]);
+            parent::$templator->setVariable("date", $dataF->format('d-m-Y'));
             parent::$templator->setVariable("user", $usuario->nomeCompleto);
             parent::$templator->setVariable("prioridade", $prioridade->des);
             parent::$templator->setVariable("situacao", $situacao->des);

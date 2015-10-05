@@ -180,6 +180,12 @@
     $(document).foundation();
 
     $(document).ready(function () {
+        $(".calendar").on('keydown', function (e) {
+            e.preventDefault();
+        });
+        $(".calendar").bind('paste', function (e) {
+            e.preventDefault();
+        });
         $(document).Conf();
         $(document).Crud('tarefas', '#nova_tarefa', function (data) {
             alertify.log(data);

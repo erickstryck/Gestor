@@ -41,7 +41,8 @@ class Tarefas extends GenericController
         $tarefa->titulo = $arg['titulo'];
         $tarefa->situacaoId = $arg['situacaoId'];
         $tarefa->usuarioId = $arg['usuarioId'];
-        $tarefa->data = $arg['data'];
+        $data = explode(".", $arg['data']);
+        $tarefa->data = date("Y-m-d", mktime('0', '0', '0', $data[0], $data[1], $data[2]));
         $tarefa->pChave = $arg['pChave'];
         $tarefa->ativo = true;
         $tarefa->empresaId = $_SESSION["empresaId"];
