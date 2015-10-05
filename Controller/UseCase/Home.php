@@ -50,9 +50,10 @@ class Home extends GenericController
         //pegar tarefas da empresa
         $tar = new Tarefa();
         $tar->select('titulo,data')->where("empresa_id=" . $_SESSION['empresaId'] . " and ativo = 1")->find();
-        $arrayJS = $this->getNiceArray($tar->allToArray());
-        $arrJS = array('events' => $arrayJS, 'color' => 'red', 'textColor' => 'white');
-        return json_encode($arrJS);
+//        $arrayJS = $this->getNiceArray($tar->allToArray());
+//        $arrJS = array('events' => $arrayJS, 'color' => 'red', 'textColor' => 'white');
+//        return json_encode($arrJS);
+        return $this->getNiceArray($tar->allToArray());
     }
 
     public function getNiceArray($badArray)
