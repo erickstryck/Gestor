@@ -20,20 +20,25 @@ class Home extends GenericController
     }
 
     public function feed($arg){
-//        $data = $arg['data'];
+        $data = $arg['data'];
         //Verificar: 
         //Contas (Pagar/Receber)
         //Tarefas; 
         
-        $array = array();
+        //$events = $this->getTarefasEvent();
+        self::getContas($data); 
 
+        $result = array_merge(self::getTarefasEvent(), self::getContas($data) ); 
+
+       die(json_encode($result));
+    }
+
+    private function getContas($data){
         Lumine::import('Conta');
-        $events = $this->getTarefasEvent();
-        die($events);
+        $data = explode('/',$data); 
         $contas = new Conta(); 
-        $contas->where(" FORMAT(data_vencimento, 'YYYY-MM') = FORMAT($data, 'YYYY-MM') ")->find(); 
-
-        var_dump($contas->allToArray());
+        $contas->select("data_vencimento as start, descricao as title")->where(" MONTH(data_vencimento) = ".$data[1]. " and YEAR(data_vencimento) = ". $data[2] ." and empresa_id=" . $_SESSION['empresaId']." and ativo = 1")->find(); 
+        return $contas->allToArray(); 
     }
 
     public function getTarefasEvent()
@@ -47,20 +52,20 @@ class Home extends GenericController
         $user->join($has)->where("empresa_id=" . $_SESSION["empresaId"])->find();
         //pegar tarefas da empresa
         $tar = new Tarefa();
-        $tar->select('titulo,data')->where("empresa_id=" . $_SESSION['empresaId'] . " and ativo = 1")->find();
+        $tar->select('titulo as title, data as start')->where("empresa_id=" . $_SESSION['empresaId'] . " and ativo = 1")->find();
 //        $arrayJS = $this->getNiceArray($tar->allToArray());
 //        $arrJS = array('events' => $arrayJS, 'color' => 'red', 'textColor' => 'white');
 //        return json_encode($arrJS);
-        return $this->getNiceArray($tar->allToArray());
+        return $tar->allToArray();
     }
 
-    public function getNiceArray($badArray)
-    {
-        $arrTar = array();
-        foreach ($badArray as $value) {
-            $temp = array('title' => $value['titulo'], 'start' => $value['data']);
-            array_push($arrTar, $temp);
-        }
-        return json_encode($arrTar);
-    }
+    // public function getNiceArray($badArray)
+    // {
+    //     $arrTar = array();
+    //     foreach ($badArray as $value) {
+    //         $temp = array('title' => $value['title'], 'start' => $value['start']);
+    //         array_push($arrTar, $temp);
+    //     }
+    //     return json_encode($arrTar);
+    // }
 }
