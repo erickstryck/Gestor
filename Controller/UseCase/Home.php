@@ -26,9 +26,9 @@ class Home extends GenericController
         //Tarefas; 
         
         //$events = $this->getTarefasEvent();
-        self::getContas($data); 
+        self::getContas($data);
 
-        $result = array_merge(self::getTarefasEvent(), self::getContas($data) ); 
+        $result = array_merge(self::getTarefasEvent($data), self::getContas($data));
 
        die(json_encode($result));
     }
@@ -36,13 +36,14 @@ class Home extends GenericController
     private function getContas($data){
         Lumine::import('Conta');
         $data = explode('/',$data); 
-        $contas = new Conta(); 
-        $contas->select("data_vencimento as start, descricao as title")->where(" MONTH(data_vencimento) = ".$data[1]. " and YEAR(data_vencimento) = ". $data[2] ." and empresa_id=" . $_SESSION['empresaId']." and ativo = 1")->find(); 
+        $contas = new Conta();
+        $contas->select("data_vencimento as start, descricao as title")->where(" MONTH(data_vencimento) = " . $data[1] . " and YEAR(data_vencimento) = " . $data[2] . " and empresa_id=" . $_SESSION['empresaId'] . " and ativo = 1")->find();
         return $contas->allToArray(); 
     }
 
-    public function getTarefasEvent()
+    public function getTarefasEvent($data)
     {
+        $data = explode('/', $data);
         Lumine::import("Usuario");
         Lumine::import("UsuarioHasEmpresa");
         Lumine::import("Tarefa");
@@ -60,7 +61,7 @@ class Home extends GenericController
         $prioridade->alias('p');
         $tar->join($prioridade);
         $tar->join($situacao);
-        $tar->select('titulo as title, data as start, p.des as prioridade,s.des as situacao')->where("empresa_id=" . $_SESSION['empresaId'] . " and ativo = 1 and tarefa_ativa=1")->find();
+        $tar->select('titulo as title, data as start, p.des as prioridade,s.des as situacao')->where("MONTH(data) = " . $data[1] . " and YEAR(data) = " . $data[2] . " and empresa_id=" . $_SESSION['empresaId'] . " and ativo = 1 and tarefa_ativa=1")->find();
         return $this->getNiceArray($tar->allToArray());
     }
 
