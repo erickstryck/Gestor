@@ -311,7 +311,7 @@
                     </div>
                     <div class="medium-3 columns">
                         <label>Data nascimento
-                            <input name="dataNasci" type="date"/>
+                            <input name="dataNasci" type="text" id="calendar"/>
                         </label>
                     </div>
                 </div>
@@ -459,7 +459,9 @@
     });
 
     $(document).ready(function () {
-
+        var myCalendar = new dhtmlXCalendarObject(["calendar"]);
+        myCalendar.loadUserLanguage("pt");
+        myCalendar.hideTime();
         $('#EndDif').change(function () {
             if (this.checked)
                 $('#campo_endereco').removeClass('hide');
