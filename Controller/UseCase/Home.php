@@ -69,7 +69,7 @@ class Home extends GenericController
         $arrTar = array();
         foreach ($badArray as $value) {
             if ($value['prioridade'] === "Baixa") $temp = array('title' => $value['title'], 'start' => $value['start'], 'color' => 'green', 'textColor' => 'white');
-            if ($value['prioridade'] === "Normal") $temp = array('title' => $value['title'], 'start' => $value['start'], 'color' => 'yellow', 'textColor' => 'black');
+            if ($value['prioridade'] === "Normal") $temp = array('title' => $value['title'], 'start' => $value['start'], 'color' => 'orange', 'textColor' => 'black');
             if ($value['prioridade'] === "Alta") $temp = array('title' => $value['title'], 'start' => $value['start'], 'color' => 'red', 'textColor' => 'white');
             if ($value['situacao'] === "Finalizada") $temp = array('title' => $value['title'], 'start' => $value['start'], 'color' => 'black', 'textColor' => 'white');
             array_push($arrTar, $temp);
