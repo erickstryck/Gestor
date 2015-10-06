@@ -191,6 +191,12 @@
 
         $(document).ready(function () {
             //calendar
+            $(".calendar").on('keydown', function (e) {
+                e.preventDefault();
+            });
+            $(".calendar").bind('paste', function (e) {
+                e.preventDefault();
+            });
             $('.calendar').dateRangePicker(
                     {
                         startOfWeek: 'monday',

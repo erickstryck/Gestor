@@ -313,6 +313,12 @@
                             singleDate: true,
                             showShortcuts: false
                         });
+                $('.calendar' + x).on('keydown', function (e) {
+                    e.preventDefault();
+                });
+                $('.calendar' + x).bind('paste', function (e) {
+                    e.preventDefault();
+                });
                 x++;
             }
 
