@@ -1,5 +1,5 @@
 <?php
-
+require_once(PATH . 'Security' . DS . 'Firewall.php');
 /**
  * Created by PhpStorm.
  * User: desenvolvedor
@@ -8,7 +8,19 @@
  */
 class EventLog
 {
+    private $firewall; 
+
+    public function __construct(){
+        $this->firewall = new Firewall(); 
+    }
+
     public function monitoramento($msg){
+
+        //Caso o usuário não estiver autenticado no sistema, este método não pode executar todo o restante 
+        // dos procedimentos. 
+        if(!$this->firewall->isAuthenticated())
+            return; 
+
         Lumine::import("Log");
         $data=strftime('%A, %d de %B de %Y', strtotime('today')).' as '.Date('H:i:s');
         $log = new Log();

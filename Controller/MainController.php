@@ -81,7 +81,7 @@ class MainController
                 die(json_encode(array('status' => false, 'msg' => 'Acesso negado.')));
             } else {
                 $ev->monitoramento('Acesso negado.');
-                die('Acesso negado'); //Futoramente redirecionar para uma tela;
+                die('Acesso negado. Voce nao tem privilegios ou nao esta autenticado.'); //Futoramente redirecionar para uma tela;
             }
         }else $ev->monitoramento('Status OK.');
         return $reflection->invoke($controller, self::preparingArray($_REQUEST));
