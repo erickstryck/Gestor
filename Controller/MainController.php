@@ -18,12 +18,19 @@ require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'Cadastro.php');
 require_once(PATH . 'Controller' . DS . 'UseCase' . DS . 'ContaRecipiente.php');
 require_once(PATH . 'Security' . DS . 'Firewall.php');
 require_once(PATH . 'Security' . DS . 'EventLog.php');
+
+//Visão do controlador central
+require_once(PATH . 'View' . DS . 'CustomViews' . DS . 'TelaView.php' ); 
+
 class MainController
 {
     private $controllersArray;
+    private $telaView; 
 
     public function __construct()
     {
+        $this->telaView = new TelaView(); 
+
         // incluir todos os controllers espec�ficos aqui;
         $this->controllersArray = array(
             'contas' => new Contas(),
@@ -81,7 +88,7 @@ class MainController
                 die(json_encode(array('status' => false, 'msg' => 'Acesso negado.')));
             } else {
                 $ev->monitoramento('Acesso negado.');
-                die('Acesso negado. Voce nao tem privilegios ou nao esta autenticado.'); //Futoramente redirecionar para uma tela;
+                $this->telaView->acessoNegado(); 
             }
         }else $ev->monitoramento('Status OK.');
         return $reflection->invoke($controller, self::preparingArray($_REQUEST));

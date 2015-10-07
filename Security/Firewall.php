@@ -19,7 +19,6 @@ class Firewall extends Annotation
 
     public static function defender($uc, $meth)
     {
-
         if(!self::isAuthenticated())
             return false; 
 
