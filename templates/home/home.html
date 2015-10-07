@@ -10,23 +10,21 @@
             margin-bottom: 0;
         }
 
-
-        table {  
+        table {
           background-color: transparent;
           margin-bottom: 0;
       }
 
-      tr, tr.fc-minor, thead {  
+        tr, tr.fc-minor, thead {
           background: initial;
       }
   </style>
 
 </head>
 <body>
-    <!--top bar bagin -->
+<!--top bar begin -->
     <!-- $Include templates/lib/html/header.html -->
     <!--top bar end-->
-
     <script type="text/javascript">
         var events =  [{ id: 1, title: 'All Day Event', start: '2015-09-01', end : '2015-09-01'}];
     </script>
@@ -69,8 +67,11 @@
     <script src="templates/lib/calendar/lib/jquery-ui.custom.min.js"></script>
     <script src="templates/lib/calendar/fullcalendar.min.js"></script>
     <script src="templates/lib/calendar/lang/pt-br.js"></script>
-
+<!--top bar begin -->
+<!-- $Include templates/lib/html/closeDash.html -->
+<!--top bar end-->
     <script>
+        $(document).foundation();
         $(document).ready(function() {
 
 
@@ -102,9 +103,6 @@
                 $('#calendar').fullCalendar('renderEvents');
             });
         }
-
-        $(document).foundation();
-
     </script>
 
 </body>
