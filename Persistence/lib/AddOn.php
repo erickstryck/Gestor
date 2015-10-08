@@ -18,10 +18,10 @@
 ################################################################################
 /**
  * Classe abstrata para Add-ons
- * 
+ *
  * Utilizada para padronizar classes que serao utilizadas na engenharia
  * reversa ou em algum outro momento, a criterio do usuario.
- * 
+ *
  * @author Hugo Ferreira da silva
  * @package Lumine
  * @link http://www.hufersil.com.br
@@ -30,71 +30,76 @@
 
 /**
  * Classe abstrata para Add-ons
- * 
+ *
  * Utilizada para padronizar classes que serao utilizadas na engenharia
  * reversa ou em algum outro momento, a criterio do usuario.
- * 
+ *
  * @author Hugo Ferreira da silva
  * @link http://www.hufersil.com.br
  *
  */
-abstract class Lumine_AddOn {
-	
-	/**
-	 * Titulo do add-on
-	 * @var string
-	 */
-	protected $title = 'Lumine Add-On';
-	
-	/**
-	 * Executa o add-on criado
-	 * @author Hugo Ferreira da silva
-	 * @link http://www.hufersil.com.br
-	 * @param string $configurationFile Caminho absoluto do arquivo de configuracao
-	 * @param array $params Parametros adicionais para executar o add-on
-	 * @return void
-	 */
-	public function execute($configurationFile, array $params){
-		
-	}
-	
-	/**
-	 * Exibe a tela de configuracao dentro do painel de engenharia reversa 
-	 * 
-	 * Caso nao for implementado, deve retornar false para nao
-	 * ser exibido na tela de engenharia reversa
-	 * 
-	 * @author Hugo Ferreira da silva
-	 * @link http://www.hufersil.com.br
-	 * @return void
-	 */
-	public function displayConfigScreen(){
-		
-	}
-	
-	/**
-	 * Exibir ou na tela de engenharia reversa
-	 * 
-	 * Indica se tela de configuracoes deste add-on devera
-	 * ser exibida na tela de engenharia reversa
-	 * 
-	 * @author Hugo Ferreira da silva
-	 * @link http://www.hufersil.com.br
-	 * @return boolean
-	 */
-	public function showInReverseScreen(){
-		return true;
-	}
-	
-	/**
-	 * Recupera o titulo a ser exibido na engenharia reversa
-	 * 
-	 * @author Hugo Ferreira da silva
-	 * @link http://www.hufersil.com.br
-	 * @return string
-	 */
-	public function getTitle(){
-		return $this->title;
-	}
-	
+abstract class Lumine_AddOn
+{
+
+    /**
+     * Titulo do add-on
+     * @var string
+     */
+    protected $title = 'Lumine Add-On';
+
+    /**
+     * Executa o add-on criado
+     * @author Hugo Ferreira da silva
+     * @link http://www.hufersil.com.br
+     * @param string $configurationFile Caminho absoluto do arquivo de configuracao
+     * @param array $params Parametros adicionais para executar o add-on
+     * @return void
+     */
+    public function execute($configurationFile, array $params)
+    {
+
+    }
+
+    /**
+     * Exibe a tela de configuracao dentro do painel de engenharia reversa
+     *
+     * Caso nao for implementado, deve retornar false para nao
+     * ser exibido na tela de engenharia reversa
+     *
+     * @author Hugo Ferreira da silva
+     * @link http://www.hufersil.com.br
+     * @return void
+     */
+    public function displayConfigScreen()
+    {
+
+    }
+
+    /**
+     * Exibir ou na tela de engenharia reversa
+     *
+     * Indica se tela de configuracoes deste add-on devera
+     * ser exibida na tela de engenharia reversa
+     *
+     * @author Hugo Ferreira da silva
+     * @link http://www.hufersil.com.br
+     * @return boolean
+     */
+    public function showInReverseScreen()
+    {
+        return true;
+    }
+
+    /**
+     * Recupera o titulo a ser exibido na engenharia reversa
+     *
+     * @author Hugo Ferreira da silva
+     * @link http://www.hufersil.com.br
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
 }

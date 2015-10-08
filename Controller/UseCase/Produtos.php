@@ -58,15 +58,16 @@ class Produtos extends GenericController
         $this->produtosView->sendAjax(array('status' => true));
     }
 
-    public function alterar ($arg){
-        Lumine::import("Produto"); 
+    public function alterar($arg)
+    {
+        Lumine::import("Produto");
 
-        $produto = new Produto(); 
+        $produto = new Produto();
 
-        $produto->where("empresa_id = " . $_SESSION['empresaId'] . " and id = " . (int)$arg['id'])->find(); 
-        $produto->fetch(true); 
+        $produto->where("empresa_id = " . $_SESSION['empresaId'] . " and id = " . (int)$arg['id'])->find();
+        $produto->fetch(true);
 
-         $produto->naoControlarEstoque = !empty($arg['naoControlarEstoque']);
+        $produto->naoControlarEstoque = !empty($arg['naoControlarEstoque']);
         $produto->arquivar = !empty($arg['arquivar']);
 
         $produto->precoCusto = $arg['precoCusto'];

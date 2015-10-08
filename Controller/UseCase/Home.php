@@ -19,26 +19,28 @@ class Home extends GenericController
         $this->homeView->indexView();
     }
 
-    public function feed($arg){
+    public function feed($arg)
+    {
         $data = $arg['data'];
         //Verificar: 
         //Contas (Pagar/Receber)
         //Tarefas; 
-        
+
         //$events = $this->getTarefasEvent();
         self::getContas($data);
 
         $result = array_merge(self::getTarefasEvent($data), self::getContas($data));
 
-       die(json_encode($result));
+        die(json_encode($result));
     }
 
-    private function getContas($data){
+    private function getContas($data)
+    {
         Lumine::import('Conta');
-        $data = explode('/',$data); 
+        $data = explode('/', $data);
         $contas = new Conta();
         $contas->select("data_vencimento as start, descricao as title")->where(" MONTH(data_vencimento) = " . $data[1] . " and YEAR(data_vencimento) = " . $data[2] . " and empresa_id=" . $_SESSION['empresaId'] . " and ativo = 1")->find();
-        return $contas->allToArray(); 
+        return $contas->allToArray();
     }
 
     public function getTarefasEvent($data)

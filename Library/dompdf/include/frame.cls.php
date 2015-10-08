@@ -228,6 +228,14 @@ class Frame
 
     }
 
+    /**
+     * @return DOMNode
+     */
+    function get_node()
+    {
+        return $this->_node;
+    }
+
     function reset()
     {
         $this->_position["x"] = null;
@@ -251,6 +259,8 @@ class Frame
         return $this->_original_style;
     }
 
+    // Re-initialize the frame
+
     /**
      * @return Frame
      */
@@ -259,7 +269,9 @@ class Frame
         return $this->_parent;
     }
 
-    // Re-initialize the frame
+    //........................................................................
+
+    // Accessor methods
 
     /**
      * @return Frame
@@ -268,10 +280,6 @@ class Frame
     {
         return $this->_first_child;
     }
-
-    //........................................................................
-
-    // Accessor methods
 
     /**
      * @return Frame
@@ -428,6 +436,8 @@ class Frame
             3 => $h, "h" => $h);
     }
 
+    // Layout property accessors
+
     /**
      * Return the border box of the frame
      *
@@ -462,8 +472,6 @@ class Frame
             3 => $h, "h" => $h);
     }
 
-    // Layout property accessors
-
     function get_opacity($opacity = null)
     {
         if ($opacity !== null) {
@@ -472,14 +480,14 @@ class Frame
         return $this->_opacity;
     }
 
+    //........................................................................
+
     function set_opacity($opacity)
     {
         $parent = $this->get_parent();
         $base_opacity = (($parent && $parent->_opacity !== null) ? $parent->_opacity : 1.0);
         $this->_opacity = $base_opacity * $opacity;
     }
-
-    //........................................................................
 
     /**
      * @return Line_Box
@@ -505,6 +513,23 @@ class Frame
         return $this->_is_cache["positionned"] = in_array($position, Style::$POSITIONNED_TYPES);
     }
 
+    /**
+     * @return Style
+     */
+    function get_style()
+    {
+        return $this->_style;
+    }
+
+    function set_style(Style $style)
+    {
+        if (is_null($this->_style))
+            $this->_original_style = clone $style;
+
+        //$style->set_frame($this);
+        $this->_style = $style;
+    }
+
     function is_block()
     {
         if (isset($this->_is_cache["block"])) {
@@ -513,6 +538,10 @@ class Frame
 
         return $this->_is_cache["block"] = in_array($this->get_style()->display, Style::$BLOCK_TYPES);
     }
+
+    //........................................................................
+
+    // Set methods
 
     function is_pre()
     {
@@ -575,10 +604,6 @@ class Frame
 
         $ref->_prev_sibling = $new_child;
     }
-
-    //........................................................................
-
-    // Set methods
 
     /**
      * Inserts a new child at the beginning of the Frame
@@ -719,6 +744,8 @@ class Frame
         $ref->_next_sibling = $new_child;
     }
 
+    //........................................................................
+
     function __toString()
     {
         // Skip empty text frames
@@ -818,7 +845,18 @@ class Frame
             $this->_node->setAttribute("frame_id", $id);
     }
 
-    //........................................................................
+    /**
+     * Tells if the frame is a text node
+     * @return bool
+     */
+    function is_text_node()
+    {
+        if (isset($this->_is_cache["text_node"])) {
+            return $this->_is_cache["text_node"];
+        }
+
+        return $this->_is_cache["text_node"] = ($this->get_node()->nodeName === "#text");
+    }
 
     /**
      * @return Frame_Decorator
@@ -914,23 +952,6 @@ class Frame
         return in_array($whitespace, array("pre", "pre-wrap", "pre-line"));
     }
 
-    /**
-     * @return Style
-     */
-    function get_style()
-    {
-        return $this->_style;
-    }
-
-    function set_style(Style $style)
-    {
-        if (is_null($this->_style))
-            $this->_original_style = clone $style;
-
-        //$style->set_frame($this);
-        $this->_style = $style;
-    }
-
     protected function ws_is_text()
     {
         $node = $this->get_node();
@@ -950,14 +971,6 @@ class Frame
         return true;
     }
 
-    /**
-     * @return DOMNode
-     */
-    function get_node()
-    {
-        return $this->_node;
-    }
-
     function is_in_flow()
     {
         if (isset($this->_is_cache["in_flow"])) {
@@ -966,6 +979,10 @@ class Frame
 
         return $this->_is_cache["in_flow"] = !(DOMPDF_ENABLE_CSS_FLOAT && $this->get_style()->float !== "none" || $this->is_absolute());
     }
+
+    //........................................................................
+
+    // Debugging function:
 
     function is_absolute()
     {
@@ -976,23 +993,6 @@ class Frame
         $position = $this->get_style()->position;
 
         return $this->_is_cache["absolute"] = ($position === "absolute" || $position === "fixed");
-    }
-
-    //........................................................................
-
-    // Debugging function:
-
-    /**
-     * Tells if the frame is a text node
-     * @return bool
-     */
-    function is_text_node()
-    {
-        if (isset($this->_is_cache["text_node"])) {
-            return $this->_is_cache["text_node"];
-        }
-
-        return $this->_is_cache["text_node"] = ($this->get_node()->nodeName === "#text");
     }
 }
 

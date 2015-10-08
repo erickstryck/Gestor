@@ -1,6 +1,7 @@
 <?php
 require_once(PATH . 'Controller' . DS . 'GenericController.php');
 require_once(PATH . 'View' . DS . 'CustomViews' . DS . 'LogView.php');
+
 /**
  * Created by PhpStorm.
  * User: desenvolvedor
@@ -15,6 +16,7 @@ class Eventos extends GenericController
     {
         $this->logView = new LogView();
     }
+
     /**
      * @Permissao({"administrador"})
      */

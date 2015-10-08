@@ -20,7 +20,8 @@ define('LUMINE_INCLUDE_PATH', dirname(__FILE__));
  * @link http://www.hufersil.com.br/lumine
  * @package Lumine
  */
-abstract class Lumine {
+abstract class Lumine
+{
     const DEFAULT_VALUE_FUNCTION_IDENTIFIER = '_function:';
 
     /**
@@ -35,10 +36,11 @@ abstract class Lumine {
      * @author Hugo Ferreira da Silva
      * @return void
      */
-    public static function load() {
+    public static function load()
+    {
         $args = func_get_args();
         foreach ($args as $libname) {
-            if(strpos($libname, 'Lumine_') === 0){
+            if (strpos($libname, 'Lumine_') === 0) {
                 $basedir = LUMINE_INCLUDE_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR;
                 $libname = preg_replace('@^Lumine_@', '', $libname);
                 $newfile = $basedir . str_replace('_', DIRECTORY_SEPARATOR, $libname) . '.php';
@@ -54,7 +56,8 @@ abstract class Lumine {
      * @author Hugo Ferreira da Silva
      * @return void
      */
-    public static function import() {
+    public static function import()
+    {
         $args = func_get_args();
         $cn = Lumine_ConnectionManager::getInstance();
         $list = $cn->getConfigurationList();
@@ -77,53 +80,13 @@ abstract class Lumine {
     }
 
     /**
-     * Carrega models
-     * 
-     * @author Hugo Ferreira da Silva
-     * @link http://www.hufersil.com.br
-     * @return void
-     */
-    public static function loadModel() {
-        $args = func_get_args();
-        $cn = Lumine_ConnectionManager::getInstance();
-        $list = $cn->getConfigurationList();
-
-        $cfg = array_shift($list);
-        $path = $cfg->getProperty('class_path')
-                . DIRECTORY_SEPARATOR
-                . $cfg->getOption('model_path')
-                . DIRECTORY_SEPARATOR;
-
-        foreach ($args as $classname) {
-            $filename = $path . $classname . '.php';
-            if (file_exists($filename)) {
-                require_once $filename;
-            }
-        }
-    }
-
-    /**
-     * Permite criar uma classe para uma tabela 
-     * 
-     * @author Hugo Ferreira da Silva
-     * @link http://www.hufersil.com.br
-     * @param string $tablename
-     * @return Lumine_Factory
-     */
-    public static function factory($tablename) {
-        $list = Lumine_ConnectionManager::getInstance()->getConfigurationList();
-        $cfg = array_shift($list);
-
-        return $cfg->factory($tablename);
-    }
-
-    /**
      * Importa o DTO relacionado a classe, quando houver
      * @author Hugo Ferreira da Silva
      * @link http://www.hufersil.com.br/
      * @return void
      */
-    public static function importDTO() {
+    public static function importDTO()
+    {
         $args = func_get_args();
         $cn = Lumine_ConnectionManager::getInstance();
         $list = $cn->getConfigurationList();
@@ -142,13 +105,13 @@ abstract class Lumine {
 
         foreach ($dtoPkgList as $dtoPkg) {
             $path = $cfg->getProperty('class_path')
-                    . DIRECTORY_SEPARATOR
-                    . str_replace('.', DIRECTORY_SEPARATOR, $cfg->getProperty('package'))
-                    . DIRECTORY_SEPARATOR
-                    . 'dto'
-                    . DIRECTORY_SEPARATOR
-                    . str_replace('.', DIRECTORY_SEPARATOR, $dtoPkg)
-                    . DIRECTORY_SEPARATOR;
+                . DIRECTORY_SEPARATOR
+                . str_replace('.', DIRECTORY_SEPARATOR, $cfg->getProperty('package'))
+                . DIRECTORY_SEPARATOR
+                . 'dto'
+                . DIRECTORY_SEPARATOR
+                . str_replace('.', DIRECTORY_SEPARATOR, $dtoPkg)
+                . DIRECTORY_SEPARATOR;
 
             foreach ($args as $classname) {
                 Lumine_Log::debug('procurando dto ' . $path . $classname);
@@ -162,13 +125,57 @@ abstract class Lumine {
     }
 
     /**
+     * Carrega models
+     *
+     * @author Hugo Ferreira da Silva
+     * @link http://www.hufersil.com.br
+     * @return void
+     */
+    public static function loadModel()
+    {
+        $args = func_get_args();
+        $cn = Lumine_ConnectionManager::getInstance();
+        $list = $cn->getConfigurationList();
+
+        $cfg = array_shift($list);
+        $path = $cfg->getProperty('class_path')
+            . DIRECTORY_SEPARATOR
+            . $cfg->getOption('model_path')
+            . DIRECTORY_SEPARATOR;
+
+        foreach ($args as $classname) {
+            $filename = $path . $classname . '.php';
+            if (file_exists($filename)) {
+                require_once $filename;
+            }
+        }
+    }
+
+    /**
+     * Permite criar uma classe para uma tabela
+     *
+     * @author Hugo Ferreira da Silva
+     * @link http://www.hufersil.com.br
+     * @param string $tablename
+     * @return Lumine_Factory
+     */
+    public static function factory($tablename)
+    {
+        $list = Lumine_ConnectionManager::getInstance()->getConfigurationList();
+        $cfg = array_shift($list);
+
+        return $cfg->factory($tablename);
+    }
+
+    /**
      * Checa se um valor e realmente nulo
      *
      * @param mixed $val Valor a ser comparado
      * @author Hugo Ferreira da Silva
      * @return boolean True se for nulo, do contratio false
      */
-    public static function is_empty($val) {
+    public static function is_empty($val)
+    {
         return gettype($val) == 'NULL';
     }
 
@@ -178,7 +185,8 @@ abstract class Lumine {
      * @see http://br2.php.net/manual/pt_BR/function.spl-autoload-register.php
      * @param string $clname
      */
-    public static function autoload($clname) {
+    public static function autoload($clname)
+    {
         $args = func_get_args();
         $cn = Lumine_ConnectionManager::getInstance();
         $list = $cn->getConfigurationList();
@@ -207,26 +215,28 @@ abstract class Lumine {
 
     /**
      * Destroi o objeto
-     * 
+     *
      * @author Hugo Ferreira da Silva
      * @link http://www.hufersil.com.br/
      * @param Lumine_Base $obj
      * @return void
      */
-    public static function destroy(Lumine_Base &$obj) {
+    public static function destroy(Lumine_Base &$obj)
+    {
         $obj->destroy();
         unset($obj);
     }
 
     /**
      * Registra plugins para serem chamados no Lumine
-     * 
+     *
      * @author Hugo Ferreira da silva
      * @link http://www.hufersil.com.br
      * @param ILumine_Plugin $class
      * @return unknown_type
      */
-    public static function registerPlugin(ILumine_Plugin $class) {
+    public static function registerPlugin(ILumine_Plugin $class)
+    {
         if (is_string($class)) {
             $ref = new ReflectionClass();
             $class = $ref->newInstance();
@@ -245,15 +255,16 @@ abstract class Lumine {
 
     /**
      * Executa um plugin registrado
-     * 
-     * @param string      $method Nome do metodo
-     * @param Lumine_Base $obj    Objeto de escopo para a chamada do plugin
-     * @param array       $args   Argumentos
+     *
+     * @param string $method Nome do metodo
+     * @param Lumine_Base $obj Objeto de escopo para a chamada do plugin
+     * @param array $args Argumentos
      * @author Hugo Ferreira da silva
      * @link http://www.hufersil.com.br
      * @return mixed O retorno do metodo do plugin
      */
-    public static function runPlugin($method, Lumine_Base $obj, array $args) {
+    public static function runPlugin($method, Lumine_Base $obj, array $args)
+    {
         // se nao existir
         if (!array_key_exists($method, self::$_plugins)) {
             // retorna false
@@ -271,7 +282,7 @@ abstract class Lumine {
 
 // carrega principais dependencias
 require_once (dirname(__FILE__)) . '/lib/Utils/Util.php';
-spl_autoload_register(array('Lumine','load'));
+spl_autoload_register(array('Lumine', 'load'));
 //Lumine::load('Utils_Util', 'Utils_Crypt', 'Event', 'Events_SQLEvent', 'Events_FormatEvent', 'Events_IteratorEvent', 'Annotations_Annotations');
 //Lumine::load('Exception', 'SQLException', 'EventListener', 'Metadata', 'Tokenizer', 'Parser', 'Exception', 'Configuration', 'ConnectionManager', 'Base', 'Validator', 'Union', 'Factory', 'Model', 'IPlugin');
 

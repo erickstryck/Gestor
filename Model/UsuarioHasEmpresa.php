@@ -8,10 +8,10 @@
  * @package Model
  *
  */
+class UsuarioHasEmpresa extends Lumine_Base
+{
 
-class UsuarioHasEmpresa extends Lumine_Base {
 
-    
     public $isAdmin;
     public $isTecnico;
     public $isVendedor;
@@ -21,9 +21,8 @@ class UsuarioHasEmpresa extends Lumine_Base {
     public $usuarioId;
     public $empresaId;
     public $ativo;
-    
-    
-    
+
+
     /**
      * Inicia os valores da classe
      * @author Hugo Ferreira da Silva
@@ -33,9 +32,9 @@ class UsuarioHasEmpresa extends Lumine_Base {
     {
         $this->metadata()->setTablename('usuario_has_empresa');
         $this->metadata()->setPackage('Model');
-        
+
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
-        
+
         $this->metadata()->addField('isAdmin', 'is_admin', 'boolean', 1, array('default' => '0'));
         $this->metadata()->addField('isTecnico', 'is_tecnico', 'boolean', 1, array('default' => '0'));
         $this->metadata()->addField('isVendedor', 'is_vendedor', 'boolean', 1, array('default' => '0'));
@@ -46,7 +45,7 @@ class UsuarioHasEmpresa extends Lumine_Base {
         $this->metadata()->addField('empresaId', 'empresa_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Empresa'));
         $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
 
-        
+
     }
 
     #### END AUTOCODE

@@ -5,37 +5,42 @@
  * and open the template in the editor.
  */
 
-if(!class_exists('Annotation', false)){
+if (!class_exists('Annotation', false)) {
     require dirname(__FILE__) . '/addendun/annotations.php';
 }
 
 /**
- * 
+ *
  *
  * @author Hugo Ferreira da Silva
  */
-class Lumine_Annotations_Annotations {
-    
+class Lumine_Annotations_Annotations
+{
+
 }
 
 
 ////////////////////////////////////////////////////////////////////
 // Anotacoes para as classes
 ////////////////////////////////////////////////////////////////////
-class LumineId extends Annotation {
-    
+class LumineId extends Annotation
+{
+
 }
 
-class LumineEntity extends Annotation {
+class LumineEntity extends Annotation
+{
     public $package;
 }
 
-class LumineTable extends Annotation {
+class LumineTable extends Annotation
+{
     public $name;
     public $schema;
 }
 
-class LumineColumn extends Annotation {
+class LumineColumn extends Annotation
+{
     public $name;
     public $column;
     public $type;
@@ -43,14 +48,16 @@ class LumineColumn extends Annotation {
     public $options = array();
 }
 
-class LumineOneToMany extends Annotation {
+class LumineOneToMany extends Annotation
+{
     public $name;
     public $class;
     public $linkOn;
     public $lazy = false;
 }
 
-class LumineManyToOne extends Annotation {
+class LumineManyToOne extends Annotation
+{
     public $class;
     public $linkOn;
     public $onDelete;
@@ -58,7 +65,8 @@ class LumineManyToOne extends Annotation {
     public $lazy = false;
 }
 
-class LumineManyToMany extends Annotation {
+class LumineManyToMany extends Annotation
+{
     public $name;
     public $class;
     public $linkOn;
@@ -67,4 +75,6 @@ class LumineManyToMany extends Annotation {
     public $lazy = false;
 }
 
-class LumineTransient extends Annotation{}
+class LumineTransient extends Annotation
+{
+}

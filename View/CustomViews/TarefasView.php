@@ -46,8 +46,8 @@ class TarefasView extends GenericView
             $dataF = new DateTime($data[0]);
             parent::$templator->setVariable("date", $dataF->format('d-m-Y'));
             parent::$templator->setVariable("user", $usuario->nomeCompleto);
-            parent::$templator->setVariable("prioridade", $prioridade->des);
-            parent::$templator->setVariable("situacao", $situacao->des);
+            parent::$templator->setVariable("prioridade",$prioridade->des);
+            parent::$templator->setVariable("situacao",utf8_encode($situacao->des));
             parent::$templator->setVariable("abreviacao", Convert::minification($tar->descricao, 20));
             parent::$templator->setVariable("descricao", $tar->descricao);
             parent::$templator->addBlock("tarefas");

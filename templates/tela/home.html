@@ -1,5 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="pt">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,102 +12,101 @@
             margin-bottom: 0;
         }
 
+        table {
+            background-color: transparent;
+            margin-bottom: 0;
+        }
 
-        table {  
-          background-color: transparent;
-          margin-bottom: 0;
-      }
-
-      tr, tr.fc-minor, thead {  
-          background: initial;
-      }
-  </style>
+        tr, tr.fc-minor, thead {
+            background: initial;
+        }
+    </style>
 
 </head>
 <body>
-    <!--top bar bagin -->
-    <!-- $Include templates/lib/html/header.html -->
-    <!--top bar end-->
+<!--top bar bagin -->
+<!-- $Include templates/lib/html/header.html -->
+<!--top bar end-->
 
-    <script type="text/javascript">
-        var events =  [{ id: 1, title: 'All Day Event', start: '2015-09-01', end : '2015-09-01'}];
-    </script>
-    <!-- body section-->
-    <!-- title -->
-    <div class="row full-width" style="margin-top:40px;">
-        <div class="medium-8 columns" id="calendar">
+<script type="text/javascript">
+    var events = [{id: 1, title: 'All Day Event', start: '2015-09-01', end: '2015-09-01'}];
+</script>
+<!-- body section-->
+<!-- title -->
+<div class="row full-width" style="margin-top:40px;">
+    <div class="medium-8 columns" id="calendar">
 
-        </div>
-        <div class="medium-4 columns" style="margin-top: 74px">
-            <div class="panel">
-                <h5>Legenda de Eventos</h5>
+    </div>
+    <div class="medium-4 columns" style="margin-top: 74px">
+        <div class="panel">
+            <h5>Legenda de Eventos</h5>
 
-                <p><i class="fa fa-square" style="color:#007f01"></i> Tarefa com prioridade baixa!</p>
+            <p><i class="fa fa-square" style="color:#007f01"></i> Tarefa com prioridade baixa!</p>
 
-                <p><i class="fa fa-square" style="color:#fdfd01"></i> Tarefa com prioridade normal!</p>
+            <p><i class="fa fa-square" style="color:#fdfd01"></i> Tarefa com prioridade normal!</p>
 
-                <p><i class="fa fa-square" style="color:#fd0001"></i> Tarefa com prioridade alta!</p>
+            <p><i class="fa fa-square" style="color:#fd0001"></i> Tarefa com prioridade alta!</p>
 
-                <p><i class="fa fa-square" style="color:#000001"></i> Tarefa finalizada!</p>
+            <p><i class="fa fa-square" style="color:#000001"></i> Tarefa finalizada!</p>
 
-                <p><i class="fa fa-square" style="color:#3985ab"></i> Outros eventos!</p>
-            </div>
+            <p><i class="fa fa-square" style="color:#3985ab"></i> Outros eventos!</p>
         </div>
     </div>
+</div>
 
 
-    <!-- end modal sections -->
-    <link rel="stylesheet" href="templates/lib/calendar/fullcalendar.css"/>
+<!-- end modal sections -->
+<link rel="stylesheet" href="templates/lib/calendar/fullcalendar.css"/>
 
-    <link rel="stylesheet" href="templates/lib/css/foundation.css"/>
-    <link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="templates/lib/css/foundation.css"/>
+<link rel="stylesheet" href="templates/lib/css/font-awesome/css/font-awesome.min.css"/>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="templates/lib/js/foundation.min.js"></script>
-    <script src="templates/lib/calendar/lib/moment.min.js"></script>
-
-
-    <script src="templates/lib/js/ajax.js" type="text/javascript"></script>
-    <script src="templates/lib/calendar/lib/jquery-ui.custom.min.js"></script>
-    <script src="templates/lib/calendar/fullcalendar.min.js"></script>
-    <script src="templates/lib/calendar/lang/pt-br.js"></script>
-
-    <script>
-        $(document).ready(function() {
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="templates/lib/js/foundation.min.js"></script>
+<script src="templates/lib/calendar/lib/moment.min.js"></script>
 
 
-            $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
+<script src="templates/lib/js/ajax.js" type="text/javascript"></script>
+<script src="templates/lib/calendar/lib/jquery-ui.custom.min.js"></script>
+<script src="templates/lib/calendar/fullcalendar.min.js"></script>
+<script src="templates/lib/calendar/lang/pt-br.js"></script>
 
-                editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                events: events,
-                viewRender: function (view, element) {
-                    var b = $('#calendar').fullCalendar('getDate');
-                    getFeed(b.format('L'));
-                }
+<script>
+    $(document).ready(function () {
 
-            });
 
-            //Fim ready;
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            events: events,
+            viewRender: function (view, element) {
+                var b = $('#calendar').fullCalendar('getDate');
+                getFeed(b.format('L'));
+            }
+
         });
 
-        function getFeed(data){
-            sendAjax('index.php?uc=home&a=feed','POST',{'data': data}, function(data){
-                var temp = JSON.parse(data);
-                $('#calendar').fullCalendar('removeEvents');
-                $('#calendar').fullCalendar('addEventSource', temp);
-                $('#calendar').fullCalendar('renderEvents');
-            });
-        }
+        //Fim ready;
+    });
 
-        $(document).foundation();
+    function getFeed(data) {
+        sendAjax('index.php?uc=home&a=feed', 'POST', {'data': data}, function (data) {
+            var temp = JSON.parse(data);
+            $('#calendar').fullCalendar('removeEvents');
+            $('#calendar').fullCalendar('addEventSource', temp);
+            $('#calendar').fullCalendar('renderEvents');
+        });
+    }
 
-    </script>
+    $(document).foundation();
+
+</script>
 
 </body>
 </html>

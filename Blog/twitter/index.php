@@ -18,160 +18,170 @@ https://github.com/themattharris/tmhOAuth
 
  */
 
-if(empty($_POST)) { die(); }
+if (empty($_POST)) {
+    die();
+}
 
-class ezTweet {
-	/*************************************** config ***************************************/
+class ezTweet
+{
+    /*************************************** config ***************************************/
 
-   // Your Twitter App Consumer Key
-	private $consumer_key = "N8Wrfk3NCnV2V0yjmA";//'YOUR_CONSUMER_KEY';
+    // Your Twitter App Consumer Key
+    private $consumer_key = "N8Wrfk3NCnV2V0yjmA";//'YOUR_CONSUMER_KEY';
 
-	// Your Twitter App Consumer Secret
-	private $consumer_secret = "5xU4LFgrTeQ0uv8D97VnQkipadb4e84OEBiTKXESs";//'YOUR_CONSUMER_SECRET';
+    // Your Twitter App Consumer Secret
+    private $consumer_secret = "5xU4LFgrTeQ0uv8D97VnQkipadb4e84OEBiTKXESs";//'YOUR_CONSUMER_SECRET';
 
-	// Your Twitter App Access Token
-	private $user_token = "129705968-WQ1IUbIBH09A9cpTjzmuLUX5JtsBJrbGzlsGdiYE";//'YOUR_ACCESS_TOKEN';
+    // Your Twitter App Access Token
+    private $user_token = "129705968-WQ1IUbIBH09A9cpTjzmuLUX5JtsBJrbGzlsGdiYE";//'YOUR_ACCESS_TOKEN';
 
-	// Your Twitter App Access Token Secret
-	private $user_secret = "55zqy4pE2qbs4zolVtLOVA8n4y6fmM3V7KrEOSpRfo";//'YOUR_ACCESS_TOKEN_SECRET';
+    // Your Twitter App Access Token Secret
+    private $user_secret = "55zqy4pE2qbs4zolVtLOVA8n4y6fmM3V7KrEOSpRfo";//'YOUR_ACCESS_TOKEN_SECRET';
 
-	// Path to tmhOAuth libraries
-	private $lib = './lib/';
+    // Path to tmhOAuth libraries
+    private $lib = './lib/';
 
-	// Enable caching
-	private $cache_enabled = true;
+    // Enable caching
+    private $cache_enabled = true;
 
-	// Cache interval (minutes)
-	private $cache_interval = 15;
+    // Cache interval (minutes)
+    private $cache_interval = 15;
 
-	// Path to writable cache directory
-	private $cache_dir = './';
+    // Path to writable cache directory
+    private $cache_dir = './';
 
-	// Enable debugging
-	private $debug = true;
+    // Enable debugging
+    private $debug = true;
 
-	/**************************************************************************************/
+    /**************************************************************************************/
 
-	public function __construct() {
-		// Initialize paths and etc.
-		$this->pathify($this->cache_dir);
-		$this->pathify($this->lib);
-		$this->message = '';
+    public function __construct()
+    {
+        // Initialize paths and etc.
+        $this->pathify($this->cache_dir);
+        $this->pathify($this->lib);
+        $this->message = '';
 
-		// Set server-side debug params
-		if($this->debug === true) {
-			error_reporting(-1);
-		} else {
-			error_reporting(0);
-		}
-	}
+        // Set server-side debug params
+        if ($this->debug === true) {
+            error_reporting(-1);
+        } else {
+            error_reporting(0);
+        }
+    }
 
-	public function fetch() {
-		echo json_encode(
-			array(
-				'response' => json_decode($this->getJSON(), true),
-				'message' => ($this->debug) ? $this->message : false
-			)
-		);
-	}
+    private function pathify(&$path)
+    {
+        // Ensures our user-specified paths are up to snuff
+        $path = realpath($path) . '/';
+    }
 
-	private function getJSON() {
-		if($this->cache_enabled === true) {
-			$CFID = $this->generateCFID();
-			$cache_file = $this->cache_dir.$CFID;
+    public function fetch()
+    {
+        echo json_encode(
+            array(
+                'response' => json_decode($this->getJSON(), true),
+                'message' => ($this->debug) ? $this->message : false
+            )
+        );
+    }
 
-			if(file_exists($cache_file) && (filemtime($cache_file) > (time() - 60 * intval($this->cache_interval)))) {
-				return file_get_contents($cache_file, FILE_USE_INCLUDE_PATH);
-			} else {
+    private function getJSON()
+    {
+        if ($this->cache_enabled === true) {
+            $CFID = $this->generateCFID();
+            $cache_file = $this->cache_dir . $CFID;
 
-				$JSONraw = $this->getTwitterJSON();
-				$JSON = $JSONraw['response'];
+            if (file_exists($cache_file) && (filemtime($cache_file) > (time() - 60 * intval($this->cache_interval)))) {
+                return file_get_contents($cache_file, FILE_USE_INCLUDE_PATH);
+            } else {
 
-				// Don't write a bad cache file if there was a CURL error
-				if($JSONraw['errno'] != 0) {
-					$this->consoleDebug($JSONraw['error']);
-					return $JSON;
-				}
+                $JSONraw = $this->getTwitterJSON();
+                $JSON = $JSONraw['response'];
 
-				if($this->debug === true) {
-					// Check for twitter-side errors
-					$pj = json_decode($JSON, true);
-					if(isset($pj['errors'])) {
-						foreach($pj['errors'] as $error) {
-							$message = 'Twitter Error: "'.$error['message'].'", Error Code #'.$error['code'];
-							$this->consoleDebug($message);
-						}
-						return false;
-					}
-				}
+                // Don't write a bad cache file if there was a CURL error
+                if ($JSONraw['errno'] != 0) {
+                    $this->consoleDebug($JSONraw['error']);
+                    return $JSON;
+                }
 
-				if(is_writable($this->cache_dir) && $JSONraw) {
-					if(file_put_contents($cache_file, $JSON, LOCK_EX) === false) {
-						$this->consoleDebug("Error writing cache file");
-					}
-				} else {
-					$this->consoleDebug("Cache directory is not writable");
-				}
-				return $JSON;
-			}
-		} else {
-			$JSONraw = $this->getTwitterJSON();
+                if ($this->debug === true) {
+                    // Check for twitter-side errors
+                    $pj = json_decode($JSON, true);
+                    if (isset($pj['errors'])) {
+                        foreach ($pj['errors'] as $error) {
+                            $message = 'Twitter Error: "' . $error['message'] . '", Error Code #' . $error['code'];
+                            $this->consoleDebug($message);
+                        }
+                        return false;
+                    }
+                }
 
-			if($this->debug === true) {
-				// Check for CURL errors
-				if($JSONraw['errno'] != 0) {
-					$this->consoleDebug($JSONraw['error']);
-				}
+                if (is_writable($this->cache_dir) && $JSONraw) {
+                    if (file_put_contents($cache_file, $JSON, LOCK_EX) === false) {
+                        $this->consoleDebug("Error writing cache file");
+                    }
+                } else {
+                    $this->consoleDebug("Cache directory is not writable");
+                }
+                return $JSON;
+            }
+        } else {
+            $JSONraw = $this->getTwitterJSON();
 
-				// Check for twitter-side errors
-				$pj = json_decode($JSONraw['response'], true);
-				if(isset($pj['errors'])) {
-					foreach($pj['errors'] as $error) {
-						$message = 'Twitter Error: "'.$error['message'].'", Error Code #'.$error['code'];
-						$this->consoleDebug($message);
-					}
-					return false;
-				}
-			}
-			return $JSONraw['response'];
-		}
-	}
+            if ($this->debug === true) {
+                // Check for CURL errors
+                if ($JSONraw['errno'] != 0) {
+                    $this->consoleDebug($JSONraw['error']);
+                }
 
-	private function getTwitterJSON() {
-		require $this->lib.'tmhOAuth.php';
-		require $this->lib.'tmhUtilities.php';
+                // Check for twitter-side errors
+                $pj = json_decode($JSONraw['response'], true);
+                if (isset($pj['errors'])) {
+                    foreach ($pj['errors'] as $error) {
+                        $message = 'Twitter Error: "' . $error['message'] . '", Error Code #' . $error['code'];
+                        $this->consoleDebug($message);
+                    }
+                    return false;
+                }
+            }
+            return $JSONraw['response'];
+        }
+    }
 
-		$tmhOAuth = new tmhOAuth(array(
-			'host'                  => $_POST['request']['host'],
-			'consumer_key'          => $this->consumer_key,
-			'consumer_secret'       => $this->consumer_secret,
-			'user_token'            => $this->user_token,
-			'user_secret'           => $this->user_secret,
-			'curl_ssl_verifypeer'   => false
-		));
+    private function generateCFID()
+    {
+        // The unique cached filename ID
+        return md5(serialize($_POST)) . '.json';
+    }
 
-		$url = $_POST['request']['url'];
-		$params = $_POST['request']['parameters'];
+    private function getTwitterJSON()
+    {
+        require $this->lib . 'tmhOAuth.php';
+        require $this->lib . 'tmhUtilities.php';
 
-		$tmhOAuth->request('GET', $tmhOAuth->url($url), $params);
-		return $tmhOAuth->response;
-	}
+        $tmhOAuth = new tmhOAuth(array(
+            'host' => $_POST['request']['host'],
+            'consumer_key' => $this->consumer_key,
+            'consumer_secret' => $this->consumer_secret,
+            'user_token' => $this->user_token,
+            'user_secret' => $this->user_secret,
+            'curl_ssl_verifypeer' => false
+        ));
 
-	private function generateCFID() {
-		// The unique cached filename ID
-		return md5(serialize($_POST)).'.json';
-	}
+        $url = $_POST['request']['url'];
+        $params = $_POST['request']['parameters'];
 
-	private function pathify(&$path) {
-		// Ensures our user-specified paths are up to snuff
-		$path = realpath($path).'/';
-	}
+        $tmhOAuth->request('GET', $tmhOAuth->url($url), $params);
+        return $tmhOAuth->response;
+    }
 
-	private function consoleDebug($message) {
-		if($this->debug === true) {
-			$this->message .= 'tweet.js: '.$message."\n";
-		}
-	}
+    private function consoleDebug($message)
+    {
+        if ($this->debug === true) {
+            $this->message .= 'tweet.js: ' . $message . "\n";
+        }
+    }
 }
 
 $ezTweet = new ezTweet;

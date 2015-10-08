@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pt">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
     <!-- init script and css -->
     <!-- $Include templates/lib/html/scripthead.html -->
@@ -34,185 +36,185 @@
 
 <!-- body section-->
 
-<!-- title -->  
-    <div class="row full-width">
-        <div class="medium-12 columns ">
-            <h3>RECIBOS</h3>
+<!-- title -->
+<div class="row full-width">
+    <div class="medium-12 columns ">
+        <h3>RECIBOS</h3>
+    </div>
+</div>
+
+<!-- botões -->
+<div class="row full-width">
+    <div class="medium-12 columns">
+        <button class="button success small cadastrar"><i class="fa fa-plus fa-lg"></i> Cadastro Recibo</button>
+        <button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas
+        </button>
+    </div>
+</div>
+
+<!-- container main -->
+<div class="row full-width">
+    <div class="medium-12 columns">
+        <!-- tabela -->
+        <table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
+            <thead>
+            <tr>
+                <th>COD</th>
+                <th>RECEBI DE</th>
+                <th>EM</th>
+                <th>O VALOR DE</th>
+                <th>REFERENTE</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- $BeginBlock row -->
+            <tr>
+                <td>${recibo.id}</td>
+                <td>${recibo.recebido_de}</td>
+                <td>${recibo.data_recibo}</td>
+                <td>${recibo.valor}</td>
+                <td>${recibo.referente}</td>
+                <td>
+                    <a href="index.php?uc=recibos&a=gerarRecibo&codigo=${recibo.id}"
+                       style="font-size: 16px; margin-right: 8px;" target="popup"><i class="fa fa-print"></i></a>
+                </td>
+                <td>
+                    <button class="alterar fix" value="${recibo.id}"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="fix del" value="${recibo.id}"><i class="fa fa-trash"></i></button>
+                </td>
+
+            </tr>
+            <!-- $EndBlock row -->
+            </tbody>
+
+            <tfoot>
+            <tr>
+                <th>COD</th>
+                <th>RECEBI DE</th>
+                <th>EM</th>
+                <th>O VALOR DE</th>
+                <th>REFERENTE</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </tfoot>
+        </table>
+        <!-- fim tabela -->
+    </div>
+</div>
+<!-- end body section-->
+
+
+<!-- modal sections -->
+
+
+<!-- nova venda -->
+<div id="novo_recibo" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+     role="dialog">
+
+    <h2 id="modalTitle">Cadastro Recibo</h2>
+
+    <p class="lead">Insira os dados abaixo</p>
+    <!-- formulário -->
+
+    <form id="form_recibo" data-abide="ajax">
+
+        <!-- primeira linha -->
+        <div class="row">
+            <div class="medium-4 columns">
+                <label>Emissor <input type="text" name="emissor"/> </label>
+            </div>
+
+            <div class="medium-8 columns">
+                <label>Vias a imprimir
+                    <select name="viasId">
+                        <option value="">-Selecione-</option>
+                        <option value="1">Apenas a 1ª via - cliente</option>
+                        <option value="2">Apenas a 2ª via - emissor</option>
+                        <option value="3">1ª e 2ª vias - cliente e emissor</option>
+                    </select>
+                </label>
+            </div>
         </div>
-    </div>
 
-    <!-- botões -->
-    <div class="row full-width">
-        <div class="medium-12 columns">
-            <button class="button success small cadastrar"><i class="fa fa-plus fa-lg"></i> Cadastro Recibo</button>
-            <button class="button secondary small"><i class="fa fa-tags fa-lg" style="margin-right:4px"></i>Etiquetas
-            </button>
+        <!-- segunda linha -->
+        <div class="row">
+            <div class="medium-4 columns">
+                <label>Recebi de <input list="recebi" type="text" name="recebidoDe"></label>
+                <datalist id="recebi">
+                    <!-- $BeginBlock contato -->
+                    <option value="${nome}">
+                        <!-- $EndBlock  contato -->
+                </datalist>
+            </div>
+
+            <div class="medium-4 columns">
+                <label>CPF ou CNPJ <input type="text" name="cpfCnpj"/> </label>
+            </div>
+
+            <div class="medium-4 columns">
+                <label>Valor pago<input type="number" name="valorPago"/> </label>
+            </div>
         </div>
-    </div>
 
-    <!-- container main -->
-    <div class="row full-width">
-        <div class="medium-12 columns">
-            <!-- tabela -->
-            <table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
-                <thead>
-                <tr>
-                    <th>COD</th>
-                    <th>RECEBI DE</th>
-                    <th>EM</th>
-                    <th>O VALOR DE</th>
-                    <th>REFERENTE</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- $BeginBlock row -->
-                <tr>
-                    <td>${recibo.id}</td>
-                    <td>${recibo.recebido_de}</td>
-                    <td>${recibo.data_recibo}</td>
-                    <td>${recibo.valor}</td>
-                    <td>${recibo.referente}</td>
-                    <td>
-                        <a href="index.php?uc=recibos&a=gerarRecibo&codigo=${recibo.id}"
-                           style="font-size: 16px; margin-right: 8px;" target="popup"><i class="fa fa-print"></i></a>
-                    </td>
-                    <td>
-                        <button class="alterar fix" value="${recibo.id}"><i class="fa fa-pencil-square-o"></i></button>
-                        <button class="fix del" value="${recibo.id}"><i class="fa fa-trash"></i></button>
-                    </td>
+        <!-- terceira linha -->
+        <div class="row">
+            <div class="medium-4 columns">
+                <label>Data recibo <input type="text" class="calendar" value="${data_now}" name="dataRecibo"/>
+                </label>
+            </div>
 
-                </tr>
-                <!-- $EndBlock row -->
-                </tbody>
-
-                <tfoot>
-                <tr>
-                    <th>COD</th>
-                    <th>RECEBI DE</th>
-                    <th>EM</th>
-                    <th>O VALOR DE</th>
-                    <th>REFERENTE</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </tfoot>
-            </table>
-            <!-- fim tabela -->
+            <div class="medium-8 columns">
+                <label>Referente a <input type="text" name="referente"/> </label>
+            </div>
         </div>
-    </div>
-    <!-- end body section-->
-
-
-    <!-- modal sections -->
-
-
-    <!-- nova venda -->
-    <div id="novo_recibo" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
-         role="dialog">
-
-        <h2 id="modalTitle">Cadastro Recibo</h2>
-
-        <p class="lead">Insira os dados abaixo</p>
-        <!-- formulário -->
-
-        <form id="form_recibo" data-abide="ajax">
-
-            <!-- primeira linha -->
-            <div class="row">
-                <div class="medium-4 columns">
-                    <label>Emissor <input type="text" name="emissor"/> </label>
-                </div>
-
-                <div class="medium-8 columns">
-                    <label>Vias a imprimir
-                        <select name="viasId">
-                            <option value="">-Selecione-</option>
-                            <option value="1">Apenas a 1ª via - cliente</option>
-                            <option value="2">Apenas a 2ª via - emissor</option>
-                            <option value="3">1ª e 2ª vias - cliente e emissor</option>
-                        </select>
-                    </label>
+        <!-- botões -->
+        <div class="row">
+            <div class="medium-12 columns">
+                <div class="panel clearfix">
+                    <button type="submit" class="button tiny success right">Salvar</button>
                 </div>
             </div>
-
-            <!-- segunda linha -->
-            <div class="row">
-                <div class="medium-4 columns">
-                    <label>Recebi de <input list="recebi" type="text" name="recebidoDe"></label>
-                    <datalist id="recebi">
-                        <!-- $BeginBlock contato -->
-                        <option value="${nome}">
-                            <!-- $EndBlock  contato -->
-                    </datalist>
-                </div>
-
-                <div class="medium-4 columns">
-                    <label>CPF ou CNPJ <input type="text" name="cpfCnpj"/> </label>
-                </div>
-
-                <div class="medium-4 columns">
-                    <label>Valor pago<input type="number" name="valorPago"/> </label>
-                </div>
-            </div>
-
-            <!-- terceira linha -->
-            <div class="row">
-                <div class="medium-4 columns">
-                    <label>Data recibo <input type="text" class="calendar" value="${data_now}" name="dataRecibo"/>
-                    </label>
-                </div>
-
-                <div class="medium-8 columns">
-                    <label>Referente a <input type="text" name="referente"/> </label>
-                </div>
-            </div>
-            <!-- botões -->
-            <div class="row">
-                <div class="medium-12 columns">
-                    <div class="panel clearfix">
-                        <button type="submit" class="button tiny success right">Salvar</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <!-- fim formulário -->
-        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-    </div>
+        </div>
+    </form>
+    <!-- fim formulário -->
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
 <!--top bar begin -->
 <!-- $Include templates/lib/html/closeDash.html -->
 <!--top bar end-->
 <!--footer begin -->
-    <!-- $Include templates/lib/html/footer.html -->
-    <!--footer end-->
+<!-- $Include templates/lib/html/footer.html -->
+<!--footer end-->
 
 
-    <script>
-        $(document).foundation();
+<script>
+    $(document).foundation();
 
-        $(document).ready(function () {
-            //calendar
-            $(".calendar").on('keydown', function (e) {
-                e.preventDefault();
-            });
-            $(".calendar").bind('paste', function (e) {
-                e.preventDefault();
-            });
-            $('.calendar').dateRangePicker(
-                    {
-                        startOfWeek: 'monday',
-                        format: 'YYYY-MM-DD',
-                        autoClose: true,
-                        singleDate: true,
-                        showShortcuts: false
-                    });
-            $(document).Conf();
-            $(document).Crud('recibos', '#novo_recibo', function (data) {
-                alertify.log(data);
-            })
+    $(document).ready(function () {
+        //calendar
+        $(".calendar").on('keydown', function (e) {
+            e.preventDefault();
         });
-    </script>
+        $(".calendar").bind('paste', function (e) {
+            e.preventDefault();
+        });
+        $('.calendar').dateRangePicker(
+                {
+                    startOfWeek: 'monday',
+                    format: 'YYYY-MM-DD',
+                    autoClose: true,
+                    singleDate: true,
+                    showShortcuts: false
+                });
+        $(document).Conf();
+        $(document).Crud('recibos', '#novo_recibo', function (data) {
+            alertify.log(data);
+        })
+    });
+</script>
 </body>
 <!--footer bagin -->
 <!-- $Include templates/lib/html/footertag.html -->

@@ -6,6 +6,7 @@
  * Time: 08:30
  */
 require_once(PATH . 'Util' . DS . 'annotations.php');
+
 class Firewall extends Annotation
 {
     public static function filtro()
@@ -19,10 +20,18 @@ class Firewall extends Annotation
 
     public static function defender($uc, $meth)
     {
-        if(!self::isAuthenticated())
-            return false; 
+        if (!self::isAuthenticated())
+            return false;
 
         return self::getClassAnnotations($uc, $meth);
+    }
+
+    public static function isAuthenticated()
+    {
+        if (empty($_SESSION["empresaId"]) || $_SESSION['empresaId'] == null)
+            return false;
+
+        return true;
     }
 
     private static function getClassAnnotations($uc, $meth)
@@ -35,13 +44,6 @@ class Firewall extends Annotation
             foreach ($_SESSION['Permissao'] as $value) if (in_array($value, $annotation)) $ok = true;
         return $ok;
     }
-
-     public static function isAuthenticated(){
-        if( empty($_SESSION["empresaId"]) || $_SESSION['empresaId'] == null  )
-            return false; 
-
-        return true; 
-     }
 }
 
 ?>

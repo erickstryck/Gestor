@@ -33,7 +33,7 @@ if (empty($_REQUEST['uc']) || empty($_REQUEST['a'])) {
 
 
 $_SESSION['Permissao'] = array('administrador');
-$_SESSION['usuarioId']=1;
+$_SESSION['usuarioId'] = 1;
 (new MainController())->findMyController();
 
 //Ainda em digivolvimento

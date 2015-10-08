@@ -180,7 +180,7 @@ class Font_TrueType extends Font_Binary_Stream
     protected $data = array();
     protected $glyph_subset = array();
     protected $glyph_all = array();
-private $tableOffset = 0;
+    private $tableOffset = 0;
 
     function getTable()
     {

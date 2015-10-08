@@ -7,18 +7,18 @@
     //O array de configuração tem que estar neste formato:
     //data = {delete: 'info', alterar : 'info', cadastro : 'info'};
     //data = {alterar : 'info'};
-    
 
-    function parse(data){
-        try{
+
+    function parse(data) {
+        try {
             data = jQuery.parseJSON(data);
-            data.status = true; 
+            data.status = true;
         }
-        catch(e){
+        catch (e) {
             data.status = false;
         }
 
-        return data;    
+        return data;
     }
 
     $.fn.Conf = function (conf) {
@@ -82,9 +82,9 @@
             //select, input, checbox;
             data = parse(data);
 
-            if(!data.status){
-                alertify.error("Error ao tentar reestabelecer o formulário."); 
-                return; 
+            if (!data.status) {
+                alertify.error("Error ao tentar reestabelecer o formulário.");
+                return;
             }
 
             console.log("inputs > ");

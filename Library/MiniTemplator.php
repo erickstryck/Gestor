@@ -788,7 +788,7 @@ class MiniTemplator
             $this->triggerError("Variable \"$variableName\" not defined in template.");
             return false;
         }
-        $this->varTab[$varNo]['varValue'] = utf8_encode($variableValue);
+        $this->varTab[$varNo]['varValue'] = $variableValue;
         return true;
     }
 

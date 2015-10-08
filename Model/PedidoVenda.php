@@ -8,10 +8,10 @@
  * @package Model
  *
  */
+class PedidoVenda extends Lumine_Base
+{
 
-class PedidoVenda extends Lumine_Base {
 
-    
     public $id;
     public $dataVenda;
     public $dataEntrega;
@@ -26,9 +26,8 @@ class PedidoVenda extends Lumine_Base {
     public $contatoId;
     public $formapagamentos = array();
     public $pedidovendahasprodutos = array();
-    
-    
-    
+
+
     /**
      * Inicia os valores da classe
      * @author Hugo Ferreira da Silva
@@ -38,9 +37,9 @@ class PedidoVenda extends Lumine_Base {
     {
         $this->metadata()->setTablename('pedido_venda');
         $this->metadata()->setPackage('Model');
-        
+
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
-        
+
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->metadata()->addField('dataVenda', 'data_venda', 'date', null, array());
         $this->metadata()->addField('dataEntrega', 'data_entrega', 'date', null, array());
@@ -54,7 +53,7 @@ class PedidoVenda extends Lumine_Base {
         $this->metadata()->addField('usuarioId', 'usuario_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Usuario'));
         $this->metadata()->addField('contatoId', 'contato_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Contato'));
 
-        
+
         $this->metadata()->addRelation('formapagamentos', Lumine_Metadata::ONE_TO_MANY, 'FormaPagamento', 'pedidoVendaId', null, null, null);
         $this->metadata()->addRelation('pedidovendahasprodutos', Lumine_Metadata::ONE_TO_MANY, 'PedidoVendaHasProduto', 'pedidoVendaId', null, null, null);
     }

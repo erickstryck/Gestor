@@ -1,6 +1,6 @@
 <?php
 require_once(PATH . 'Controller' . DS . 'GenericController.php');
-require_once(PATH . 'Util'. DS . 'Convert.php'); 
+require_once(PATH . 'Util' . DS . 'Convert.php');
 
 
 //VER A PROBABILIDADE DESSA CLASSE SER VULNERÁVEL A SQL INJECTION. 
@@ -54,9 +54,9 @@ class AjaxServices extends GenericController
         Lumine::import("Produto");
         Lumine::import("Categoria");
 
-     
+
         $produto = new Produto();
-        $categoria = new Categoria(); 
+        $categoria = new Categoria();
 
         $clausura = "";
 
@@ -80,7 +80,7 @@ class AjaxServices extends GenericController
         while ($produto->fetch()) {
             $categoria = new Categoria();
             $categoria->get("id", $produto->categoriaId);
-            array_push($array, array('id' => Convert::zeroEsquerda($produto->id) , 'produto' => $produto->nome, 'codigo_personalizado' => $produto->codigoPersonalizado, 'estoque_atual' => $produto->estoqueAtual, 'categoria' => $categoria->nomeCategoria));
+            array_push($array, array('id' => Convert::zeroEsquerda($produto->id), 'produto' => $produto->nome, 'codigo_personalizado' => $produto->codigoPersonalizado, 'estoque_atual' => $produto->estoqueAtual, 'categoria' => $categoria->nomeCategoria));
         }
 
         die(json_encode($array));

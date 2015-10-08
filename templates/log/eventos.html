@@ -1,5 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="pt">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
     <!-- init script and css -->
     <!-- $Include templates/lib/html/scripthead.html -->
@@ -44,21 +46,23 @@
 <div class="row full-width">
     <div class="medium-12 columns">
         <p>Será mostrado apenas 500 registros, use os campos abaixo para uma busca mais objetiva.</p>
-        <p>Você poderá escolher uma faixa de dias e horas no calendário abaixo, selecione e arraste um intervalo do calendário esquerdo para o calendário direito!</p>
+
+        <p>Você poderá escolher uma faixa de dias e horas no calendário abaixo, selecione e arraste um intervalo do
+            calendário esquerdo para o calendário direito!</p>
     </div>
 </div>
 <!-- botao -->
 <div class="row full-width">
     <form id="form" data-abide="ajax">
         <div class="medium-3 columns">
-            <label>Intervalo  <input name="intervalo" type="text" id="date" value="" size="60" onkeydown="limpar(this)"></label>
+            <label>Intervalo <input name="intervalo" type="text" id="date" value="" size="60" onkeydown="limpar(this)"></label>
         </div>
         <div class="medium-1 columns end">
             <button class="button success tiny"
                     style="margin-top: 21px; border-left-width: 0px; margin-left: -9px;"><i class="fa fa-search"></i>
             </button>
         </div>
-        <input type="hidden" id="check" name="check" value="1" />
+        <input type="hidden" id="check" name="check" value="1"/>
     </form>
 </div>
 <!-- botões -->
@@ -117,10 +121,10 @@
 <script>
     $(document).foundation();
     $(document).ready(function () {
-        $("#date").on( 'keydown', function( e ){
+        $("#date").on('keydown', function (e) {
             e.preventDefault();
         });
-        $("#date").bind('paste', function(e) {
+        $("#date").bind('paste', function (e) {
             e.preventDefault();
         });
         $("#form").on('valid.fndtn.abide', function () {
@@ -129,9 +133,9 @@
                 $("body").css("cursor", "default");
                 var resp = JSON.parse(resposta);
                 if (!resp["status"]) {
-                        alertify.error("A hora ou a Data inserida excede a hora e a data corrente! " +
-                                "Você não pode ver resgistros do futuro!");
-                    }
+                    alertify.error("A hora ou a Data inserida excede a hora e a data corrente! " +
+                            "Você não pode ver resgistros do futuro!");
+                }
                 if (resp["status"]) {
                     $("#check").val("");
                     var data = $("#form").serializeArray();
@@ -143,7 +147,7 @@
         $('#date').dateRangePicker(
                 {
                     startOfWeek: 'monday',
-                    separator : ' || ',
+                    separator: ' || ',
                     format: 'DD.MM.YYYY HH:mm',
                     autoClose: false,
                     time: {

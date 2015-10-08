@@ -17,8 +17,8 @@
 class Text_Frame_Reflower extends Frame_Reflower
 {
 
-        public static $_whitespace_pattern = "/[ \t\r\n\f]+/u"; // Nearest block-level ancestor
-/**
+    public static $_whitespace_pattern = "/[ \t\r\n\f]+/u"; // Nearest block-level ancestor
+    /**
      * @var Block_Frame_Decorator
      */
     protected $_block_parent;

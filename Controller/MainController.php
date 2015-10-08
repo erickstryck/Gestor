@@ -20,16 +20,16 @@ require_once(PATH . 'Security' . DS . 'Firewall.php');
 require_once(PATH . 'Security' . DS . 'EventLog.php');
 
 //Visão do controlador central
-require_once(PATH . 'View' . DS . 'CustomViews' . DS . 'TelaView.php' ); 
+require_once(PATH . 'View' . DS . 'CustomViews' . DS . 'TelaView.php');
 
 class MainController
 {
     private $controllersArray;
-    private $telaView; 
+    private $telaView;
 
     public function __construct()
     {
-        $this->telaView = new TelaView(); 
+        $this->telaView = new TelaView();
 
         // incluir todos os controllers espec�ficos aqui;
         $this->controllersArray = array(
@@ -45,10 +45,10 @@ class MainController
             'vendas' => new Vendas(),
             'ordemServico' => new OrdemServico(),
             'tarefas' => new Tarefas(),
-            'recibos' => new Recibos(), 
+            'recibos' => new Recibos(),
             'autenticar' => new Autenticar(),
-            'eventos' => new Eventos(), 
-            'cadastro' => new Cadastro(), 
+            'eventos' => new Eventos(),
+            'cadastro' => new Cadastro(),
             'contaRecipiente' => new ContaRecipiente()
         );
     }
@@ -60,11 +60,11 @@ class MainController
         // 2 A action existe no controlador?
         // 3 Invocar método;
         // 4 Gerar output.
-        $ev=new EventLog();
+        $ev = new EventLog();
         $useCase = $_REQUEST ['uc'];
         $action = $_REQUEST ['a'];
 
-       // if( $this->$controllersArray[$useCase] == null ) return;
+        // if( $this->$controllersArray[$useCase] == null ) return;
         $controller = $this->controllersArray [$useCase];
         $realNameMethod = '';
 
@@ -88,9 +88,9 @@ class MainController
                 die(json_encode(array('status' => false, 'msg' => 'Acesso negado.')));
             } else {
                 $ev->monitoramento('Acesso negado.');
-                $this->telaView->acessoNegado(); 
+                $this->telaView->acessoNegado();
             }
-        }else $ev->monitoramento('Status OK.');
+        } else $ev->monitoramento('Status OK.');
         return $reflection->invoke($controller, self::preparingArray($_REQUEST));
     }
 

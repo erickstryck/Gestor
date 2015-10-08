@@ -8,10 +8,10 @@
  * @package Model
  *
  */
+class Conta extends Lumine_Base
+{
 
-class Conta extends Lumine_Base {
 
-    
     public $id;
     public $receber;
     public $descricao;
@@ -33,9 +33,8 @@ class Conta extends Lumine_Base {
     public $tipoDocumentoId;
     public $paga;
     public $ativo;
-    
-    
-    
+
+
     /**
      * Inicia os valores da classe
      * @author Hugo Ferreira da Silva
@@ -45,9 +44,9 @@ class Conta extends Lumine_Base {
     {
         $this->metadata()->setTablename('conta');
         $this->metadata()->setPackage('Model');
-        
+
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
-        
+
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->metadata()->addField('receber', 'receber', 'boolean', 1, array());
         $this->metadata()->addField('descricao', 'descricao', 'varchar', 45, array());
@@ -70,7 +69,7 @@ class Conta extends Lumine_Base {
         $this->metadata()->addField('paga', 'paga', 'boolean', 1, array());
         $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
 
-        
+
     }
 
     #### END AUTOCODE

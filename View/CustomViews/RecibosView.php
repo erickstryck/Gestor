@@ -24,7 +24,7 @@ class RecibosView extends GenericView
         }
 
         //Colocando a data atual:
-        parent::$templator->setVariable('data_now', date('Y-m-d') );
+        parent::$templator->setVariable('data_now', date('Y-m-d'));
 
         //Adicionando elementos na tabela:
         Lumine::import("Recibo");
