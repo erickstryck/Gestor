@@ -152,6 +152,13 @@
     </section>
 </nav>
 <style>
+    ul{
+        list-style-type: none;
+    }
+    a{
+        text-decoration:none !important;
+        color:#ffffff !important;
+    }
     .left-off-canvas-menu {
         height: 100vh;
     }
@@ -161,7 +168,6 @@
         background-color: #0033DD;
         height: 119px !important;
     }
-
     .small-block-grid-3 li {
         color: white;
         text-align: center;
@@ -185,35 +191,41 @@
         <aside class="left-off-canvas-menu">
             <!-- whatever you want goes here -->
             <ul class="small-block-grid-3">
-                <li><i class="icon-money-cash"></i>
-                    Contas a pagar
+                <li><a href="index.php?uc=contas&a=novoPagamentoView"><i class="icon-money-cash"></i>
+                    Contas a pagar</a>
                 </li>
-                <li><i class="icon-walletalt"></i>
-                    Contas a receber
-                </li>
-            </ul>
-            <ul class="small-block-grid-3">
-                <li><i class="icon-store"></i>
-                    Vendas de produtos
-                </li>
-                <li><i class="icon-appointment-agenda"></i>
-                    Ordem de serviços
+                <li><a href="index.php?uc=contas&a=novoRecebimentoView"><i class="icon-walletalt"></i>
+                    Contas a receber</a>
                 </li>
             </ul>
             <ul class="small-block-grid-3">
-                <li><i class="icon-trolleyunload"></i>
-                    Ajuste de estoque
+                <li><a href="index.php?uc=vendas&a=novaVendaView"><i class="icon-store"></i>
+                    Vendas de produtos</a>
                 </li>
-                <li><i class="icon-invoice"></i>
-                    Relatórios
+                <li><a href="index.php?uc=ordemServico&a=novaOrdemView"><i class="icon-appointment-agenda"></i>
+                    Ordem de serviços</a>
                 </li>
             </ul>
             <ul class="small-block-grid-3">
-                <li><i class="icon-vaultthree"></i>
-                    Caixa
+                <li><a href="index.php?uc=estoques&a=novoAjusteView"><i class="icon-trolleyunload"></i>
+                    Ajuste de estoque</a>
                 </li>
-                <li><i class="icon-addtocart"></i>
-                    Produtos
+                <li><a href="#"><i class="icon-invoice"></i>
+                    Relatórios</a>
+                </li>
+            </ul>
+            <ul class="small-block-grid-3">
+                <li><a href="#"><i class="icon-vaultthree"></i>
+                    Caixa</a>
+                </li>
+
+                <li class="has-submenu"><a href="#"><i class="icon-addtocart"></i><br/>Produtos</a>
+                    <ul class="left-submenu">
+                        <li class="back" style="height: 21px !important;background-color:#333333;"><a href="#">Voltar</a></li>
+                        <li style="height: 21px !important; background-color:#333333;margin-bottom: 14px;"><label style="color: #ffffff;font-size: 20px; margin-bottom: 20px !important;">Meus Produtos</label></li>
+                        <li><a href="index.php?uc=produtos&a=novoProdutoView"><i class="icon-cartalt"></i>Produtos</a></li>
+                        <li><a href="index.php?uc=categorias&a=novaCategoriaView"><i class="icon-tagalt-pricealt"></i>Categorias</a></li>
+                    </ul>
                 </li>
             </ul>
         </aside>
