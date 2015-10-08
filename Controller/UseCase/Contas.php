@@ -44,7 +44,7 @@ class Contas extends GenericController
 
 
 
-        for( $a = 0 ; $a <= $vezes; $a++){
+        for( $a = 1 ; $a <= $vezes; $a++){
 
            switch ($intervalo->des) {
             case 'Dias':
