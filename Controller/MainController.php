@@ -82,7 +82,7 @@ class MainController
         }
 
         $reflection = new ReflectionMethod ($controller->sayMyName(), $realNameMethod);
-        if (!Firewall::defender($controller, $realNameMethod)) {
+        if (Firewall::defender($controller, $realNameMethod)) {
             if (strcmp($_SERVER['REQUEST_METHOD'], 'POST') == 0) {
                 $ev->monitoramento('Acesso negado.');
                 die(json_encode(array('status' => false, 'msg' => 'Acesso negado.')));

@@ -8,6 +8,7 @@ class Cadastro extends GenericController
     {
     }
 
+    
     public function cadastrar($arg)
     {
         Lumine::import("Empresa");

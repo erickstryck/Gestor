@@ -33,8 +33,10 @@ class Autenticar extends GenericController
 
         if ($empresa->usuarioId != $_SESSION['usuarioId'])
             die("Você não pode acessar essa empresa");
-        else
+        else{
+            $_SESSION['empresaId'] = $id; 
             $home->indexView();
+        }
     
     }
 
@@ -54,12 +56,20 @@ class Autenticar extends GenericController
 
         $_SESSION['usuarioId'] = (int)$usuario->id;
 
+        //TO-DO: Apenas para teste
+        $_SESSION['Permissao'] = array('administrador');
+
         $this->autenticarView->sendAjax(array('status' => true));
     }
 
-    public function empresaView()
-    {
+    public function logout(){
+        session_destroy(); 
 
+        $arg['done'] = false;
+        $this->autenticarView->loginView($arg); 
+    }
+
+    public function empresaView(){
         $this->autenticarView->loginEmpresaView();
     }
 

@@ -20,15 +20,10 @@ class Firewall extends Annotation
 
     public static function defender($uc, $meth)
     {
-
-        if(!self::isAuthenticated($uc, $meth))
-            return false; 
-
-        if (!self::isAuthenticated())
-            return false;
-
-
-        return self::getClassAnnotations($uc, $meth);
+        //true = defender;
+        
+        //var_dump(!self::allowAcess($uc, $meth)); 
+        return !self::allowAcess($uc, $meth); 
     }
 
     //Retorna as anotações da classe requisitada. 
@@ -41,7 +36,7 @@ class Firewall extends Annotation
 
 
     public static function isAuthenticated(){
-        if( !isset($_SESSION['empresaId']) && !isset($_SESSION['usuarioId'] ) )
+        if( !isset($_SESSION['empresaId']) || !isset($_SESSION['usuarioId'] ) )
             return false; 
 
         return true; 
@@ -51,11 +46,18 @@ class Firewall extends Annotation
     private static function allowAcess($uc, $meth){
         $annotation = self::getClassAnnotations($uc, $meth);
 
-        //A classe não há restrição de acesso 
+        //A classe não há restrição de acesso
         if( empty($annotation) )
             return true;
+
+        if(isset($_SESSION['Permissao']) && is_array($_SESSION['Permissao']) ){
+            foreach($annotation as $a )
+                if(in_array($a, $_SESSION['Permissao']))
+                    return true;
+
+        }
+
+            return false;
     }
 
 }
-
-?>
