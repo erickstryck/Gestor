@@ -20,30 +20,42 @@ class Firewall extends Annotation
 
     public static function defender($uc, $meth)
     {
+
+        if(!self::isAuthenticated($uc, $meth))
+            return false; 
+
         if (!self::isAuthenticated())
             return false;
+
 
         return self::getClassAnnotations($uc, $meth);
     }
 
-    public static function isAuthenticated()
-    {
-        if (empty($_SESSION["empresaId"]) || $_SESSION['empresaId'] == null)
-            return false;
+    //Retorna as anotações da classe requisitada. 
+    private static function getClassAnnotations($uc, $meth){
+        $acesso = new ReflectionAnnotatedMethod($uc, $meth); 
+        if (!$acesso->hasAnnotation('Permissao')) return null;
 
-        return true;
+        return $annotation = $acesso->getAnnotation('Permissao')->value;
     }
 
-    private static function getClassAnnotations($uc, $meth)
-    {
-        $ok = false;
-        $acesso = new ReflectionAnnotatedMethod($uc, $meth);
-        if (!$acesso->hasAnnotation('Permissao')) return true;
-        $annotation = $acesso->getAnnotation('Permissao')->value;
-        if (array_key_exists('Permissao', $_SESSION) && $annotation != null)
-            foreach ($_SESSION['Permissao'] as $value) if (in_array($value, $annotation)) $ok = true;
-        return $ok;
+
+    public static function isAuthenticated(){
+        if( !isset($_SESSION['empresaId']) && !isset($_SESSION['usuarioId'] ) )
+            return false; 
+
+        return true; 
     }
+
+
+    private static function allowAcess($uc, $meth){
+        $annotation = self::getClassAnnotations($uc, $meth);
+
+        //A classe não há restrição de acesso 
+        if( empty($annotation) )
+            return true;
+    }
+
 }
 
 ?>

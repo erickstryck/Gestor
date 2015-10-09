@@ -35,7 +35,7 @@ class Autenticar extends GenericController
             die("Você não pode acessar essa empresa");
         else
             $home->indexView();
-        //
+    
     }
 
 

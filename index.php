@@ -17,7 +17,8 @@ $cfg = new Lumine_Configuration($lumineConfig);
 session_start();
 
 //ADICIONANDO O VALOR DO USER_ID SEMPRE EM UM, PELO FATO DE NÃO EXISTIR SISTEMA DE LOGIN AINDA. 
-$_SESSION['empresaId'] = 1; //Referencia ao usuário admin que está cadastrado no banco de dados. 
+//Referencia ao usuário admin que está cadastrado no banco de dados. 
+// $_SESSION['empresaId'] = 1; 
 
 //require_once( WWW_ROOT . DS . 'autoload.php'); 
 
@@ -32,8 +33,13 @@ if (empty($_REQUEST['uc']) || empty($_REQUEST['a'])) {
 }
 
 
-$_SESSION['Permissao'] = array('administrador');
-$_SESSION['usuarioId'] = 1;
+
+// $_SESSION['Permissao'] = array('administrador');
+// $_SESSION['usuarioId']=1;
+
+// $_SESSION['Permissao'] = array('administrador');
+// $_SESSION['usuarioId'] = 1;
+
 (new MainController())->findMyController();
 
 //Ainda em digivolvimento
