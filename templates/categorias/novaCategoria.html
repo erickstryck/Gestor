@@ -10,69 +10,119 @@
 
 
     <style type="text/css">
-        .separator {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
+    .separator {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 
     </style>
 
 </head>
 <body>
-<!--top bar begin -->
-<!-- $Include templates/lib/html/header.html -->
-<!--top bar end-->
+    <!--top bar begin -->
+    <!-- $Include templates/lib/html/header.html -->
+    <!--top bar end-->
 
-<!-- body section-->
+    <!-- body section-->
 
-<!-- title -->
-<div class="row full-width">
-    <div class="medium-12 columns ">
-        <h3>CADASTRO DE NOVAS CATEGORIAS DE PRODUTOS</h3>
+    <!-- title -->
+    <div class="row full-width">
+        <div class="medium-12 columns ">
+            <h3>CADASTRO DE NOVAS CATEGORIAS DE PRODUTOS</h3>
+        </div>
     </div>
-</div>
 
-<!-- botões -->
-<div class="row full-width">
-    <div class="medium-12 columns">
-        <button class="button success small cadastrar"><i class="fa fa-plus fa-lg"></i> Nova Categoria</button>
+    <!-- botões -->
+    <div class="row full-width">
+        <div class="medium-12 columns">
+            <button class="button success small cadastrar"><i class="fa fa-plus fa-lg"></i> Nova Categoria</button>
+            <button class="button small" id="search_button"><i class="fa fa-search fa-lg"></i>Busca Refinada</button>
+        </div>
     </div>
-</div>
 
-<!-- container main -->
-<div class="row full-width">
-    <div class="medium-12 columns">
+    <!-- container main -->
+    <div class="row full-width">
+
+        <div id="seach_content" class="medium-2 columns hide " style="margin-top:27px;">
+            <form action="" method="GET">
+
+              <!-- label -->
+            <div class="row">
+                <div class="medium-12 columns">
+                    <h3>Busca Refinada</h3>
+                </div>
+            </div>
+
+            <!-- field -->
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Something: <input type="text"></label>
+                </div>
+            </div>
+
+            <!-- field -->
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Something: <input type="text"></label>
+                </div>
+            </div>
+
+            <!-- field -->
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Something: <input type="text"></label>
+                </div>
+            </div>
+
+            <!-- field -->
+            <div class="row">
+                <div class="medium-12 columns">
+                    <label>Something: <input type="text"></label>
+                </div>
+            </div>  
+
+            <!-- button -->
+            <div class="row">
+                <div class="medium-12 columns">
+                    <button type="submit" class="button small" style="width:100%;">Buscar Fina</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div id="table_content" class="medium-12 columns">
         <!-- tabela -->
         <table class="dataTable striped border bordered" data-role="datatable" data-searching="true">
             <thead>
-            <tr>
-                <th>COD</th>
-                <th>NOME</th>
-                <th>MARGEM DE LUCRO (%)</th>
-                <th></th>
-            </tr>
+                <tr>
+                    <th>COD</th>
+                    <th>NOME</th>
+                    <th>MARGEM DE LUCRO (%)</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            <!-- $BeginBlock row -->
-            <tr>
-                <td>${categoria.id}</td>
-                <td>${categoria.nome_categoria}</td>
-                <td>${categoria.margem_lucro}</td>
-                <td>
-                    <button class="alterar fix" value="${categoria.id}"><i class="fa fa-pencil-square-o"></i></button>
-                    <button class="fix del" value="${categoria.id}"><i class="fa fa-trash"></i></button>
-                </td>
-            </tr>
-            <!-- $EndBlock row -->
+                <!-- $BeginBlock row -->
+                <tr>
+                    <td>${categoria.id}</td>
+                    <td>${categoria.nome_categoria}</td>
+                    <td>${categoria.margem_lucro}</td>
+                    <td>
+                        <button class="alterar fix" value="${categoria.id}"><i class="fa fa-pencil-square-o"></i></button>
+                        <button class="fix del" value="${categoria.id}"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                <!-- $EndBlock row -->
             </tbody>
 
             <tfoot>
-            <tr>
-                <th>COD</th>
-                <th>NOME</th>
-                <th>MARGEM DE LUCRO (%)</th>
-                <th></th>
-            </tr>
+                <tr>
+                    <th>COD</th>
+                    <th>NOME</th>
+                    <th>MARGEM DE LUCRO (%)</th>
+                    <th></th>
+                </tr>
             </tfoot>
         </table>
         <!-- fim tabela -->
@@ -85,45 +135,45 @@
 
 <!-- nova categoria -->
 <div id="nova_categoria" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
-     role="dialog">
-    <h2 id="modalTitle">Nova Categoria</h2>
+role="dialog">
+<h2 id="modalTitle">Nova Categoria</h2>
 
-    <p class="lead">Insira os dados abaixo</p>
-    <!-- formulário -->
-    <form id="form_categoria" data-abide="ajax">
+<p class="lead">Insira os dados abaixo</p>
+<!-- formulário -->
+<form id="form_categoria" data-abide="ajax">
 
-        <div class="row">
-            <div class="medium-12 columns">
-                <label>Nome da categoria
-                    <small style="color:red">Obrigatório:</small>
-                    <input type="text" name="nomeCategoria" required/>
-                </label>
-                <small class="error">Preencha este campo</small>
+    <div class="row">
+        <div class="medium-12 columns">
+            <label>Nome da categoria
+                <small style="color:red">Obrigatório:</small>
+                <input type="text" name="nomeCategoria" required/>
+            </label>
+            <small class="error">Preencha este campo</small>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-12 columns">
+            <label>Margem de lucro (%)
+                <small style="color:red">Obrigatório</small>
+                <input type="number" name="margemLucro" required/>
+            </label>
+            <small class="error">Preencha este campo</small>
+        </div>
+    </div>
+
+    <!-- botões -->
+    <div class="row">
+        <div class="medium-12 columns">
+            <div class="panel clearfix">
+                <button type="submit" class="button small secondary right">Salvar</button>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="medium-12 columns">
-                <label>Margem de lucro (%)
-                    <small style="color:red">Obrigatório</small>
-                    <input type="number" name="margemLucro" required/>
-                </label>
-                <small class="error">Preencha este campo</small>
-            </div>
-        </div>
-
-        <!-- botões -->
-        <div class="row">
-            <div class="medium-12 columns">
-                <div class="panel clearfix">
-                    <button type="submit" class="button small secondary right">Salvar</button>
-                </div>
-            </div>
-        </div>
-
-    </form>
-    <!-- fim formulário -->
-    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</form>
+<!-- fim formulário -->
+<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
 <!--dash begin -->
 <!-- $Include templates/lib/html/closeDash.html -->
@@ -136,15 +186,31 @@
 <!--footer end-->
 
 <script>
-    $(document).foundation();
+$(document).foundation();
 
-    $(document).ready(function () {
-        $(document).Conf();
-        $(document).Crud('categorias', '#nova_categoria', function (data) {
-            alertify.log(data);
-        });
-
+$(document).ready(function () {
+    $(document).Conf();
+    $(document).Crud('categorias', '#nova_categoria', function (data) {
+        alertify.log(data);
     });
+
+    var showed; 
+
+    $('#search_button').click(function(){
+        if(showed){
+            showed = false; 
+            $('#table_content').removeClass('medium-10');
+            $('#table_content').addClass('medium-12');
+            $('#seach_content').addClass('hide');  
+        }else{
+            showed = true; 
+            $('#table_content').addClass('medium-10');
+            $('#table_content').removeClass('medium-12');
+            $('#seach_content').removeClass('hide');
+        }
+    })
+
+});
 
 </script>
 </body>
