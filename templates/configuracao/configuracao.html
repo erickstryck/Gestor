@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <html class="no-js" lang="pt">
 <head>
     <!-- init script and css -->
@@ -27,6 +27,19 @@
             padding-top: 2px !important;
             padding-bottom: 2px !important;
         }
+
+        li span {
+            padding-right: 10px;
+        }
+
+        .conteudo {
+            text-align: left !important;
+            padding-left: 10px !important;
+        }
+
+        .many span {
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -49,26 +62,33 @@
     <div class="medium-6 columns">
         <ul class="pricing-table">
             <li class="title">Dados da empresa</li>
-            <li class="bullet-item">CPF/CNPJ: </li>
-            <li class="bullet-item">Nome fantasia: </li>
-            <li class="bullet-item">Razão social ou nome: </li>
-            <li class="bullet-item">Telefone fixo: </li>
-            <li class="bullet-item">Telefone celular: </li>
-            <li class="bullet-item">E-mail: </li>
+            <li class="bullet-item conteudo">CPF/CNPJ:</li>
+            <li class="bullet-item conteudo">Nome fantasia:</li>
+            <li class="bullet-item conteudo">Razão social ou nome:</li>
+            <li class="bullet-item conteudo">Telefone fixo:</li>
+            <li class="bullet-item conteudo">Telefone celular:</li>
+            <li class="bullet-item conteudo">E-mail:</li>
             <li class="cta-button"><a class="button" href="#">Editar dados</a></li>
         </ul>
     </div>
     <div class="medium-6 columns">
         <ul class="pricing-table">
             <li class="title">Configuração geral</li>
-            <li class="bullet-item"><span data-tooltip aria-haspopup="true" class="has-tips" data-options="show_on:large"
-                                          title=" Verifique se a hora do sistema está correta para o seu fuso horário. Caso esteja errado, ajuste o fuso horário de acordo com a sua localidade.
-">Fuso horário: </span></li>
-            <li class="bullet-item"><span data-tooltip aria-haspopup="true" class="has-tips" data-options="show_on:large"
-                                          title=" Proíbe cadastrar mais de uma vez o mesmo CPF ou CNPJ na tela de contatos
-">CPF e CNPJ unico: </span></li>
-            <li class="bullet-item"><span data-tooltip aria-haspopup="true" class="has-tips" data-options="show_on:large"
-                                          title="Número máximo de casas decimais a ser usado nos preços de produtos e serviços.">Casas decimais no preço: </span></li>
+            <li class="bullet-item conteudo"><span data-tooltip aria-haspopup="true" class="has-tips"
+                                                   data-options="show_on:large"
+                                                   title=" Verifique se a hora do sistema está correta para o seu fuso horário. Caso esteja errado, ajuste o fuso horário de acordo com a sua localidade.
+"><i class="icon-info-sign"></i></span>Fuso horário:
+            </li>
+            <li class="bullet-item conteudo"><span data-tooltip aria-haspopup="true" class="has-tips"
+                                                   data-options="show_on:large"
+                                                   title=" Proíbe cadastrar mais de uma vez o mesmo CPF ou CNPJ na tela de contatos
+"><i class="icon-info-sign"></i></span>CPF e CNPJ unico:
+            </li>
+            <li class="bullet-item conteudo"><span data-tooltip aria-haspopup="true" class="has-tips"
+                                                   data-options="show_on:large"
+                                                   title="Número máximo de casas decimais a ser usado nos preços de produtos e serviços."><i
+                    class="icon-info-sign"></i></span>Casas decimais no preço:
+            </li>
             <li class="cta-button"><a class="button" href="#">Editar dados</a></li>
         </ul>
     </div>
@@ -77,9 +97,50 @@
     <div class="medium-6 columns">
         <ul class="pricing-table">
             <li class="title">Dados fiscais da empresa</li>
-            <li class="bullet-item">Principal atividade da empresa: </li>
-            <li class="bullet-item">Regime tributário: </li>
-            <li class="bullet-item">Alíquota do Simples: </li>
+            <li class="bullet-item conteudo">Principal atividade da empresa:</li>
+            <li class="bullet-item conteudo">Regime tributário:</li>
+            <li class="bullet-item conteudo">Alíquota do Simples:</li>
+            <li class="cta-button"><a class="button" href="#">Editar dados</a></li>
+        </ul>
+    </div>
+    <div class="medium-6 columns">
+        <ul class="pricing-table">
+            <li class="title">Configuração das vendas</li>
+            <li class="bullet-item conteudo">Desconto máximo na venda:</li>
+            <li class="bullet-item conteudo">Bloquear vendas de produtos sem estoque?</li>
+            <li class="bullet-item conteudo">Adicionar despesas no cálculo do imposto?</li>
+            <li class="cta-button"><a class="button" href="#">Editar dados</a></li>
+        </ul>
+    </div>
+</div>
+<div class="row full-width">
+    <div class="medium-6 columns">
+        <ul class="pricing-table">
+            <li class="title">Configuração padrão para cadastro de produtos</li>
+            <li class="bullet-item conteudo many">
+                <div class="row full-width">
+                    <div class="medium-6 columns">ICMS: </div>
+                    <div class="medium-6 columns">Origem: </div>
+                </div>
+            </li>
+            <li class="bullet-item conteudo many">
+                <div class="row full-width">
+                    <div class="medium-6 columns">IPI: </div>
+                    <div class="medium-6 columns">Alíquota: </div>
+                </div>
+            </li>
+            <li class="bullet-item conteudo many">
+                <div class="row full-width">
+                    <div class="medium-6 columns">PIS: </div>
+                    <div class="medium-6 columns">Alíquota: </div>
+                </div>
+            </li>
+            <li class="bullet-item conteudo many">
+                <div class="row full-width">
+                    <div class="medium-6 columns">COFINS: </div>
+                    <div class="medium-6 columns">Alíquota: </div>
+                </div>
+            </li>
             <li class="cta-button"><a class="button" href="#">Editar dados</a></li>
         </ul>
     </div>
