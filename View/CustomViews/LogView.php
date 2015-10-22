@@ -34,7 +34,7 @@ class LogView extends GenericView
             $intervaloMin = strtotime($datade);
             $horaAtual = strtotime(date('H:i:s', gmdate('U')));
             $horaBusca = strtotime($horapara);
-            if ($timestamp_dt_atual < $intervaloMax || $horaAtual < $horaBusca) {
+            if ($timestamp_dt_atual < $intervaloMax) {
                 $this->sendAjax(array('status' => false));
             }
             if ($timestamp_dt_atual == $intervaloMin && ($horaAtual < strtotime($horade) || $horaAtual < strtotime($horapara))) {
