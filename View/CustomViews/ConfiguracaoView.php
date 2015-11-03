@@ -18,7 +18,16 @@ class ConfiguracaoView extends GenericView
     }
 
     function configView(){
+        Lumine::import("Empresa");
+        $empresa=new Empresa();
+        $empresa->get($_SESSION["empresaId"]);
         parent::getTemplateByAction("configuracao");
+        parent::$templator->setVariable("CPF_CNPJ",$empresa->cpfCnpj);
+        parent::$templator->setVariable("nome",$empresa->nome);
+        parent::$templator->setVariable("razao_social",$empresa->razaoSocial);
+        parent::$templator->setVariable("tel_fixo",$empresa->telFixo);
+        parent::$templator->setVariable("tel_celular",$empresa->telCelular);
+        parent::$templator->setVariable("email_principal",$empresa->emailPrincipal);
         parent::show();
     }
 }

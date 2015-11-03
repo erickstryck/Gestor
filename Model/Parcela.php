@@ -2,16 +2,16 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "parcela"
- * in 2015-10-02
+ * in 2015-11-03
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
  *
  */
-class Parcela extends Lumine_Base
-{
 
+class Parcela extends Lumine_Base {
 
+    
     public $id;
     public $valor;
     public $dataVencimento;
@@ -22,8 +22,9 @@ class Parcela extends Lumine_Base
     public $formaPagamentoId;
     public $tipoDocumentoId;
     public $recipienteId;
-
-
+    
+    
+    
     /**
      * Inicia os valores da classe
      * @author Hugo Ferreira da Silva
@@ -33,9 +34,9 @@ class Parcela extends Lumine_Base
     {
         $this->metadata()->setTablename('parcela');
         $this->metadata()->setPackage('Model');
-
+        
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
-
+        
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->metadata()->addField('valor', 'valor', 'varchar', 45, array());
         $this->metadata()->addField('dataVencimento', 'data_vencimento', 'date', null, array());
@@ -47,7 +48,7 @@ class Parcela extends Lumine_Base
         $this->metadata()->addField('tipoDocumentoId', 'tipo_documento_id', 'int', 11, array('foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'TipoDocumento'));
         $this->metadata()->addField('recipienteId', 'recipiente_id', 'int', 11, array('foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Recipiente'));
 
-
+        
     }
 
     #### END AUTOCODE

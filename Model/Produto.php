@@ -2,16 +2,16 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "produto"
- * in 2015-10-02
+ * in 2015-11-03
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
  *
  */
-class Produto extends Lumine_Base
-{
 
+class Produto extends Lumine_Base {
 
+    
     public $id;
     public $naoControlarEstoque;
     public $arquivar;
@@ -33,8 +33,9 @@ class Produto extends Lumine_Base
     public $categoriaId;
     public $mudancaestoques = array();
     public $pedidovendahasprodutos = array();
-
-
+    
+    
+    
     /**
      * Inicia os valores da classe
      * @author Hugo Ferreira da Silva
@@ -44,9 +45,9 @@ class Produto extends Lumine_Base
     {
         $this->metadata()->setTablename('produto');
         $this->metadata()->setPackage('Model');
-
+        
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
-
+        
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->metadata()->addField('naoControlarEstoque', 'nao_controlar_estoque', 'boolean', 1, array());
         $this->metadata()->addField('arquivar', 'arquivar', 'boolean', 1, array());
@@ -67,7 +68,7 @@ class Produto extends Lumine_Base
         $this->metadata()->addField('ativo', 'ativo', 'boolean', 1, array('default' => '1'));
         $this->metadata()->addField('categoriaId', 'categoria_id', 'int', 11, array('notnull' => true, 'foreign' => '1', 'onUpdate' => 'RESTRICT', 'onDelete' => 'RESTRICT', 'linkOn' => 'id', 'class' => 'Categoria'));
 
-
+        
         $this->metadata()->addRelation('mudancaestoques', Lumine_Metadata::ONE_TO_MANY, 'MudancaEstoque', 'produtoId', null, null, null);
         $this->metadata()->addRelation('pedidovendahasprodutos', Lumine_Metadata::ONE_TO_MANY, 'PedidoVendaHasProduto', 'produtoId', null, null, null);
     }

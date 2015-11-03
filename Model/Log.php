@@ -2,16 +2,16 @@
 #### START AUTOCODE
 /**
  * Classe generada para a tabela "log"
- * in 2015-10-02
+ * in 2015-11-03
  * @author Hugo Ferreira da Silva
  * @link http://www.hufersil.com.br/lumine
  * @package Model
  *
  */
-class Log extends Lumine_Base
-{
 
+class Log extends Lumine_Base {
 
+    
     public $id;
     public $usercase;
     public $action;
@@ -20,8 +20,9 @@ class Log extends Lumine_Base
     public $usuarioId;
     public $permissao;
     public $datatime;
-
-
+    
+    
+    
     /**
      * Inicia os valores da classe
      * @author Hugo Ferreira da Silva
@@ -31,9 +32,9 @@ class Log extends Lumine_Base
     {
         $this->metadata()->setTablename('log');
         $this->metadata()->setPackage('Model');
-
+        
         # nome_do_membro, nome_da_coluna, tipo, comprimento, opcoes
-
+        
         $this->metadata()->addField('id', 'id', 'int', 11, array('primary' => true, 'notnull' => true, 'autoincrement' => true));
         $this->metadata()->addField('usercase', 'userCase', 'varchar', 45, array('notnull' => true));
         $this->metadata()->addField('action', 'action', 'varchar', 45, array('notnull' => true));
@@ -43,7 +44,7 @@ class Log extends Lumine_Base
         $this->metadata()->addField('permissao', 'permissao', 'varchar', 120, array('notnull' => true));
         $this->metadata()->addField('datatime', 'dataTime', 'datetime', null, array('notnull' => true));
 
-
+        
     }
 
     #### END AUTOCODE
