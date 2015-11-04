@@ -30,4 +30,5 @@ class ConfiguracaoView extends GenericView
         parent::$templator->setVariable("email_principal",$empresa->emailPrincipal);
         parent::show();
     }
+
 }

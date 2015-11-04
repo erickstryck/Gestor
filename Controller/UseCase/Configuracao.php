@@ -19,4 +19,26 @@ class Configuracao extends GenericController
     function showView(){
         $this->configView->configView();
     }
+    public function getObject($arg){
+        Lumine::import("Empresa");
+        $empresa=new Empresa();
+        $empresa->get($_SESSION["empresaId"]);
+        $empresa->fetch(true);
+        $this->configView->sendAjax($empresa->toArray());
+    }
+    public function alterar($arg)
+    {
+        Lumine::import("Empresa");
+        $empresa=new Empresa();
+        $empresa->get($_SESSION["empresaId"]);
+        $empresa->fetch(true);
+        $empresa->cpfCnpj=$arg['cpfCnpj'];
+            $empresa->razaoSocial=$arg['razaoSocial'];
+                $empresa->nome=$arg['nome'];
+                    $empresa->telFixo=$arg['telFixo'];
+                        $empresa->telCelular=$arg['telCelular'];
+                            $empresa->emailPrincipal=$arg['emailPrincipal'];
+        $empresa->update();
+        $this->configView->sendAjax(array('status' => true, 'msg' => 'Os dados foram alterados!'));
+    }
 }
